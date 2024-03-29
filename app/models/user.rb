@@ -21,10 +21,10 @@ class User < ApplicationRecord
         uniqueness: true, 
         length: { in: 3..100 }, 
         format: { with: URI::MailTo::EMAIL_REGEXP }
-    validaets :session_token, presence: true, uniqueness: true
+    validates :session_token, presence: true, uniqueness: true
     validates :password_digest, presence: true
-    validates :gender, inclusion: ['Female', 'Male']
-    validaets :password, length: {minimum: 6} , allow_nil: true
+    # validates :gender, inclusion: ['Female', 'Male']
+    validates :password, length: {minimum: 6} , allow_nil: true
 
     
     def self.find_by_credential(email, password) 

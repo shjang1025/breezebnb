@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
     include ActionController::RequestForgeryProtection
-    protect_from_forgery with: :exception
-    
+    # protect_from_forgery with: :exception
+
     before_action :snake_case_params, :attach_authenticity_token
 
     def current_user 
@@ -9,15 +9,15 @@ class ApplicationController < ActionController::API
     end
 
     def required_logged_in
-        if(!logged_in?) {
+        if(!logged_in?)    
             render json: {errors: ['Must be logged in']}, status: 401
-        }
+        end
     end
 
     def required_logged_out
-        if(logged_in?) {
+        if(logged_in?) 
             render json: {errors: ['Must be logged out']}, status: 401
-        }
+        end
     end
 
     def log_in(user)
@@ -42,6 +42,6 @@ class ApplicationController < ActionController::API
     #include information about the auth token
     #every single time server gets the request, and it creates the response, MUST include CSRF Token
     def attach_authenticity_token
-        headers['X-CSRF-Token'] = form_authenticity_token;
+        headers['X-CSRF-Token'] = form_authenticity_token
     end
 end
