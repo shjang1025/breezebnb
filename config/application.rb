@@ -40,5 +40,10 @@ module Breezebnb
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore,
+      key: 'user_auth',
+      same_site: :lax, #only on the same site
+      secure: Rails.env.production?
   end
 end
