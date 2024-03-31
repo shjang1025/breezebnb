@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import {logoutUser, selectCurrentUser } from "../store/sessionReducer"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './Navbar.css';
 import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
@@ -17,45 +17,59 @@ const Navbar = () => {
     const [modalState, setModalState] = useState(null)
     
 
-    const dropDown = () => (
-        <div className="dropdown">
-            <li id="login" onClick={() => setModalState('login')}>Login</li>
-            <li id="signup" onClick={() => setModalState('signup')}>Signup</li>
-        </div>
-    )
+    const dropDown = () => {
+        if(!currentUser) {
+            return(
+                <div className="dropdown">
+                    <li id="login" onClick={() => setModalState('login')}>Login</li>
+                    <li id="signup" onClick={() => setModalState('signup')}>Signup</li>
+                </div>
+            )
+        } else {
+            return (
+                <div className="dropdown">
+                    <li id="logout" onClick={() => dispatch(logoutUser())}>Logout</li>
+                </div>
+            )
+        }
+    }
     const sessionLinks = () => {
         if (currentUser) {
             return (
-                <li className='session-links'>
-                    <p>Hello {currentUser.username}</p>
-                    <button onClick={() => dispatch(logoutUser())}>Logout</button>
-                </li>
+                <button className='session-links' onClick={() => setView(!view)}>
+                    {/* <p>Hello {currentUser.username}</p> */}
+                    {/* <button onClick={() => dispatch(logoutUser())}>Logout</button> */}
+                    <span>
+                        <FontAwesomeIcon icon={faBars}/>
+                        {view && dropDown()}
+                        
+                    </span>
+                    <span>
+                        <FontAwesomeIcon icon={faUser}/>
+                        {view && dropDown()}
+                    </span>
+                </button>
             )
         } else {
             return(
                 <>
-                    {/* <li className='session-links'
-                        onClick={() => setModalState('login')}>
-                            <FontAwesomeIcon icon={faBars}/>
-                            <FontAwesomeIcon icon={faUser}/>
-                    </li> */}
                     <button className='session-links' onClick={() => setView(!view)}>
-                        <li>
-                            <FontAwesomeIcon icon={faBars}/>
-                            {view && dropDown()}
-                            
-                        </li>
-                        <li>
-                            <FontAwesomeIcon icon={faUser}/>
-                            {view && dropDown()}
-                        </li>
+                            <span>
+                                <FontAwesomeIcon icon={faBars}/>
+                                {view && dropDown()}
+                                
+                            </span>
+                            <span>
+                                <FontAwesomeIcon icon={faUser}/>
+                                {view && dropDown()}
+                            </span>
                     </button>
                 </>
                   
             )
         }
     }
-    
+
     return(
         <nav className="navbar">
             <div className="navbar-logo">

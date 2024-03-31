@@ -28,10 +28,7 @@ const SessionModal = ({modalState, setModalState}) => {
         }
     };
 
-    const handleButtonSubmit = (e) => {
-        e.preventDefault();
-        
-    }
+
     return(
         <div className="modal-background" onClick={e => setModalState(null)}>
             <div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -45,19 +42,21 @@ const SessionModal = ({modalState, setModalState}) => {
                     <div className="modal-content-login">
                         <form onSubmit={handleSubmit}>
 
-                                <input 
-                                    placeholder='Email'
-                                    value={email}
-                                    onChange={e => setEmail(e.target.value)}
-                                />
-                                <input
-                                    placeholder='Password'
-                                    type='password'
-                                    value={password}
-                                    onChange={e => setPassword(e.target.value)}
-                                />
+                            <input 
+                                placeholder='Email'
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                            />
+                            <input
+                                placeholder='Password'
+                                type='password'
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                                
+                            />
+                            <button type="submit">{modalState}</button>
                         </form>
-                        <button type="submit" value={modalState}>{modalState}</button>
+                        
                     </div>
                 </div>
                 {/* </div> */}

@@ -15,7 +15,7 @@ export const createSession = sessoinInfo => ({
 })
 
 //THUNK CREATOR
-export const createUser = userInfo => dispatch => {
+export const createUser = userInfo => dispatch => (
     postUser(userInfo)
         .then(res => {
             if(res.ok) {
@@ -29,9 +29,9 @@ export const createUser = userInfo => dispatch => {
             dispatch(createSession(data.user))
         })
         .catch(err => console.error(err))
-}
+)
 
-export const loginUser = sessionInfo => dispatch => {
+export const loginUser = sessionInfo => dispatch => (
     postSession(sessionInfo)
         .then(res => {
             if(res.ok) {
@@ -46,20 +46,20 @@ export const loginUser = sessionInfo => dispatch => {
         })
         .catch(err => console.error(err))
 
-}
+)
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = () => dispatch => (
     deleteSession()
         .then(res => {
             if (res.ok) {
                 sessionStorage.removeItem('currentUser')
                 dispatch(destroySession()) // refer to jbuilder formats
             }else {
-                throw res;
+                throw res.json();
             }
         })
         .catch(err => console.error(err))
-}
+)
 //SELECTORS
 export const selectCurrentUser = state => state.session
 
@@ -69,7 +69,7 @@ const sessionReducer = (state=initialState, action) => {
     const newState = {...state}
     switch(action.type) {
         case CREATE_SESSION:
-            return action.sessionInfo;
+            return action.sessionInfo || state;
         case DESTROY_SESSION:
             return null;
         default:

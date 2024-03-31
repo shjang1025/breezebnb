@@ -9,7 +9,6 @@ import { restoreSession } from './utils/csrfUtils.js'
 import { postSession, deleteSession, postUser } from './utils/sessionApiUtils.js'
 import { createUser, loginUser, logoutUser, selectCurrentUser } from './store/sessionReducer.js'
 
-
 const intializeApp = () => {
   const store = configureStore();
   window.store = store
