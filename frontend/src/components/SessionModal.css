@@ -1,0 +1,83 @@
+.modal-background {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    display: flex;
+  }
+
+.modal-content {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    position: absolute;
+    border: 1px solid black;
+  }
+  
+  .modal-content-top {
+    display: flex;
+    padding: 8px;
+    justify-content: flex-end; /* Align the button to the right */
+  }
+  .modal-content-top button {
+    cursor: pointer;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    overflow: hidden;
+    outline: none;
+  }
+  
+  .modal-content-center {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+  }
+  
+  .modal-content-title {
+    font-size: 24px;
+    margin-bottom: 20px; 
+  }
+  
+  .modal-content-input {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin-bottom: 20px;
+  }
+  
+  /* .modal-content-input label {
+    margin-bottom: 20px;
+  } */
+  
+  .modal-content-login input {
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+.modal-content-login button {
+    width: 55%;
+    padding: 8px;
+    background-color: rgba(255,90,96);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content-input button:hover {
+    background-color: rgb(251, 129, 133);
+
+}
+

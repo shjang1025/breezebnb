@@ -1,14 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
+import './App.css'
+import Navbar from './components/Navbar';
+
+// const router = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <Navbar/>
+//   },
+//   {
+//     path: '/login',
+//     element: <SessionForm formType="login" />
+//   },
+//   {
+//     path: '/signup',
+//     element: <SessionForm formType="signup" />
+//   },
+//   {
+//     path: '/users',
+//     element: <AllUsers />
+//   },
+//   {
+//     path: '/users/new',
+//     element: <CreateUser />
+//   }
+// ])
+
+const router = createBrowserRouter([
+  {path: '/', element: <Navbar/>}
+]);
 function App() {
   return (
     <>
-      <h2>BreezeBnb!</h2>
+      <RouterProvider router={router}/>
     </>
   )
 }
 
-export default App
+export default App;
