@@ -9,9 +9,9 @@ export const destroySession = () => ({
     type: DESTROY_SESSION
 })
 
-export const createSession = sessoinInfo => ({
+export const createSession = sessionInfo => ({
     type: CREATE_SESSION, 
-    sessoinInfo
+    sessionInfo
 })
 
 //THUNK CREATOR
@@ -55,7 +55,7 @@ export const logoutUser = () => dispatch => (
                 sessionStorage.removeItem('currentUser')
                 dispatch(destroySession()) // refer to jbuilder formats
             }else {
-                throw res.json();
+                throw res;
             }
         })
         .catch(err => console.error(err))
@@ -64,12 +64,12 @@ export const logoutUser = () => dispatch => (
 export const selectCurrentUser = state => state.session
 
 //REDUCER
-const initialState = JSON.parse(sessionStorage.getItem('currentUser'));
+const initialState = JSON.parse(sessionStorage.getItem('currentUser')) || null;
 const sessionReducer = (state=initialState, action) => {
     const newState = {...state}
     switch(action.type) {
         case CREATE_SESSION:
-            return action.sessionInfo || state;
+            return action.sessionInfo;
         case DESTROY_SESSION:
             return null;
         default:

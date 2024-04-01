@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import {logoutUser, selectCurrentUser } from "../store/sessionReducer"
+import {logoutUser, loginUser, createUser, selectCurrentUser } from "../store/sessionReducer"
 import { useEffect, useState } from "react";
 import './Navbar.css';
 import {Link} from 'react-router-dom'
@@ -16,59 +16,79 @@ const Navbar = () => {
     const [view, setView] = useState(false);
     const [modalState, setModalState] = useState(null)
     
+    const handleLogout = () => {
+        dispatch(logoutUser());
+        setView(false);
+    }
+    const handleLogin = (sessionInfo) => {
+        setModalState('login')
+        dispatch(loginUser(sessionInfo));
+        setView(false);
+
+    }
+
+    const handleSignup = (userInfo) => {
+        setModalState('signup')
+        dispatch(createUser(userInfo));
+        setView(false);
+
+    }
+
+    useEffect(() => {
+        console.log('Session data changed', currentUser)
+    },[currentUser])
 
     const dropDown = () => {
         if(!currentUser) {
             return(
                 <div className="dropdown">
-                    <li id="login" onClick={() => setModalState('login')}>Login</li>
-                    <li id="signup" onClick={() => setModalState('signup')}>Signup</li>
+                    <li id="login" onClick={handleLogin}>Login</li>
+                    <li id="signup" onClick={handleSignup}>Signup</li>
                 </div>
             )
         } else {
             return (
                 <div className="dropdown">
-                    <li id="logout" onClick={() => dispatch(logoutUser())}>Logout</li>
+                    <li id="logout" onClick={handleLogout}>Logout</li>
                 </div>
             )
         }
     }
-    const sessionLinks = () => {
-        if (currentUser) {
-            return (
-                <button className='session-links' onClick={() => setView(!view)}>
-                    {/* <p>Hello {currentUser.username}</p> */}
-                    {/* <button onClick={() => dispatch(logoutUser())}>Logout</button> */}
-                    <span>
-                        <FontAwesomeIcon icon={faBars}/>
-                        {view && dropDown()}
+    // const sessionLinks = () => {
+    //     if (currentUser) {
+    //         return (
+    //             <button className='session-links' onClick={() => setView(!view)}>
+    //                 <span>
+    //                     <FontAwesomeIcon icon={faBars}/>
+    //                     {view && dropDown()}
                         
-                    </span>
-                    <span>
-                        <FontAwesomeIcon icon={faUser}/>
-                        {view && dropDown()}
-                    </span>
-                </button>
-            )
-        } else {
-            return(
-                <>
-                    <button className='session-links' onClick={() => setView(!view)}>
-                            <span>
-                                <FontAwesomeIcon icon={faBars}/>
-                                {view && dropDown()}
+    //                 </span>
+    //                 <span>
+    //                     <FontAwesomeIcon icon={faUser}/>
+    //                     {view && dropDown()}
+    //                 </span>
+    //             </button>
+    //         )
+    //     } else {
+    //         return(
+    //             <>
+    //                 <button className='session-links' onClick={() => setView(!view)}>
+    //                         <span>
+    //                             <FontAwesomeIcon icon={faBars}/>
+    //                             {view && dropDown()}
                                 
-                            </span>
-                            <span>
-                                <FontAwesomeIcon icon={faUser}/>
-                                {view && dropDown()}
-                            </span>
-                    </button>
-                </>
+    //                         </span>
+    //                         <span>
+    //                             <FontAwesomeIcon icon={faUser}/>
+    //                             {view && dropDown()}
+    //                         </span>
+    //                 </button>
+    //             </>
                   
-            )
-        }
-    }
+    //         )
+    //     }
+    // }
+
 
     return(
         <nav className="navbar">
@@ -80,7 +100,18 @@ const Navbar = () => {
                 <li>Stays</li>
             </div>
             <div className="navbar-menu">
-                {sessionLinks()}
+                {/* {sessionLinks()} */}
+                <button className='session-links' onClick={() => setView(!view)}>
+                    <span>
+                        <FontAwesomeIcon icon={faBars}/>
+                        {view && dropDown()}
+                        
+                    </span>
+                    <span>
+                        <FontAwesomeIcon icon={faUser}/>
+                        {view && dropDown()}
+                    </span>
+                </button>
             </div>
             {modalState && (<SessionModal modalState={modalState} setModalState={setModalState} />)}
         </nav>

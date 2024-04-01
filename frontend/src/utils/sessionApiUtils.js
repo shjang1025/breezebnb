@@ -16,7 +16,7 @@ export const postSession = sessionInfo => (
 )
 
 export const deleteSession = () => (
-    csrfFetch('api/session', {
+    csrfFetch('/api/session', {
         method: 'DELETE'
     })
 )
