@@ -79,7 +79,9 @@ const Navbar = () => {
                             <TopSearchBar searchModal={searchModal} handleSearchClick={handleSearchClick}/>
                         </div>
                         <div className="navbar-menu">
-                            {/* {sessionLinks()} */}
+                            <div className="room-hosting-links">
+                                <Link to={'/host'}>Airbnb your home</Link>
+                            </div>
                             <button className='session-links' onClick={() => setView(!view)}>
                                 <div className="menu-bars">
                                     <FontAwesomeIcon icon={faBars} size="xl"/>

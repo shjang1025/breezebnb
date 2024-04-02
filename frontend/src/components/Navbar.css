@@ -54,15 +54,22 @@ table {
     cursor: pointer;
     list-style-type: none;
     position: relative;
-    border-radius: 10px;
+    border-radius: 30px;
     padding: 10px;
     background-color: white;
     padding: 0.3em 0.8em;
-    box-shadow: 0 0 0 .1em inset rgba(255,90,96) ;
+    transition: box-shadow 0.3s ease;
+}
+
+.session-links:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 .session-links div:first-child {
-    padding-right: 10px;
+    padding-right: 7px;
+}
+.menu-dropdown, .menu-bars {
+    margin: 5px;
 }
 .stay-container {
     font-size: 20px;
@@ -101,7 +108,6 @@ table {
     align-items: center;
     cursor: pointer;
     box-sizing:  border-box;
-    
 }
 
 
@@ -109,7 +115,7 @@ table {
     display: flex;
     list-style-type: none;
     justify-content: space-between;
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     align-items: center;
     cursor: pointer;
     box-sizing: border-box;
@@ -134,7 +140,16 @@ table {
     color: rgba(255,90,96);
 
 }
-
+.navbar-menu {
+    display: flex;
+    justify-content: row;
+    font-weight: bold;
+    align-items: center;
+}
+.navbar-menu div:first-child {
+    padding-right: 10px;
+    font-size: 15px;
+}
 .navbar-explore {
     display: flex;
     flex-direction: column;
@@ -157,9 +172,6 @@ table {
     margin-right: 5px;
 }
 
-.menu-bars {
-    size: lg;
-}
 .dropdown {
     display: block;
     /* padding: 2px; */
@@ -182,7 +194,7 @@ table {
 }
 
 .navbar-logo li,
-.menue-dropdown *,
+.menu-dropdown *,
 .dropdown *,
 .navbar-menu .menu-user,
 .navbar-logo a {
