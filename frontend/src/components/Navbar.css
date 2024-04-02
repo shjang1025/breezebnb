@@ -103,7 +103,7 @@ table {
 .header2-container {
     justify-content: center;
     width: 100vw;
-    margin: 30px;
+    margin-left: 50px;
 }
 .navbar {
     padding: 10px 0;

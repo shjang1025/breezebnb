@@ -1,6 +1,4 @@
-
 import './TopSearchBar.css';
-import { useState } from 'react';
 import { useEffect } from 'react';
 
 const TopSearchBar = ({searchModal, handleSearchClick}) => {
@@ -35,7 +33,6 @@ const TopSearchBar = ({searchModal, handleSearchClick}) => {
         } else {
             return(
                 <div className="stay-container">
-                    Stays
                 </div>
             )
         }
