@@ -119,32 +119,27 @@ table {
     display: flex;
     align-items: center;
     /* margin-right: 8px; */
-    color: rgba(255,90,96);
+    color: rgba(255,90,96);	
     font-weight: bold;
     font-size: 20px;
-
 }
 .navbar-logo li:first-child {
     padding: 0;
-    margin: 0;
-    
+    /* margin: 0; */
+    margin-right: 5px;
 }
+
 .navbar-logo li a {
     text-decoration: none;
     color: rgba(255,90,96);
 
 }
-.navbar-logo li:first-child {
-    margin-right: 5px;
-}
+
 .navbar-explore {
     display: flex;
     flex-direction: column;
 }
 
-/* .container {
-    margin-bottom: 40px; /* Adjust as needed */
-} */
 
 .navbar-explore li{
     /* margin: 8px; */
