@@ -4,11 +4,8 @@ import { useEffect, useState } from "react";
 import './Navbar.css';
 import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faUser} from "@fortawesome/free-regular-svg-icons"
-import {faAirbnb} from "@fortawesome/free-brands-svg-icons"
-import {faBars} from "@fortawesome/free-solid-svg-icons"
+import {faBars, faCircleUser} from "@fortawesome/free-solid-svg-icons"
 import SessionModal from "./SessionModal";
-import SearchBar from "./TopSearchBar";
 import BottomSearchBar from "./BottomSearchBar";
 import TopSearchBar from "./TopSearchBar";
 
@@ -80,7 +77,7 @@ const Navbar = () => {
                         </div>
                         <div className="navbar-menu">
                             <div className="room-hosting-links">
-                                <Link to={'/host'}>Airbnb your home</Link>
+                                <Link to={'/host'}>Breezebnb your home</Link>
                             </div>
                             <button className='session-links' onClick={() => setView(!view)}>
                                 <div className="menu-bars">
@@ -89,7 +86,7 @@ const Navbar = () => {
                                     
                                 </div>
                                 <div className="menu-dropdown">
-                                    <FontAwesomeIcon icon={faUser} size="xl"/>
+                                    <FontAwesomeIcon icon={faCircleUser} size="2xl"/>
                                     {view && dropDown()}
                                 </div>
                             </button>

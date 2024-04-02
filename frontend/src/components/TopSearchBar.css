@@ -11,8 +11,16 @@
     border-radius: 50px;
     transition: all 0.3s ease;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px;
+    position: relative;
   }
-
+.stay-container {
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 50%;
+    top: 3%;
+    transform: translate(-50%, -50%);
+}
 .icon-wrapper {
     display: flex;
     align-items: center;

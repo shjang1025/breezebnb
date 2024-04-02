@@ -66,15 +66,21 @@ table {
 }
 
 .session-links div:first-child {
-    padding-right: 7px;
+    /* padding-right: 3px; */
 }
 .menu-dropdown, .menu-bars {
-    margin: 5px;
+    margin: 3px;
 }
 .stay-container {
     font-size: 20px;
     font-weight: bold;
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+}
+.navbar-explore {
+    position: fixed;
+    left: 52.5%;
+    top: 3%;
+    transform: translate(-50%, -50%);
 }
 .header-container,
 .header2-container {
@@ -83,9 +89,16 @@ table {
     -webkit-font-smoothing:antialiased;
     margin: 0;
     padding: 0 80px;
+    padding-bottom: 30px;
     width: 100vw;
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
-
+    border-bottom: 1px solid;
+    border-bottom-color: #d3d3d3;
+    ;
+    position: sticky;
+}
+.header-container {
+    border-bottom: none;
 }
 .header2-container {
     justify-content: center;
@@ -124,7 +137,6 @@ table {
 .navbar-logo {
     display: flex;
     align-items: center;
-    /* margin-right: 8px; */
     color: rgba(255,90,96);	
     font-weight: bold;
     font-size: 20px;
@@ -147,8 +159,7 @@ table {
     align-items: center;
 }
 .navbar-menu div:first-child {
-    padding-right: 10px;
-    font-size: 15px;
+    font-size: 13px;
 }
 .navbar-explore {
     display: flex;
