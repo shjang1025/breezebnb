@@ -64,14 +64,26 @@ table {
 .session-links div:first-child {
     padding-right: 10px;
 }
-
-.header-container {
+.stay-container {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+}
+.header-container,
+.header2-container {
     /* box-sizing: border-box; */
-    display: block;
+    display: flex;
     -webkit-font-smoothing:antialiased;
     margin: 0;
     padding: 0 80px;
     width: 100vw;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+
+}
+.header2-container {
+    justify-content: center;
+    width: 100vw;
+    margin: 30px;
 }
 .navbar {
     padding: 10px 0;
@@ -125,6 +137,14 @@ table {
 .navbar-logo li:first-child {
     margin-right: 5px;
 }
+.navbar-explore {
+    display: flex;
+    flex-direction: column;
+}
+
+/* .container {
+    margin-bottom: 40px; /* Adjust as needed */
+} */
 
 .navbar-explore li{
     /* margin: 8px; */

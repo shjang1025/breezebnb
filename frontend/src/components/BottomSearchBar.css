@@ -1,0 +1,28 @@
+.icon2-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.icon2-wrapper div {
+  padding:0.8rem 1rem;
+}
+.location{
+    width:25%;
+}
+.check-in, .check-out, .guests{
+    width:25%;
+}
+input[type="text"]{
+    background:none;
+    border:none;
+    /* padding-right:0.2rem; */
+    margin-left: 0.5rem;
+}
+
+input[type="text"]:focus{
+    outline:none;
+}
+
+::placeholder{
+    font-size:0.75rem;
+}

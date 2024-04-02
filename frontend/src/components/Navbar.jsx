@@ -8,20 +8,27 @@ import {faUser} from "@fortawesome/free-regular-svg-icons"
 import {faAirbnb} from "@fortawesome/free-brands-svg-icons"
 import {faBars} from "@fortawesome/free-solid-svg-icons"
 import SessionModal from "./SessionModal";
-import SearchBar from "./SearchBar";
+import SearchBar from "./TopSearchBar";
+import BottomSearchBar from "./BottomSearchBar";
+import TopSearchBar from "./TopSearchBar";
 
 const Navbar = () => {
+
     const dispatch = useDispatch();
     //find currentUser
     const currentUser = useSelector(selectCurrentUser);
     const [view, setView] = useState(false);
     const [modalState, setModalState] = useState(null)
-    const [errorMessage, setErrorMessage] = useState('');
+
+    const [searchModal, setSearchModal] = useState(false)
 
     const handleLogout = () => {
         dispatch(logoutUser());
         setView(false);
     }
+    const handleSearchClick = () => {
+        setSearchModal(!searchModal);
+    };
 
     useEffect(() => {
         console.log('Session data changed', currentUser)
@@ -45,37 +52,40 @@ const Navbar = () => {
         }
     }
     return(
-        //outer div contains logo , and categories            
-        <div className="header-container">
-            <header className="navbar">
-                <div className="navbar-container">
-                    <div className="navbar-logo">
-                        <li><FontAwesomeIcon icon={faAirbnb} size="xl"/></li>
-                        <li><Link to={'/'}>BreezeBnB</Link></li>
+        //outer div contains logo , and categories  
+        <>
+            <div className="header-container">
+                <header className="navbar">
+                    <div className="navbar-container">
+                        <div className="navbar-logo">
+                            <li><FontAwesomeIcon icon={faAirbnb} size="xl"/></li>
+                            <li><Link to={'/'}>BreezeBnB</Link></li>
+                        </div>
+                        <div className="navbar-explore">
+                            <TopSearchBar searchModal={searchModal} handleSearchClick={handleSearchClick}/>
+                        </div>
+                        <div className="navbar-menu">
+                            {/* {sessionLinks()} */}
+                            <button className='session-links' onClick={() => setView(!view)}>
+                                <div className="menu-bars">
+                                    <FontAwesomeIcon icon={faBars} size="xl"/>
+                                    {view && dropDown()}
+                                    
+                                </div>
+                                <div className="menu-dropdown">
+                                    <FontAwesomeIcon icon={faUser} size="xl"/>
+                                    {view && dropDown()}
+                                </div>
+                            </button>
+                        </div>
+                        {modalState && (<SessionModal modalState={modalState} setModalState={setModalState}/>)}
                     </div>
-                    <div className="navbar-explore">
-                        <SearchBar/>
-                        {/* <li>Stay</li> */}
-                    </div>
-                    <div className="navbar-menu">
-                        {/* {sessionLinks()} */}
-                        <button className='session-links' onClick={() => setView(!view)}>
-                            <div className="menu-bars">
-                                <FontAwesomeIcon icon={faBars} size="xl"/>
-                                {view && dropDown()}
-                                
-                            </div>
-                            <div className="menu-dropdown">
-                                <FontAwesomeIcon icon={faUser} size="xl"/>
-                                {view && dropDown()}
-                            </div>
-                        </button>
-                    </div>
-                    {modalState && (<SessionModal modalState={modalState} setModalState={setModalState}/>)}
-                </div>
 
-            </header>
-        </div>
+                </header>
+            </div>
+            <BottomSearchBar searchModal={searchModal} handleSearchClick={handleSearchClick}/>
+        </>          
+        
         
     )
 }
