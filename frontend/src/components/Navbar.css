@@ -44,8 +44,8 @@ table {
 
 
 #root {
-    margin: 0;
-    padding: 0;
+    margin-left: 0;
+    padding:0;
 }
 
 .session-links {
@@ -70,7 +70,7 @@ table {
     display: block;
     -webkit-font-smoothing:antialiased;
     margin: 0;
-    padding: 0;
+    padding: 0 80px;
     width: 100vw;
 }
 .navbar {

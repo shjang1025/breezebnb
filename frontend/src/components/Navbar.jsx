@@ -8,6 +8,7 @@ import {faUser} from "@fortawesome/free-regular-svg-icons"
 import {faAirbnb} from "@fortawesome/free-brands-svg-icons"
 import {faBars} from "@fortawesome/free-solid-svg-icons"
 import SessionModal from "./SessionModal";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
     const dispatch = useDispatch();
@@ -53,8 +54,8 @@ const Navbar = () => {
                         <li><Link to={'/'}>BreezeBnB</Link></li>
                     </div>
                     <div className="navbar-explore">
-                        {/* <SearchBar/> */}
-                        <li>Stay</li>
+                        <SearchBar/>
+                        {/* <li>Stay</li> */}
                     </div>
                     <div className="navbar-menu">
                         {/* {sessionLinks()} */}
