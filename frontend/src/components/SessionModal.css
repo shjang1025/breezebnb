@@ -1,3 +1,4 @@
+
 .modal-background {
     height: 100vh;
     width: 100vw;
@@ -14,6 +15,8 @@
     position: absolute;
     left: 50%;
     top: 40%;
+    width: 30%;
+    height: 60%;
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 20px;
@@ -57,15 +60,26 @@
   /* .modal-content-input label {
     margin-bottom: 20px;
   } */
-  
-  .modal-content-login input {
+  .modal-login,
+  .modal-signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal-signup input,
+  .modal-signup select,
+  .modal-login input {
+    /* width: 50%; */
     width: 50%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+
   }
-  
+.modal-signup select {
+  width: 55%;
+}
 .modal-content-login button {
     width: 55%;
     padding: 8px;

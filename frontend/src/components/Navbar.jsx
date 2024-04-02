@@ -15,23 +15,11 @@ const Navbar = () => {
     const currentUser = useSelector(selectCurrentUser);
     const [view, setView] = useState(false);
     const [modalState, setModalState] = useState(null)
-    
+    const [errorMessage, setErrorMessage] = useState('');
+
     const handleLogout = () => {
         dispatch(logoutUser());
         setView(false);
-    }
-    const handleLogin = (sessionInfo) => {
-        setModalState('login')
-        dispatch(loginUser(sessionInfo));
-        setView(false);
-
-    }
-
-    const handleSignup = (userInfo) => {
-        setModalState('signup')
-        dispatch(createUser(userInfo));
-        setView(false);
-
     }
 
     useEffect(() => {
@@ -42,8 +30,8 @@ const Navbar = () => {
         if(!currentUser) {
             return(
                 <div className="dropdown">
-                    <li id="login" onClick={handleLogin}>Login</li>
-                    <li id="signup" onClick={handleSignup}>Signup</li>
+                    <li id="login" onClick={() => setModalState('login')}>Login</li>
+                    <li id="signup" onClick={() => setModalState('signup')}>Signup</li>
                 </div>
             )
         } else {
@@ -51,70 +39,43 @@ const Navbar = () => {
                 <div className="dropdown">
                     <li id="logout" onClick={handleLogout}>Logout</li>
                 </div>
+
             )
         }
     }
-    // const sessionLinks = () => {
-    //     if (currentUser) {
-    //         return (
-    //             <button className='session-links' onClick={() => setView(!view)}>
-    //                 <span>
-    //                     <FontAwesomeIcon icon={faBars}/>
-    //                     {view && dropDown()}
-                        
-    //                 </span>
-    //                 <span>
-    //                     <FontAwesomeIcon icon={faUser}/>
-    //                     {view && dropDown()}
-    //                 </span>
-    //             </button>
-    //         )
-    //     } else {
-    //         return(
-    //             <>
-    //                 <button className='session-links' onClick={() => setView(!view)}>
-    //                         <span>
-    //                             <FontAwesomeIcon icon={faBars}/>
-    //                             {view && dropDown()}
-                                
-    //                         </span>
-    //                         <span>
-    //                             <FontAwesomeIcon icon={faUser}/>
-    //                             {view && dropDown()}
-    //                         </span>
-    //                 </button>
-    //             </>
-                  
-    //         )
-    //     }
-    // }
-
-
     return(
-        <nav className="navbar">
-            <div className="navbar-logo">
-                <li><FontAwesomeIcon icon={faAirbnb}/></li>
-                <li><Link to={'/'}>BreezeBnB</Link></li>
-            </div>
-            <div className="navbar-explore">
-                <li>Stays</li>
-            </div>
-            <div className="navbar-menu">
-                {/* {sessionLinks()} */}
-                <button className='session-links' onClick={() => setView(!view)}>
-                    <span>
-                        <FontAwesomeIcon icon={faBars}/>
-                        {view && dropDown()}
-                        
-                    </span>
-                    <span>
-                        <FontAwesomeIcon icon={faUser}/>
-                        {view && dropDown()}
-                    </span>
-                </button>
-            </div>
-            {modalState && (<SessionModal modalState={modalState} setModalState={setModalState} />)}
-        </nav>
+        //outer div contains logo , and categories            
+        <div className="header-container">
+            <header className="navbar">
+                <div className="navbar-container">
+                    <div className="navbar-logo">
+                        <li><FontAwesomeIcon icon={faAirbnb} size="xl"/></li>
+                        <li><Link to={'/'}>BreezeBnB</Link></li>
+                    </div>
+                    <div className="navbar-explore">
+                        {/* <SearchBar/> */}
+                        <li>Stay</li>
+                    </div>
+                    <div className="navbar-menu">
+                        {/* {sessionLinks()} */}
+                        <button className='session-links' onClick={() => setView(!view)}>
+                            <div className="menu-bars">
+                                <FontAwesomeIcon icon={faBars} size="xl"/>
+                                {view && dropDown()}
+                                
+                            </div>
+                            <div className="menu-dropdown">
+                                <FontAwesomeIcon icon={faUser} size="xl"/>
+                                {view && dropDown()}
+                            </div>
+                        </button>
+                    </div>
+                    {modalState && (<SessionModal modalState={modalState} setModalState={setModalState}/>)}
+                </div>
+
+            </header>
+        </div>
+        
     )
 }
 

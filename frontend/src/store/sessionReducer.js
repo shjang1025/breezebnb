@@ -21,14 +21,13 @@ export const createUser = userInfo => dispatch => (
             if(res.ok) {
                 return res.json()
             } else {
-                throw res.json()
-            }
+                throw res          }
         })
         .then(data => {
             sessionStorage.setItem('currentUser', JSON.stringify(data.user))
             dispatch(createSession(data.user))
         })
-        .catch(err => console.error(err))
+        // .catch(err => console.error(err))
 )
 
 export const loginUser = sessionInfo => dispatch => (
@@ -37,14 +36,14 @@ export const loginUser = sessionInfo => dispatch => (
             if(res.ok) {
                 return res.json()
             } else {
-                throw res.json()
+                throw res
             }
         })
         .then(data => {
             sessionStorage.setItem('currentUser', JSON.stringify(data.user))
             dispatch(createSession(data.user))
         })
-        .catch(err => console.error(err))
+        // .catch(err => console.error(err))
 
 )
 
@@ -58,7 +57,7 @@ export const logoutUser = () => dispatch => (
                 throw res;
             }
         })
-        .catch(err => console.error(err))
+        // .catch(err => console.error(err))
 )
 //SELECTORS
 export const selectCurrentUser = state => state.session

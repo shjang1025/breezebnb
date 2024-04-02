@@ -15,17 +15,25 @@ const SessionModal = ({modalState, setModalState}) => {
         e.preventDefault();
         if (modalState === 'signup') {
           dispatch(createUser({ username, email, password, gender }))
-            .then(() => setModalState(null))
+            .then(() => {
+                setModalState(null); // Close modal on success
+                setErrors([]); // Clear errors on success
+            })
             .catch(async res =>{
               let data = await res.json();
+            //   console.log(data)
               setErrors(data);
             });
         } else {
           dispatch(loginUser({ email, password }))
-            .then(() => setModalState(null))
+            .then(() => {
+                setModalState(null)
+                setErrors([])
+            })
             .catch(async res => {
-              let data = await res.json();
-              setErrors(data.errors);
+                let data = await res.json();
+                // console.log(data.errors)
+                setErrors(data.errors);
             });
         }
     };
@@ -51,12 +59,12 @@ const SessionModal = ({modalState, setModalState}) => {
     const signupInput = () => {
         return(
             <>
-                <input 
+                <input
                     placeholder='Username'
                     value={username}
                     onChange={e => setUsername(e.target.value)}
                 />
-                <input 
+                <input
                     placeholder='Email'
                     value={email}
                     onChange={e => setEmail(e.target.value)}
@@ -68,11 +76,12 @@ const SessionModal = ({modalState, setModalState}) => {
                     onChange={e => setPassword(e.target.value)}
                     
                 />
+
                 <select
                     placeholder='Gender'
                     value={gender}
                     onChange={e => setGender(e.target.value)}>
-                    
+                    <option disabled>Gender</option>
                     <option>Female</option>
                     <option>Male</option>
 
@@ -88,19 +97,20 @@ const SessionModal = ({modalState, setModalState}) => {
                 </div>
                 <div className="modal-content-cetner">
                     <div className="modal-content-title">
-                        {modalState === 'signup' ? 'Welcome to BreezeBnB' : 'Welcome back to BreezeBnB'}
+                        {modalState === 'signup' ? 
+                            <h2></h2>
+                         : 
+                         'Welcome back to BreezeBnB'}
                     </div>
                     <div className="modal-content-login">
-                        <form className={modalState === 'signup' ? 'modal-signup' : 'modal-login'}onSubmit={handleSubmit}>
+                        <form className={modalState === 'signup' ? 'modal-signup' : 'modal-login'} onSubmit={handleSubmit}>
                             {modalState === 'signup' ? signupInput() : loginInput()}
                             <button type="submit">{modalState}</button>
                         </form>
-                        
+                        {errors.map((err, idx) => (<p key={idx}>{err}</p>))}
                     </div>
                 </div>
-                {/* </div> */}
                 {/* if catching the error on handle submit, show the error message on the modal content */}
-                {errors.map((err, idx) => (<p key={idx}>{err}</p>))}
             </div>
         </div>
     )
