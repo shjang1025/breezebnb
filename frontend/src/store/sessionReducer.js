@@ -21,7 +21,8 @@ export const createUser = userInfo => dispatch => (
             if(res.ok) {
                 return res.json()
             } else {
-                throw res          }
+                throw res          
+            }
         })
         .then(data => {
             sessionStorage.setItem('currentUser', JSON.stringify(data.user))

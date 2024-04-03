@@ -45,8 +45,6 @@ class Api::RoomsController < ApplicationController
 
     end
 
-    #find rooms by search - location, checkin, checkout, capacity
-
     private
     def rooms_params
         params

@@ -4,10 +4,7 @@ import './App.css'
 import Navbar from './components/Navbar';
 
 // const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <Navbar/>
-//   },
+
 //   {
 //     path: '/login',
 //     element: <SessionForm formType="login" />
