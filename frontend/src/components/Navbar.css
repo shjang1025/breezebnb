@@ -65,9 +65,6 @@ table {
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
-.session-links div:first-child {
-    /* padding-right: 3px; */
-}
 .menu-dropdown, .menu-bars {
     margin: 3px;
 }
@@ -82,9 +79,8 @@ table {
     top: 3%;
     transform: translate(-50%, -50%);
 }
-.header-container,
-.header2-container {
-    /* box-sizing: border-box; */
+.header-container {
+    box-sizing: border-box;
     display: flex;
     -webkit-font-smoothing:antialiased;
     margin: 0;
@@ -97,6 +93,7 @@ table {
     ;
     position: sticky;
 }
+
 .header-container {
     border-bottom: none;
 }
@@ -137,7 +134,8 @@ table {
 .navbar-logo {
     display: flex;
     align-items: center;
-    color: rgba(255,90,96);	
+    /* color: rgba(255,90,96);	 */
+    color: #FF385C;
     font-weight: bold;
     font-size: 20px;
 }
@@ -149,7 +147,8 @@ table {
 
 .navbar-logo li a {
     text-decoration: none;
-    color: rgba(255,90,96);
+    /* color: rgba(255,90,96); */
+    color: #FF385C;
 
 }
 .navbar-menu {
@@ -211,3 +210,4 @@ table {
 .navbar-logo a {
     cursor: pointer;
 }
+

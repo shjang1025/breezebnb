@@ -1,9 +1,40 @@
+
 .icon2-wrapper {
     display: flex;
     align-items: center;
 }
-
-
+.header2-container {
+    box-sizing: border-box;
+    display: flex;
+    -webkit-font-smoothing:antialiased;
+    margin: 0;
+    padding: 0 80px;
+    padding-bottom: 30px;
+    width: 100vw;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    border-bottom: 1px solid;
+    border-bottom-color: #d3d3d3;
+    ;
+    position: sticky;
+}
+.bottom-search-container {
+    width: 100vw;
+    max-width: 830px;
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: calc(10px / var(--rem));
+    margin-top:10px;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px;
+    position: relative;
+}
+.search-button svg:hover {
+    cursor: pointer;
+}
 .icon2-wrapper div {
   padding:0.8rem 1rem;
 }

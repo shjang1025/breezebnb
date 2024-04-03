@@ -9,20 +9,26 @@
     left: 0px;
     z-index: 10;
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
 .modal-content {
     position: absolute;
     left: 50%;
     top: 40%;
-    width: 30%;
+    /* width: 30%; */
+    width: 480px;
     height: 60%;
     transform: translate(-50%, -50%);
     background-color: white;
-    padding: 20px;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 30px;
     position: absolute;
-    border: 1px solid black;
+    border: 1px solid #333;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    font-weight: bold;
+
   }
   
   .modal-content-top {
@@ -34,10 +40,16 @@
     cursor: pointer;
     background-color: transparent;
     background-repeat: no-repeat;
+    border-radius: 50px;
     border: none;
     overflow: hidden;
     outline: none;
   }
+  .modal-content-top button:hover {
+    background-color: #F7F7F7;
+
+  }
+
   
   .modal-content-center {
     display: flex;
@@ -47,51 +59,69 @@
   
   .modal-content-title {
     font-size: 24px;
-    margin-bottom: 20px; 
+    margin-bottom: 30px; 
   }
   
-  .modal-content-input {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    margin-bottom: 20px;
-  }
-  
-  /* .modal-content-input label {
-    margin-bottom: 20px;
-  } */
-  .modal-login,
-  .modal-signup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .modal-signup input,
-  .modal-signup select,
-  .modal-login input {
-    /* width: 50%; */
-    width: 50%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 
-  }
-.modal-signup select {
-  width: 55%;
+.modal-login,
+.modal-signup {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  align-items: center;
 }
+
+.gender-select {
+  height: 38px;
+  width: 280px;
+  border:2px solid rgb(205, 205, 205);
+  border-radius: 16px;
+  font-size: 16px;
+}
+optgroup {
+  font-size: 0.5px;
+}
+
+.username-input-label,
+.email-input-label, 
+.password-input-label,
+.gender-select-label {
+  display: block;
+  text-align: left;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.input-label input{
+  height: 42px;
+  width: 280px;
+  border:2px solid rgb(205, 205, 205);
+  border-radius: 16px;
+  font-size: 16px;
+}
+
 .modal-content-login button {
-    width: 55%;
+    width: 280px;
+    margin: 20px;
     padding: 8px;
-    background-color: rgba(255,90,96);
+    background-color: #E3185F;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-.modal-content-input button:hover {
+.modal-content-login button:hover {
     background-color: rgb(251, 129, 133);
-
 }
 
+.username-errors,
+.email-errors,
+.pw-errors,
+.gender-errors {
+  color: red;
+  font-weight:normal;
+  font-style: italic;
+}
