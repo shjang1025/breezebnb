@@ -27,7 +27,10 @@ class User < ApplicationRecord
     validates :gender, presence: true
     validates :password, length: {minimum: 6} , allow_nil: true
     
-
+    has_many :rooms,
+        class_name: :Room, 
+        foreign_key: :host_id,
+        dependent: :destroy
     
     def self.find_by_credential(email, password) 
         @user = User.find_by(email: email)

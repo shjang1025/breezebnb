@@ -1,20 +1,25 @@
 import Navbar from "../Navbar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/sessionReducer";
 import './addRoomForm.css'
 import { useState } from "react";
 import {faSquareParking, faTv, faIgloo, faTemperatureArrowUp,faCat, 
         faShirt, faSocks, faWifi, faSink, faFireBurner,faFire,faDog} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { createRoom } from "../../store/roomReducer";
 
 const AddRoomForm = props => {
     const categories = ['omg', 'beach_front', 'amazing_views', 'lake_front', 'amazing_pools', 'national_park','camping', 'design', 'skiing']
     const currentUser = useSelector(selectCurrentUser);
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
+    const [address, setAddress] = useState('')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('')
+    const [country, setCountry] = useState('')
     const [price, setPrice] = useState(0)
     const [category, setCategory] = useState('')
-    const [capacity, setCapacity] = useState('')
+    const [capacity, setCapacity] = useState(0)
     const [beds, setBeds] = useState(0)
     const [rooms, setRooms] = useState(0)
     const [baths, setBaths] = useState(0)
@@ -30,7 +35,63 @@ const AddRoomForm = props => {
     const [fireplace, setFireplace] = useState(false)
     const [pets, setPets] = useState(false)
 
-    
+    const dispatch = useDispatch();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const roomObject = {
+            title: title,
+            description: description,
+            address: address,
+            city: city,
+            state: state,
+            country: country,
+            price: price,
+            category: category, 
+            capacity: capacity,
+            rooms: rooms,
+            beds: beds,
+            baths: baths,
+            parking: parking, 
+            washer: washer, 
+            dryer: dryer,
+            tv: tv,
+            ac: ac,
+            heater: heater,
+            wifi: wifi,
+            kitchen: kitchen,
+            microwave: microwave,
+            fireplace: fireplace,
+            pets: pets
+        }
+
+        dispatch(createRoom(roomObject));
+
+        setTv(false);
+        setAC(false);
+        setHeater(false)
+        setParking(false);
+        setWasher(false);
+        setDryer(false);
+        setWifi(false);
+        setKitchen(false);
+        setMicrowave(false);
+        setFireplace(false);
+        setPets(false);
+        setPrice('');
+        setAddress('');
+        setCity('');
+        setState('');
+        setCountry('');
+        setBeds('');
+        setBaths('');
+        setRooms('');
+        setCapacity('');
+        setTitle('');
+        setDescription('');
+        setCategory('');
+    }
+
     return(
         <>
             <Navbar/>
@@ -41,7 +102,7 @@ const AddRoomForm = props => {
                     <h1>Hosting</h1>
 
                 </div>
-                <form className="hosting-form">
+                <form className="hosting-form" onSubmit={handleSubmit}>
                     <label>Title
                         <div>
                             <input 
@@ -52,7 +113,6 @@ const AddRoomForm = props => {
                                 placeholder="Title" />
                         </div>
                     </label>
-
                     <label>Description
                         <div>
                             <textarea 
@@ -63,7 +123,40 @@ const AddRoomForm = props => {
                                 placeholder="Description"  />
                         </div>
                     </label>
-
+                    <label>Location
+                        <div>
+                            <input 
+                                className="address-input" 
+                                type="text" 
+                                value={address}
+                                onChange={e => setAddress(e.target.value)}
+                                placeholder="Address Line (ex) 1234 Cherry St. " />
+                        </div>
+                        <div>
+                            <input 
+                                className="city-input" 
+                                type="text" 
+                                value={city}
+                                onChange={e => setCity(e.target.value)}
+                                placeholder="City" />
+                        </div>
+                        <div>
+                            <input 
+                                className="state-input" 
+                                type="text" 
+                                value={state}
+                                onChange={e => setState(e.target.value)}
+                                placeholder="State" />
+                        </div>
+                        <div>
+                            <input 
+                                className="country-input" 
+                                type="text" 
+                                value={country}
+                                onChange={e => setCountry(e.target.value)}
+                                placeholder="Country" />
+                        </div>
+                    </label>
                     <label>Price per Night
                         <div>
                             <input 
@@ -214,8 +307,10 @@ const AddRoomForm = props => {
                             </span>
                         </label>
                     </div>
-                    
+                    <div className="button-wrapper">
 
+                        <button id="button" type="submit">Start Hosting!</button>
+                    </div>
                 </form>
             </div>
 

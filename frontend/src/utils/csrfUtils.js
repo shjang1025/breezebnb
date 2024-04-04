@@ -14,11 +14,17 @@ export const csrfFetch = async (url, options = {}) => {
 
     if(options.method.toUpperCase() !== 'GET') {
         options.headers['X-CSRF-Token'] = sessionStorage.getItem('X-CSRF-Token')
-        if(options.method.toUpperCase() === 'POST' && !(options.body instanceof FormData)) {
-            options.headers['Content-Type'] = 'application/json'
-        }
+        // if(options.method.toUpperCase() === 'POST' && !(options.body instanceof FormData)) {
+        //     options.headers['Content-Type'] = 'application/json'
+        // }
+        options.headers['Content-Type'] = 'application/json'
     }
-    const res = await fetch(url, options);
-    if(res.status >= 400) throw res;
-    return res;
+
+    try {
+        const res = await fetch(url, options);
+        return res;
+    } catch(error) {
+        console.error('Error fetching data', error)
+    }
+
 }

@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux"
+import { postRoom } from "../utils/roomUtiils"
 //CONSTANT
 const RECEIVE_ROOM = 'rooms/RECEIVE_ROOM'
 const RECEIVE_ROOMS = 'rooms/RECEIVE_ROOMS'
@@ -52,25 +53,18 @@ export const fetchRoom = roomId => async dispatch => {
     }
 }
 
-export const createRoom = roomData => async dispatch => {
-    try {
-        const res = fetch(`/api/rooms`, {
-            method: 'POST',
-            body: JSON.stringify(roomData),
-            headers: {
-                'Content-Type': 'application/json'
+export const createRoom = roomData => dispatch => {
+    console.log(roomData) //ok
+    postRoom(roomData)
+        .then(res => {
+            if(res.ok) {
+                res.json()
+            } else {
+                throw res
             }
         })
-        if(res.ok) {
-            const room = res.json();
-            dispatch(receiveRoom(room))
-        } else {
-            throw res
-        }
-    }
-    catch (error) {
-        console.error(error)
-    }
+        .then(data => dispatch(receiveRoom(roomData)))
+        .catch(err => console.error(err))
 }
 
 export const updateRoom = roomData => async dispatch => {

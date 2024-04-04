@@ -17,26 +17,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_02_041107) do
   create_table "rooms", force: :cascade do |t|
     t.string "title", null: false
     t.text "description", null: false
-    t.integer "price_per_night", null: false
+    t.integer "price", null: false
+    t.string "address", null: false
     t.string "city", null: false
     t.string "state", null: false
     t.string "country", null: false
     t.string "category", null: false
     t.integer "capacity", null: false
-    t.integer "num_beds", null: false
-    t.integer "num_rooms", null: false
-    t.integer "num_bathrooms", null: false
-    t.boolean "has_parking", default: false, null: false
-    t.boolean "has_washer", default: false, null: false
-    t.boolean "has_dryer", default: false, null: false
-    t.boolean "has_tv", default: false, null: false
-    t.boolean "has_AC", default: false, null: false
-    t.boolean "has_heater", default: false, null: false
-    t.boolean "has_wifi", default: false, null: false
-    t.boolean "has_kitchen", default: false, null: false
-    t.boolean "has_microwave", default: false, null: false
-    t.boolean "has_fireplace", default: false, null: false
-    t.boolean "has_pets", default: false, null: false
+    t.integer "beds", null: false
+    t.integer "rooms", null: false
+    t.integer "baths", null: false
+    t.boolean "parking", default: false, null: false
+    t.boolean "washer", default: false, null: false
+    t.boolean "dryer", default: false, null: false
+    t.boolean "tv", default: false, null: false
+    t.boolean "ac", default: false, null: false
+    t.boolean "heater", default: false, null: false
+    t.boolean "wifi", default: false, null: false
+    t.boolean "kitchen", default: false, null: false
+    t.boolean "microwave", default: false, null: false
+    t.boolean "fireplace", default: false, null: false
+    t.boolean "pets", default: false, null: false
     t.bigint "host_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
