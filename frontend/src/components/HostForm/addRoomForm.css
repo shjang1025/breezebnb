@@ -30,7 +30,8 @@ h1 {
 }
 
 .hosting-form label {
-    margin-left: ;
+    margin-left: 10px;
+    padding-top: 15px;
     display: block;
     text-align: left;
     font-size: 20px;
@@ -41,6 +42,10 @@ h1 {
     border:none
 }
 
+
+.hosting-form .title-input {
+    margin-left: 0;
+}
 .title-input,
 .description-input,
 .price-input, 
@@ -56,6 +61,7 @@ h1 {
     font-size: 16px;
     border-style: solid;
     border-width: 1px;
+    text-indent: 10px;
 }
 .hosting-form input[type="text"] {
     border:2px solid rgb(107, 106, 106);
@@ -67,17 +73,46 @@ h1 {
 .hosting-form select::placeholder {
     color: #999; /* Placeholder text color */
     font-style: italic; /* Placeholder text style */
-    padding-left: 20px;
+    padding-left: 10px;
 }
 .hosting-form textarea::placeholder {
     padding-top:10px
 }
+
 .description-input {
     height: 100px;
     width: 700px;
 }
 
-.yn {
+.yn{
     padding: 10px;
+    display: flex;
+}
 
+.yn span:nth-child(2) {
+    margin-left: 10px;
+}
+
+#num-beds {
+    border-bottom: none;
+
+}
+
+/* #Bedrooms, bathrooms, beds  */
+.bed-container {
+    display: flex;
+
+}
+.bed-container input {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 7px;
+    height: 30px;
+    width: 200px;
+    border:2px solid rgb(107, 106, 106);
+    border-radius: 16px;
+    font-size: 16px;
+    border-style: solid;
+    border-width: 1px;
+    text-indent: 10px;
 }
