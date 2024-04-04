@@ -12,6 +12,7 @@ class Api::SessionsController < ApplicationController
             render 'api/users/show'
         else 
             render json: {errors: ['Invalid credentials']}, status: 422
+            # render json: {errors: @user.errors}, status: 422
         end
     end
 

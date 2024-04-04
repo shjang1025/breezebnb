@@ -21,7 +21,7 @@ const SessionModal = ({modalState, setModalState}) => {
             })
             .catch(async res =>{
               let data = await res.json();
-              console.log(data.errors)
+            //   console.log(data.errors)
               setErrors(data.errors);
             });
         } else {
@@ -51,7 +51,7 @@ const SessionModal = ({modalState, setModalState}) => {
                     <input placeholder='  Password' 
                         type='password' value={password} onChange={e => setPassword(e.target.value)} />
                 </label>
-                
+                {errors ? <div className='username-errors'>{errors[0]}</div> : ""}
             </>
         )
     }

@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux"
-import {logoutUser, loginUser, createUser, selectCurrentUser } from "../store/sessionReducer"
+import {logoutUser, selectCurrentUser } from "../store/sessionReducer"
 import { useEffect, useState } from "react";
 import './Navbar.css';
 import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faBars, faCircleUser} from "@fortawesome/free-solid-svg-icons"
 import SessionModal from "./SessionModal";
-import BottomSearchBar from "./BottomSearchBar";
-import TopSearchBar from "./TopSearchBar";
+import BottomSearchBar from "./SearchBar/BottomSearchBar"
+import TopSearchBar from "./SearchBar/TopSearchBar";
 
 const Navbar = () => {
 
@@ -49,13 +49,11 @@ const Navbar = () => {
         }
     }
     return(
-        //outer div contains logo , and categories  
         <>
             <div className="header-container">
                 <header className="navbar">
                     <div className="navbar-container">
                         <div className="navbar-logo">
-                            {/* <li id="bnb"><FontAwesomeIcon icon={faAirbnb} size="xl" style={{ color: 'rgb(255, 90, 95)' }}/></li> */}
                             <li>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40px" height="48px">
                                     <path fill="#ff5252" d="M42.459,32.519c-1.037-3.336-9.539-19.596-12.12-24.5l-0.026-0.048C29.153,5.559,26.676,4,24,4 

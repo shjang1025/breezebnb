@@ -17,6 +17,10 @@
     ;
     position: sticky;
 }
+.header-container {
+
+    border-bottom: none;
+}
 .bottom-search-container {
     width: 100vw;
     max-width: 830px;

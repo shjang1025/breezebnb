@@ -84,19 +84,16 @@ table {
     display: flex;
     -webkit-font-smoothing:antialiased;
     margin: 0;
-    padding: 0 80px;
-    padding-bottom: 30px;
+    padding: 0 50px;
+    padding-bottom: 8px;
     width: 100vw;
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     border-bottom: 1px solid;
     border-bottom-color: #d3d3d3;
-    ;
     position: sticky;
 }
 
-.header-container {
-    border-bottom: none;
-}
+
 .header2-container {
     justify-content: center;
     width: 100vw;
