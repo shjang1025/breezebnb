@@ -8,6 +8,7 @@ import {faBars, faCircleUser} from "@fortawesome/free-solid-svg-icons"
 import SessionModal from "./SessionModal";
 import BottomSearchBar from "./SearchBar/BottomSearchBar"
 import TopSearchBar from "./SearchBar/TopSearchBar";
+import BreezebnbModal from './BreezebnbModal';
 
 const Navbar = () => {
 
@@ -16,8 +17,9 @@ const Navbar = () => {
     const currentUser = useSelector(selectCurrentUser);
     const [view, setView] = useState(false);
     const [modalState, setModalState] = useState(null)
-
     const [searchModal, setSearchModal] = useState(false)
+    // const [loggedIn, setLoggedIn] = useState(false)
+    const[showSigninModal, setShowSigninModal] = useState(false)
 
     const handleLogout = () => {
         dispatch(logoutUser());
@@ -27,6 +29,13 @@ const Navbar = () => {
         setSearchModal(!searchModal);
     };
 
+    const handleBreezebnbClick = () => {
+        console.log("Clicked Breezebnb your home button");
+        if (!currentUser) {
+            console.log("User is not logged in. Showing SigninModal.");
+            setShowSigninModal(true);
+        }
+    };
     useEffect(() => {
         console.log('Session data changed', currentUser)
     },[currentUser])
@@ -75,13 +84,17 @@ const Navbar = () => {
                         </div>
                         <div className="navbar-menu">
                             <div className="room-hosting-links">
-                                <Link to={'/host'}>Breezebnb your home</Link>
+                                {/* <Link to={'/host'}>Breezebnb your home</Link> */}
+                                {currentUser ? (
+                                    <Link to={'/host'}>Breezebnb your home</Link>
+                                ) : (
+                                    <p onClick={handleBreezebnbClick}>Breezebnb your home</p>
+                                )}
                             </div>
                             <button className='session-links' onClick={() => setView(!view)}>
                                 <div className="menu-bars">
                                     <FontAwesomeIcon icon={faBars} size="xl"/>
                                     {view && dropDown()}
-                                    
                                 </div>
                                 <div className="menu-dropdown">
                                     <FontAwesomeIcon icon={faCircleUser} size="2xl"/>
@@ -90,6 +103,7 @@ const Navbar = () => {
                             </button>
                         </div>
                         {modalState && (<SessionModal modalState={modalState} setModalState={setModalState}/>)}
+                        {showSigninModal && <BreezebnbModal onClose={() => setShowSigninModal(false)}/>}
                     </div>
 
                 </header>

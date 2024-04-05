@@ -9,9 +9,9 @@
 #   end
 
 
-# ActiveRecord::Base.connection.tables.each do |t|
-#     ActiveRecord::Base.connection.reset_pk_sequence!(t)
-# end
+ActiveRecord::Base.connection.tables.each do |t|
+    ActiveRecord::Base.connection.reset_pk_sequence!(t)
+end
 
-ActiveRecord::Base.connection.reset_pk_sequence!('users')
-ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq RESTART WITH 1;")
+# ActiveRecord::Base.connection.reset_pk_sequence!('users')
+# ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq RESTART WITH 1;")

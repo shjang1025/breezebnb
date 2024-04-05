@@ -34,6 +34,7 @@ const AddRoomForm = props => {
     const [microwave, setMicrowave] = useState(false)
     const [fireplace, setFireplace] = useState(false)
     const [pets, setPets] = useState(false)
+    const [checked, setChecked] = useState(false)
 
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
@@ -90,7 +91,13 @@ const AddRoomForm = props => {
         setTitle('');
         setDescription('');
         setCategory('');
+        setChecked(false);
     }
+
+    const handleCheckboxChange = () => {
+        setChecked(!checked)
+    }
+
 
     return(
         <>
@@ -174,7 +181,7 @@ const AddRoomForm = props => {
                             <select
                                 className="category"
                                 placeholder='Category'
-                                defaultValue={category}
+                                defaultValue={''}
                                 onChange={e => setCategory(e.target.value)}>
                                 <optgroup>
                                     <option disabled value=""></option>
@@ -221,7 +228,7 @@ const AddRoomForm = props => {
                             <FontAwesomeIcon icon={faSquareParking} size="xl"/> Parking
                             </span>
                             <span>
-                                <input type="checkbox" name="has_parking" value={parking} onChange={e => setParking(e.target.value)}/>
+                                <input type="checkbox" name="has_parking" value={parking} onChange={handleCheckboxChange}/>
                             </span>
                         </label>
                         <label className="yn">
@@ -229,7 +236,7 @@ const AddRoomForm = props => {
                                 <FontAwesomeIcon icon={faShirt} size="xl" />  Washer
                             </span>
                             <span>
-                                <input type="checkbox" name="has_washer" value={washer} onChange={e => setWasher(e.target.value)}/>
+                                <input type="checkbox" name="has_washer" value={washer} onChange={handleCheckboxChange}/>
                             </span>
                         </label>
                         <label className="yn">
@@ -237,7 +244,7 @@ const AddRoomForm = props => {
                                 <FontAwesomeIcon icon={faSocks} size="xl" />  Dryer
                             </span>
                             <span>
-                                <input type="checkbox" name="has_dryer" value={dryer} onChange={e => setDryer(e.target.value)}/>
+                                <input type="checkbox" name="has_dryer" value={dryer} onChange={handleCheckboxChange}/>
                             </span>
                         </label>
                         <label className="yn">
@@ -245,7 +252,7 @@ const AddRoomForm = props => {
                                 <FontAwesomeIcon icon={faTv} size="xl"/>  TV
                             </span>
                             <span>
-                                <input type="checkbox" name="has_tv" value={tv} onChange={e => setTv(e.target.value)} />
+                                <input type="checkbox" name="has_tv" value={tv} onChange={handleCheckboxChange} />
                             </span>
                             
                         </label>
@@ -254,7 +261,7 @@ const AddRoomForm = props => {
                                 <FontAwesomeIcon icon={faIgloo} size="xl"/>  AC
                             </span>
                             <span>
-                                <input type="checkbox" name="has_AC" value={ac} onChange={e => setAC(e.target.value)}/>
+                                <input type="checkbox" name="has_AC" value={ac} onChange={handleCheckboxChange}/>
                             </span>
                             
                         </label>
@@ -263,7 +270,7 @@ const AddRoomForm = props => {
                                 <FontAwesomeIcon icon={faTemperatureArrowUp} size="xl"/>  Heater
                             </span>
                             <span>
-                                <input type="checkbox" name="has_heater" value={heater} onChange={e => setHeater(e.target.value)}/>
+                                <input type="checkbox" name="has_heater" value={heater} onChange={handleCheckboxChange}/>
                             </span>
                         </label>
                         <label className="yn">
@@ -271,7 +278,7 @@ const AddRoomForm = props => {
                                 <FontAwesomeIcon icon={faWifi} size="xl"/>  Wi-Fi
                             </span>
                             <span>
-                                <input type="checkbox" name="has_wifi" value={wifi} onChange={e => setWifi(e.target.value)}/>
+                                <input type="checkbox" name="has_wifi" value={wifi} onChange={handleCheckboxChange}/>
                             </span>
                         </label>
                         <label className="yn">
@@ -279,7 +286,7 @@ const AddRoomForm = props => {
                                 <FontAwesomeIcon icon={faSink} size="xl"/>  Kitchen
                             </span>
                             <span>
-                                <input type="checkbox" name="has_kitchen" value={kitchen} onChange={e => setKitchen(e.target.value)}/>
+                                <input type="checkbox" name="has_kitchen" value={kitchen} onChange={handleCheckboxChange}/>
                             </span>
                         </label>
                         <label className="yn">
@@ -287,7 +294,7 @@ const AddRoomForm = props => {
                                 <FontAwesomeIcon icon={faFireBurner} size="xl"/>  Microwave
                             </span>
                             <span>
-                                <input type="checkbox" name="has_microwave" value={microwave} onChange={e => setMicrowave(e.target.value)} />
+                                <input type="checkbox" name="has_microwave" value={microwave} onChange={handleCheckboxChange} />
                             </span>
                         </label>
                         <label className="yn">
@@ -295,7 +302,7 @@ const AddRoomForm = props => {
                                 <FontAwesomeIcon icon={faFire} size="xl"/>  Fire Place
                             </span>
                             <span>
-                                <input type="checkbox" name="has_fireplace" value={fireplace} onChange={e => setFireplace(e.target.value)}/>
+                                <input type="checkbox" name="has_fireplace" value={fireplace} onChange={handleCheckboxChange}/>
                             </span>
                         </label>
                         <label className="yn">
@@ -303,7 +310,7 @@ const AddRoomForm = props => {
                                 <FontAwesomeIcon icon={faDog} size="xl"/>  Pet
                             </span>
                             <span>
-                                <input type="checkbox" name="has_pet" value={pets} onChange={e => setPets(e.target.value)} />
+                                <input type="checkbox" name="has_pet" value={pets} onChange={handleCheckboxChange} />
                             </span>
                         </label>
                     </div>
