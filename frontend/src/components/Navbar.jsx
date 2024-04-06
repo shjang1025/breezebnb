@@ -9,10 +9,21 @@ import SessionModal from "./SessionModal";
 import BottomSearchBar from "./SearchBar/BottomSearchBar"
 import TopSearchBar from "./SearchBar/TopSearchBar";
 import BreezebnbModal from './BreezebnbModal';
+import { fetchRooms } from "../store/roomReducer";
+import { fetchUsers } from "../store/userReducer";
+
 
 const Navbar = () => {
 
     const dispatch = useDispatch();
+    const rooms = useSelector(state => state.rooms);
+    const users = useSelector(state => state.users);
+
+    useEffect(() => {
+        dispatch(fetchRooms());
+        dispatch(fetchUsers());
+    }, [dispatch]);
+
     //find currentUser
     const currentUser = useSelector(selectCurrentUser);
     const [view, setView] = useState(false);
@@ -84,7 +95,6 @@ const Navbar = () => {
                         </div>
                         <div className="navbar-menu">
                             <div className="room-hosting-links">
-                                {/* <Link to={'/host'}>Breezebnb your home</Link> */}
                                 {currentUser ? (
                                     <Link to={'/host'}>Breezebnb your home</Link>
                                 ) : (

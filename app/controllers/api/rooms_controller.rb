@@ -1,12 +1,12 @@
 class Api::RoomsController < ApplicationController
-    wrap_parameters include: Room.attribute_names + ['has_pet']
+
     before_action :required_logged_in, except: [:index]
     before_action :find_room, only: [:update, :show, :destroy]
 
     def index
         @rooms = Room.all
-        render json: @rooms
-        # render :index
+        # render json: @rooms
+        render :index
     end
 
     def create 

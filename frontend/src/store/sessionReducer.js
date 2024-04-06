@@ -69,7 +69,9 @@ const sessionReducer = (state=initialState, action) => {
     const newState = {...state}
     switch(action.type) {
         case CREATE_SESSION:
-            return action.sessionInfo;
+            // return action.sessionInfo
+            newState[action.sessionInfo.id] = action.sessionInfo
+            return newState;
         case DESTROY_SESSION:
             return null;
         default:

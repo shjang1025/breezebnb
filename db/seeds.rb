@@ -9,9 +9,20 @@
 #   end
 
 
-ActiveRecord::Base.connection.tables.each do |t|
-    ActiveRecord::Base.connection.reset_pk_sequence!(t)
-end
+# ActiveRecord::Base.connection.tables.each do |t|
+#     ActiveRecord::Base.connection.reset_pk_sequence!(t)
+    
 
-# ActiveRecord::Base.connection.reset_pk_sequence!('users')
-# ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq RESTART WITH 1;")
+# end
+
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
+ActiveRecord::Base.connection.reset_pk_sequence!('rooms')
+
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq RESTART WITH 1;")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE rooms_id_seq RESTART WITH 1;")
+
+User.destroy_all
+user1 = User.create!(username: "aaaa", email: 'aaaa@test.com', password: "password", gender: "Female")
+user2 = User.create!(username: "bbbb", email: 'bbbb@test.com', password: "password", gender: "Female")
+user3 = User.create!(username: "cccc", email: 'cccc@test.com', password: "password", gender: "Male")
+user4 = User.create!(username: "dddd", email: 'dddd@test.com', password: "password", gender: "Male")

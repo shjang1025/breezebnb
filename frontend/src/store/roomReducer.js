@@ -58,12 +58,12 @@ export const createRoom = roomData => dispatch => {
     postRoom(roomData)
         .then(res => {
             if(res.ok) {
-                res.json()
+                return res.json()
             } else {
                 throw res
             }
         })
-        .then(data => dispatch(receiveRoom(roomData)))
+        .then(data => dispatch(receiveRoom(data)))
         .catch(err => console.error(err))
 }
 
