@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import './SessionModal.css';
-import { createUser, loginUser } from "../store/sessionReducer";
+import { createUser, loginUser } from "../../store/sessionReducer";
 
 const SessionModal = ({modalState, setModalState}) => {
     const dispatch = useDispatch()

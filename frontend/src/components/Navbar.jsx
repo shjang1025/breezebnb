@@ -5,10 +5,10 @@ import './Navbar.css';
 import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faBars, faCircleUser} from "@fortawesome/free-solid-svg-icons"
-import SessionModal from "./SessionModal";
+import SessionModal from "./Modal/SessionModal";
 import BottomSearchBar from "./SearchBar/BottomSearchBar"
 import TopSearchBar from "./SearchBar/TopSearchBar";
-import BreezebnbModal from './BreezebnbModal';
+import BreezebnbModal from './Modal/BreezebnbModal'
 import { fetchRooms } from "../store/roomReducer";
 import { fetchUsers } from "../store/userReducer";
 

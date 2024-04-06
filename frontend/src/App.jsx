@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import './App.css'
-import Navbar from './components/Navbar';
 import AddRoomForm from './components/HostForm/addRoomForm';
+import BnbMain from './components/BnbMain';
 
 const router = createBrowserRouter([
-  { path: '/', element: <Navbar /> },
+  { path: '/', element: <BnbMain/> },
   { path: '/host', element: <AddRoomForm /> }
 ]);
 

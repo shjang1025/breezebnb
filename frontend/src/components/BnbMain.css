@@ -1,0 +1,62 @@
+
+.rooms-index-grid-container {
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    margin-top: 0px;
+    padding: 0px;
+    border: 1px solid red;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 175px
+}
+
+.rooms-index-grid {
+    width: 100%;
+    border: 1px solid green;
+    display: grid;
+    grid-auto-rows: minmax(min-content, max-content);
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+
+}
+
+.listing-item {
+    margin-left: 40px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    justify-content: center;
+    width: 400px;
+    height: 400px; /* Set height for grid items */
+    /* background-color: #f0f0f0; Example background color */
+    border: 1px solid #ff0000; /* Example border */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.image-content {
+    border: 1px solid rgb(0, 255, 55);
+    width: 100%;
+    padding: 130px;
+
+}
+.location-info {
+    border: 1px solid blue;
+    width: 100%;
+    padding: 20px;
+
+}
+
+.title-info {
+    border: 1px solid brown;
+    width: 100%;
+    padding: 20px;
+
+}
+
+.price-info {
+    border: 1px solid pink;
+    width: 100%;
+    padding: 20px;
+
+}
