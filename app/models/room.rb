@@ -42,6 +42,9 @@ class Room < ApplicationRecord
                 :tv, :ac, :heater, :wifi, :kitchen,
                 :microwave, :fireplace, :pets, inclusion: [false, true]
 
+    has_one_attached :photo
+    # has_many_attached :photos
+
 
     belongs_to :user, 
         class_name: :User, 

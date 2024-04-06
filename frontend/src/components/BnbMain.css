@@ -35,28 +35,33 @@
     flex-direction: column;
 }
 .image-content {
+    
     border: 1px solid rgb(0, 255, 55);
     width: 100%;
-    padding: 130px;
+    /* padding: 20px; */
+    
 
 }
 .location-info {
     border: 1px solid blue;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
 
 }
-
+.room-photo {
+    width: 350px;
+    height: 350px;
+}
 .title-info {
     border: 1px solid brown;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
 
 }
 
 .price-info {
     border: 1px solid pink;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
 
 }

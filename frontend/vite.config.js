@@ -6,8 +6,16 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:3000'
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true
+      },
+      '/rails': {
+        target: 'http://localhost:3000',
+        changeOrigin: true
+      }
     }
+      
   }, 
   build: {
     outDir: '../public' //output to be in the rails public folder

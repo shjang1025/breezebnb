@@ -34,12 +34,17 @@ const AddRoomForm = props => {
     const [microwave, setMicrowave] = useState(false)
     const [fireplace, setFireplace] = useState(false)
     const [pets, setPets] = useState(false)
+    const [photo, setPhoto] = useState(null)
 
     const [checked, setChecked] = useState(false)
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        //the easiest way to handle file inputs is to use FormData Object
+        const data = new FormData();
+        // data.append('room[title]',title)
+        // data.append('room[description]', description)
+        
         const roomObject = {
             title: title,
             description: description,
@@ -64,6 +69,14 @@ const AddRoomForm = props => {
             microwave: microwave,
             fireplace: fireplace,
             pets: pets
+        }
+        for (const key in roomData) {
+            if (roomData.hasOwnProperty(key)) {
+                formData.append(`room[${key}]`, roomData[key]);
+            }
+        }
+        if(photo) {
+            data.append('room[photo]',photo)
         }
 
         dispatch(createRoom(roomObject));
@@ -139,7 +152,10 @@ const AddRoomForm = props => {
         }
         setChecked(checked)
     }
-
+    const handleFile = (e) => {
+        const file = e.currentTarget.files[0]
+        setPhoto(file);
+    }
 
     return(
         <>
@@ -364,6 +380,9 @@ const AddRoomForm = props => {
                                 <input type="checkbox" name="pets" value={pets} checked={pets} onChange={handleCheckboxChange} />
                             </span>
                         </label>
+                    </div>
+                    <div className="photo-input">
+                        <input onChange={handleFile} type="file" />
                     </div>
                     <div className="button-wrapper">
                         <button id="button" type="submit">Start Hosting!</button>

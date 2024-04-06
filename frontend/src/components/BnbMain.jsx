@@ -1,7 +1,6 @@
 import Navbar from "./Navbar"
 import './BnbMain.css'
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
 import { useState } from "react"
 
 const BnbMain = props => {
@@ -21,7 +20,7 @@ const BnbMain = props => {
             const data = await res.json()
             // console.log(data) //data is object
 
-            //change it to array
+            //change data to array
             const roomsArray = Object.values(data);
             // console.log(roomsArray)
             setRooms(roomsArray)
@@ -40,7 +39,9 @@ const BnbMain = props => {
                     {rooms.map((room, idx) => (
                         <div className="listing-item" key={idx}>
                             <div className="image-content">
-                                
+                                {room.photoUrl && (
+                                    <img className="room-photo" src={room.photoUrl}></img>
+                                )}
                             </div>
                             <div className="location-info">
                                 <p>{room.city}</p>
