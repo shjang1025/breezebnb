@@ -53,7 +53,7 @@ class Api::RoomsController < ApplicationController
         params.require(:room)
             .permit(:title, :description, :price, :address, :city, :state, :country, 
                 :category, :capacity, :beds, :rooms, :baths,:parking, :washer, :dryer, :tv, :ac, 
-                :heater, :wifi, :kitchen, :microwave, :fireplace, :pets)
+                :heater, :wifi, :kitchen, :microwave, :fireplace, :pets, :photo)
     end
 
     def find_room

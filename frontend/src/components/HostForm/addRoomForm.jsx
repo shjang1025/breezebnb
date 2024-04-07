@@ -68,18 +68,19 @@ const AddRoomForm = props => {
             kitchen: kitchen,
             microwave: microwave,
             fireplace: fireplace,
-            pets: pets
+            pets: pets,
+            // photo: photo
         }
-        for (const key in roomData) {
-            if (roomData.hasOwnProperty(key)) {
-                formData.append(`room[${key}]`, roomData[key]);
+        for (const key in roomObject) {
+            if (roomObject.hasOwnProperty(key)) {
+                data.append(`room[${key}]`, roomObject[key]);
             }
         }
         if(photo) {
             data.append('room[photo]',photo)
         }
 
-        dispatch(createRoom(roomObject));
+        dispatch(createRoom(data));
         
         setTv(false);
         setAC(false);
@@ -103,7 +104,7 @@ const AddRoomForm = props => {
         setCapacity('');
         setTitle('');
         setDescription('');
-
+        // setPhoto(null);
         setCategory('');
         setChecked(false);
 
@@ -153,6 +154,7 @@ const AddRoomForm = props => {
         setChecked(checked)
     }
     const handleFile = (e) => {
+        //extract file from event
         const file = e.currentTarget.files[0]
         setPhoto(file);
     }
@@ -382,7 +384,10 @@ const AddRoomForm = props => {
                         </label>
                     </div>
                     <div className="photo-input">
-                        <input onChange={handleFile} type="file" />
+                        <label className="photo-label"> 
+                            Please add photo of your hosting
+                        </label>
+                        <input id="photo" onChange={handleFile} type="file" />
                     </div>
                     <div className="button-wrapper">
                         <button id="button" type="submit">Start Hosting!</button>

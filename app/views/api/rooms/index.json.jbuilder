@@ -6,7 +6,7 @@
         json.owner_id room.user.id #json.blah => key name(blah)
 
         if room.photo.attached? 
-            json.photoUrl url_for(room.photo)
+            json.photoUrl url_for(room.photo) 
         end
     end
 end

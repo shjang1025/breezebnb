@@ -152,6 +152,38 @@ h1 {
     border-bottom-color: #d3d3d3;
     border-top-color: #d3d3d3;
 }
+
+.photo-input {
+    border-bottom: 1px solid;
+    border-bottom-color: #d3d3d3;
+}
+
+.photo-input .photo-label {
+    margin-left: 0;
+    padding-left: 0;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    margin-top: 1rem;
+    border-bottom: none;
+}
+
+
+#photo {
+    margin-top: 1rem;
+    
+}
+#photo::file-selector-button {
+    font-weight: bold;
+    color: #E3185F;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    background-color: white;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
 .button-wrapper {
     display: flex;
     justify-content: flex-end;
@@ -159,6 +191,7 @@ h1 {
 }
 #button {
     width: 280px;
+    width: 100%;
     margin: 20px;
     padding: 20px;
     background-color: #E3185F;
