@@ -50,27 +50,24 @@ file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/seattle-apt
 room1.photo.attach(io: file, filename: 'seattle-apt.jpeg')
 
 room2 = Room.create!(
-    title: "Charming Cottage near Central Park",
-    description: "Escape to this cozy cottage nestled in the heart of New York City. 
-    This charming abode offers tranquility amidst the bustling city. 
-    Enjoy a morning stroll through Central Park or explore nearby museums and galleries. 
-    With its inviting atmosphere and convenient location, 
-    this Airbnb retreat promises an unforgettable stay in the Big Apple.",
-    price: 150, address: '6789 Maple Ave', city: 'New York City', state: 'NY', country: 'USA', category: 'amazing_views',
-    capacity: 2, beds: 1, rooms: 1, baths: 1, parking: false,
+    title: "Beautiful Fully Renovated 3-Bedroom Apartment.",
+    description: "Located right in Heart of West New York, Full of restaurants,  Small Comercial Stores.  Easy transportation to Times Square. 15-20 minutes to Manhattan.",
+    price: 269, address: '63rd Madison St', city: 'West New York', state: 'NJ', country: 'USA', category: 'amazing_views',
+    capacity: 8, beds: 4, rooms: 3, baths: 2, parking: true,
     washer: true, dryer: true, heater: true, ac: false, tv: true, wifi: true,
     kitchen: true, microwave: true, fireplace: false, pets: false, host_id: 2)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/ny.jpg")
+room2.photo.attach(io: file, filename: 'ny.jpg')
 
-room3 = Room.create!(title: "Luxurious Beachfront Villa in Malibu",
-    description: "Indulge in the ultimate beachfront getaway at this luxurious villa in Malibu. 
-    With its breathtaking ocean views, private beach access, and upscale amenities, 
-    this villa offers a slice of paradise. Relax in the infinity pool, unwind in the spa, 
-    or enjoy alfresco dining with panoramic sunsets. 
-    Experience the epitome of coastal living at this stunning Airbnb retreat.",
-    price: 500, address: '9876 Ocean Blvd', city: 'Malibu', state: 'CA', country: 'USA', category: 'lake_front',
-    capacity: 8, beds: 5, rooms: 4, baths: 5, parking: true,
+room3 = Room.create!(title: "Oceanfront Malibu Townhouse On Quiet Road",
+    description: "This contemporary oceanfront townhouse on quiet and star-studded Malibu Road has amazing views, granite and limestone kitchen & bathrooms, living room with fireplace, tub for two, one parking space, and lounge/recreation area. It is spacious, quiet and private with sounds of the rhythmic surf in every room.",
+    price: 500, address: '25142 Pacific Coast Hwy', city: 'Malibu', state: 'CA', country: 'USA', category: 'beach_front',
+    capacity: 6, beds: 3, rooms: 3, baths: 3, parking: true,
     washer: true, dryer: true, heater: true, ac: true, tv: true, wifi: true,
     kitchen: true, microwave: true, fireplace: true, pets: false, host_id: 3)
+
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/malibu.jpg")
+room3.photo.attach(io: file, filename: 'malibu.jpg')
 
 room4 = Room.create!(title: "Rustic Cabin Retreat in the Smoky Mountains",
     description: "Escape to this rustic cabin retreat nestled in the picturesque Smoky Mountains. Surrounded by serene forest landscapes, this cozy cabin offers a tranquil getaway from the hustle and bustle of everyday life. Spend your days hiking scenic trails, fishing in nearby streams, or simply relaxing on the spacious deck. Experience the charm of mountain living at this enchanting Airbnb hideaway.",
