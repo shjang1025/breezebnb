@@ -36,10 +36,7 @@ user11 = User.create!(username: "kkkk", email: 'kkkk@test.com', password: "passw
 
 Room.destroy_all
 room1 = Room.create!(title: "Massive Downtown Seattle Condo",
-                    description: "Welcome to a one-of-a-kind, expansive condominium nestled in downtown Seattle, 
-                    boasting unparalleled luxury and convenience. This centrally located gem offers a modern loft design, upscale amenities, 
-                    towering windows and gourmet kitchen. Immerse yourself in the vibrant culture of Seattle, 
-                    with top attractions just steps away. Experience urban living at its finest in this extraordinary Airbnb sanctuary.",
+                    description: "Welcome to a one-of-a-kind, expansive condominium nestled in downtown Seattle, boasting unparalleled luxury and convenience. This centrally located gem offers a modern loft design, upscale amenities, towering windows and gourmet kitchen. Immerse yourself in the vibrant culture of Seattle, with top attractions just steps away. Experience urban living at its finest in this extraordinary Airbnb sanctuary.",
                     price: 180, address: '12345 Cherry St', city: 'Seattle', state: 'WA', country: 'USA', category: 'design',
                     capacity: 5, beds: 4, rooms: 3, baths: 2, parking: true,
                     washer: false, dryer: false, heater: true, ac: true, tv: true, wifi: true,

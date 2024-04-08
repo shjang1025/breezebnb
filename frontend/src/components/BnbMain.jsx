@@ -6,8 +6,8 @@ import { useState } from "react"
 const BnbMain = props => {
     const[rooms, setRooms] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
-    const roomsPerPage = 12;
-    const roomsPerLine = 4;
+    const roomsPerPage = 15;
+    // const roomsPerLine = 5;
 
     useEffect(()=> {
         fetchRoomsData();
@@ -63,7 +63,7 @@ const BnbMain = props => {
                                 <p>{room.title}</p>
                             </div>
                             <div className="price-info">
-                                <p>${room.price}/night</p>
+                                <p>${room.price} / night</p>
                             </div>
                         </div>
                     ))}
@@ -76,6 +76,7 @@ const BnbMain = props => {
                     ))}
                 </div>
             </div>
+            
             
 
         </>
