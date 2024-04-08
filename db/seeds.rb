@@ -61,7 +61,7 @@ room2.photo.attach(io: file, filename: 'ny.jpg')
 
 room3 = Room.create!(title: "Oceanfront Malibu Townhouse On Quiet Road",
     description: "This contemporary oceanfront townhouse on quiet and star-studded Malibu Road has amazing views, granite and limestone kitchen & bathrooms, living room with fireplace, tub for two, one parking space, and lounge/recreation area. It is spacious, quiet and private with sounds of the rhythmic surf in every room.",
-    price: 500, address: '25142 Pacific Coast Hwy', city: 'Malibu', state: 'CA', country: 'USA', category: 'beach_front',
+    price: 661, address: '25142 Pacific Coast Hwy', city: 'Malibu', state: 'CA', country: 'USA', category: 'beach_front',
     capacity: 6, beds: 3, rooms: 3, baths: 3, parking: true,
     washer: true, dryer: true, heater: true, ac: true, tv: true, wifi: true,
     kitchen: true, microwave: true, fireplace: true, pets: false, host_id: 3)
@@ -69,59 +69,50 @@ room3 = Room.create!(title: "Oceanfront Malibu Townhouse On Quiet Road",
 file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/malibu.jpg")
 room3.photo.attach(io: file, filename: 'malibu.jpg')
 
-room4 = Room.create!(title: "Rustic Cabin Retreat in the Smoky Mountains",
-    description: "Escape to this rustic cabin retreat nestled in the picturesque Smoky Mountains. Surrounded by serene forest landscapes, this cozy cabin offers a tranquil getaway from the hustle and bustle of everyday life. Spend your days hiking scenic trails, fishing in nearby streams, or simply relaxing on the spacious deck. Experience the charm of mountain living at this enchanting Airbnb hideaway.",
-    price: 120, address: '4567 Pine Ln', city: 'Gatlinburg', state: 'TN', country: 'USA', category: 'omg',
-    capacity: 4, beds: 2, rooms: 1, baths: 1, parking: true,
+room4 = Room.create!(title: "Take a Break at Wye Lake - 2 BR Lakefront Cabin",
+    description: "Come take a break at Wye Lake! Sitting directly on the lake, this home is fully remodeled and waiting for you to grab a drink and come relax on its huge private dock or take a spin around the lake in the provided pedal boat or kayaks! This home is stocked with all the needed essentials; from its fully stocked kitchen and bathrooms, to the comfy beds with quality linens and throws to keep you cozy. Come enjoy swimming, fishing, boating, and so much more at this tranquil property!",
+    price: 138, address: '13858 Wye Lake Blvd', city: 'Port Orchard', state: 'WA', country: 'USA', category: 'lake_front',
+    capacity: 5, beds: 3, rooms: 2, baths: 1, parking: true,
     washer: false, dryer: false, heater: true, ac: false, tv: true, wifi: true,
     kitchen: true, microwave: true, fireplace: true, pets: true, host_id: 4)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/lake.jpg")
+room4.photo.attach(io: file, filename: 'lake.jpg')
 
-room5 = Room.create!(title: "Modern Loft in Downtown Los Angeles",
-    description: "Discover urban sophistication in this modern loft located in downtown Los Angeles. With its sleek design, open-concept layout, and skyline views, this loft offers a contemporary retreat in the heart of the city. Explore nearby entertainment venues, dine at trendy restaurants, or simply relax in style. Experience the vibrant energy of LA at this chic Airbnb oasis.",
-    price: 200, address: '54321 Main St', city: 'Los Angeles', state: 'CA', country: 'USA', category: 'amazing_pools',
-    capacity: 3, beds: 2, rooms: 1, baths: 1, parking: true,
+room5 = Room.create!(title: "Après Cabin | Designer Lake Cabin",
+    description: "Modern lakefront retreat for design-minded, adventure-seeking families, group getaways and remote work. Designed in partnership with Henrybuilt, Blu Dot and Parachute, Après Cabin adds luxury amenities to a fun, kid-friendly environment. EV Charger. Starlink Wi-Fi. Ski-in / ski-out on MCT trails. Access Hot tub, Pool, Restaurants, Heli-skiing, more. ",
+    price: 613, address: '17833 State Rte', city: 'Mazama', state: 'WA', country: 'USA', category: 'lake_front',
+    capacity: 12, beds: 7, rooms: 4, baths: 4, parking: true,
     washer: true, dryer: true, heater: true, ac: true, tv: true, wifi: true,
     kitchen: true, microwave: true, fireplace: false, pets: false, host_id: 5)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/lake2.jpg")
+room5.photo.attach(io: file, filename: 'lake2.jpg')
 
-room6 = Room.create!(title: "Secluded Treehouse Retreat in the Redwoods",
-    description: "Escape to this secluded treehouse retreat nestled among the majestic Redwoods. Tucked away in nature, this enchanting treehouse offers a unique and unforgettable experience. Disconnect from the outside world and reconnect with nature as you listen to the sounds of the forest and gaze at the star-filled sky. Experience the magic of treehouse living at this extraordinary Airbnb sanctuary.",
-    price: 250, address: '1010 Forest Ave', city: 'Santa Cruz', state: 'CA', country: 'USA', category: 'amazing_pools',
-    capacity: 2, beds: 1, rooms: 1, baths: 1, parking: false,
+room6 = Room.create!(title: "Luxurious 3BR Ocean Front Villa | Chateau La Mer |",
+    description: "Welcome to Chateau La Mer, your perfect beach retreat nestled along the picturesque shores of West Seattle. This charming beach house offers a tranquil escape with breathtaking views of the water and Olympic mountains. Whether you're seeking a romantic getaway, a family vacation, or a weekend of relaxation with friends, this coastal haven promises an unforgettable experience.",
+    price: 383, address: 'Angeline St Beach Dr SW', city: 'Seattle', state: 'WA', country: 'USA', category: 'amazing_views',
+    capacity: 8, beds: 3, rooms: 3, baths: 3, parking: false,
     washer: false, dryer: false, heater: true, ac: false, tv: false, wifi: true,
     kitchen: false, microwave: false, fireplace: true, pets: false, host_id: 6)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/av.jpg")
+room6.photo.attach(io: file, filename: 'av.jpg')
 
-room7 = Room.create!(title: "Historic Townhouse in Boston's Beacon Hill",
-    description: "Step back in time at this historic townhouse located in Boston's prestigious Beacon Hill neighborhood. Dating back to the 19th century, this elegant townhouse seamlessly blends classic charm with modern comfort. Explore cobblestone streets, visit nearby landmarks, or simply unwind in the lush courtyard garden. Experience timeless elegance at this exquisite Airbnb residence.",
-    price: 300, address: '2222 Beacon St', city: 'Boston', state: 'MA', country: 'USA', category: 'camping',
-    capacity: 6, beds: 3, rooms: 2, baths: 2, parking: false,
+room7 = Room.create!(title: "Clark Farm Silos #2 - Incredible Mountain Views",
+    description: "Reset and rejuvenate at the Clark Farm Silos! Our thoughtfully designed, unique metal structures are equipped with a fully functional kitchenette, private bathroom and spacious loft bedroom with gorgeous mountain views. Start your days sipping coffee while drinking in the fresh mountain air. Relax after a day of adventure under the starry sky next to the crackling sounds of your personal campfire. Centrally located so you can enjoy all that the Flathead Valley has to offer.",
+    price: 186, address: 'Creston Hatchery Rd', city: 'Kalispell', state: 'MT', country: 'USA', category: 'national_park',
+    capacity: 3, beds: 2, rooms: 1, baths: 1, parking: false,
     washer: true, dryer: true, heater: true, ac: true, tv: true, wifi: true,
     kitchen: true, microwave: true, fireplace: true, pets: false, host_id: 7)
 
-room8 = Room.create!(title: "Ski-In/Ski-Out Chalet in Aspen",
-    description: "Experience the ultimate ski-in/ski-out getaway at this luxurious chalet in Aspen. Nestled in the heart of the Rocky Mountains, this chalet offers direct access to world-class skiing and snowboarding trails. After a day on the slopes, unwind in the outdoor hot tub, cozy up by the fireplace, or enjoy apres-ski cocktails on the spacious deck. Experience mountain luxury at its finest at this exquisite Airbnb retreat.",
-    price: 600, address: '3333 Mountain Rd', city: 'Aspen', state: 'CO', country: 'USA', category: 'camping',
-    capacity: 10, beds: 6, rooms: 4, baths: 4, parking: true,
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/np.jpg")
+room7.photo.attach(io: file, filename: 'np.jpg')
+
+room8 = Room.create!(title: "Mountain View Haven | HOT TUB on 9 Acres!",
+    description: "Welcome to our Sun-Kissed Haven on 9 Acres! Enjoy breathtaking mountain views from the hot tub or while roasting marshmallows by the fire pit. Pick fresh fruit from our apple, cherry, grape, and blackberry trees. This luxury Cabin boasts a game room with pool, poker, darts and a music room. Work remotely with Starlink High-Speed internet. Take a short walk to the river or nature center. Explore Olympic National Forest and Hurricane Ridge hiking trails. Perfect for a private and peaceful getaway!",
+    price: 284, address: 'Williamson Rd', city: 'Sequim', state: 'WA', country: 'USA', category: 'national_park',
+    capacity: 10, beds: 5, rooms: 4, baths: 3, parking: true,
     washer: true, dryer: true, heater: true, ac: true, tv: true, wifi: true,
     kitchen: true, microwave: true, fireplace: true, pets: false, host_id: 8)
-
-room9 = Room.create!(title: "Quaint Farmhouse in the French Countryside",
-    description: "Escape to the serene beauty of the French countryside at this quaint farmhouse retreat. Surrounded by rolling hills and vineyards, this charming farmhouse offers a peaceful escape from the hustle and bustle of city life. Spend your days exploring nearby villages, savoring local cuisine, or simply relaxing in the lush garden. Experience the timeless allure of rural France at this enchanting Airbnb hideaway.",
-    price: 180, address: '4444 Vineyard Ln', city: 'Provence', state: 'Provence-Alpes-Côte d\'Azur', country: 'France', category: 'amazing_views',
-    capacity: 6, beds: 4, rooms: 3, baths: 2, parking: true,
-    washer: true, dryer: true, heater: true, ac: false, tv: true, wifi: true,
-    kitchen: true, microwave: true, fireplace: true, pets: true, host_id: 9)
-
-room10 = Room.create!(title: "Contemporary Loft in San Francisco's SoMa District",
-    description: "Immerse yourself in city living at this contemporary loft located in San Francisco's vibrant SoMa district. With its sleek design, high ceilings, and industrial-chic aesthetic, this loft offers a stylish urban retreat. Explore nearby galleries, dine at trendy eateries, or simply relax on the rooftop terrace with panoramic city views. Experience the dynamic energy of San Francisco at this chic Airbnb sanctuary.",
-    price: 280, address: '5555 Market St', city: 'San Francisco', state: 'CA', country: 'USA', category: 'beach_front',
-    capacity: 4, beds: 2, rooms: 1, baths: 1, parking: true,
-    washer: true, dryer: true, heater: true, ac: true, tv: true, wifi: true,
-    kitchen: true, microwave: true, fireplace: false, pets: false, host_id: 10)
-
-room11 = Room.create!(title: "Serenity Cabin Retreat in the Colorado Rockies",
-    description: "Find peace and tranquility at this serene cabin retreat nestled in the breathtaking Colorado Rockies. Surrounded by pristine wilderness, this cozy cabin offers an idyllic escape from the stresses of modern life. Spend your days hiking scenic trails, fishing in crystal-clear streams, or simply relaxing on the wrap-around porch. Experience the beauty of nature at this enchanting Airbnb hideaway.",
-    price: 150, address: '6666 Mountain View Dr', city: 'Breckenridge', state: 'CO', country: 'USA', category: 'omg',
-    capacity: 4, beds: 2, rooms: 1, baths: 1, parking: true,
-    washer: false, dryer: false, heater: true, ac: false, tv: true, wifi: true,
-    kitchen: true, microwave: true, fireplace: true, pets: true, host_id: 11)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/np2.jpg")
+room8.photo.attach(io: file, filename: 'np2.jpg')
+    
 
