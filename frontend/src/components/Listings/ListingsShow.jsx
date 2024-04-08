@@ -2,6 +2,9 @@ import { useParams } from "react-router"
 import Navbar from "../Navbar"
 import "./ListingsShow.css"
 import { useState, useEffect } from "react"
+import {faSquareParking, faTv, faIgloo, faTemperatureArrowUp,faHouse, 
+    faShirt, faSocks, faWifi, faSink, faFireBurner,faFire,faDog} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ListingsShow = () => {
     const {room_id} = useParams();
@@ -68,7 +71,47 @@ const ListingsShow = () => {
                     <div className="details-wrapper">
                         <div className="details-main">
                             <div className="details-left">
-                                <h2>Whole Cabin hosted by {username}</h2>
+                                <div className="details-left-host">
+                                   <div className="host-info">
+                                        <p>Whole Cabin hosted by {username}</p>
+                                        <p>{selectedRoom.capacity} guests · {selectedRoom.rooms} bedrooms · 
+                                            {selectedRoom.beds} beds · {selectedRoom.baths} baths</p>
+                                   </div>
+                                   <div className="host-profile">
+                                        <h2>profile pic here</h2>
+                                   </div>
+                                </div>
+                                <div className="details-left-amenities">
+                                    <h2>What this place offers</h2>
+                                    <ul>
+                                        {Object.entries(selectedRoom.amenities).map(([amenity, value], idx) => (
+                                            // Only render the <li> if the value is true
+                                            value &&
+                                            <li key={idx} className="amenity-item">
+                                            {amenity === 'parking' && value && <FontAwesomeIcon icon={faSquareParking} size="xl" className="amenity-icon"/>}
+                                            {amenity === 'washer' && value && <FontAwesomeIcon icon={faShirt} size="xl" className="amenity-icon"/>}
+                                            {amenity === 'dryer' && value && <FontAwesomeIcon icon={faSocks} size="xl" className="amenity-icon"/>}
+                                            {amenity === 'tv' && value && <FontAwesomeIcon icon={faTv} size="xl" className="amenity-icon"/>}
+                                            {amenity === 'ac' && value && <FontAwesomeIcon icon={faIgloo} size="xl" className="amenity-icon"/>}
+                                            {amenity === 'heater' && value && <FontAwesomeIcon icon={faTemperatureArrowUp} size="xl" className="amenity-icon"/>}
+                                            {amenity === 'wifi' && value && <FontAwesomeIcon icon={faWifi} size="xl" className="amenity-icon"/>}
+                                            {amenity === 'kitchen' && value && <FontAwesomeIcon icon={faSink} size="xl" className="amenity-icon"/>}
+                                            {amenity === 'microwave' && value && <FontAwesomeIcon icon={faFireBurner} size="xl" className="amenity-icon"/>}
+                                            {amenity === 'fireplace' && value && <FontAwesomeIcon icon={faFire} size="xl" className="amenity-icon"/>}
+                                            {amenity === 'pets' && value && <FontAwesomeIcon icon={faDog} size="xl" className="amenity-icon"/>}
+                                            {amenity}
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                </div>
+                                <div className="details-left-description">
+                                    <p id="description">{selectedRoom.description}</p>
+                                </div>
+
+                                <div className="where-you-sleep">
+                                    <p>Where you sleep</p>
+                                </div>
 
                             </div>
                             <div className="details-right">

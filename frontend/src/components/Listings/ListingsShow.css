@@ -28,11 +28,11 @@
     padding: 10px;
     display: flex;
     justify-content: space-between;
-
 }
 .representing-photo {
     border: 1px solid blue;
     padding: 10px;
+    flex: 1.3;
     
 }
 .listing-show-photo {
@@ -44,17 +44,117 @@
     border: 1px solid orange;
     padding: 10px;
     display: grid;
+    flex:1;
+    background-color: aqua;
 }
 .grid-photo {
     border: 1px rgb(233, 20, 151) solid;
     padding: 10px;
+    background-color: lightblue;
 }
 
 .details-wrapper {
     border: 1px purple solid;
     padding: 10px;
+    background-color: purple;
+}
+.details-main {
+    display: flex;
+    justify-content: space-between;
+}
+.details-left{
+    padding: 10px;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+.details-right {
+    padding: 10px;
+    background-color: rgb(231, 228, 143);
+    display: flex;
+    flex-direction: column;
+    width: 30%;
 }
 
-.details-left {
+.details-left-host p:first-child {
+    font-weight: bold;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
 
+.details-left-host {
+    display: flex;
+    flex-direction: row;
+    text-align: start;
+    padding-bottom: 20px;
+    border-bottom: 1px solid;
+    border-bottom-color: #d3d3d3;
+}
+.host-info {
+    flex: 2;
+    margin-left: 0;
+    margin-right: 100px;
+}
+
+.host-profile {
+    flex: 1;
+    margin-right: 0;
+}
+
+.details-left-amenities {
+    margin-left: 0;
+    border-bottom: 1px solid;
+    border-bottom-color: #d3d3d3;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+.details-left-amenities h2 {
+    padding-left: 0;
+}
+
+.amenity-item {
+    margin-bottom: 10px;
+}
+.amenity-icon {
+    margin-right: 10px;
+}
+.details-left-amenities h2 {
+    font-size: 25px;
+    padding-bottom: 20px;    
+    font-weight: bold;
+
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+
+}
+.details-left-description {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: start;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.listings-show-container #description {    
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+}
+.where-you-sleep {
+    background-color: pink;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    /* padding-bottom: 20px; */
+    border-bottom: 1px solid;
+    border-bottom-color: #d3d3d3;
+}
+.where-you-sleep  p {
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    padding-left: 0;
 }
