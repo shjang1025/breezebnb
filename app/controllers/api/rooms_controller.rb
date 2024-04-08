@@ -1,6 +1,6 @@
 class Api::RoomsController < ApplicationController
 
-    before_action :required_logged_in, except: [:index]
+    before_action :required_logged_in, except: [:index, :show]
     before_action :find_room, only: [:update, :show, :destroy]
 
     def index

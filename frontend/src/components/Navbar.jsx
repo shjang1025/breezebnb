@@ -27,7 +27,7 @@ const Navbar = () => {
 
     //find currentUser
     const currentUser = useSelector(selectCurrentUser);
-    const userId = currentUser.id;
+    const userId = currentUser ? currentUser.id : "";
     const [view, setView] = useState(false);
     const [modalState, setModalState] = useState(null)
     const [searchModal, setSearchModal] = useState(false)
@@ -97,7 +97,22 @@ const Navbar = () => {
                         <div className="divider"></div>
                         <div>
                             <li id="logout" onClick={handleLogout}>Logout</li>
+                        </div>
+                        <div className="divider"></div>
 
+                        <div className="github">
+                            <a href="https://github.com/shjang1025/breezebnb">
+                                <li>
+                                    <FontAwesomeIcon icon={faGithub} size="xl" className="github-icon"/> Github
+                                </li>
+                            </a>
+                        </div>
+                        <div className="linkedin">
+                            <a href="https://www.linkedin.com/in/sohyun-jang-469918115/">
+                                <li>
+                                    <FontAwesomeIcon icon={faLinkedin} size="xl" className="linkedin-icon"/> Linkedin
+                                </li>
+                            </a>
                         </div>
                     </ul>
                 </div>
