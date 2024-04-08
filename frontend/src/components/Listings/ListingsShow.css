@@ -1,13 +1,15 @@
 .listings-show-container {
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     margin-top: 0px;
-    padding: 10px;
+    padding: 5px;
+    margin-left: 160px;
+    margin-right: 160px;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    /* width: 100%; */
+    /* height: 100%; */
     left: 0;
     top: 175px;
 }
@@ -44,6 +46,8 @@
     border: 1px solid orange;
     padding: 10px;
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
     flex:1;
     background-color: aqua;
 }
@@ -56,25 +60,26 @@
 .details-wrapper {
     border: 1px purple solid;
     padding: 10px;
-    background-color: purple;
+    /* background-color: purple; */
 }
 .details-main {
     display: flex;
     justify-content: space-between;
 }
 .details-left{
-    padding: 10px;
+    padding: 5px;
     background-color: beige;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    flex: 1;
 }
 .details-right {
-    padding: 10px;
+    /* padding: 10px; */
     background-color: rgb(231, 228, 143);
     display: flex;
     flex-direction: column;
-    width: 30%;
+    flex: 0.75;
+    padding-left: 100px;
 }
 
 .details-left-host p:first-child {
@@ -142,19 +147,64 @@
     font-weight: normal;
     font-size: 20px;
 }
-.where-you-sleep {
+.where-you-sleep{
     background-color: pink;
     padding-top: 20px;
     padding-bottom: 20px;
-
+    display: flex;
+    justify-content: space-between;
     /* padding-bottom: 20px; */
     border-bottom: 1px solid;
     border-bottom-color: #d3d3d3;
 }
-.where-you-sleep  p {
+.where-you-sleep > span {
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     font-weight: bold;
     font-size: 20px;
     text-align: start;
     padding-left: 0;
+}
+.sleep-buttons-container {
+    display: flex;
+    /* paddings: 10px */
+    padding-right: 30px;
+}
+.sleep-buttons-container  > span {
+    padding-right: 10px;
+}
+.arrow-icon {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.sleep-photo-carousel-container {
+    background-color: white;
+    padding: 10px;
+    width: 100%;
+    overflow: hidden;
+    /* display: flex; */
+
+}
+.sleep-photo-carousel {
+    display: flex;
+    scroll-snap-type: x mandatory;
+    transition: transform 0.5s ease;
+}
+.carousel-photo {
+    scroll-snap-align: start;
+    flex: 0 0 auto; /* Don't grow or shrink, maintain original size */
+    width: 50%; /* Ensure each photo takes up full width */
+    /* min-width: 50% */
+}
+.carousel-photo:nth-of-type(1) {
+    background: #49b293;
+}
+.carousel-photo:nth-of-type(2) {
+    background: #c94e4b;
+}.carousel-photo:nth-of-type(3) {
+    background: #4cc1be;
+}
+.carousel-photo:nth-of-type(4) {
+    background: #8360A6;
+}.carousel-photo:nth-of-type(5) {
+    background: #ffff39;
 }

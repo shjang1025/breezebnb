@@ -2,7 +2,7 @@ import { useParams } from "react-router"
 import Navbar from "../Navbar"
 import "./ListingsShow.css"
 import { useState, useEffect } from "react"
-import {faSquareParking, faTv, faIgloo, faTemperatureArrowUp,faHouse, 
+import {faSquareParking, faTv, faIgloo, faTemperatureArrowUp,faChevronLeft, faChevronRight,
     faShirt, faSocks, faWifi, faSink, faFireBurner,faFire,faDog} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -64,8 +64,6 @@ const ListingsShow = () => {
                             <div className="grid-photo 2"></div>
                             <div className="grid-photo 3"></div>
                             <div className="grid-photo 4"></div>
-
-
                         </div>
                     </div>
                     <div className="details-wrapper">
@@ -109,13 +107,48 @@ const ListingsShow = () => {
                                     <p id="description">{selectedRoom.description}</p>
                                 </div>
 
-                                <div className="where-you-sleep">
-                                    <p>Where you sleep</p>
+                                <div className="where-you-sleep-container">
+                                    <div className="where-you-sleep">
+                                        <span>
+                                            <p>Where you sleep</p>
+                                        </span>
+                                        <div className="sleep-buttons-container">
+                                            <span>1 / 3</span>
+                                            <div className="sleep-button" >
+                                                <FontAwesomeIcon icon={faChevronLeft} className="arrow-icon" aria-label="Previous"/>
+                                            </div>
+                                            <div className="sleep-button" >
+                                                <FontAwesomeIcon icon={faChevronRight} className="arrow-icon" aria-label="Next"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="sleep-photo-carousel-container">
+                                        <div className="sleep-photo-carousel">
+                                            <div className="carousel-photo">
+                                                1
+                                            </div>
+                                            <div className="carousel-photo">
+                                                2
+                                            </div>
+                                            <div className="carousel-photo">
+                                                3
+                                            </div>
+                                            <div className="carousel-photo">
+                                                4
+                                            </div>
+                                            <div className="carousel-photo">
+                                                5
+                                            </div>
+                                            <div className="carousel-photo">
+                                                6
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
                             <div className="details-right">
-
+                                <p>Reservation to be continued...</p>
                             </div>
                         </div>
 
