@@ -6,7 +6,7 @@ import ListingsShow from './components/Listings/ListingsShow';
 
 const router = createBrowserRouter([
   { path: '/', element: <BnbMain/> },
-  { path: '/host', element: <AddRoomForm /> },
+  { path: '/host', element: <AddRoomForm/> },
   { path: '/listings/:room_id', element: <ListingsShow/>}
 ]);
 

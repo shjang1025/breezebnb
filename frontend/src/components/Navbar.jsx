@@ -5,6 +5,7 @@ import './Navbar.css';
 import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faBars, faCircleUser} from "@fortawesome/free-solid-svg-icons"
+import {faLinkedin, faGithub} from "@fortawesome/free-brands-svg-icons"
 import SessionModal from "./Modal/SessionModal";
 import BottomSearchBar from "./SearchBar/BottomSearchBar"
 import TopSearchBar from "./SearchBar/TopSearchBar";
@@ -55,14 +56,49 @@ const Navbar = () => {
         if(!currentUser) {
             return(
                 <div className="dropdown">
-                    <li id="login" onClick={() => setModalState('login')}>Login</li>
-                    <li id="signup" onClick={() => setModalState('signup')}>Signup</li>
+                    <ul>
+                        <div>
+                            <li id="login" onClick={() => setModalState('login')}>Login</li>
+                        </div>
+                        <div className="divider"></div>
+                        <div>
+                            <li id="signup" onClick={() => setModalState('signup')}>Signup</li>
+                        </div>
+                        <div className="divider"></div>
+
+                        <div className="github">
+                            <a href="https://github.com/shjang1025/breezebnb">
+                                <li>
+                                    <FontAwesomeIcon icon={faGithub} size="xl" className="github-icon"/> Github
+                                </li>
+                            </a>
+                        </div>
+                        <div className="linkedin">
+                            <a href="https://www.linkedin.com/in/sohyun-jang-469918115/">
+                                <li>
+                                    <FontAwesomeIcon icon={faLinkedin} size="xl" className="linkedin-icon"/> Linkedin
+                                </li>
+                            </a>
+                        </div>
+                        
+                    </ul>
                 </div>
             )
         } else {
             return (
                 <div className="dropdown">
-                    <li id="logout" onClick={handleLogout}>Logout</li>
+                    <ul>
+                        <div className="to-trip-page">
+                            <a href="">
+                                <li>Trips</li>
+                            </a>
+                        </div>
+                        <div className="divider"></div>
+                        <div>
+                            <li id="logout" onClick={handleLogout}>Logout</li>
+
+                        </div>
+                    </ul>
                 </div>
 
             )
