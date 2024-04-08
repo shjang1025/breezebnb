@@ -29,6 +29,7 @@ class Api::RoomsController < ApplicationController
     end
 
     def show
+        @username = @room.user.username if @room.user
         if @room 
             render :show
         else
@@ -57,7 +58,7 @@ class Api::RoomsController < ApplicationController
     end
 
     def find_room
-        @room = Room.find_by(params[:id])
+        @room = Room.find(params[:id])
     rescue
         render json: ['Post not found'], status: :not_found
     end

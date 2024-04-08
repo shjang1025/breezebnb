@@ -1,22 +1,34 @@
-import Navbar from "./Navbar"
+import Navbar from "../Navbar.jsx"
 import './BnbMain.css'
 import { useEffect } from "react"
 import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+
 
 const BnbMain = props => {
+    const [selectedRoom, setSelectedRoom] = useState(null)
+    const navigate = useNavigate();
     const[rooms, setRooms] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const roomsPerPage = 15;
     // const roomsPerLine = 5;
+    
 
     useEffect(()=> {
         fetchRoomsData();
     },[])
 
     useEffect(()=> {
-        console.log(rooms)
+        // console.log(rooms)
     }, [rooms])
+    
 
+
+    const handlePhotoClick = async (room) => {
+        // console.log(room)
+        setSelectedRoom(room)
+    }
+    
     const fetchRoomsData = async () => {
         try {
             const res = await fetch('/api/rooms')
@@ -29,6 +41,7 @@ const BnbMain = props => {
             console.error('Error fetching rooms:', error);
         }
     }
+    
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
@@ -50,22 +63,25 @@ const BnbMain = props => {
             <div className="rooms-index-grid-container">
                 <div className="rooms-index-grid">
                     {currentRooms.map((room, idx) => (
-                        <div className="listing-item" key={idx}>
-                            <div className="image-content">
-                                {room.photoUrl && (
-                                    <img className="room-photo" src={room.photoUrl}></img>
-                                )}
+                        
+                            <div className="listing-item" key={idx}>
+                                <div className="image-content">
+                                    {room.photoUrl && (
+                                        <Link key={idx} to={{ pathname: `/listings/${room.id}`, state: { room: room } }}>
+                                            <img className="room-photo" src={room.photoUrl} onClick={() => handlePhotoClick(room)}></img>
+                                        </Link>
+                                    )}
+                                </div>
+                                <div className="location-info">
+                                    <p>{room.city}</p>
+                                </div>
+                                <div className="title-info">
+                                    <p>{room.title}</p>
+                                </div>
+                                <div className="price-info">
+                                    <p>${room.price} / night</p>
+                                </div>
                             </div>
-                            <div className="location-info">
-                                <p>{room.city}</p>
-                            </div>
-                            <div className="title-info">
-                                <p>{room.title}</p>
-                            </div>
-                            <div className="price-info">
-                                <p>${room.price} / night</p>
-                            </div>
-                        </div>
                     ))}
                 </div>
                 <div className="pagination">
@@ -77,8 +93,6 @@ const BnbMain = props => {
                 </div>
             </div>
             
-            
-
         </>
     )
 }

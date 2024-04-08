@@ -1,0 +1,60 @@
+.listings-show-container {
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    margin-top: 0px;
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 175px;
+}
+
+.listing-title {
+    border: 1px solid red;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    text-align: start;
+}
+.listing-details {
+    border: 1px solid yellow;
+    padding: 5px;
+    text-align: start;
+}
+.listing-photo-container {
+    border: 1px solid green;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.representing-photo {
+    border: 1px solid blue;
+    padding: 10px;
+    
+}
+.listing-show-photo {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+.listing-photo-grid {
+    border: 1px solid orange;
+    padding: 10px;
+    display: grid;
+}
+.grid-photo {
+    border: 1px rgb(233, 20, 151) solid;
+    padding: 10px;
+}
+
+.details-wrapper {
+    border: 1px purple solid;
+    padding: 10px;
+}
+
+.details-left {
+
+}
