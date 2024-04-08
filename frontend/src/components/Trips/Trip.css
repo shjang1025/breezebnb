@@ -1,0 +1,71 @@
+
+.trip-outer-container {
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    padding: 5px;
+    margin-left: 160px;
+    margin-right: 160px;
+    border: 1px solid black;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    top: 175px;
+    height: 100%;
+}
+.trip-inner-container {
+    box-sizing: border-box;
+    min-width: 1440px;
+
+}
+.trip-header-title {
+    width: 100%;
+    font-size: 32px;
+    font-weight: 600;
+    text-align: start;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    max-width: 100%;
+}
+.booking-info {
+    height: 350px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    line-height: 20.02px;
+    padding-bottom: 24px;
+    padding-top: 24px;
+    text-size-adjust: 100%;
+    border: 1px purple;
+}
+.booking-info-left {
+    flex:1;
+    margin-left: 50px;
+    background-color: beige;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+
+}
+.bnb-photo {
+    flex:1;
+    margin-right: 50px;
+    overflow: hidden;
+}
+#bnb-photo {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    width:100%;
+    height:100%;
+    object-fit:cover;    
+}
+.trip-history {
+   padding: 50px;
+   background-color: rgb(127, 159, 255); 
+   margin-bottom: 20px;
+}
+.trip-review {
+    padding: 50px;
+    background-color: rgb(255, 182, 23); 
+    margin-bottom: 20px;
+
+}

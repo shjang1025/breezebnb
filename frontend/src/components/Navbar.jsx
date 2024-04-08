@@ -27,6 +27,7 @@ const Navbar = () => {
 
     //find currentUser
     const currentUser = useSelector(selectCurrentUser);
+    const userId = currentUser.id;
     const [view, setView] = useState(false);
     const [modalState, setModalState] = useState(null)
     const [searchModal, setSearchModal] = useState(false)
@@ -89,9 +90,9 @@ const Navbar = () => {
                 <div className="dropdown">
                     <ul>
                         <div className="to-trip-page">
-                            <a href="">
+                            <Link to={`/users/${userId}`}>
                                 <li>Trips</li>
-                            </a>
+                            </Link>
                         </div>
                         <div className="divider"></div>
                         <div>
