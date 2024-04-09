@@ -73,7 +73,6 @@ const ListingsShow = () => {
     return(
         <>
             <Navbar/>
-            
             {selectedRoom ? (
                 <div className="listings-show-container">
                     <div className="listing-title">
