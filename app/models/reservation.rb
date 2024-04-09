@@ -13,9 +13,9 @@
 #
 class Reservation < ApplicationRecord
     validates :checkin, presence: true
-    validates :checkout, comparison: { greater_than: :start_date }
-    validates :num_guests, presence: true, minimum: 1
-    
+    validates :checkout, comparison: { greater_than: :checkin }
+    validates :num_guests, presence: true, numericality: {greater_than_or_equal_to: 1}
+
     belongs_to :reserver,
         class_name: :User,
         foreign_key: :reserved_person_id
@@ -24,8 +24,6 @@ class Reservation < ApplicationRecord
         class_name: :Room, 
         foreign_key: :reserved_room_id
     
-
-
     private
     def checkin_before_checkout
         return if checkout.blank? || checkin.blank?

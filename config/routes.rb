@@ -13,9 +13,9 @@ Rails.application.routes.draw do
     end
     resource :session, only: [:create, :show, :destroy]
     resources :rooms, only: [:index, :create, :show, :update, :destroy] do  #room listing - create
-      resources :reservations, only: [:index, :create]
+      resources :reservations, only: [:index]
     end
 
-    resources :reservations, only: [:index, :show, :update, :destroy]
+    resources :reservations, only: [:index, :show, :update, :destroy,:create]
   end
 end

@@ -50,5 +50,8 @@ class Room < ApplicationRecord
         class_name: :User, 
         foreign_key: :host_id
     
-
+    has_many :reservations,
+        class_name: :Reservation,
+        foreign_key: :reserved_room_id,
+        dependent: :destroy
 end

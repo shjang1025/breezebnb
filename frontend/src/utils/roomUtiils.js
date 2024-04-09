@@ -20,7 +20,7 @@ export const editRoom = roomData => (
 )
 
 export const deleteRoom = () => (
-    csrfFetch('/api/session', {
+    csrfFetch('/api/rooms', {
         method: 'DELETE'
     })
 )

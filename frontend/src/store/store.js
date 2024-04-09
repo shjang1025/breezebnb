@@ -4,11 +4,13 @@ import logger from "redux-logger"
 import sessionReducer from "./sessionReducer";
 import roomReducer from "./roomReducer";
 import userReducer from "./userReducer";
+import reservationReducer from "./reservationReducer"
 
 export const rootReducer = combineReducers({
     users: userReducer,
     session: sessionReducer,
-    rooms: roomReducer
+    rooms: roomReducer,
+    reservations: reservationReducer
 })
 
 const configureStore=(initialState = {}) => (

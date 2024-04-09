@@ -6,7 +6,7 @@ class Api::ReservationsController < ApplicationController
         else
             @reservations = Reservation.all
         end
-        render json: @reservations
+        render :index
     end
 
     def show
@@ -19,7 +19,14 @@ class Api::ReservationsController < ApplicationController
     end
 
     def create 
-        @reservation = Rservation.new(reservation_params)
+        @reservation = Reservation.new(reservation_params)
+
+        reserver = User.find_by(id: params[:reserved_person_id])
+        room = Room.find_by(id: params[:reserved_room_id])
+
+        @reservation.reserver = reserver if reserver
+        @reservation.room = room if room
+        
         if @reservation.save! 
             render :show
         else 
@@ -52,7 +59,7 @@ class Api::ReservationsController < ApplicationController
     end
 
     def reservation_params
-        params.require(:reservation).permit(:checkin, :checkout, :num_guests)
+        params.require(:reservation).permit(:checkin, :checkout, :num_guests, :reserved_person_id, :reserved_room_id)
     end
 
 end

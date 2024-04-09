@@ -9,13 +9,23 @@ import React from "react";
 import { differenceInDays } from "date-fns"; 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch } from "react-redux"
+import { selectCurrentUser } from "../../store/sessionReducer"
+import { useSelector } from "react-redux"
+import { createReservation } from "../../store/reservationReducer"
 
 const ListingsShow = () => {
+    const dispatch = useDispatch();
+    const currentUser = useSelector(selectCurrentUser);
+    const isLoggedin = !!currentUser;
+
     const {room_id} = useParams();
     const [selectedRoom, setSelectedRoom] = useState(null);
     const [username, setUsername] = useState(null);
     const [checkInDate, setCheckInDate] = useState(null);
     const [checkOutDate, setCheckOutDate] = useState(null);
+    const [numGuests, setNumGuests] = useState(null);
+    const [viewDropdown, setViewDropdown] = useState(false);
 
     useEffect(() => {
         fetchRoomData(room_id)
@@ -68,6 +78,30 @@ const ListingsShow = () => {
         } else {
             return 150
         }
+    }
+    const handleReserveClick = () => {
+        const reservationData = {
+            checkInDate,
+            checkOutDate,
+            numGuests
+        };
+        
+    }
+    const handleArrowClick = () => {
+        setViewDropdown(!viewDropdown)
+    }
+    
+    const guestDropdown = () => {
+
+        const handleGuestDivClick = (i) => {
+            setNumGuests(i)
+            setViewDropdown(!viewDropdown)
+        }
+        const guests = [];
+        for(let i = 1; i <= selectedRoom.capacity; i++) {
+            guests.push(<div key={i} className="num-guest" onClick={() => handleGuestDivClick(i)}>{i}</div>)
+        }
+        return guests;
     }
 
     return(
@@ -215,22 +249,32 @@ const ListingsShow = () => {
                                             </div>
                                         </button>
                                         <div className="guest-dropdown">
-                                            <label className="guest-picker"> 
-                                                <div className="guest-text">Guests</div>
-                                                <div className="guest-select">
-                                                    <span>2 guests</span>
+                                            <div className="guest-dropdown-upper">
+                                                <label className="guest-picker"> 
+                                                    <div className="guest-text">Guests</div>
+                                                    <div className="guest-select">
+                                                        <span>{numGuests} guests</span>
+                                                    </div>
+                                                </label>
+                                                <div className="guest-dropdown-arrow" onClick={handleArrowClick}>
+                                                    <FontAwesomeIcon icon={faAngleDown} />
                                                 </div>
-                                            </label>
-                                            <div className="guest-dropdown-arrow">
-                                                <FontAwesomeIcon icon={faAngleDown}/>
                                             </div>
+                                            {viewDropdown && (
+                                                <div className="guest-dropdown-content">
+                                                    {guestDropdown()}
+                                                </div>
+                                            )}
                                         </div>
 
     
                                     </div>
                                     <div className="reservation-button-container">
-                                            <div className="button-container">
-                                                <button>Reserve</button>
+                                            <div className="button-container" 
+                                                onClick={() => dispatch(createReservation({reservation: {num_guests: numGuests, checkin: checkInDate, checkout: checkOutDate}, reserved_person_id: currentUser.id, reserved_room_id: room_id}))}>
+                                                <button disabled={!isLoggedin}>
+                                                    {currentUser === null ? 'Need to Login':'Reserve'}
+                                                </button>
                                             </div>
                                             <div>
                                                 You won't be charged yet
