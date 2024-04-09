@@ -1,4 +1,4 @@
-json.room do 
+json.rooms do 
   json.extract! @room, :id, :title, :description, :price, :address, :city, :state, :country, 
                 :category, :capacity, :beds, :rooms, :baths
   json.amenities do 

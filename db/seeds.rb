@@ -17,9 +17,12 @@
 
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
 ActiveRecord::Base.connection.reset_pk_sequence!('rooms')
+ActiveRecord::Base.connection.reset_pk_sequence!('reservations')
 
-ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq RESTART WITH 1;")
-ActiveRecord::Base.connection.execute("ALTER SEQUENCE rooms_id_seq RESTART WITH 1;")
+
+# ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq RESTART WITH 1;")
+# ActiveRecord::Base.connection.execute("ALTER SEQUENCE rooms_id_seq RESTART WITH 1;")
+# ActiveRecord::Base.connection.execute("ALTER SEQUENCE reservations_id_seq RESTART WITH 1;")
 
 User.destroy_all
 user1 = User.create!(username: "aaaa", email: 'aaaa@test.com', password: "password", gender: "Female")
@@ -113,3 +116,29 @@ file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/np2.jpg")
 room8.photo.attach(io: file, filename: 'np2.jpg')
     
 
+Reservation.destroy_all
+reservation1 = Reservation.create!(
+    checkin: "2024-04-11", 
+    checkout: "2024-04-13",
+    num_guests: 4,
+    reserved_person_id: user1.id,
+    reserved_room_id: room4.id)
+reservation2 = Reservation.create!(
+    checkin: "2024-03-25", 
+    checkout: "2024-03-28",
+    num_guests: 7,
+    reserved_person_id: user3.id,
+    reserved_room_id: room2.id)
+reservation3 = Reservation.create!(
+    checkin: "2024-05-03", 
+    checkout: "2024-05-05",
+    num_guests: 11,
+    reserved_person_id: user5.id,
+    reserved_room_id: room5.id)
+reservation4 = Reservation.create!(
+    checkin: "2024-04-22", 
+    checkout: "2024-04-29",
+    num_guests: 3,
+    reserved_person_id: user6.id,
+    reserved_room_id: room7.id)
+    

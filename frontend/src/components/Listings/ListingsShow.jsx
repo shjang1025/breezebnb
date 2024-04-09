@@ -20,6 +20,7 @@ const ListingsShow = () => {
     const isLoggedin = !!currentUser;
 
     const {room_id} = useParams();
+    
     const [selectedRoom, setSelectedRoom] = useState(null);
     const [username, setUsername] = useState(null);
     const [checkInDate, setCheckInDate] = useState(null);
@@ -44,7 +45,7 @@ const ListingsShow = () => {
         try {
             const res = await fetch(`/api/rooms/${roomId}`)
             const data = await res.json()
-            setSelectedRoom(data.room)
+            setSelectedRoom(data.rooms)
             
         } catch(error) { 
             console.error('Error fetching rooms:', error);

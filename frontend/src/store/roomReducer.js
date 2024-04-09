@@ -27,8 +27,8 @@ export const fetchRooms = () => async dispatch => {
     try {
         const res = await fetch('/api/rooms')
         if(res.ok) {
-            const rooms = await res.json();
-            dispatch(receiveRooms(rooms))
+            const data = await res.json();
+            dispatch(receiveRooms(data.rooms))
         } else {
             throw res
         }
@@ -42,8 +42,8 @@ export const fetchRoom = roomId => async dispatch => {
     try {
         const res = await fetch(`/api/rooms/${roomId}`)
         if(res.ok) {
-            const room = res.json();
-            dispatch(receiveRoom(room))
+            const data = res.json();
+            dispatch(receiveRoom(data))
         } else {
             throw res
         }
