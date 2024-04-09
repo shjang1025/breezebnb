@@ -184,10 +184,11 @@ const ListingsShow = () => {
                                         <button className="reservation-date-button">
                                             <div className="left">
                                                 <div className="checkin">
-                                                    Check-in
+                                                    <span className="checkin-label">Check-in</span>
                                                 </div>
                                                 <div className="checkin-input">
                                                     <DatePicker
+                                                        className="date-picker"
                                                         selected={checkInDate}
                                                         onChange={(date) => setCheckInDate(date)}
                                                         selectsStart
@@ -199,10 +200,11 @@ const ListingsShow = () => {
                                             </div>
                                             <div className="right">
                                                 <div className="checkout">
-                                                    Check-out
+                                                    <span className="checkout-label">Check-out</span>
                                                 </div>
                                                 <div className="checkout-input">
                                                 <DatePicker
+                                                    className="date-picker"
                                                     selected={checkOutDate}
                                                     onChange={(date) => setCheckOutDate(date)}
                                                     selectsEnd

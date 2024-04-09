@@ -80,6 +80,7 @@
     flex-direction: column;
     flex: 0.75;
     padding-left: 100px;
+    position: sticky;
 }
 
 .details-left-host p:first-child {
@@ -223,10 +224,10 @@
     padding: 5px;
     display: flex;
     flex-direction: column;
-    background-color: #ffff39;
+    /* background-color: #ffff39; */
 }
 .price-per-night {
-    background-color: aqua;
+    /* background-color: aqua; */
     padding: 0;
     margin: 0;
     margin-bottom: 10px;
@@ -240,18 +241,36 @@
 }
 
 .reservation-date-button {
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     border-bottom-color: rgb(176, 176, 176);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    background-color: white;
+    border: none;
+}
+.reservation-date-button .left {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+
+}
+
+.reservation-date-button > .right {
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+}
+.date-picker {
+    background-color: white;
 }
 .guest-dropdown {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border-bottom-color: rgb(176, 176, 176);
-    background-color: orange;
+    /* background-color: orange; */
     padding: 10px;
     display: flex;
 }
@@ -264,18 +283,32 @@
 }
 .guest-dropdown-arrow {
     flex: 0.1;
-    background-color: white;
+    /* background-color: white; */
 }
 .checkin {
     /* background-color: red; */
     flex:1;
     padding: 10px;
+    text-align: start;
+}
+.checkin-label, .checkout-label {
+    font-weight: 400;
+    font-size: 16px;
+}
+.checkin-input, 
+.checkout-input {
+    justify-content: start;
+    
 }
 .checkout {
     /* background-color: blue; */
     flex:1;
     padding: 10px;
+    text-align: start;
 }
+/* .react-datepicker__input-container input{
+    text-align: start;
+} */
 .reservation-button-container {
     padding: 8px;
     /* background-color: #ffb4b4; */
@@ -342,7 +375,6 @@
 .total-right {
     flex:1;
     text-align: end;
-
 }
 .service-fee-text {
     font-size: 15.5px;
