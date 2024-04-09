@@ -44,7 +44,7 @@ const ListingsShow = () => {
         try {
             const res = await fetch(`/api/rooms/${roomId}`)
             const data = await res.json()
-            setSelectedRoom(data)
+            setSelectedRoom(data.room)
             
         } catch(error) { 
             console.error('Error fetching rooms:', error);
@@ -54,7 +54,7 @@ const ListingsShow = () => {
         try {
             const res = await fetch(`/api/users/${userId}`);
             const data = await res.json();
-            setUsername(data.username);
+            setUsername(data.username); //this needs to be edited ?? 
         } catch(error) {
             console.error('Error fetching user data:', error);
         }

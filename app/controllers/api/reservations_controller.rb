@@ -24,13 +24,17 @@ class Api::ReservationsController < ApplicationController
         reserver = User.find_by(id: params[:reserved_person_id])
         room = Room.find_by(id: params[:reserved_room_id])
 
-        @reservation.reserver = reserver if reserver
-        @reservation.room = room if room
-        
-        if @reservation.save! 
-            render :show
+        if reserver && room 
+            @reservation.room = room
+            @reservation.reserver = reserver 
+
+            if @reservation.save! 
+                render :show
+            else 
+                render json: @reservation.errors.full_messages, status: 422
+            end
         else 
-            render json: @reservation.errors.full_messages, status: 422
+            render json: "Reserver or Room not found", status: 404
         end
     end
 

@@ -10,7 +10,7 @@ export const receiveReservation = reservation => ({
     reservation
 })
 export const receiveReservations = reservations => ({
-    type: RECEIVE_RESERVATION,
+    type: RECEIVE_RESERVATIONS,
     reservations
 })
 export const removeReservation = () => ({
@@ -29,7 +29,12 @@ export const fetchReservations = () => dispatch => {
                 throw res
             }
         })
-        .then(data => dispatch(receiveReservations(data)))
+        .then(data => {
+            console.log("Received reservations data:", data);
+            // const reservationsArray = Object.values(data.reservation);
+            // console.log("Converted reservations array:", reservationsArray);
+            dispatch(receiveReservations(data.reservation));
+        })
         .catch(err => console.error(err))
 }
 export const fetchReservation = reservationId => dispatch => {
@@ -88,9 +93,10 @@ const reservationReducer = (state={}, action) => {
     const newState = {...state}
     switch(action.type) {
         case RECEIVE_RESERVATION:
-            newState[action.reservation.id]= action.reservation
+            newState[action.reservation.id] = action.reservation
             return newState
         case RECEIVE_RESERVATIONS:
+            // return action.reservations
             return action.reservations
         case REMOVE_RESERVATION:
             delete newState[action.reservationId]

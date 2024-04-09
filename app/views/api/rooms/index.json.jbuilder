@@ -21,5 +21,10 @@
         if room.photo.attached? 
             json.photoUrl url_for(room.photo) 
         end
+        if room.reservations.present?
+            json.reservation_id room.reservations.map{ |reservation| 
+                json.id reservation.id
+            } 
+        end
     end
 end

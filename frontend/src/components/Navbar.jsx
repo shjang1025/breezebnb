@@ -12,6 +12,7 @@ import TopSearchBar from "./SearchBar/TopSearchBar";
 import BreezebnbModal from './Modal/BreezebnbModal'
 import { fetchRooms } from "../store/roomReducer";
 import { fetchUsers } from "../store/userReducer";
+import { fetchReservations } from "../store/reservationReducer";
 
 
 const Navbar = () => {
@@ -23,6 +24,7 @@ const Navbar = () => {
     useEffect(() => {
         dispatch(fetchRooms());
         dispatch(fetchUsers());
+        dispatch(fetchReservations())
     }, [dispatch]);
 
     //find currentUser
