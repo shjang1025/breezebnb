@@ -17,7 +17,7 @@ class Api::UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
-        render json: @user
+        render :show
       rescue
         render json: { error: 'User not found' }, status: :not_found
       end

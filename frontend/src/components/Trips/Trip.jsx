@@ -1,8 +1,12 @@
 import Navbar from "../Navbar";
 import './Trip.css'
 import bnbphoto from '../../assets/trip.png'
-const Trip = props => {
+import { selectCurrentUser } from "../../store/sessionReducer"
+import { useSelector } from "react-redux"
 
+const Trip = props => {
+    // const currentUser = useSelector(selectCurrentUser);
+    
     return(
         <>
             <Navbar/>
@@ -33,7 +37,6 @@ const Trip = props => {
                     </div>
                 </div>
             </div>
-        
         </>
     )
 }

@@ -17,6 +17,7 @@
             json.fireplace room.fireplace
             json.pets room.pets
         end
+
         if room.photo.attached? 
             json.photoUrl url_for(room.photo) 
         end

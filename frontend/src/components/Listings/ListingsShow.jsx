@@ -39,6 +39,7 @@ const ListingsShow = () => {
         }
     }, [selectedRoom]);
 
+    
     const fetchRoomData = async (roomId) => {
         try {
             const res = await fetch(`/api/rooms/${roomId}`)
@@ -80,12 +81,19 @@ const ListingsShow = () => {
         }
     }
     const handleReserveClick = () => {
-        const reservationData = {
-            checkInDate,
-            checkOutDate,
-            numGuests
-        };
-        
+        dispatch(createReservation(
+            {reservation: 
+                {num_guests: numGuests, 
+                checkin: checkInDate, 
+                checkout: checkOutDate}, 
+                reserved_person_id: currentUser.id, 
+                reserved_room_id: room_id
+            }
+        ))
+        setSelectedRoom(null)
+        setNumGuests(null)
+        setCheckInDate(null)
+        setCheckOutDate(null)
     }
     const handleArrowClick = () => {
         setViewDropdown(!viewDropdown)
@@ -271,7 +279,7 @@ const ListingsShow = () => {
                                     </div>
                                     <div className="reservation-button-container">
                                             <div className="button-container" 
-                                                onClick={() => dispatch(createReservation({reservation: {num_guests: numGuests, checkin: checkInDate, checkout: checkOutDate}, reserved_person_id: currentUser.id, reserved_room_id: room_id}))}>
+                                                onClick={handleReserveClick}>
                                                 <button disabled={!isLoggedin}>
                                                     {currentUser === null ? 'Need to Login':'Reserve'}
                                                 </button>
