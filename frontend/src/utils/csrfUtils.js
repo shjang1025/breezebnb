@@ -25,6 +25,7 @@ export const csrfFetch = async (url, options = {}) => {
         return res;
     } catch(error) {
         console.error('Error fetching data', error)
+        throw error
     }
 
 }

@@ -9,18 +9,18 @@ import React from "react";
 import { differenceInDays } from "date-fns"; 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useDispatch } from "react-redux"
 import { selectCurrentUser } from "../../store/sessionReducer"
 import { useSelector } from "react-redux"
-import { createReservation } from "../../store/reservationReducer"
 
 const ListingsShow = () => {
-    const dispatch = useDispatch();
     const currentUser = useSelector(selectCurrentUser);
     const isLoggedin = !!currentUser;
+    const [isLoading, setIsLoading] = useState(true);
 
     const {room_id} = useParams();
-    
+    const currentRoom = useSelector(state => state.rooms[room_id])
+    const reservations = useSelector(state => state.reservations);
+    const [errors, setErrors] = useState('')
     const [selectedRoom, setSelectedRoom] = useState(null);
     const [username, setUsername] = useState(null);
     const [checkInDate, setCheckInDate] = useState(null);
@@ -29,17 +29,20 @@ const ListingsShow = () => {
     const [viewDropdown, setViewDropdown] = useState(false);
 
     useEffect(() => {
-        fetchRoomData(room_id)
-    }, [room_id])
 
+    },[])
+
+    useEffect(() => {
+        fetchRoomData(room_id)
+        console.log("Current Room is!!!!!!!!!!! ", currentRoom)
+    }, [room_id])
 
     useEffect(() => {
         if (selectedRoom) {
-            console.log("Host ID:", selectedRoom.ownerId); 
+            // console.log("Host ID:", selectedRoom.ownerId); 
             fetchUserData(selectedRoom.ownerId);
         }
     }, [selectedRoom]);
-
     
     const fetchRoomData = async (roomId) => {
         try {
@@ -60,6 +63,10 @@ const ListingsShow = () => {
             console.error('Error fetching user data:', error);
         }
     }
+    useEffect(() => {
+        
+    }, [fetchRoomData, fetchUserData])
+
     const daysCalculation = () => {
         if (checkInDate && checkOutDate) {
           return differenceInDays(checkOutDate, checkInDate);
@@ -81,21 +88,43 @@ const ListingsShow = () => {
             return 150
         }
     }
+
     const handleReserveClick = () => {
-        dispatch(createReservation(
-            {reservation: 
-                {num_guests: numGuests, 
+        const reservationData = {
+            reservation:{
+                num_guests: numGuests, 
                 checkin: checkInDate, 
-                checkout: checkOutDate}, 
+                checkout: checkOutDate, 
                 reserved_person_id: currentUser.id, 
                 reserved_room_id: room_id
             }
-        ))
-        setSelectedRoom(null)
+        }
+        fetch('/api/reservations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': sessionStorage.getItem('X-CSRF-Token')
+            },
+            body: JSON.stringify(reservationData)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.error) {
+                console.log(data.error)
+                setErrors(data.error);
+            } else {
+                setErrors('')
+            }
+        })
+        .catch(error => {
+            console.error(error)
+        })
+
         setNumGuests(null)
         setCheckInDate(null)
         setCheckOutDate(null)
     }
+
     const handleArrowClick = () => {
         setViewDropdown(!viewDropdown)
     }
@@ -112,7 +141,19 @@ const ListingsShow = () => {
         }
         return guests;
     }
+    const isDateAvailable = date => {
+        const roomReserved = Object.values(reservations).filter(reservation => reservation.reserved_room_id === room_id);
+        for(const reservation of roomReserved) {
+            const startDate = new Date(reservation.checkin)
+            const endDate = new Date(reservation.checkout)
+            if(date >= startDate && date <= endDate) {
+                return false
+            }
 
+        }
+        return true
+    }
+    console.log(selectedRoom)
     return(
         <>
             <Navbar/>
@@ -236,6 +277,8 @@ const ListingsShow = () => {
                                                         selectsStart
                                                         startDate={checkInDate}
                                                         endDate={checkOutDate}
+                                                        filterDate={isDateAvailable}
+                                                        placeholderText="Check-in"
                                                         minDate={new Date()} // Disable past dates
                                                     />
                                                 </div>
@@ -252,6 +295,8 @@ const ListingsShow = () => {
                                                     selectsEnd
                                                     startDate={checkInDate}
                                                     endDate={checkOutDate}
+                                                    filterDate={isDateAvailable}
+                                                    placeholderText="Check-out"
                                                     minDate={checkInDate || new Date()} // Disable past dates and dates before check-in
                                                 />
                                                 </div>
@@ -278,6 +323,12 @@ const ListingsShow = () => {
 
     
                                     </div>
+                                    {errors && 
+                                        <div className="date-error-message">
+                                            <p>* {errors}</p>
+                                        </div>
+                                    }
+
                                     <div className="reservation-button-container">
                                             <div className="button-container" 
                                                 onClick={handleReserveClick}>
@@ -293,7 +344,7 @@ const ListingsShow = () => {
                                         <div className="reservation-fee-upper-container">
                                             <div className="reservation-fee-left">
                                                 <span className="reservation-text">
-                                                    ${selectedRoom.price} x {daysCalculation()} nigths
+                                                    ${selectedRoom.price} x {daysCalculation()} nights
                                                 </span>
                                                 <span className="reservation-text">
                                                     Cleaning fee

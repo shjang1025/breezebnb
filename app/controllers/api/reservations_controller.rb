@@ -21,20 +21,23 @@ class Api::ReservationsController < ApplicationController
     def create 
         @reservation = Reservation.new(reservation_params)
 
-        reserver = User.find_by(id: params[:reserved_person_id])
-        room = Room.find_by(id: params[:reserved_room_id])
-
+        reserver = User.find_by(id: params[:reservation][:reserved_person_id])
+        room = Room.find_by(id: params[:reservation][:reserved_room_id])
         if reserver && room 
             @reservation.room = room
             @reservation.reserver = reserver 
 
-            if @reservation.save! 
+            if @reservation.overlap.exists?
+                render json: {error: 'Room is already booked for the requested dates'}, status: 422
+        
+            elsif @reservation.save
                 render :show
             else 
                 render json: @reservation.errors.full_messages, status: 422
             end
-        else 
-            render json: "Reserver or Room not found", status: 404
+        else
+
+            render json: {error: "Reserver or Room not found" }, status: 404
         end
     end
 

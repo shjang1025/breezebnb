@@ -54,6 +54,8 @@ export const createReservation = reservationData => async dispatch => {
         const res = await postReservation(reservationData)
         if (res.ok) {
             const data = await res.json()
+            // console.log("THIS!!!!!!!!!!!", data);
+
             dispatch(receiveReservation(data))
         } else {
             throw res;
