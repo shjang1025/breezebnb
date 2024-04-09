@@ -39,6 +39,7 @@ const Navbar = () => {
     const handleLogout = () => {
         dispatch(logoutUser());
         setView(false);
+        window.location.href = '/';
     }
     const handleSearchClick = () => {
         setSearchModal(!searchModal);
