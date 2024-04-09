@@ -153,7 +153,6 @@ const ListingsShow = () => {
         }
         return true
     }
-    console.log(selectedRoom)
     return(
         <>
             <Navbar/>

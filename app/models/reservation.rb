@@ -28,10 +28,12 @@ class Reservation < ApplicationRecord
     # validate checkin_before_checkout
 
     # validates :num_guests, presence: true, numericality: {greater_than_or_equal_to: 1}
+
     def overlap
-        Reservation.where('reserved_room_id = ? AND ((checkin <= ? AND checkout >= ?) OR (checkin <= ? AND checkout >= ?))',
-                        reserved_room_id, checkin, checkout, checkin, checkout)
+        Reservation.where('reserved_room_id = ? AND ((checkin < ? AND checkout > ?) OR (checkin < ? AND checkout > ?) OR (checkin >= ? AND checkout <= ?))',
+                        reserved_room_id, checkout, checkout, checkin, checkin, checkin, checkout)
     end
+  
     private
     def checkin_before_checkout
         return if checkout.blank? || checkin.blank?
