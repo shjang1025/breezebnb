@@ -50,6 +50,7 @@ const Trip = props => {
                                     const room = Object.values(rooms).find(room => room.id === reservation.roomId);
                                     return (
                                         <div className="booking-container">
+                                            <button className="edit-button">Edit</button>
                                             <div className="booking-info-left">
                                                     <div key={reservation.id} className="current-reservation">
                                                         <div className="current-reservation-title">
