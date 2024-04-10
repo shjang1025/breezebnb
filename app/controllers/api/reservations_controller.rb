@@ -44,10 +44,14 @@ class Api::ReservationsController < ApplicationController
     end
 
     def update
-        if(@reservation && @reservation.update(reservation_params)) 
-            render :show
+        if(@reservation)
+            if @reservation.update(reservation_params)
+                render :show
+            else
+                render json: @reservation.errors.full_messages, status: 422
+            end
         else
-            render json: @reservation.errors.full_messages, status: 422
+            render json: ['Reservation not found'], status: :not_found
         end
     end
 
