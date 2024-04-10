@@ -150,20 +150,22 @@
 .no-reservation p {
     font-size: 18px;
 }
-
-.edit-button {
+.button-container {
+    display: flex;
+    flex-direction: column;
+}
+.edit-button, .delete-button{
     margin: 8px;
     padding: 13px;
     cursor: pointer;
     background-color: transparent;
     background-repeat: no-repeat;
     border-radius: 50px;
-    width: 300px;
     border: none;
     overflow: hidden;
     outline: none;
     justify-content: center;
-    width: 100px;
+    width: 150px;
     background-color: #E3185F;
     color: white;
     font-size: 18px;

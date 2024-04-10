@@ -14,20 +14,20 @@
   }
 
 .modal-content {
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    /* width: 30%; */
-    width: 480px;
-    height: 60%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 10px;
-    border-radius: 30px;
-    position: absolute;
-    border: 1px solid #333;
-    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
-    font-weight: bold;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  /* width: 30%; */
+  width: 480px;
+  height: 60%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 10px;
+  border-radius: 30px;
+  position: absolute;
+  border: 1px solid #333;
+  font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+  font-weight: bold;
 
   }
   

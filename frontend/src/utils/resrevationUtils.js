@@ -14,8 +14,8 @@ export const editReservation = reservationData => (
     })
 )
 
-export const deleteReservation = () => (
-    csrfFetch('/api/reservations', {
+export const deleteReservation = (reservationId) => (
+    csrfFetch(`/api/reservations/${reservationId}`, {
         method: 'DELETE'
     })
 )

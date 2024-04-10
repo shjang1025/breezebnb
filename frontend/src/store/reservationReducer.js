@@ -13,8 +13,9 @@ export const receiveReservations = reservations => ({
     type: RECEIVE_RESERVATIONS,
     reservations
 })
-export const removeReservation = () => ({
-    type: REMOVE_RESERVATION
+export const removeReservation = reservationId => ({
+    type: REMOVE_RESERVATION,
+    reservationId
 })
 
 //SELECTOR
@@ -54,7 +55,7 @@ export const createReservation = reservationData => async dispatch => {
         const res = await postReservation(reservationData)
         if (res.ok) {
             const data = await res.json()
-            // console.log("THIS!!!!!!!!!!!", data);
+            console.log("THIS", data);
 
             dispatch(receiveReservation(data))
         } else {
@@ -78,11 +79,11 @@ export const updateReservation = reservationData => dispatch => {
         .catch(err => console.error(err))
 
 }
-export const destroyReservation = () => dispatch => {
-    deleteReservation()
+export const destroyReservation = reservationId => dispatch => {
+    deleteReservation(reservationId)
         .then(res => {
             if(res.ok) {
-                dispatch(removeReservation())
+                dispatch(removeReservation(reservationId))
             } else {
                 throw res;
             }

@@ -5,11 +5,19 @@ import { selectCurrentUser } from "../../store/sessionReducer"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { destroyReservation, updateReservation } from "../../store/reservationReducer";
+import { useState } from "react";
+import EditModal from "./EditModal";
+
 const Trip = props => {
     const {user_id} = useParams();
     useEffect(() => {
 
     }, [user_id])
+
+
+    const dispatch = useDispatch();
     const currentUser = useSelector(selectCurrentUser);
     const reservations = useSelector(state => state.reservations)
     const rooms = useSelector(state => state.rooms)
@@ -32,7 +40,22 @@ const Trip = props => {
                                     reservation.reserverId === currentUser.id &&
                                     (checkinDate < currentDate && checkoutDate < currentDate))
     });
-    console.log(pastReservations)
+    // console.log(pastReservations)
+    const [editModal, setEditModal] = useState(false)
+    const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
+
+    const handleEditOpenClick = (reservationId) => {
+        setEditModal(!editModal)
+        setReservationId(reservationId)
+
+    }
+    useEffect(() => {
+        console.log("RESERVATION ID IS CHANGED", reservationId)
+    },[reservationId])
+
+
+
+
     return(
         <>
             <Navbar/>
@@ -48,11 +71,17 @@ const Trip = props => {
                             {currentReservations.length > 0 ? 
                                 currentReservations.map(reservation => {
                                     const room = Object.values(rooms).find(room => room.id === reservation.roomId);
+                                    if (!room) {
+                                        return (<p>Loading..</p>)
+                                    }
                                     return (
-                                        <div className="booking-container">
-                                            <button className="edit-button">Edit</button>
+                                        <div className="booking-container" >
+                                            <div className="button-container" >
+                                                <button key={reservation.id} className="edit-button" onClick={() => handleEditOpenClick(reservation.id)}>Edit</button>
+                                                <button key={reservation.id} className="delete-button" onClick={() => dispatch(destroyReservation(reservation.id))}>Delete</button>
+                                            </div>
                                             <div className="booking-info-left">
-                                                    <div key={reservation.id} className="current-reservation">
+                                                    <div className="current-reservation">
                                                         <div className="current-reservation-title">
                                                             <p>{room.title}</p>
                                                         </div>
@@ -183,6 +212,7 @@ const Trip = props => {
                     </div>
                 </div>
             </div>
+            {editModal && <EditModal reservationId={reservationId} setEditModal={setEditModal}/>}
         </>
     )
 }

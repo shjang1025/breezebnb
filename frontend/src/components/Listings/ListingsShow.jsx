@@ -301,14 +301,14 @@ const ListingsShow = () => {
                                             </div>
                                         </button>
                                         <div className="guest-dropdown">
-                                            <div className="guest-dropdown-upper">
+                                            <div className="guest-dropdown-upper" onClick={handleArrowClick}>
                                                 <label className="guest-picker"> 
                                                     <div className="guest-text">Guests</div>
                                                     <div className="guest-select">
                                                         <span>{numGuests} guests</span>
                                                     </div>
                                                 </label>
-                                                <div className="guest-dropdown-arrow" onClick={handleArrowClick}>
+                                                <div className="guest-dropdown-arrow" >
                                                     <FontAwesomeIcon icon={faAngleDown} />
                                                 </div>
                                             </div>
@@ -400,4 +400,4 @@ const ListingsShow = () => {
 }
 
 
-export default ListingsShow
+export default ListingsShow 

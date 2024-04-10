@@ -1,5 +1,6 @@
 class Api::ReservationsController < ApplicationController
     before_action :find_reservation, only: [:show, :update, :destroy]
+
     def index
         if @user
             @reservations = @user.reservations
@@ -51,12 +52,14 @@ class Api::ReservationsController < ApplicationController
     end
 
     def destroy
-        if (current_user.id === @reservation.reserved_person_id) 
-            @reservation.destroy
-            head :no_content
-        else
-            render json: {error: 'You are not authorized to delete this reservation'}, status: :unauthorized
-        end
+        @reservation.destroy
+        head :no_content
+        # if (@current_user.id === @reservation.reserved_person_id) 
+        #     @reservation.destroy
+        #     head :no_content
+        # else
+        #     render json: {error: 'You are not authorized to delete this reservation'}, status: :unauthorized
+        # end
     end
 
     private 
