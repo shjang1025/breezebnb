@@ -35,3 +35,6 @@
 # To add:
 .byebug_history
 .DS_Store
+
+#Ignore api_key
+API_Key

@@ -27,7 +27,6 @@ const EditModal = ({reservationId, setEditModal}) => {
     const [checkInDate, setCheckInDate] = useState(null);
     const [checkOutDate, setCheckOutDate] = useState(null);
     const reservationsArr = users[currentUser.id].reservationId //[1,5]
-
     const findRoom =(reservationId) => {
         // console.log(reservationsArr)
         // console.log(viewDropdown)
@@ -42,13 +41,8 @@ const EditModal = ({reservationId, setEditModal}) => {
     useEffect(() => {
         console.log("??????????/", reservationId)
     },[reservationId])
-
-    useEffect(() => {
-        console.log(reservationsArr)
-    },[])
-
-
-
+    useEffect(()=> {
+    },[dispatch])
     const handleArrowClick = () => {
         setViewDropdown(!viewDropdown)
     }
@@ -100,18 +94,9 @@ const EditModal = ({reservationId, setEditModal}) => {
         }
     }
     const handleEditClick = () => {
-        if (!reservationId) {
-            console.error("Reservation ID is undefined.");
-            return;
-        }
-
-        const roomId = findRoom(reservationId);
-        if (!roomId) {
-            console.error("Room not found for reservation:", reservationId);
-            return;
-        }
         const reservationData = {
             reservation: {
+                id: reservationId,
                 checkin: checkInDate,
                 checkout: checkOutDate,
                 numGuests: numGuests,
@@ -119,8 +104,10 @@ const EditModal = ({reservationId, setEditModal}) => {
                 reserved_room_id: rooms[findRoom(reservationId)].id
             }
         }
-        dispatch(updateReservation(reservationData))
+        dispatch(updateReservation(reservationData));
+        setEditModal(false)
     }
+
     return(
         <div className="edit-modal-background" onClick={() => setEditModal(false)}>
             <div className="edit-modal-content" onClick={e => e.stopPropagation()}>
