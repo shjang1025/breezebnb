@@ -15,7 +15,6 @@ import { useSelector } from "react-redux"
 const ListingsShow = () => {
     const currentUser = useSelector(selectCurrentUser);
     const isLoggedin = !!currentUser;
-    const [isLoading, setIsLoading] = useState(true);
 
     const {room_id} = useParams();
     const currentRoom = useSelector(state => state.rooms[room_id])

@@ -46,17 +46,35 @@ const Trip = props => {
                                     return (
                                         <div className="booking-container">
                                             <div className="booking-info-left">
-                                            
                                                     <div key={reservation.id} className="current-reservation">
-                                                    <div className="current-reservation-title">
-                                                        <p>{room.title}</p>
+                                                        <div className="current-reservation-title">
+                                                            <p>{room.title}</p>
+                                                        </div>
+                                                        <div className="reservation-details-container">
+                                                            <div className="current-reservation-date">
+                                                                {new Date(reservation.checkin) > currentDate && new Date(reservation.checkout) > currentDate &&
+                                                                    <>
+                                                                        <span>Reservation Date</span>
+                                                                        <span>{reservation.checkin} - {reservation.checkout}</span>
+                                                                    </>
+                                                                }
+                                                            </div>
+                                                            <div className="current-reservation-location">
+                                                                <span>{reservation.address}</span>
+                                                                <span>{reservation.city}</span>
+                                                                <span>{reservation.state}</span>
+                                                                <span>{reservation.country}</span>
+                                                                
+                                                            </div>
+                                                            <div className="current-reservation-max">
+                                                                <span>Guests: {reservation.numGuests}</span>
+                                                                <span>Nights: {reservation.nights}</span>
+                                                                <span>Total: {reservation.totalCost}</span>
+
+                                                            </div>
+
+                                                        </div>
                                                     </div>
-                                                    <div className="current-reservation-date">
-                                                        {new Date(reservation.checkin) > currentDate && new Date(reservation.checkout) > currentDate &&
-                                                            <p>{reservation.checkin} - {reservation.checkout}</p>
-                                                        }
-                                                    </div>
-                                                </div>
                                             </div>
                                             <div className="bnb-photo">
                                                 <div key={reservation.id} className="current-reservation">
@@ -96,14 +114,33 @@ const Trip = props => {
                                     <div className="booking-container">
                                         <div className="booking-info-left">
                                         
-                                                <div key={reservation.id} className="current-reservation">
+                                            <div key={reservation.id} className="current-reservation">
                                                 <div className="current-reservation-title">
                                                     <p>{room.title}</p>
                                                 </div>
-                                                <div className="current-reservation-date">
-                                                    {new Date(reservation.checkin) < currentDate && new Date(reservation.checkout) < currentDate &&
-                                                        <p>{reservation.checkin} - {reservation.checkout}</p>
-                                                    }
+                                                <div className="reservation-details-container">
+                                                    <div className="current-reservation-date">
+                                                        {new Date(reservation.checkin) < currentDate && new Date(reservation.checkout) < currentDate &&
+                                                            <>
+                                                                <span>Reservation Date</span>
+                                                                <span>{reservation.checkin} - {reservation.checkout}</span>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                    <div className="current-reservation-location">
+                                                        <span>{reservation.address}</span>
+                                                        <span>{reservation.city}</span>
+                                                        <span>{reservation.state}</span>
+                                                        <span>{reservation.country}</span>
+                                                        
+                                                    </div>
+                                                    <div className="current-reservation-max">
+                                                        <span>Guests: {reservation.numGuests}</span>
+                                                        <span>Nights: {reservation.nights}</span>
+                                                        <span>Total: {reservation.totalCost}</span>
+
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
