@@ -4,7 +4,7 @@ require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
-require "active_record/railtie"
+require "active_record/railtie" #integration with cloud storage
 require "active_storage/engine"
 require "action_controller/railtie"
 require "action_mailer/railtie"
@@ -40,5 +40,10 @@ module Breezebnb
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore,
+      key: 'user_auth',
+      same_site: :lax, #only on the same site
+      secure: Rails.env.production?
   end
 end
