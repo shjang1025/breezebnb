@@ -3,8 +3,13 @@ import './Trip.css'
 import bnbphoto from '../../assets/trip.png'
 import { selectCurrentUser } from "../../store/sessionReducer"
 import { useSelector } from "react-redux"
-
+import { useParams } from "react-router";
+import { useEffect } from "react";
 const Trip = props => {
+    const {user_id} = useParams();
+    useEffect(() => {
+
+    }, [user_id])
     const currentUser = useSelector(selectCurrentUser);
     const reservations = useSelector(state => state.reservations)
     const rooms = useSelector(state => state.rooms)
@@ -55,21 +60,22 @@ const Trip = props => {
                                                                 {new Date(reservation.checkin) > currentDate && new Date(reservation.checkout) > currentDate &&
                                                                     <>
                                                                         <span>Reservation Date</span>
-                                                                        <span>{reservation.checkin} - {reservation.checkout}</span>
+                                                                        <span>{reservation.checkin} </span>
+                                                                        <span>  ~ {reservation.checkout}</span>
                                                                     </>
                                                                 }
                                                             </div>
                                                             <div className="current-reservation-location">
-                                                                <span>{reservation.address}</span>
-                                                                <span>{reservation.city}</span>
+                                                                <span>Location: </span>
+                                                                <span>{reservation.address}, {reservation.city}</span>
                                                                 <span>{reservation.state}</span>
                                                                 <span>{reservation.country}</span>
                                                                 
                                                             </div>
                                                             <div className="current-reservation-max">
-                                                                <span>Guests: {reservation.numGuests}</span>
-                                                                <span>Nights: {reservation.nights}</span>
-                                                                <span>Total: {reservation.totalCost}</span>
+                                                                <span><strong>Guests :</strong> {reservation.numGuests} people</span>
+                                                                <span><strong>Nights :</strong> {reservation.nights} nights</span>
+                                                                <span><strong>Total :</strong> ${reservation.totalCost}</span>
 
                                                             </div>
 
@@ -123,21 +129,22 @@ const Trip = props => {
                                                         {new Date(reservation.checkin) < currentDate && new Date(reservation.checkout) < currentDate &&
                                                             <>
                                                                 <span>Reservation Date</span>
-                                                                <span>{reservation.checkin} - {reservation.checkout}</span>
+                                                                <span>{reservation.checkin} </span>
+                                                                <span>  ~ {reservation.checkout}</span>
                                                             </>
                                                         }
                                                     </div>
                                                     <div className="current-reservation-location">
-                                                        <span>{reservation.address}</span>
-                                                        <span>{reservation.city}</span>
+                                                        <span>Location: </span>
+                                                        <span>{reservation.address}, {reservation.city}</span>
                                                         <span>{reservation.state}</span>
                                                         <span>{reservation.country}</span>
                                                         
                                                     </div>
                                                     <div className="current-reservation-max">
-                                                        <span>Guests: {reservation.numGuests}</span>
-                                                        <span>Nights: {reservation.nights}</span>
-                                                        <span>Total: {reservation.totalCost}</span>
+                                                        <span><strong>Guests :</strong> {reservation.numGuests} people</span>
+                                                        <span><strong>Nights :</strong> {reservation.nights} nights</span>
+                                                        <span><strong>Total :</strong> ${reservation.totalCost}</span>
 
                                                     </div>
 

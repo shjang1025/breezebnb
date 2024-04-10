@@ -33,7 +33,7 @@
     border-radius: 25px;
     margin-top: 20px;
     margin-bottom: 20px;
-    box-shadow: 2px 2px 2px 2px rgba(208, 206, 206, 0.5);
+    box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
 }
 .trip-review {
     padding: 50px;
@@ -45,7 +45,7 @@
     margin-top: 20px;
     padding-bottom: 20px;
     border-radius: 25px;
-    box-shadow: 2px 2px 2px 2px rgba(208, 206, 206, 0.5);
+    box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
 }
 
 .booking-title, .booking-history {
@@ -54,6 +54,7 @@
     padding-top: 10px;
     margin-bottom: 10px;
     text-align: start;
+    color: #FF385C;
 }
 
 .booking-container {
@@ -84,16 +85,35 @@
     font-weight: bold;
     font-size: 20px;
     padding-bottom: 70px;
+
+}
+.current-reservation-title > p {
+    color: #626060;
 }
 .current-reservation-max {
     display: flex;
     flex-direction: column;
+    font-size: 18px;
 }
 .current-reservation-date {
     margin-top: 5px;
-    font-size: 20px;
+    font-size: 18spx;
     display: flex;
     flex-direction: column;
+}
+.current-reservation-location {
+    font-size: 18px;
+}
+.current-reservation-location span:first-child {
+    font-weight: bold;
+    padding-bottom: 10px;
+    font-style: italic;
+}
+
+.current-reservation-date span:first-child {
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-style: italic;
 }
 .current-reservation-location {
     display: flex;

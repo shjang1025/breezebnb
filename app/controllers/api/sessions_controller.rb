@@ -28,6 +28,6 @@ class Api::SessionsController < ApplicationController
 
     def destroy 
         logout
-        head :no_content #good idea for deleting
+        head :no_content #good idea for deletingw
     end
 end
