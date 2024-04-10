@@ -1,0 +1,425 @@
+.listings-show-container {
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    margin-top: 0px;
+    padding: 5px;
+    margin-left: 160px;
+    margin-right: 160px;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    /* width: 100%; */
+    /* height: 100%; */
+    left: 0;
+    top: 175px;
+}
+
+.listing-title {
+    /* border: 1px solid red; */
+    padding-top: 15px;
+    padding-bottom: 5px;
+    text-align: start;
+}
+.listing-details {
+    /* border: 1px solid yellow; */
+    padding: 5px;
+    text-align: start;
+}
+.listing-photo-container {
+    /* border: 1px solid green; */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.representing-photo {
+    /* border: 1px solid blue; */
+    padding: 10px;
+    flex: 1.3;
+    height: 500px;
+    
+}
+.listing-show-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.listing-photo-grid {
+    border: 1px solid orange;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    flex:1;
+    background-color: aqua;
+    height: 500px;
+}
+.grid-photo {
+    /* border: 1px rgb(233, 20, 151) solid; */
+    padding: 10px;
+    background-color: lightblue;
+}
+
+.details-wrapper {
+    /* border: 1px purple solid; */
+    padding: 20px;
+    /* background-color: purple; */
+}
+.details-main {
+    display: flex;
+    justify-content: space-between;
+}
+.details-left{
+    padding: 5px;
+    /* background-color: beige; */
+    display: flex;
+    flex-direction: column;
+    flex: 1.1;
+}
+.details-right {
+    /* padding: 10px; */
+    /* background-color: rgb(231, 228, 143); */
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 0.7;
+    padding-left: 100px;
+    position: sticky;
+}
+
+.details-left-host p:first-child {
+    font-weight: bold;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.details-left-host {
+    display: flex;
+    flex-direction: row;
+    text-align: start;
+    padding-bottom: 20px;
+    border-bottom: 1px solid;
+    border-bottom-color: #d3d3d3;
+}
+.host-info {
+    flex: 2;
+    margin-left: 0;
+    margin-right: 100px;
+}
+
+.host-profile {
+    flex: 1;
+    margin-right: 0;
+    background-color: #49b293;
+}
+
+.details-left-amenities {
+    margin-left: 0;
+    border-bottom: 1px solid;
+    border-bottom-color: #d3d3d3;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+.details-left-amenities h2 {
+    padding-left: 0;
+}
+
+.amenity-item {
+    margin-bottom: 10px;
+}
+.amenity-icon {
+    margin-right: 10px;
+}
+.details-left-amenities h2 {
+    font-size: 25px;
+    padding-bottom: 20px;    
+    font-weight: bold;
+
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+
+}
+.details-left-description {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: start;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.listings-show-container #description {    
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+}
+.where-you-sleep{
+    background-color: pink;
+    /* padding-top: 8px;
+    padding-bottom: 8px; */
+    display: flex;
+    justify-content: space-between;
+    /* padding-bottom: 20px; */
+    border-bottom: 1px solid;
+    border-bottom-color: #d3d3d3;
+}
+.where-you-sleep > span {
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    padding-left: 0;
+}
+.sleep-buttons-container {
+    display: flex;
+    /* paddings: 10px */
+    padding-right: 30px;
+}
+.sleep-buttons-container  > span {
+    padding-right: 10px;
+}
+.arrow-icon {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.sleep-photo-carousel-container {
+    background-color: white;
+    padding: 10px;
+    width: 100%;
+    overflow: hidden;
+    /* display: flex; */
+
+}
+.sleep-photo-carousel {
+    display: flex;
+    scroll-snap-type: x mandatory;
+    transition: transform 0.5s ease;
+}
+.carousel-photo {
+    scroll-snap-align: start;
+    flex: 0 0 auto; /* Don't grow or shrink, maintain original size */
+    width: 50%; /* Ensure each photo takes up full width */
+    /* min-width: 50% */
+}
+.carousel-photo:nth-of-type(1) {
+    background: #49b293;
+}
+.carousel-photo:nth-of-type(2) {
+    background: #c94e4b;
+}.carousel-photo:nth-of-type(3) {
+    background: #4cc1be;
+}
+.carousel-photo:nth-of-type(4) {
+    background: #8360A6;
+}.carousel-photo:nth-of-type(5) {
+    background: #ffff39;
+}
+
+.reservation-outer-container {
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.reservation-container {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    /* background-color: #ffff39; */
+}
+.price-per-night {
+    /* background-color: aqua; */
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: start;
+}
+.price-per-night p {
+    font-size: 22px;
+}
+.bold-text {
+    font-weight: bold;
+}
+
+.reservation-date-button {
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom-color: rgb(176, 176, 176);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: white;
+    border: none;
+}
+.reservation-date-button .left {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+}
+
+.reservation-date-button > .right {
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+}
+.date-picker {
+    background-color: white;
+}
+.guest-dropdown {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-color: rgb(176, 176, 176);
+    /* background-color: orange; */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.guest-dropdown-upper {
+    display: flex;
+    flex-direction: row;
+}
+.guest-picker {
+    flex: 1;
+    text-align: start;
+}
+.guest-select {
+    padding: 5px;
+}
+
+.checkin {
+    /* background-color: red; */
+    flex:1;
+    padding: 10px;
+    text-align: start;
+}
+.checkin-label, .checkout-label {
+    font-weight: 400;
+    font-size: 16px;
+}
+.checkin-input, 
+.checkout-input {
+    justify-content: start;
+    
+}
+.checkout {
+    /* background-color: blue; */
+    flex:1;
+    padding: 10px;
+    text-align: start;
+}
+/* .react-datepicker__input-container input{
+    text-align: start;
+} */
+.reservation-button-container {
+    padding: 8px;
+    /* background-color: #ffb4b4; */
+}
+.button-container button{
+    padding-bottom: 8px;
+    width: 280px;
+    width: 100%;
+    margin: 8px;
+    padding: 10px;
+    background-color: #E3185F;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button-container button:hover {
+    background-color: #dc779a;
+}
+.reservation-fee-upper-container {
+    display: flex;
+    flex-direction: row;
+}
+.reservation-fee-calculation {
+    padding: 8px;
+    /* background-color: #49b293; */
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+}
+.reservation-fee-left {
+    display: flex;
+    flex: 1;
+    text-align: start;
+    flex-direction: column;
+    /* background-color:aliceblue; */
+}
+.reservation-fee-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* background-color: beige; */
+    text-align: end;
+
+}
+.total {
+    display: flex;
+    flex-direction: row;
+}
+.divider {
+    border-bottom: 1px solid;
+    border-bottom-color: #d3d3d3;
+}
+.total {
+    display: flex;
+    flex-direction: row;
+}
+.total-left {
+    flex:1;
+    text-align: start;
+}
+.total-right {
+    flex:1;
+    text-align: end;
+}
+.service-fee-text {
+    font-size: 15.5px;
+    padding-bottom: 10px;
+}
+.reservation-text {
+    padding-bottom: 10px;
+}
+.reservation-button-container {
+    padding-bottom: 25px;
+}
+.reservation-fee-below-cotainer {
+    padding-top: 10px
+}
+.num-guest{
+    /* background-color: #8360A6; */
+    width: 100%;
+    border-bottom: 1px solid;
+    border-bottom-color: #d3d3d3;
+    text-align: start;
+    padding: 15px;
+    box-shadow: 1px 1px 1px 1px rgba(146, 146, 146, 0.3);
+    background-color: white;
+    z-index: 2;
+    /* border-radius: 10px; */
+}
+.num-guest:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.num-guest:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.num-guest:hover {
+    background-color: #cccbcbad;
+    cursor: pointer;
+}
+.date-error-message > p {
+    font-style: italic;
+    color: red;
+
+}
