@@ -150,3 +150,27 @@
 .no-reservation p {
     font-size: 18px;
 }
+
+.edit-button {
+    margin: 8px;
+    padding: 13px;
+    cursor: pointer;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border-radius: 50px;
+    width: 300px;
+    border: none;
+    overflow: hidden;
+    outline: none;
+    justify-content: center;
+    width: 100px;
+    background-color: #E3185F;
+    color: white;
+    font-size: 18px;
+
+
+}
+.edit-button:hover {
+    background-color: #dc779a;
+
+}
