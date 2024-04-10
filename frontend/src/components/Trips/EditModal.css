@@ -1,4 +1,5 @@
-.modal-background {
+.edit-modal-background {
+
     height: 100vh;
     width: 100vw;
     background-color: rgba(255, 255, 255, 0.5);
@@ -12,13 +13,13 @@
     align-items: center;
   }
 
-.modal-content {
+.edit-modal-content {
     position: absolute;
     left: 50%;
     top: 40%;
     /* width: 30%; */
-    width: 480px;
-    height: 40%;
+    width: 500px;
+    height: 60%;
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 10px;
@@ -26,6 +27,208 @@
     position: absolute;
     border: 1px solid #333;
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
-    font-weight: bold;
-
   }
+  .edit-form-subject {
+    margin-top: 15%;
+    /* background-color: rgb(208, 255, 113); */
+    padding: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.edit-form-inner-container {
+    /* background-color: beige; */
+    padding-top: 30px;
+    /* margin-top: 20%; */
+    padding-bottom: 30px;
+}
+.edit-reservation-date-button,
+.edit-guest-dropdown {
+    width: 100%; 
+}
+
+.edit-reservation-date-button {
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom-color: rgb(176, 176, 176);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: none;
+    background-color: white;
+    box-shadow: 0 0 0 1px rgba(193, 193, 193,0.5);
+}
+.edit-checkout{
+  padding: 0;
+}
+.edit-checkout-label p{
+  text-align: center;
+}
+.edit-date-picker::placeholder{
+  text-align: center;
+}
+.edit-guest-dropdown {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-color: rgb(176, 176, 176);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 1px 1px rgba(193, 193, 193,0.5);
+}
+.edit-checkin {
+    flex:1;
+    padding: 10px;
+    text-align: center;
+}
+.edit-checkin-label, .edit-checkout-label {
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+}
+.edit-checkout-label {
+    text-align: center;
+}
+.edit-checkin-input, 
+.edit-checkout-input {
+    justify-content: start;
+    padding-bottom: 15px;
+    
+}
+.edit-checkout {
+    flex:1;
+    padding: 10px;
+    text-align: start;
+}
+
+.edit-reservation-button-container {
+  padding: 8px;
+  /* background-color: #ffb4b4; */
+}
+.edit-button-container button{
+  padding-bottom: 8px;
+  width: 280px;
+  width: 100%;
+  margin: 8px;
+  padding: 10px;
+  background-color: #E3185F;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.edit-guest-dropdown {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-color: rgb(176, 176, 176);
+  /* background-color: orange; */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.edit-guest-dropdown-upper {
+  display: flex;
+  flex-direction: row;
+  padding-left: 20px;
+}
+.edit-button-container button:hover {
+  background-color: #dc779a;
+}
+.edit-reservation-fee-upper-container {
+  display: flex;
+  flex-direction: row;
+}
+.edit-reservation-fee-calculation {
+  padding: 8px;
+  /* background-color: #49b293; */
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+}
+.edit-reservation-fee-left {
+  display: flex;
+  flex: 1;
+  text-align: start;
+  flex-direction: column;
+  /* background-color:aliceblue; */
+}
+.edit-reservation-fee-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* background-color: beige; */
+  text-align: end;
+
+}
+.edit-total {
+  display: flex;
+  flex-direction: row;
+}
+.divider {
+  border-bottom: 1px solid;
+  border-bottom-color: #d3d3d3;
+}
+.edit-total {
+  display: flex;
+  flex-direction: row;
+}
+.edit-total-left {
+  flex:1;
+  text-align: start;
+}
+.edit-total-right {
+  flex:1;
+  text-align: end;
+}
+.edit-service-fee-text {
+  font-size: 15.5px;
+  padding-bottom: 10px;
+}
+.edit-reservation-text {
+  padding-bottom: 10px;
+}
+.edit-reservation-button-container {
+  padding-bottom: 25px;
+}
+.edit-reservation-fee-below-cotainer {
+  padding-top: 10px
+}
+.edit-num-guest{
+  /* background-color: #8360A6; */
+  width: 100%;
+  border-bottom: 1px solid;
+  border-bottom-color: #d3d3d3;
+  text-align: start;
+  padding: 15px;
+  box-shadow: 1px 1px 1px 1px rgba(146, 146, 146, 0.3);
+  background-color: white;
+  z-index: 2;
+  /* border-radius: 10px; */
+}
+.edit-num-guest:first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.edit-num-guest:last-child {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.edit-num-guest:hover {
+  background-color: #cccbcbad;
+  cursor: pointer;
+}
+.edit-date-error-message > p {
+  font-style: italic;
+  color: red;
+
+}
+.edit-guest-picker {
+  flex: 1;
+  text-align: start;
+}
+.edit-guest-select {
+  padding: 5px;
+}
+.edit-date-picker {
+  background-color: white;
+}

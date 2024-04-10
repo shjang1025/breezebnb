@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import './EditModal.css';
 import { updateReservation } from "../../store/reservationReducer";
-import "./EditReservationForm.css"
 import DatePicker from "react-datepicker";
+import { differenceInDays } from "date-fns"; 
+import "react-datepicker/dist/react-datepicker.css";
+ 
 import {faAngleDown} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -14,11 +16,7 @@ import { selectCurrentUser } from "../../store/sessionReducer";
 const EditModal = ({reservationId, setEditModal}) => {
     
     const dispatch = useDispatch()
-    const [reservationEdit, setReservationEdit] = useState({
-        checkin: '',
-        checkout: '',
-        numGuests: 0
-    })
+
     const [viewDropdown, setViewDropdown] = useState(false);
     const reservations = useSelector(state => state.reservations)
     const rooms = useSelector(state => state.rooms)
@@ -49,9 +47,7 @@ const EditModal = ({reservationId, setEditModal}) => {
         console.log(reservationsArr)
     },[])
 
-    useEffect (() => {
 
-    },[reservationEdit])
 
     const handleArrowClick = () => {
         setViewDropdown(!viewDropdown)
@@ -82,29 +78,63 @@ const EditModal = ({reservationId, setEditModal}) => {
         }
         return true
     }
-
+    const daysCalculation = () => {
+        if (checkInDate && checkOutDate) {
+          return differenceInDays(checkOutDate, checkInDate);
+        }
+        return 0; // Default to 0 if either date is not set
+    };
+    const cleaningFeeRange = () => {
+        if(rooms[findRoom(reservationId)].price <= 100) {
+            return 20
+        } else if (rooms[findRoom(reservationId)].price <= 170) {
+            return 53
+        } else if (rooms[findRoom(reservationId)].price <= 260) {
+            return 72
+        } else if (rooms[findRoom(reservationId)].price <= 400) {
+            return 100
+        } else if (rooms[findRoom(reservationId)].price <= 600) {
+            return 120
+        } else {
+            return 150
+        }
+    }
     const handleEditClick = () => {
+        if (!reservationId) {
+            console.error("Reservation ID is undefined.");
+            return;
+        }
+
+        const roomId = findRoom(reservationId);
+        if (!roomId) {
+            console.error("Room not found for reservation:", reservationId);
+            return;
+        }
         const reservationData = {
-            checkin: checkInDate,
-            checkout: checkOutDate,
-            numGuests: numGuests
+            reservation: {
+                checkin: checkInDate,
+                checkout: checkOutDate,
+                numGuests: numGuests,
+                reserved_person_id: currentUser.id, 
+                reserved_room_id: rooms[findRoom(reservationId)].id
+            }
         }
         dispatch(updateReservation(reservationData))
     }
     return(
-        <div className="modal-background" onClick={() => setEditModal(false)}>
-            <div className="modal-content" onClick={e => e.stopPropagation()}>
+        <div className="edit-modal-background" onClick={() => setEditModal(false)}>
+            <div className="edit-modal-content" onClick={e => e.stopPropagation()}>
                 
                 <div className="edit-form-subject">Edit your Reservation</div>
                     <div className="edit-form-inner-container">
-                        <button className="reservation-date-button">
+                        <button className="edit-reservation-date-button">
                             <div className="left">
-                                <div className="checkin">
-                                    <span className="checkin-label">Check-in</span>
+                                <div className="edit-checkin">
+                                    <span className="edit-checkin-label"><p>Check-in</p></span>
                                 </div>
-                                <div className="checkin-input">
+                                <div className="edit-checkin-input">
                                     <DatePicker
-                                        className="date-picker"
+                                        className="edit-date-picker"
                                         selected={checkInDate}
                                         onChange={(date) => setCheckInDate(date)}
                                         selectsStart
@@ -117,12 +147,12 @@ const EditModal = ({reservationId, setEditModal}) => {
                                 </div>
                             </div>
                             <div className="right">
-                                <div className="checkout">
-                                    <span className="checkout-label">Check-out</span>
+                                <div className="edit-checkout">
+                                    <span className="edit-checkout-label"><p>Check-out</p></span>
                                 </div>
-                                <div className="checkout-input">
+                                <div className="edit-checkout-input">
                                 <DatePicker
-                                    className="date-picker"
+                                    className="edit-date-picker"
                                     selected={checkOutDate}
                                     onChange={(date) => setCheckOutDate(date)}
                                     selectsEnd
@@ -135,20 +165,20 @@ const EditModal = ({reservationId, setEditModal}) => {
                                 </div>
                             </div>
                         </button>
-                        <div className="guest-dropdown">
-                            <div className="guest-dropdown-upper" onClick={handleArrowClick}>
-                                <label className="guest-picker"> 
-                                    <div className="guest-text">Guests</div>
-                                    <div className="guest-select">
+                        <div className="edit-guest-dropdown">
+                            <div className="edit-guest-dropdown-upper" onClick={handleArrowClick}>
+                                <label className="edit-guest-picker"> 
+                                    <div className="edit-guest-text"><p>Guests</p></div>
+                                    <div className="edit-guest-select">
                                         <span>{numGuests} guests</span>
                                     </div>
                                 </label>
-                                <div className="guest-dropdown-arrow" >
+                                <div className="edit-guest-dropdown-arrow" >
                                     <FontAwesomeIcon icon={faAngleDown} />
                                 </div>
                             </div>
                             {viewDropdown && (
-                                <div className="guest-dropdown-content">
+                                <div className="edit-guest-dropdown-content">
                                     {guestDropdown()}
                                 </div>
                             )}
@@ -159,61 +189,61 @@ const EditModal = ({reservationId, setEditModal}) => {
                             </div>
                         } */}
 
-                        <div className="reservation-button-container">
-                                <div className="button-container">
-                                    <button >
+                        <div className="edit-reservation-button-container">
+                                <div className="edit-button-container">
+                                    <button onClick={handleEditClick}>
                                         Edit
                                     </button>
                                 </div>
                                 <div>
-                                    You won't be charged yet
+                                    You won't be charged yets
                                 </div>
                         </div>
-                        {/* <div className="reservation-fee-calculation">
-                            <div className="reservation-fee-upper-container">
-                                <div className="reservation-fee-left">
-                                    <span className="reservation-text">
-                                        ${selectedRoom.price} x {daysCalculation()} nights
+                        <div className="edit-reservation-fee-calculation">
+                            <div className="edit-reservation-fee-upper-container">
+                                <div className="edit-reservation-fee-left">
+                                    <span className="edit-reservation-text">
+                                        ${rooms[findRoom(reservationId)].price} x {daysCalculation()} nights
                                     </span>
-                                    <span className="reservation-text">
+                                    <span className="edit-reservation-text">
                                         Cleaning fee
                                     </span>
-                                    <span className="service-fee-text">
+                                    <span className="edit-service-fee-text">
                                         Breezebnb Service fee
                                     </span>
                                     
                                 </div>
-                                <div className="reservation-fee-right">
+                                <div className="edit-reservation-fee-right">
                                     <span className="reservation-text">
-                                        ${selectedRoom.price * daysCalculation()}
+                                        ${rooms[findRoom(reservationId)].price * daysCalculation()}
                                     </span>
-                                    <span className="reservation-text">
+                                    <span className="edit-reservation-text">
                                         ${cleaningFeeRange()}
                                     </span>
-                                    <span className="reservation-text">
+                                    <span className="edit-reservation-text">
                                         ${30}
                                     </span>
                                     
                                 </div>
                             </div>
                             <div className="divider"></div>
-                            <div className="reservation-fee-below-cotainer">
-                                <div className="total">
+                            <div className="edit-reservation-fee-below-cotainer">
+                                <div className="edit-total">
                                     <div className="total-left">
-                                        <span className="reservation-text">
+                                        <span className="edit-reservation-text">
                                             Total before Taxes
                                         </span>
                                     </div>
-                                    <div className="total-right">
-                                        <span className="reservation-text">
-                                            ${daysCalculation() * selectedRoom.price + cleaningFeeRange() + 30}
+                                    <div className="edit-total-right">
+                                        <span className="edit-reservation-text">
+                                            ${daysCalculation() * rooms[findRoom(reservationId)].price + cleaningFeeRange() + 30}
                                         </span>
                                     </div>
                                 </div>
                             </div>
                             
                             
-                        </div> */}
+                        </div>
 
                     </div>
 
