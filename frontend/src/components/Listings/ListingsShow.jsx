@@ -11,6 +11,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { selectCurrentUser } from "../../store/sessionReducer"
 import { useSelector } from "react-redux"
+import BnbMap from "./BnbMap"
+import { google_api_key } from "../../API_Key/api_key";
+
 
 const ListingsShow = () => {
     const currentUser = useSelector(selectCurrentUser);
@@ -26,22 +29,43 @@ const ListingsShow = () => {
     const [checkOutDate, setCheckOutDate] = useState(null);
     const [numGuests, setNumGuests] = useState(null);
     const [viewDropdown, setViewDropdown] = useState(false);
-
-    useEffect(() => {
-
-    },[])
+    const [latLng, setLatLng] = useState(null);
 
     useEffect(() => {
         fetchRoomData(room_id)
         console.log("Current Room is!!!!!!!!!!! ", currentRoom)
     }, [room_id])
 
-    useEffect(() => {
-        if (selectedRoom) {
-            // console.log("Host ID:", selectedRoom.ownerId); 
-            fetchUserData(selectedRoom.ownerId);
+    const fetchLatLng = async (compactAddress) => {
+        try {
+            const ak = google_api_key;
+            const fullAddress = encodeURIComponent(compactAddress)
+            
+            const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=${ak}`)
+
+            if (!res.ok) {
+                throw res
+            }
+            const data = await res.json()
+            if (data.status !== 'OK') throw new Error('Geocoding request failed')
+            
+            const location = data.results[0].geometry.location;
+            setLatLng({lat: location.lat, lng: location.lng});
+
+        }catch(error) {
+            console.error('Error:', error.message)
+            setLatLng(null)
         }
-    }, [selectedRoom]);
+    }
+    
+    useEffect(() => {
+        if (currentRoom) {
+            setSelectedRoom(currentRoom);
+            fetchLatLng(fullAddress(currentRoom));
+            console.log("Again?")
+        }
+    }, [currentRoom]);
+
     
     const fetchRoomData = async (roomId) => {
         try {
@@ -87,7 +111,9 @@ const ListingsShow = () => {
             return 150
         }
     }
-
+    const fullAddress = ({address, city, state, country}) => {
+        return `${address}, ${city}, ${state}, ${country}`
+    }
     const handleReserveClick = () => {
         const reservationData = {
             reservation:{
@@ -152,6 +178,9 @@ const ListingsShow = () => {
         }
         return true
     }
+
+
+    
     return(
         <>
             <Navbar/>
@@ -389,11 +418,29 @@ const ListingsShow = () => {
                         </div>
 
                     </div>
+
+                    <div className="map-container">
+                        <div className="map-title">
+                            <span>
+                                <p>Where you'll be</p>
+                            </span>
+                            <span>
+                                <p>{fullAddress(currentRoom)}</p>
+                                
+                                
+                            </span>
+                        </div>
+                        <div className="map-inner-content">
+                        
+                        </div>
+                        {latLng && <BnbMap latitude={latLng.lat} longitude={latLng.lng}/>}
+                    </div>
                 </div>
 
                 ) : (
                     <p>Loading...</p>
                 )}
+                
                
         </>
     )

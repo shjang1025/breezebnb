@@ -8,7 +8,7 @@ export const postReservation = reservationData => (
 )
 
 export const editReservation = reservationData => (
-    csrfFetch( `/api/reservations/${reservationData.id}`, {
+    csrfFetch( `/api/reservations/${reservationData.reservation.id}`, {
         method: 'PATCH',
         body: JSON.stringify(reservationData)
     })

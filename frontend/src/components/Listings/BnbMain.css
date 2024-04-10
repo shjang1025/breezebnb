@@ -3,7 +3,7 @@
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     margin-top: 0px;
     padding: 0px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -16,7 +16,7 @@
     width: 100%;
     height: 100%;
     padding: 30px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     display: grid;
     grid-auto-rows: minmax(min-content, max-content);
     grid-template-columns: repeat(5, 1fr);
@@ -29,7 +29,7 @@
     margin-left: 25px;
     margin-bottom: 0;
     justify-content: center;
-    border: 1px solid #ff0000; 
+    /* border: 1px solid #ff0000;  */
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -37,7 +37,7 @@
     cursor: pointer;
 }
 .image-content {
-    border: 1px solid rgb(0, 255, 55);
+    /* border: 1px solid rgb(0, 255, 55); */
     width: 100%;
     height: 100%;
     border-radius: 6%;
@@ -45,7 +45,7 @@
 }
 
 .location-info {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 100%;
     height: 100%;
     box-sizing: border-box;
@@ -60,7 +60,7 @@
     border-radius: 6%;
 }
 .title-info {
-    border: 1px solid brown;
+    /* border: 1px solid brown; */
     width: 100%;
     height: 100%;
     text-align: start;
@@ -70,7 +70,7 @@
 
 }
 .price-info {
-    border: 1px solid pink;
+    /* border: 1px solid pink; */
     width: 100%;
     height: 100%;
     text-align: start;

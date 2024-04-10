@@ -423,3 +423,32 @@
     color: red;
 
 }
+/* .map-container {
+    background-color: rgb(167, 166, 166);
+    padding: 50px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    margin-top: 0px;
+    margin-left: 160px;
+    margin-right: 160px;
+    position: relative;
+
+    left: 0;
+    top: 2000px;
+} */
+.map-title {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+}
+.map-title span:first-child {
+    font-weight: bold;
+    font-size: 22px;
+}
+.map-title span {
+    padding-bottom: 13px;
+}
+
+}

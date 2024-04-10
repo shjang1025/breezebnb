@@ -6,23 +6,19 @@ import { useSelector } from "react-redux"
 import { useParams } from "react-router";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { destroyReservation, updateReservation } from "../../store/reservationReducer";
+import { destroyReservation } from "../../store/reservationReducer";
 import { useState } from "react";
 import EditModal from "./EditModal";
 
 const Trip = props => {
-    const {user_id} = useParams();
-    useEffect(() => {
-
-    }, [user_id])
-
-
+    
     const dispatch = useDispatch();
     const currentUser = useSelector(selectCurrentUser);
+    const user_id = currentUser.id
     const reservations = useSelector(state => state.reservations)
     const rooms = useSelector(state => state.rooms)
     const currentDate = new Date();
-
+    
     const currentReservations = Object.values(reservations).filter(
                                 reservation => {
                                     const checkinDate = new Date(reservation.checkin);
@@ -30,7 +26,7 @@ const Trip = props => {
                                     return(
                                         reservation.reserverId === currentUser.id &&
                                         (checkinDate > currentDate && checkoutDate > currentDate))
-                                });
+    });
     
     const pastReservations = Object.values(reservations).filter(
                             reservation => {
@@ -40,10 +36,14 @@ const Trip = props => {
                                     reservation.reserverId === currentUser.id &&
                                     (checkinDate < currentDate && checkoutDate < currentDate))
     });
+
     // console.log(pastReservations)
     const [editModal, setEditModal] = useState(false)
     const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
 
+    useEffect(() => {
+
+    }, [user_id, reservations])
     const handleEditOpenClick = (reservationId) => {
         setEditModal(!editModal)
         setReservationId(reservationId)
@@ -52,9 +52,8 @@ const Trip = props => {
     useEffect(() => {
         console.log("RESERVATION ID IS CHANGED", reservationId)
     },[reservationId])
-
-
-
+    
+    console.log("Current Reservation" , currentReservations)
 
     return(
         <>
@@ -70,15 +69,16 @@ const Trip = props => {
                             <div className="booking-title">Your Current Reservations</div>
                             {currentReservations.length > 0 ? 
                                 currentReservations.map(reservation => {
+
                                     const room = Object.values(rooms).find(room => room.id === reservation.roomId);
                                     if (!room) {
-                                        return (<p>Loading..</p>)
+                                        return (<p key={reservation.id}>Loading..</p>)
                                     }
                                     return (
-                                        <div className="booking-container" >
+                                        <div className="booking-container" key={reservation.id}>
                                             <div className="button-container" >
-                                                <button key={reservation.id} className="edit-button" onClick={() => handleEditOpenClick(reservation.id)}>Edit</button>
-                                                <button key={reservation.id} className="delete-button" onClick={() => dispatch(destroyReservation(reservation.id))}>Delete</button>
+                                                <button className="edit-button" onClick={() => handleEditOpenClick(reservation.id)}>Edit</button>
+                                                <button className="delete-button" onClick={() => dispatch(destroyReservation(reservation.id))}>Delete</button>
                                             </div>
                                             <div className="booking-info-left">
                                                     <div className="current-reservation">
@@ -147,10 +147,10 @@ const Trip = props => {
                             pastReservations.map(reservation => {
                                 const room = Object.values(rooms).find(room => room.id === reservation.roomId);
                                 return (
-                                    <div className="booking-container">
+                                    <div className="booking-container"  key={reservation.id}>
                                         <div className="booking-info-left">
                                         
-                                            <div key={reservation.id} className="current-reservation">
+                                            <div className="current-reservation">
                                                 <div className="current-reservation-title">
                                                     <p>{room.title}</p>
                                                 </div>
@@ -212,7 +212,9 @@ const Trip = props => {
                     </div>
                 </div>
             </div>
-            {editModal && <EditModal reservationId={reservationId} setEditModal={setEditModal}/>}
+            {editModal && 
+
+            <EditModal reservationId={reservationId} setEditModal={setEditModal}/>}
         </>
     )
 }

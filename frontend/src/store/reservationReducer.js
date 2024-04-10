@@ -75,7 +75,7 @@ export const updateReservation = reservationData => dispatch => {
                 throw res;
             }
         })
-        .then(data => dispatch(receiveReservation(data)))
+        .then(data => dispatch(receiveReservation(data.reservation)))
         .catch(err => console.error(err))
 
 }
@@ -96,8 +96,8 @@ const reservationReducer = (state={}, action) => {
     const newState = {...state}
     switch(action.type) {
         case RECEIVE_RESERVATION:
-            newState[action.reservation.id] = action.reservation
-            return newState
+            
+            return {...newState, ...action.reservation}
         case RECEIVE_RESERVATIONS:
             // return action.reservations
             return action.reservations
