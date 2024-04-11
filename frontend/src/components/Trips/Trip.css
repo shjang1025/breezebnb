@@ -158,6 +158,23 @@
     display: flex;
     flex-direction: column;
 }
+.booking-container .review-button {
+    margin: 8px;
+    padding: 13px;
+    cursor: pointer;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border-radius: 25px;
+    border: none;
+    overflow: hidden;
+    outline: none;
+    justify-content: center;
+    width: 100px;
+    background-color: #f65f7a;
+    box-shadow: 0 8px 8px 0 rgba(233, 131, 180, 0.315), 0 6px 6px 0 rgba(254, 14, 186, 0.19);
+    color: white;
+    font-size: 15px;
+}
 .booking-container .edit-button,
 .booking-container .delete-button,
 .yes-hostings-container .edit-button, 

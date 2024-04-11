@@ -19,10 +19,7 @@ ActiveRecord::Base.connection.reset_pk_sequence!('users')
 ActiveRecord::Base.connection.reset_pk_sequence!('rooms')
 ActiveRecord::Base.connection.reset_pk_sequence!('reservations')
 
-
-# ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq RESTART WITH 1;")
-# ActiveRecord::Base.connection.execute("ALTER SEQUENCE rooms_id_seq RESTART WITH 1;")
-# ActiveRecord::Base.connection.execute("ALTER SEQUENCE reservations_id_seq RESTART WITH 1;")
+rooms = []
 
 User.destroy_all
 user1 = User.create!(username: "aaaa", email: 'aaaa@test.com', password: "password", gender: "Female")
@@ -115,6 +112,15 @@ room8 = Room.create!(title: "Mountain View Haven | HOT TUB on 9 Acres!",
 file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/np2.jpg")
 room8.photo.attach(io: file, filename: 'np2.jpg')
     
+rooms << room1
+rooms << room2
+rooms << room3
+rooms << room4
+rooms << room5
+rooms << room6
+rooms << room7
+rooms << room8
+
 
 Reservation.destroy_all
 reservation1 = Reservation.create!(

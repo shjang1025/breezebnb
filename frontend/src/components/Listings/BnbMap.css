@@ -5,6 +5,8 @@
 .info-window-content {
     display: flex;
     flex-direction: row;
+    padding: 0;
+    margin: 0;
 }
 .content-text-info {
     display: flex;
@@ -22,13 +24,13 @@
 }
 .content-img-info {
     flex: 1;
+    padding: 0;
+    margin: 0;
 }
 .content-img-info img {
     width: 180px;
     height: auto;
     border-radius: 25px;
-    padding: 0;
-    margin: 0;
 }
 .content-price {
     padding-right: 20px;

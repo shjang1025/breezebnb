@@ -173,7 +173,7 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
 
 
     useEffect(() => {
-    }, [mode, initialHostData])
+    }, [mode, initialHostData,ac])
 
     return(
         <>

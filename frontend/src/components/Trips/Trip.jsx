@@ -11,6 +11,7 @@ import { useState } from "react";
 import EditModal from "./EditModal"
 import { destroyRoom, selectCurrentRoom } from "../../store/roomReducer";
 import { Link } from "react-router-dom";
+import ReviewModal from "./ReviewModal";
 
 const Trip = props => {
     
@@ -21,7 +22,7 @@ const Trip = props => {
     // const currentRoom = useSelector(selectCurrentRoom())
     const rooms = useSelector(state => state.rooms)
     const currentDate = new Date();
-    
+
     const currentReservations = Object.values(reservations).filter(
                                 reservation => {
                                     const checkinDate = new Date(reservation.checkin);
@@ -46,9 +47,10 @@ const Trip = props => {
 
     
     console.log("Current hosting",currentHostings)
-    // console.log(pastReservations)
+    
     const [editModal, setEditModal] = useState(false)
     const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
+    const [reviewModal, setReviewModal] =useState(false)
 
     useEffect(() => {
 
@@ -60,6 +62,11 @@ const Trip = props => {
         setEditModal(!editModal)
         setReservationId(reservationId)
 
+    }
+
+    const handleReviewOpenClick = (reservationId) => {
+        setReviewModal(!reviewModal)
+        setReservationId(reservationId)
     }
     useEffect(() => {
         // console.log("RESERVATION ID IS CHANGED", reservationId)
@@ -158,7 +165,10 @@ const Trip = props => {
                             pastReservations.map(reservation => {
                                 const room = Object.values(rooms).find(room => room.id === reservation.roomId);
                                 return (
-                                    <div className="booking-container"  key={reservation.id}>
+                                    <div className="booking-container" key={reservation.id}>
+                                        <div className="button-container" >
+                                            <button className="review-button" onClick={() => handleReviewOpenClick(reservation.id)}>Make a Review</button>
+                                        </div>
                                         <div className="booking-info-left">
                                             <div className="current-reservation">
                                                 <div className="current-reservation-title">
@@ -283,6 +293,9 @@ const Trip = props => {
             {editModal && 
 
             <EditModal reservationId={reservationId} setEditModal={setEditModal}/>}
+            {reviewModal &&
+                <ReviewModal reservationId={reservationId} setReviewModal={setReviewModal}/>
+            }
         </>
     )
 }

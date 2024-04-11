@@ -8,6 +8,7 @@ export const restoreSession = async () => {
     sessionStorage.setItem('currentUser', JSON.stringify(data.user));
 };
 
+
 export const csrfFetch = async (url, options = {}) => {
     options.method ||= 'GET';
     options.headers ||= {};

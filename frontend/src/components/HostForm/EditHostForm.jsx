@@ -7,7 +7,6 @@ const EditHostForm = () => {
     const {host_id} = useParams();
     const currentRoom = useSelector(selectCurrentRoom(host_id));
 
-
     console.log(host_id)
     console.log("Current Room fetched?",currentRoom)
     

@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux"
 import { postReservation, editReservation, deleteReservation } from "../utils/resrevationUtils"
 //CONST
 const RECEIVE_RESERVATION = 'reservations/RECEIVE_RESERVATION'
@@ -91,6 +92,10 @@ export const destroyReservation = reservationId => dispatch => {
         .catch(err => console.error(err))
 
 }
+
+//SELECTOR
+// export const selectCurrentReservation = useSelector(reservationId => state => state[reservationId] ? state[reservationId] : null)
+
 //REDUCER
 const reservationReducer = (state={}, action) => {
     const newState = {...state}

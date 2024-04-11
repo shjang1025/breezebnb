@@ -1,0 +1,88 @@
+.edit-modal-background {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.edit-modal-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* width: 30%; */
+    width: 500px;
+    height: 60%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 10px;
+    border-radius: 30px;
+    position: absolute;
+    border: 1px solid #333;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+}
+.review-form-subject {
+    font-size: 30px;
+    font-weight: bold;
+}
+.review-inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.review-form-inner-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding: 25px;
+}
+.review-title-label,
+.review-description-label {
+    text-align: start;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 10spx;
+}
+.review-title,
+.review-description{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.star-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.cleanliness,
+.accuracy,
+.communication,
+.review-location,
+.value {
+    padding-top: 15px;
+    font-size: 15px;
+}
+.review-submit-container {
+    display: flex;
+    justify-content: center;
+}
+.review-submit {
+    width: 100%;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    padding-bottom: 8px;
+    width: 70%;
+    margin: 8px;
+    padding: 10px;
+    background-color: #E3185F;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+}
