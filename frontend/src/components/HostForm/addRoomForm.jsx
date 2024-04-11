@@ -1,50 +1,50 @@
 import Navbar from "../Navbar";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import { selectCurrentUser } from "../../store/sessionReducer";
 import './addRoomForm.css'
 import { useState } from "react";
 import {faSquareParking, faTv, faIgloo, faTemperatureArrowUp,faHouse, 
         faShirt, faSocks, faWifi, faSink, faFireBurner,faFire,faDog} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { createRoom } from "../../store/roomReducer";
+import { createRoom, updateRoom } from "../../store/roomReducer";
 
-const AddRoomForm = props => {
+const AddRoomForm = ({mode, initialHostData, roomId}) => {
     const categories = ['omg', 'beach_front', 'amazing_views', 'lake_front', 'amazing_pools', 'national_park','camping', 'design', 'skiing']
     const currentUser = useSelector(selectCurrentUser);
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [country, setCountry] = useState('')
-    const [price, setPrice] = useState(0)
-    const [category, setCategory] = useState('')
-    const [capacity, setCapacity] = useState(1)
-    const [beds, setBeds] = useState(0)
-    const [rooms, setRooms] = useState(0)
-    const [baths, setBaths] = useState(0)
-    const [parking, setParking] = useState(false)
-    const [washer, setWasher] = useState(false)
-    const [dryer, setDryer] = useState(false)
-    const [tv, setTv] = useState(false)
-    const [ac, setAC] = useState(false)
-    const [heater, setHeater] = useState(false)
-    const [wifi, setWifi] = useState(false)
-    const [kitchen, setKitchen] = useState(false)
-    const [microwave, setMicrowave] = useState(false)
-    const [fireplace, setFireplace] = useState(false)
-    const [pets, setPets] = useState(false)
-    const [photo, setPhoto] = useState(null)
+    const [title, setTitle] = useState(initialHostData ? initialHostData.title : '')
+    const [description, setDescription] = useState(initialHostData ? initialHostData.description : '')
+    const [address, setAddress] = useState(initialHostData ? initialHostData.address : '')
+    const [city, setCity] = useState(initialHostData ? initialHostData.city : '')
+    const [state, setState] = useState(initialHostData ? initialHostData.state : '')
+    const [country, setCountry] = useState(initialHostData ? initialHostData.country : '')
+    const [price, setPrice] = useState(initialHostData ? initialHostData.price : 0)
+    const [category, setCategory] = useState(initialHostData ? initialHostData.category : '')
+    const [capacity, setCapacity] = useState(initialHostData ? initialHostData.capacity : 1)
+    const [beds, setBeds] = useState(initialHostData ? initialHostData.beds : 0)
+    const [rooms, setRooms] = useState(initialHostData ? initialHostData.rooms : 0)
+    const [baths, setBaths] = useState(initialHostData ? initialHostData.baths : 0)
+    const [parking, setParking] = useState(initialHostData ? initialHostData.amenities.parking : false)
+    const [washer, setWasher] = useState(initialHostData ? initialHostData.amenities.washer : false)
+    const [dryer, setDryer] = useState(initialHostData ? initialHostData.amenities.dryer : false)
+    const [tv, setTv] = useState(initialHostData ? initialHostData.amenities.tv : false)
+    const [ac, setAC] = useState(initialHostData ? initialHostData.amenities.ac : false)
+    const [heater, setHeater] = useState(initialHostData ? initialHostData.amenities.heater : false)
+    const [wifi, setWifi] = useState(initialHostData ? initialHostData.amenities.wifi : false)
+    const [kitchen, setKitchen] = useState(initialHostData ? initialHostData.amenities.kitchen : false)
+    const [microwave, setMicrowave] = useState(initialHostData ? initialHostData.amenities.microwave : false)
+    const [fireplace, setFireplace] = useState(initialHostData ? initialHostData.amenities.fireplace : false)
+    const [pets, setPets] = useState(initialHostData ? initialHostData.amenities.pets : false)
+    const [photo, setPhoto] = useState(initialHostData ? initialHostData.photo : null)
 
     const [checked, setChecked] = useState(false)
     const dispatch = useDispatch();
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         //the easiest way to handle file inputs is to use FormData Object
         const data = new FormData();
-        // data.append('room[title]',title)
-        // data.append('room[description]', description)
-        
+
         const roomObject = {
             title: title,
             description: description,
@@ -68,24 +68,35 @@ const AddRoomForm = props => {
             kitchen: kitchen,
             microwave: microwave,
             fireplace: fireplace,
-            pets: pets,
+            pets: pets
             // photo: photo
         }
         for (const key in roomObject) {
-            if (roomObject.hasOwnProperty(key)) {
+            if (roomObject.hasOwnProperty(key) && 
+                (key === 'parking' || key === 'washer' || key === 'dryer' || key === 'tv' ||
+                key === 'ac' || key === 'heater' || key === 'wifi' || key === 'kitchen' || 
+                key === 'microwave' || key === 'fireplace' || key === 'pets')) {
+                data.append(`room[amenities][${key}]`, roomObject[key]);
+            } else {
                 data.append(`room[${key}]`, roomObject[key]);
             }
         }
         if(photo) {
             data.append('room[photo]',photo)
         }
-
-        dispatch(createRoom(data));
         
+        if(mode === 'edit') {
+            data.append(`room[id]`, roomId)
+        }
+        if(mode === 'create') {
+            dispatch(createRoom(data));
+        } else if (mode === 'edit' && initialHostData) {
+            dispatch(updateRoom(data, roomId))
+        }
         setTv(false);
         setAC(false);
         setHeater(false)
-        setParking(false);
+        // setParking(false);
         setWasher(false);
         setDryer(false);
         setWifi(false);
@@ -158,6 +169,11 @@ const AddRoomForm = props => {
         const file = e.currentTarget.files[0]
         setPhoto(file);
     }
+
+
+
+    useEffect(() => {
+    }, [mode, initialHostData])
 
     return(
         <>
@@ -297,7 +313,7 @@ const AddRoomForm = props => {
                             <FontAwesomeIcon icon={faSquareParking} size="xl"/> Parking
                             </span>
                             <span>
-                                <input type="checkbox" name="parking" value={parking} checked={parking} onClick={handleCheckboxChange}/>
+                                <input type="checkbox" name="parking" value={parking} checked={parking} onChange={handleCheckboxChange}/>
                             </span>
                         </label>
                         <label className="yn">
@@ -305,7 +321,7 @@ const AddRoomForm = props => {
                                 <FontAwesomeIcon icon={faShirt} size="xl" />  Washer
                             </span>
                             <span>
-                                <input type="checkbox" name="washer" value={washer} checked={washer} onClick={handleCheckboxChange}/>
+                                <input type="checkbox" name="washer" value={washer} checked={washer} onChange={handleCheckboxChange}/>
                             </span>
                         </label>
                         <label className="yn">
@@ -313,7 +329,7 @@ const AddRoomForm = props => {
                                 <FontAwesomeIcon icon={faSocks} size="xl" />  Dryer
                             </span>
                             <span>
-                                <input type="checkbox" name="dryer" value={dryer} checked={dryer} onClick={handleCheckboxChange}/>
+                                <input type="checkbox" name="dryer" value={dryer} checked={dryer} onChange={handleCheckboxChange}/>
                             </span>
                         </label>
                         <label className="yn">
@@ -390,7 +406,7 @@ const AddRoomForm = props => {
                         <input id="photo" onChange={handleFile} type="file" />
                     </div>
                     <div className="button-wrapper">
-                        <button id="button" type="submit">Start Hosting!</button>
+                        <button id="button" type="submit" >{mode === 'create' ? 'Start Hosting!' : 'Edit Hosting!'}</button>
                     </div>
                 </form>
             </div>

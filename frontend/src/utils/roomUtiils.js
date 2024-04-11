@@ -12,11 +12,17 @@ export const postRoom = roomData => (
     })
 )
 
-export const editRoom = roomData => (
-    csrfFetch( `/api/rooms/${roomData.id}`, {
+export const editRoom = (roomData, roomId) => (
+    fetch(`/api/rooms/${roomId}`, {
         method: 'PATCH',
-        body: JSON.stringify(roomData) 
+        //no stringify with formData
+        body: roomData,
+        headers: {
+            'X-CSRF-Token': sessionStorage.getItem('X-CSRF-Token'),
+            'Accept' : 'application/json'
+        }
     })
+    
 )
 
 export const deleteRoom = roomId => (

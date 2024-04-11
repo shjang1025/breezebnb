@@ -9,7 +9,8 @@ import { useDispatch } from "react-redux";
 import { destroyReservation } from "../../store/reservationReducer";
 import { useState } from "react";
 import EditModal from "./EditModal"
-import { destroyRoom } from "../../store/roomReducer";
+import { destroyRoom, selectCurrentRoom } from "../../store/roomReducer";
+import { Link } from "react-router-dom";
 
 const Trip = props => {
     
@@ -17,6 +18,7 @@ const Trip = props => {
     const currentUser = useSelector(selectCurrentUser);
     const user_id = currentUser.id
     const reservations = useSelector(state => state.reservations)
+    // const currentRoom = useSelector(selectCurrentRoom())
     const rooms = useSelector(state => state.rooms)
     const currentDate = new Date();
     
@@ -224,7 +226,7 @@ const Trip = props => {
                                     return (
                                         <div className="yes-hostings-container" key={hosting.id}>
                                             <div className="button-container" >
-                                                <button className="edit-button" >Edit</button>
+                                                <Link to={`host/edit/${hosting.id}`}><button className="edit-button">Edit</button></Link>
                                                 <button className="delete-button" onClick={() => dispatch(destroyRoom(hosting.id))}>Delete</button>
                                             </div>
                                             <div className="yes-hostings-inner">

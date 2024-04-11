@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import { postRoom } from "../utils/roomUtiils"
 import { deleteRoom } from "../utils/roomUtiils"
+import { editRoom } from "../utils/roomUtiils"
 //CONSTANT
 const RECEIVE_ROOM = 'rooms/RECEIVE_ROOM'
 const RECEIVE_ROOMS = 'rooms/RECEIVE_ROOMS'
@@ -68,25 +69,17 @@ export const createRoom = roomData => dispatch => {
         .catch(err => console.error(err))
 }
 
-export const updateRoom = roomData => async dispatch => {
-    try {
-        const res = fetch(`/api/rooms/${roomData.id}`, {
-            method: 'PATCH',
-            body: JSON.stringify(roomData),
-            headers: {
-                'Content-Type': 'application/json'
+export const updateRoom = (roomData, roomID) =>  dispatch => {
+    editRoom(roomData, roomID)
+        .then(res => {
+            if(res.ok) {
+                return res.json()
+            } else {
+                throw res
             }
         })
-        if(res.ok) {
-            const room = res.json();
-            dispatch(receiveRoom(room))
-        } else {
-            throw res
-        }
-    }
-    catch (error) {
-        console.error(error)
-    }
+        .then(data => dispatch(receiveRoom(data)))
+        .catch(err => console.error(err))
 }
 
 export const destroyRoom = roomId => dispatch => {
@@ -100,6 +93,9 @@ export const destroyRoom = roomId => dispatch => {
         })
         .catch(err => console.error(err))
 }
+//SELECTOR
+
+export const selectCurrentRoom = roomId => state => state.rooms[roomId] ? state.rooms[roomId] : null;
 // REDUCER
 
 const roomReducer = (state={}, action) => {
