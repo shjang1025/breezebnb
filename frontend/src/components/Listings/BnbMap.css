@@ -2,3 +2,43 @@
     margin-bottom: 50px;
 
 }
+.info-window-content {
+    display: flex;
+    flex-direction: row;
+}
+.content-text-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.content-other-info-outer {
+    display: flex;
+    flex-direction: row;
+}
+.content-title {
+    font-weight: bold;
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+.content-img-info {
+    flex: 1;
+}
+.content-img-info img {
+    width: 180px;
+    height: auto;
+    border-radius: 25px;
+    padding: 0;
+    margin: 0;
+}
+.content-price {
+    padding-right: 20px;
+}
+.content-price p:first-child {
+    font-weight: bold;
+}
+.content-other-info-outer {
+    display: flex;
+    flex-direction: row;
+    padding-left: 40px;
+    padding-right: 50px;
+}

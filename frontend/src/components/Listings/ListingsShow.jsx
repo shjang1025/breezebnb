@@ -13,6 +13,7 @@ import { selectCurrentUser } from "../../store/sessionReducer"
 import { useSelector } from "react-redux"
 import BnbMap from "./BnbMap"
 import { google_api_key } from "../../API_Key/api_key";
+import { selectCurrentRoom } from "../../store/roomReducer"
 
 
 const ListingsShow = () => {
@@ -20,7 +21,7 @@ const ListingsShow = () => {
     const isLoggedin = !!currentUser;
 
     const {room_id} = useParams();
-    const currentRoom = useSelector(state => state.rooms[room_id])
+    const currentRoom = useSelector(selectCurrentRoom(room_id))
     const reservations = useSelector(state => state.reservations);
     const [errors, setErrors] = useState('')
     const [selectedRoom, setSelectedRoom] = useState(null);
@@ -71,7 +72,7 @@ const ListingsShow = () => {
         try {
             const res = await fetch(`/api/rooms/${roomId}`)
             const data = await res.json()
-            setSelectedRoom(data.rooms)
+            setSelectedRoom(data)
             
         } catch(error) { 
             console.error('Error fetching rooms:', error);
@@ -433,7 +434,7 @@ const ListingsShow = () => {
                         <div className="map-inner-content">
                         
                         </div>
-                        {latLng && <BnbMap latitude={latLng.lat} longitude={latLng.lng}/>}
+                        {latLng && <BnbMap latitude={latLng.lat} longitude={latLng.lng} currentRoom={currentRoom}/>}
                     </div>
                 </div>
 
