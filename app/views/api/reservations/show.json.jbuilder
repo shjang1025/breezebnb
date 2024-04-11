@@ -5,4 +5,4 @@ json.reservation do
         json.reserver_id @reservation.reserver.id
         json.room_id @reservation.room.id
     end
-end
+ends

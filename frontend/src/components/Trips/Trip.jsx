@@ -82,6 +82,7 @@ const Trip = props => {
                                             </div>
                                             <div className="booking-info-left">
                                                     <div className="current-reservation">
+                                                    <div className="current-reservation">
                                                         <div className="current-reservation-title">
                                                             <p>{room.title}</p>
                                                         </div>
@@ -92,10 +93,14 @@ const Trip = props => {
                                                                         <span>Reservation Date</span>
                                                                         <span>{reservation.checkin} </span>
                                                                         <span>  ~ {reservation.checkout}</span>
+                                                                        <span>{reservation.checkin} </span>
+                                                                        <span>  ~ {reservation.checkout}</span>
                                                                     </>
                                                                 }
                                                             </div>
                                                             <div className="current-reservation-location">
+                                                                <span>Location: </span>
+                                                                <span>{reservation.address}, {reservation.city}</span>
                                                                 <span>Location: </span>
                                                                 <span>{reservation.address}, {reservation.city}</span>
                                                                 <span>{reservation.state}</span>
@@ -103,6 +108,9 @@ const Trip = props => {
                                                                 
                                                             </div>
                                                             <div className="current-reservation-max">
+                                                                <span><strong>Guests :</strong> {reservation.numGuests} people</span>
+                                                                <span><strong>Nights :</strong> {reservation.nights} nights</span>
+                                                                <span><strong>Total :</strong> ${reservation.totalCost}</span>
                                                                 <span><strong>Guests :</strong> {reservation.numGuests} people</span>
                                                                 <span><strong>Nights :</strong> {reservation.nights} nights</span>
                                                                 <span><strong>Total :</strong> ${reservation.totalCost}</span>
@@ -161,10 +169,14 @@ const Trip = props => {
                                                                 <span>Reservation Date</span>
                                                                 <span>{reservation.checkin} </span>
                                                                 <span>  ~ {reservation.checkout}</span>
+                                                                <span>{reservation.checkin} </span>
+                                                                <span>  ~ {reservation.checkout}</span>
                                                             </>
                                                         }
                                                     </div>
                                                     <div className="current-reservation-location">
+                                                        <span>Location: </span>
+                                                        <span>{reservation.address}, {reservation.city}</span>
                                                         <span>Location: </span>
                                                         <span>{reservation.address}, {reservation.city}</span>
                                                         <span>{reservation.state}</span>
@@ -172,6 +184,9 @@ const Trip = props => {
                                                         
                                                     </div>
                                                     <div className="current-reservation-max">
+                                                        <span><strong>Guests :</strong> {reservation.numGuests} people</span>
+                                                        <span><strong>Nights :</strong> {reservation.nights} nights</span>
+                                                        <span><strong>Total :</strong> ${reservation.totalCost}</span>
                                                         <span><strong>Guests :</strong> {reservation.numGuests} people</span>
                                                         <span><strong>Nights :</strong> {reservation.nights} nights</span>
                                                         <span><strong>Total :</strong> ${reservation.totalCost}</span>
