@@ -37,6 +37,11 @@ const Trip = props => {
                                     (checkinDate < currentDate && checkoutDate < currentDate))
     });
 
+    
+    const currentHostings = Object.values(rooms)
+                            .filter(room => currentUser.roomId.includes(room.id))
+
+    console.log("Current hosting",currentHostings)
     // console.log(pastReservations)
     const [editModal, setEditModal] = useState(false)
     const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
@@ -50,7 +55,7 @@ const Trip = props => {
 
     }
     useEffect(() => {
-        console.log("RESERVATION ID IS CHANGED", reservationId)
+        // console.log("RESERVATION ID IS CHANGED", reservationId)
     },[reservationId])
     
     console.log("Current Reservation" , currentReservations)
@@ -149,7 +154,6 @@ const Trip = props => {
                                 return (
                                     <div className="booking-container"  key={reservation.id}>
                                         <div className="booking-info-left">
-                                        
                                             <div className="current-reservation">
                                                 <div className="current-reservation-title">
                                                     <p>{room.title}</p>
@@ -207,11 +211,69 @@ const Trip = props => {
                             </div>
                         }
                     </div>
-                    <div className="trip-review">
-                        Here, it will show the reviews that current user wrote
+
+                    <div className="hostings-info-container">
+                        <div className="hostings-history">Your Hostings</div>
+                        <div className="hostings-info-inner-container">
+                            {currentHostings.length > 0 ? 
+                                currentHostings.map(hosting => {
+                                    return (
+                                        <div className="yes-hostings-container" key={hosting.id}>
+                                            <div className="button-container" >
+                                                <button className="edit-button" >Edit</button>
+                                                <button className="delete-button">Delete</button>
+                                            </div>
+                                            <div className="yes-hostings-inner">
+                                                <div className="hosting-title">
+                                                    <div className="yes-hostings">
+                                                        {hosting.title}
+                                                    </div>
+                                                </div>
+                                                <div className="hosting-title-below">
+                                                    <div className="location">
+                                                        <span>
+                                                            <p>Location: </p>
+                                                        </span>
+                                                        <span>
+                                                            <p>
+                                                            {hosting.address}, {hosting.city}
+                                                            </p>
+                                                            <p> 
+                                                            {hosting.state}, {hosting.country}
+                                                            </p>
+                                                        </span>
+                                                    </div>
+                                                    <div className="other-info">
+                                                        <span>{hosting.beds} beds, {hosting.rooms} rooms, {hosting.baths} baths</span>
+                                                        <span>Maximum guests: {hosting.capacity}</span>
+                                                        <span>${hosting.price} / night</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="hosting-photo">
+                                                <img src={hosting.photoUrl} id="hosting-photo" />
+                                            </div>
+                                        </div>
+                                    )
+                            })
+                            : 
+                                <div className="no-hostings"> 
+                                        <div className="current-reservation">
+                                            <p>You have no Hostings</p>
+                                        </div>
+                                        <div className="no-hosting-photo">
+                                            <img src={bnbphoto} id="bnb-photo" alt="Trip" />
+                                        </div>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            
+            
+            
             {editModal && 
 
             <EditModal reservationId={reservationId} setEditModal={setEditModal}/>}

@@ -35,10 +35,12 @@
     margin-bottom: 20px;
     box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
 }
-.trip-review {
-    padding: 50px;
-    background-color: rgb(255, 182, 23); 
+.hostings-info-container {
+    padding-bottom: 20px;
+    border-radius: 25px;
+    margin-top: 20px;
     margin-bottom: 20px;
+    box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
 
 }
 .booking-info {
@@ -48,10 +50,11 @@
     box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
 }
 
-.booking-title, .booking-history {
+.booking-title, .booking-history,.hostings-history {
     font-size: 25px;
     font-weight: bold;
     padding-top: 10px;
+    padding-left: 10px;
     margin-bottom: 10px;
     text-align: start;
     color: #FF385C;
@@ -65,7 +68,8 @@
     padding: 10px;
 }
 
-.booking-info-left {
+.booking-info-left,
+.yes-hostings-inner {
     flex: 1;
     margin-right: 20px;
 }
@@ -81,7 +85,8 @@
     
 }
 
-.current-reservation-title {
+.current-reservation-title, 
+.hosting-title {
     font-weight: bold;
     font-size: 20px;
     padding-bottom: 70px;
@@ -93,7 +98,7 @@
 .current-reservation-max {
     display: flex;
     flex-direction: column;
-    font-size: 18px;
+    font-size: 15px;
 }
 .current-reservation-date {
     margin-top: 5px;
@@ -120,13 +125,19 @@
     flex-direction: column;
     text-align: center;
 }
-.bnb-photo img {
+.bnb-photo img,
+.hosting-photo img,
+.nobnb-photo img,
+.no-hosting-photo img {
     flex:1;
     max-width: 400px;
     height: auto;
     border-radius: 25px;
+    padding-right: 10px;
+
 }
-.no-reservation-container{
+.no-reservation-container,
+.no-hostings{
     display: flex;
     flex-direction: row;
 }
@@ -138,13 +149,6 @@
     flex-direction: column;
     text-align: center;
     padding: 20px;
-}
-.nobnb-photo img {
-    flex:1;
-    max-width: 400px;
-    height: auto;
-    border-radius: 25px;
-    padding-right: 10px;
 }
 
 .no-reservation p {
@@ -166,7 +170,7 @@
     outline: none;
     justify-content: center;
     width: 150px;
-    background-color: #E3185F;
+    background-color: #FFB2BE;
     color: white;
     font-size: 18px;
 
@@ -175,4 +179,49 @@
 .edit-button:hover {
     background-color: #dc779a;
 
+}
+.yes-hostings-container {
+    display: flex;
+    flex-direction: row;
+}
+.yes-hostings-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.hosting-title-below {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.hosting-title {
+    padding-top: 50px
+}
+.other-info {
+    display: flex;
+    flex-direction: column;
+}
+.location span:first-child {
+    font-weight: bold;
+    font-style: italic;
+}
+.location span:first-child p {
+    padding-bottom: 20px;
+}
+.no-hostings {
+    display: flex;
+    flex-direction: row;
+}
+.yes-hostings-container div:first-child button {
+
+}
+.yes-hostings-container .button-container {
+    padding-top: 50px;
+    padding-left: 20px;
+}
+.other-info span {
+    padding-bottom: 10px;
+}
+.location span:nth-child(2) p {
+    padding-bottom: 8px;
 }
