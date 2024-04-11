@@ -158,7 +158,10 @@
     display: flex;
     flex-direction: column;
 }
-.edit-button, .delete-button{
+.booking-container .edit-button,
+.booking-container .delete-button,
+.yes-hostings-container .edit-button, 
+.yes-hostings-container .delete-button{
     margin: 8px;
     padding: 13px;
     cursor: pointer;
@@ -169,12 +172,11 @@
     overflow: hidden;
     outline: none;
     justify-content: center;
-    width: 150px;
-    background-color: #FFB2BE;
+    width: 80px;
+    background-color: #f65f7a;
+    box-shadow: 0 8px 8px 0 rgba(233, 131, 180, 0.315), 0 6px 6px 0 rgba(254, 14, 186, 0.19);
     color: white;
     font-size: 18px;
-
-
 }
 .edit-button:hover {
     background-color: #dc779a;
@@ -212,9 +214,7 @@
     display: flex;
     flex-direction: row;
 }
-.yes-hostings-container div:first-child button {
 
-}
 .yes-hostings-container .button-container {
     padding-top: 50px;
     padding-left: 20px;

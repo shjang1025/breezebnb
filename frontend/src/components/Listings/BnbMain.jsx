@@ -35,7 +35,7 @@ const BnbMain = props => {
             const data = await res.json()
             //change data to array
             // const roomsArray = Object.values(data); 
-            const roomsArray = Object.values(data.rooms);
+            const roomsArray = Object.values(data);
             // console.log(roomsArray)
             setRooms(roomsArray)
         } catch(error) {

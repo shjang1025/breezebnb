@@ -8,7 +8,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { destroyReservation } from "../../store/reservationReducer";
 import { useState } from "react";
-import EditModal from "./EditModal";
+import EditModal from "./EditModal"
+import { destroyRoom } from "../../store/roomReducer";
 
 const Trip = props => {
     
@@ -41,6 +42,7 @@ const Trip = props => {
     const currentHostings = Object.values(rooms)
                             .filter(room => currentUser.roomId.includes(room.id))
 
+    
     console.log("Current hosting",currentHostings)
     // console.log(pastReservations)
     const [editModal, setEditModal] = useState(false)
@@ -49,6 +51,9 @@ const Trip = props => {
     useEffect(() => {
 
     }, [user_id, reservations])
+    useEffect(() => {
+        console.log("Room Data change")
+    }, [rooms])
     const handleEditOpenClick = (reservationId) => {
         setEditModal(!editModal)
         setReservationId(reservationId)
@@ -58,7 +63,6 @@ const Trip = props => {
         // console.log("RESERVATION ID IS CHANGED", reservationId)
     },[reservationId])
     
-    console.log("Current Reservation" , currentReservations)
 
     return(
         <>
@@ -221,7 +225,7 @@ const Trip = props => {
                                         <div className="yes-hostings-container" key={hosting.id}>
                                             <div className="button-container" >
                                                 <button className="edit-button" >Edit</button>
-                                                <button className="delete-button">Delete</button>
+                                                <button className="delete-button" onClick={() => dispatch(destroyRoom(hosting.id))}>Delete</button>
                                             </div>
                                             <div className="yes-hostings-inner">
                                                 <div className="hosting-title">

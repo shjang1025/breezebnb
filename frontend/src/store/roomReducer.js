@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import { postRoom } from "../utils/roomUtiils"
+import { deleteRoom } from "../utils/roomUtiils"
 //CONSTANT
 const RECEIVE_ROOM = 'rooms/RECEIVE_ROOM'
 const RECEIVE_ROOMS = 'rooms/RECEIVE_ROOMS'
@@ -28,7 +29,7 @@ export const fetchRooms = () => async dispatch => {
         const res = await fetch('/api/rooms')
         if(res.ok) {
             const data = await res.json();
-            dispatch(receiveRooms(data.rooms))
+            dispatch(receiveRooms(data))
         } else {
             throw res
         }
@@ -88,20 +89,16 @@ export const updateRoom = roomData => async dispatch => {
     }
 }
 
-export const deleteRoom = roomId => async dispatch => {
-    try {
-        const res = fetch(`/api/rooms/${roomId}`, {
-            method: 'DELETE'
+export const destroyRoom = roomId => dispatch => {
+    deleteRoom(roomId)
+        .then(res => {
+            if (res.ok) {
+                dispatch(removeRoom(roomId))
+            } else {
+                throw res
+            }
         })
-        if(res.ok) {
-            dispatch(removeRoom(roomId))
-        } else {
-            throw res
-        }
-    }
-    catch (error) {
-        console.error(error)
-    }
+        .catch(err => console.error(err))
 }
 // REDUCER
 
