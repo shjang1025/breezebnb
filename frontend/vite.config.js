@@ -19,6 +19,13 @@ export default defineConfig({
   }, 
   build: {
     outDir: '../public',
-    emptyOutDir: true
+    emptyOutDir: true,
+    html: {
+      inject: {
+        injectData: {
+          REACT_APP_GOOGLE_MAP_API_KEY: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
+        }
+      }
+    }
   }
 })

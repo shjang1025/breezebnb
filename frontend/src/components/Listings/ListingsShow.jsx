@@ -22,6 +22,7 @@ const ListingsShow = () => {
     const currentUser = useSelector(selectCurrentUser);
     const isLoggedin = !!currentUser;
     const {room_id} = useParams();
+    //null protection on currentRoom
     const currentRoom = useSelector(selectCurrentRoom(room_id))
     const reservations = useSelector(state => state.reservations);
     const [errors, setErrors] = useState('')
@@ -43,7 +44,7 @@ const ListingsShow = () => {
             // const ak = google_api_key;
             const fullAddress = encodeURIComponent(compactAddress)
             
-            const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=REACT_APP_GOOGLE_MAP_API_KEY`)
+            const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}`)
 
             if (!res.ok) {
                 throw res
@@ -64,6 +65,8 @@ const ListingsShow = () => {
         if (currentRoom) {
             setSelectedRoom(currentRoom);
             fetchLatLng(fullAddress(currentRoom));
+        } else {
+            return null
         }
     }, [currentRoom]);
 
