@@ -12,6 +12,7 @@ import EditModal from "./EditModal"
 import { destroyRoom, selectCurrentRoom } from "../../store/roomReducer";
 import { Link } from "react-router-dom";
 import ReviewModal from "./ReviewModal";
+import { FaStar } from "react-icons/fa";
 
 const Trip = props => {
     
@@ -22,7 +23,7 @@ const Trip = props => {
     // const currentRoom = useSelector(selectCurrentRoom())
     const rooms = useSelector(state => state.rooms)
     const currentDate = new Date();
-
+    const reviews = useSelector(state => state.reviews)
     const currentReservations = Object.values(reservations).filter(
                                 reservation => {
                                     const checkinDate = new Date(reservation.checkin);
@@ -44,7 +45,7 @@ const Trip = props => {
     
     const currentHostings = Object.values(rooms)
                             .filter(room => currentUser.roomId.includes(room.id))
-
+    const currentReviews = Object.values(reviews).filter(review => Array.isArray(currentUser.reviewId) && currentUser.reviewId.includes(review.id));
     
     console.log("Current hosting",currentHostings)
     
@@ -52,6 +53,7 @@ const Trip = props => {
     const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
     const [reviewModal, setReviewModal] =useState(false)
 
+    useEffect(() => {console.log("Cuurent Reviews ", currentReviews)},[currentReviews])
     useEffect(() => {
 
     }, [user_id, reservations])
@@ -71,7 +73,49 @@ const Trip = props => {
     useEffect(() => {
         // console.log("RESERVATION ID IS CHANGED", reservationId)
     },[reservationId])
-    
+    const starNumber = (n) => {
+        if(n === 5) {
+            return (
+                <>
+                <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+                <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+                <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+                <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+                <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+                </>
+                
+            )
+        } else if(n === 4) {
+            return (
+                <>
+                    <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+                    <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+                    <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+                    <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+                </>
+            )
+        } else if (n === 3) {
+            return (
+                <>
+                    <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+                    <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+                    <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+                </>
+            )
+        } else if (n === 2) {
+            return(
+                <>
+                    <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+                    <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+            
+                </>
+            )
+        } else if (n === 1) {
+            return(
+                    <FaStar size="20" style={{ fill: '#f6e825', backgroundColor: 'white' }}/>
+            )
+        }
+    }
 
     return(
         <>
@@ -281,6 +325,67 @@ const Trip = props => {
                                             <img src={bnbphoto} id="bnb-photo" alt="Trip" />
                                         </div>
                                 </div>
+                            }
+                        </div>
+                    </div>
+                    <div className="reviews-info-container">
+
+                        <div className="reviews-index-title">Your Reviews</div>
+                        <div className="reviews-info-inner-container">
+                            
+                            {currentReviews.length > 0 ?
+                                currentReviews.map(review => {
+                                    const room = Object.values(rooms).find(room => room.id === review.reviewRoomId);
+                                    if (!room) {
+                                        return (<p key={review.id}>Loading..</p>)
+                                    }
+                                   return(
+                                    <div className="reviews-index-container" key={review.id}>
+                                        <div className="yes-reviews-inner">
+                                            <div className="review-title-container">
+                                                <div className="review-title">
+                                                    <div className="yes-reviews">
+                                                        {review.title}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="review-title-below">
+                                                <div className="review-description">
+                                                    <span>
+                                                        <p>Description: </p>
+                                                    </span>
+                                                    <span>
+                                                        <p>
+                                                            {review.description}
+                                                        </p>
+                                                    </span>
+                                                </div>
+                                                <div className="other-info">
+                                                    <span>Cleanliness: {starNumber(review.cleanliness)}</span>
+                                                    <span>Accuracy: {starNumber(review.accuracy)}</span>
+                                                    <span>Communication: {starNumber(review.communication)}</span>
+                                                    <span>Location: {starNumber(review.location)}</span>
+                                                    <span>Value: {starNumber(review.value)}</span>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="review-photo">
+                                            <img src={room.photoUrl} id="review-photo" />
+                                        </div>
+                                    </div>
+                                   )
+                                })
+                            :
+                                <div className="no-reviews">
+                                    <div className="no-review-content">
+                                        <p>You have no reviews</p>
+                                    </div>
+                                    <div className="no-hosting-photo">
+                                        <img src={bnbphoto} id="bnb-photo" alt="Trip" />
+                                    </div>
+                                </div>
+
                             }
                         </div>
                     </div>

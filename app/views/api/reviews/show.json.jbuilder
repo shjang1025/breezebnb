@@ -5,6 +5,7 @@ json.set! @review.id  do #set key
     
     json.cleanliness @review.cleanliness
     json.accuracy @review.accuracy
+    json.communication @review.communication
     json.location @review.location
     json.value @review.value
 

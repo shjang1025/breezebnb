@@ -50,7 +50,10 @@
     box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
 }
 
-.booking-title, .booking-history,.hostings-history {
+.booking-title, 
+.booking-history,
+.hostings-history,
+.reviews-index-title {
     font-size: 25px;
     font-weight: bold;
     padding-top: 10px;
@@ -125,6 +128,7 @@
     flex-direction: column;
     text-align: center;
 }
+.review-photo img,
 .bnb-photo img,
 .hosting-photo img,
 .nobnb-photo img,
@@ -241,4 +245,41 @@
 }
 .location span:nth-child(2) p {
     padding-bottom: 8px;
+}
+
+.reviews-info-container {
+    padding-bottom: 20px;
+    border-radius: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
+
+}
+.reviews-index-container {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
+}
+
+.yes-reviews-inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+}
+.review-photo {
+    flex: 1;
+}
+.yes-reviews {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.review-description span:first-child p{
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+.review-description span p{
+    padding-bottom: 10px;
 }

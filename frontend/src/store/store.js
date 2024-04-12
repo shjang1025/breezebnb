@@ -5,12 +5,14 @@ import sessionReducer from "./sessionReducer";
 import roomReducer from "./roomReducer";
 import userReducer from "./userReducer";
 import reservationReducer from "./reservationReducer"
+import reviewReducer from "./reviewReducer";
 
 export const rootReducer = combineReducers({
     users: userReducer,
     session: sessionReducer,
     rooms: roomReducer,
-    reservations: reservationReducer
+    reservations: reservationReducer,
+    reviews: reviewReducer
 })
 
 const configureStore=(initialState = {}) => (

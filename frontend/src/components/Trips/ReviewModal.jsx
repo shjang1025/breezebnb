@@ -30,12 +30,11 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,
     
 
     const cleanlinessStarScore = clickedIndex => {
-        const count = clickedIndex + 1; // 클릭된 별점의 개수는 클릭된 인덱스 + 1입니다.
+        const count = clickedIndex + 1; 
         setCleanliness(count);
     }
     const accuracyStarScore = clickedIndex => {
-        const count = clickedIndex + 1; // 클릭된 별점의 개수는 클릭된 인덱스 + 1입니다.
-        setAccuracy(count);
+        const count = clickedIndex + 1; 
     }
     const communicationStarScore = clickedIndex => {
         const count = clickedIndex + 1;
@@ -61,8 +60,6 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,
     const reviewsArr = users[currentUser.id].reviewId
 
     const findRoom =(reservationId) => {
-        // console.log(reservationsArr)
-        // console.log(viewDropdown)
         for(let i = 0; i < reservationsArr.length; i++) {
             if(reservationsArr[i] === reservationId) {
                 return (reservations[reservationId].roomId)

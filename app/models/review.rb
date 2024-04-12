@@ -9,7 +9,7 @@ class Review < ApplicationRecord
         foreign_key: :reviewer_id
     
     belongs_to :room, 
-    class_name: :Room, 
-    foreign_key: :review_room_id
+        class_name: :Room, 
+        foreign_key: :review_room_id
 
 end

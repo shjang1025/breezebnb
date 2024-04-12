@@ -25,4 +25,4 @@
         json.state state
         json.country country
     end
-    end
+end

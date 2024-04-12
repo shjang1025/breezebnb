@@ -42,6 +42,8 @@ class User < ApplicationRecord
         foreign_key: :reviewer_id,
         dependent: :destroy
     
+    has_many :reservation,
+        through: :rooms
     def self.find_by_credential(email, password) 
         @user = User.find_by(email: email)
         if @user && @user.authenticate(password) 

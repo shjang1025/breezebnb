@@ -13,6 +13,7 @@ import BreezebnbModal from './Modal/BreezebnbModal'
 import { fetchRooms } from "../store/roomReducer";
 import { fetchUsers } from "../store/userReducer";
 import { fetchReservations } from "../store/reservationReducer";
+import { fetchReviews } from "../store/reviewReducer";
 
 
 const Navbar = () => {
@@ -25,6 +26,7 @@ const Navbar = () => {
         dispatch(fetchRooms());
         dispatch(fetchUsers());
         dispatch(fetchReservations())
+        dispatch(fetchReviews())
     }, [dispatch]);
 
     //find currentUser

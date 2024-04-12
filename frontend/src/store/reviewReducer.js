@@ -12,7 +12,7 @@ export const receiveReview = review => ({
     review
 })
 export const receiveReviews = reviews => ({
-    type: RECEIVE_REVIEW, 
+    type: RECEIVE_REVIEWS, 
     reviews
 })
 export const removeReview = reviewId => ({
