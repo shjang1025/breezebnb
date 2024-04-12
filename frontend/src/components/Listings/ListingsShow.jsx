@@ -34,7 +34,6 @@ const ListingsShow = () => {
 
     useEffect(() => {
         fetchRoomData(room_id)
-        console.log("Current Room is!!!!!!!!!!! ", currentRoom)
     }, [room_id])
 
     const fetchLatLng = async (compactAddress) => {
@@ -63,7 +62,6 @@ const ListingsShow = () => {
         if (currentRoom) {
             setSelectedRoom(currentRoom);
             fetchLatLng(fullAddress(currentRoom));
-            console.log("Again?")
         }
     }, [currentRoom]);
 
@@ -136,7 +134,6 @@ const ListingsShow = () => {
         .then(res => res.json())
         .then(data => {
             if(data.error) {
-                console.log(data.error)
                 setErrors(data.error);
             } else {
                 setErrors('')

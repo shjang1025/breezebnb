@@ -28,8 +28,7 @@ const EditModal = ({reservationId, setEditModal}) => {
     const [checkOutDate, setCheckOutDate] = useState(null);
     const reservationsArr = users[currentUser.id].reservationId //[1,5]
     const findRoom =(reservationId) => {
-        // console.log(reservationsArr)
-        // console.log(viewDropdown)
+
         for(let i = 0; i < reservationsArr.length; i++) {
             if(reservationsArr[i] === reservationId) {
                 return (reservations[reservationId].roomId)
@@ -39,7 +38,6 @@ const EditModal = ({reservationId, setEditModal}) => {
     }
 
     useEffect(() => {
-        console.log("??????????/", reservationId)
     },[reservationId])
     useEffect(()=> {
     },[dispatch])

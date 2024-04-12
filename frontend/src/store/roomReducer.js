@@ -56,7 +56,6 @@ export const fetchRoom = roomId => async dispatch => {
 }
 
 export const createRoom = roomData => dispatch => {
-    console.log(roomData) //ok
     postRoom(roomData)
         .then(res => {
             if(res.ok) {

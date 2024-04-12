@@ -19,13 +19,11 @@ const BnbMain = props => {
     },[])
 
     useEffect(()=> {
-        // console.log(rooms)
     }, [rooms])
     
 
 
     const handlePhotoClick = async (room) => {
-        // console.log(room)
         setSelectedRoom(room)
     }
     
@@ -36,7 +34,6 @@ const BnbMain = props => {
             //change data to array
             // const roomsArray = Object.values(data); 
             const roomsArray = Object.values(data);
-            // console.log(roomsArray)
             setRooms(roomsArray)
         } catch(error) {
             console.error('Error fetching rooms:', error);

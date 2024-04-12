@@ -21,7 +21,6 @@ const SessionModal = ({modalState, setModalState}) => {
             })
             .catch(async res =>{
               let data = await res.json();
-            //   console.log(data.errors)
               setErrors(data.errors);
             });
         } else {
@@ -32,7 +31,6 @@ const SessionModal = ({modalState, setModalState}) => {
             })
             .catch(async res => {
                 let data = await res.json();
-                console.log(data.errors)
                 setErrors(data.errors || {});
             });
         }

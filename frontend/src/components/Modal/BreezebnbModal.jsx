@@ -2,12 +2,10 @@ import './BreezebnbModal.css'
 
 const SigninModal = ({onClose}) => {
     const handleBackgroundClick = () => {
-        console.log("Background Clicked")
         onClose()
     }
 
     const handleContentClick =(e) => {
-        console.log("Content clicked")
         e.stopPropagation()
     }
     return(

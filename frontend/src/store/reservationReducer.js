@@ -32,9 +32,7 @@ export const fetchReservations = () => dispatch => {
             }
         })
         .then(data => {
-            console.log("Received reservations data:", data);
-            // const reservationsArray = Object.values(data.reservation);
-            // console.log("Converted reservations array:", reservationsArray);
+
             dispatch(receiveReservations(data));
         })
         .catch(err => console.error(err))
@@ -56,7 +54,6 @@ export const createReservation = reservationData => async dispatch => {
         const res = await postReservation(reservationData)
         if (res.ok) {
             const data = await res.json()
-            console.log("THIS", data);
 
             dispatch(receiveReservation(data))
         } else {

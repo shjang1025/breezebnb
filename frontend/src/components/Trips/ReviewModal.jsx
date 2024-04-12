@@ -70,16 +70,10 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,
     }
 
     useEffect(() => {
-        console.log("??????????/", reviewId)
     },[reviewId])
     useEffect(()=> {
     },[dispatch])
     useEffect(() => {
-        console.log("Cleanliness changed", cleanliness)
-        console.log("Accuracy changed", accuracy)
-        console.log("communication changed", communication)
-        console.log("location changed", location)
-        console.log("value changed", value)
 
     }, [cleanliness, accuracy, communication, location, value])
     

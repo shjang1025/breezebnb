@@ -48,8 +48,7 @@ const Trip = props => {
                             .filter(room => currentUser.roomId.includes(room.id))
     const currentReviews = Object.values(reviews).filter(review => Array.isArray(currentUser.reviewId) && currentUser.reviewId.includes(review.id));
     
-    console.log("whole reviews", reviews)
-    console.log("Current reviews",currentReviews)
+
     
     const [editModal, setEditModal] = useState(false)
     const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
@@ -60,7 +59,6 @@ const Trip = props => {
 
     }, [user_id, reservations,reviews])
     useEffect(() => {
-        console.log("Room Data change")
     }, [rooms])
     const handleEditOpenClick = (reservationId) => {
         setEditModal(!editModal)
@@ -73,7 +71,6 @@ const Trip = props => {
         setReservationId(reservationId)
     }
     useEffect(() => {
-        // console.log("RESERVATION ID IS CHANGED", reservationId)
     },[reservationId])
     const starNumber = (n) => {
         if(n === 5) {

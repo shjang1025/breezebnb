@@ -14,11 +14,11 @@
     
 
 # end
-
+require 'faker'
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
 ActiveRecord::Base.connection.reset_pk_sequence!('rooms')
 ActiveRecord::Base.connection.reset_pk_sequence!('reservations')
-
+ActiveRecord::Base.connection.reset_pk_sequence!('reviews')
 
 
 User.destroy_all
@@ -44,6 +44,7 @@ user19 = User.create!(username: "Jin", email: 'rrrr@test.com', password: "passwo
 user20 = User.create!(username: "Jacob", email: 'ssss@test.com', password: "password", gender: "Male")
 
 Room.destroy_all
+rooms = []
 room1 = Room.create!(title: "Massive Downtown Seattle Condo",
                     description: "Welcome to a one-of-a-kind, expansive condominium nestled in downtown Seattle, boasting unparalleled luxury and convenience. This centrally located gem offers a modern loft design, upscale amenities, towering windows and gourmet kitchen. Immerse yourself in the vibrant culture of Seattle, with top attractions just steps away. Experience urban living at its finest in this extraordinary Airbnb sanctuary.",
                     price: 180, address: '12345 Cherry St', city: 'Seattle', state: 'WA', country: 'USA', category: 'design',
@@ -157,6 +158,18 @@ room12 = Room.create!(title: "Starlight Tent Near Petrified Forest",
     kitchen: false, microwave: false, fireplace: false, pets: false, host_id: 17)
 file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/camping.jpg")
 room12.photo.attach(io: file, filename: 'camping.jpg')
+rooms << room1
+rooms << room2
+rooms << room3
+rooms << room4
+rooms << room5
+rooms << room6
+rooms << room7
+rooms << room8
+rooms << room9
+rooms << room10
+rooms << room11
+rooms << room12
 
 Reservation.destroy_all
 reservation1 = Reservation.create!(
@@ -189,3 +202,51 @@ reservation5 = Reservation.create!(
     num_guests: 3,
     reserved_person_id: user8.id,
     reserved_room_id: room4.id)
+reservation6 = Reservation.create!(
+    checkin: "2023-01-14", 
+    checkout: "2023-01-20",
+    num_guests: 3,
+    reserved_person_id: user12.id,
+    reserved_room_id: room1.id)
+reservation7 = Reservation.create!(
+    checkin: "2024-10-25", 
+    checkout: "2024-10-27",
+    num_guests: 3,
+    reserved_person_id: user18.id,
+    reserved_room_id: room3.id)
+reservation8 = Reservation.create!(
+    checkin: "2024-09-20", 
+    checkout: "2024-09-23",
+    num_guests: 3,
+    reserved_person_id: user17.id,
+    reserved_room_id: room6.id)
+
+long_review_sentences = [
+"The room exceeded all my expectations and provided a luxurious experience throughout my stay.",
+"I was impressed by the attention to detail in the room decor, creating a cozy and inviting atmosphere.",
+"Staying in this room was the highlight of my trip, thanks to its stunning views and impeccable service.",
+"The spacious layout of the room made it perfect for relaxing after a long day of exploring the city.",
+"I couldn't have asked for a better room during my vacation; it truly felt like a home away from home.",
+"The amenities provided in the room were top-notch, making my stay both comfortable and convenient.",
+"From the moment I walked into the room, I knew I was in for a wonderful experience.",
+"The room's location was ideal, with easy access to all the attractions and restaurants in the area.",
+"Every aspect of the room, from the decor to the furnishings, was carefully thought out and beautifully executed.",
+"I would highly recommend this room to anyone looking for a luxurious and unforgettable stay."
+]
+Review.destroy_all
+
+(0..11).each do |idx|
+    7.times do 
+        Review.create!(
+            title: Faker::Lorem.words(number: 3).join(" "),
+            description: long_review_sentences.sample,
+            cleanliness: Faker::Number.between(from: 1, to: 5),
+            communication: Faker::Number.between(from: 1, to: 5),
+            accuracy: Faker::Number.between(from: 1, to: 5),
+            location: Faker::Number.between(from: 1, to: 5),
+            value: Faker::Number.between(from: 1, to: 5),
+            reviewer_id: Faker::Number.between(from: 1, to: 20),
+            review_room_id: Faker::Number.between(from: 1, to: 8)
+        )
+    end
+end

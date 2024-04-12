@@ -52,14 +52,11 @@ const Navbar = () => {
     };
 
     const handleBreezebnbClick = () => {
-        console.log("Clicked Breezebnb your home button");
         if (!currentUser) {
-            console.log("User is not logged in. Showing SigninModal.");
             setShowSigninModal(true);
         }
     };
     useEffect(() => {
-        console.log('Session data changed', currentUser)
     },[currentUser])
 
     const dropDown = () => {
