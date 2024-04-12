@@ -494,4 +494,5 @@
 .review-details-location span,
 .review-details-value span {
     padding-bottom: 20px;
+    font-weight: bold;
 }
