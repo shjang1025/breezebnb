@@ -19,11 +19,10 @@
 }
 .content-title {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 25px;
     padding-bottom: 10px;
 }
 .content-img-info {
-    flex: 1;
     padding: 0;
     margin: 0;
 }
@@ -34,13 +33,27 @@
 }
 .content-price {
     padding-right: 20px;
+    font-size: 17px;
 }
 .content-price p:first-child {
     font-weight: bold;
 }
+.content-price p:nth-child(2) {
+    font-weight: 400;
+}
 .content-other-info-outer {
     display: flex;
     flex-direction: row;
-    padding-left: 40px;
+    padding-left: 30px;
     padding-right: 50px;
+}
+.content-other-info {
+    display: flex;
+    flex-direction: row;
+    font-size: 17px;
+    padding-left: 20px;
+    font-weight: 600;
+}
+.content-other-info p {
+    padding-right: 5px;
 }
