@@ -54,4 +54,9 @@ class Room < ApplicationRecord
         class_name: :Reservation,
         foreign_key: :reserved_room_id,
         dependent: :destroy
+    
+    has_many :reviews,
+        class_name: :Review,
+        foreign_key: :review_room_id,
+        dependent: :destroy
 end

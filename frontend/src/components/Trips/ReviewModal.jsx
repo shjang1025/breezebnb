@@ -1,79 +1,136 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import './ReviewModal.css';
-import { updateReservation } from "../../store/reservationReducer";
-import { FaRegStar } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/sessionReducer";
+import { createReview, selectReview, selectReviewsArray } from "../../store/reviewReducer";
+import { FaStar } from "react-icons/fa";
 
-
-const ReviewModal = ({reservationId, setReviewModal}) => {
-    const ARRAY = [0,1,2,3,4]
+const ReviewModal = ({reviewId, setReviewModal, initialReviewData,roomId }) => {
     const dispatch = useDispatch()
 
     const [viewDropdown, setViewDropdown] = useState(false);
     const reservations = useSelector(state => state.reservations)
+    const reviews = useSelector(state => state.reviews)
     const rooms = useSelector(state => state.rooms)
     const currentUser = useSelector(selectCurrentUser);
     const users = useSelector(state => state.users)
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [cleanliness, setCleanliness] = useState([false, false, false, false, false])
-    const [accuracy, setAccuracy] = useState([false, false, false, false, false])
-    const [communication, setCommunication] = useState([false, false, false, false, false])
-    const [location, setLocation] = useState([false, false, false, false, false])
-    const [value, setValue] = useState([false, false, false, false, false])
+    const ARRAY = [0,1,2,3,4]
+    const ARRAY1 = [0,1,2,3,4]
+    const ARRAY2 = [0,1,2,3,4]
+    const ARRAY3 = [0,1,2,3,4]
+    const ARRAY4 = [0,1,2,3,4]
 
+    const [cleanliness, setCleanliness] = useState(0)
+    const [accuracy, setAccuracy] = useState(0)
+    const [communication, setCommunication] = useState(0)
+    const [location, setLocation] = useState(0)
+    const [value, setValue] = useState(0)
+    
+    //index가 클릭한 인덱스 
+
+    // const cleanlinessStarScore = clickedIndex => {
+    //     let star = []
+    //     for(let i = 1; i <= 5; i++) {
+    //         if(i <= cleanliness ) {
+    //             star.push(true)
+    //         } else {
+    //             star.push(false)
+    //         }
+    //     }
+    //     // let star = [...cleanliness];
+    //     for(let i = 0; i < 5; i++) {
+    //         star[i] = i <= clickedIndex ? true: false
+    //     }
+    //     const count = star.filter(x => x === true).length
+        
+    //     setCleanliness(count)
+    // }
+    const cleanlinessStarScore = clickedIndex => {
+        const count = clickedIndex + 1; // 클릭된 별점의 개수는 클릭된 인덱스 + 1입니다.
+        setCleanliness(count);
+    }
+    const accuracyStarScore = clickedIndex => {
+        const count = clickedIndex + 1; // 클릭된 별점의 개수는 클릭된 인덱스 + 1입니다.
+        setAccuracy(count);
+    }
+    const communicationStarScore = clickedIndex => {
+        const count = clickedIndex + 1;
+        setCommunication(count);
+    }
+    
+    const locationStarScore = clickedIndex => {
+        const count = clickedIndex + 1;
+        setLocation(count);
+    }
+    
+    const valueStarScore = clickedIndex => {
+        const count = clickedIndex + 1;
+        setValue(count);
+    }
+
+    //user's reservations arr
     const reservationsArr = users[currentUser.id].reservationId //[1,5]
-    const findRoom =(reservationId) => {
+    
+    //the review with specific reviewId
+    const currentReview = useSelector(selectReview)
+    //
+    const reviewsArr = users[currentUser.id].reviewId
 
-        for(let i = 0; i < reservationsArr.length; i++) {
-            if(reservationsArr[i] === reservationId) {
-                return (reservations[reservationId].roomId)
+    const findRoom =(reviewId) => {
+
+        for(let i = 0; i < reviewsArr.length; i++) {
+            if(reviewsArr[i] === reviewId) {
+                return (reviews[reservationId].roomId)
             }
         }
         return null;
     }
 
     useEffect(() => {
-        console.log("??????????/", reservationId)
-    },[reservationId])
+        console.log("??????????/", reviewId)
+    },[reviewId])
     useEffect(()=> {
     },[dispatch])
-    const handleArrowClick = () => {
-        setViewDropdown(!viewDropdown)
+    useEffect(() => {
+        console.log("Cleanliness changed", cleanliness)
+        console.log("Accuracy changed", accuracy)
+        console.log("communication changed", communication)
+        console.log("location changed", location)
+        console.log("value changed", value)
+
+    }, [cleanliness, accuracy, communication, location, value])
+    
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const reviewData = {
+            id: reviewId,
+            title: title,
+            description: description,
+            cleanliness: cleanliness,
+            accuracy: accuracy,
+            communication: communication,
+            location: location,
+            value: value,
+            reviewer_id: currentUser.id, 
+            review_room_id: rooms[findRoom(reviewId)].id
+        }
+        dispatch(createReview(reviewData));
+        setReviewModal(false)
     }
 
-    const handleReviewClick = () => {
-        const reservationData = {
-            reservation: {
-                id: reservationId,
-                checkin: checkInDate,
-                checkout: checkOutDate,
-                numGuests: numGuests,
-                reserved_person_id: currentUser.id, 
-                reserved_room_id: rooms[findRoom(reservationId)].id
-            }
-        }
-        dispatch(updateReservation(reservationData));
-        setEditModal(false)
-    }
-    const cleanStarScore = index => {
-        let star = [...cleanliness];
-        for(let i = 0; i < 5; i++) {
-            star[i] = i <= index ? true: false
-        }
-        setCleanliness(star)
-    }
+    
 
     return(
         <div className="edit-modal-background" onClick={() => setReviewModal(false)}>
             <div className="edit-modal-content" onClick={e => e.stopPropagation()}>
                 <div className="review-form-subject">Make a Review</div>
                 <div className="review-inner-container">
-                    <form className="review-form-inner-container">
+                    <form className="review-form-inner-container" onSubmit={handleSubmit}>
                         <label className="review-title-label">Title: 
                             <div className="review-title">
                                 <input 
@@ -96,36 +153,70 @@ const ReviewModal = ({reservationId, setReviewModal}) => {
                             </div>
                         </label>
                         <div className="star-section">
+                            {/* Cleanliness */}
                             <label className="cleanliness">Cleanliness: 
-                                {ARRAY.map((el, idx) => (
-                                    <FaStar key={idx} size="20" style={{ color: 'white', backgroundColor: 'transparent' }} />
-                                    )                                
-                                )}
+                            {ARRAY.map((el, idx) => (
+                                <FaStar
+                                    className="star"
+                                    key={idx}
+                                    size="20"
+                                    style={{ fill: idx < cleanliness ? '#f6e825' : '#808080', backgroundColor: 'white' }}
+                                    onClick={() => cleanlinessStarScore(idx)}
+                                />
+                            ))}
                             </label>
+                            {/* Accuracy */}
                             <label className="accuracy">Accuracy: 
-                                {ARRAY.map((el, idx) => (
-                                    <FaStar key={idx} size="20" style={{ color: 'white', backgroundColor: 'transparent' }} />
-                                    )                                
-                                )}
+                                {ARRAY1.map((el, idx) => (
+                                    <FaStar
+                                        className="star"
+                                        key={idx}
+                                        size="20"
+                                        style={{ fill: idx < accuracy ? '#f6e825' : '#808080', backgroundColor: 'white' }}
+                                        onClick={() => accuracyStarScore(idx)}
+                                    />
+                                ))}
                             </label>
+
+                            {/* Communication */}
                             <label className="communication">Communication: 
-                                {ARRAY.map((el, idx) => (
-                                    <FaStar key={idx} size="20" style={{ color: 'white', backgroundColor: 'transparent' }} />
-                                    )                                
-                                )}
+                                {ARRAY2.map((el, idx) => (
+                                    <FaStar
+                                        className="star"
+                                        key={idx}
+                                        size="20"
+                                        style={{ fill: idx < communication ? '#f6e825' : '#808080', backgroundColor: 'white' }}
+                                        onClick={() => communicationStarScore(idx)}
+                                    />
+                                ))}
                             </label>
+
+                            {/* Location */}
                             <label className="review-location">Location: 
-                                {ARRAY.map((el, idx) => (
-                                    <FaStar key={idx} size="20" style={{ color: 'white', backgroundColor: 'transparent' }} />
-                                    )                                
-                                )}
+                                {ARRAY3.map((el, idx) => (
+                                    <FaStar
+                                        className="star"
+                                        key={idx}
+                                        size="20"
+                                        style={{ fill: idx < location ? '#f6e825' : '#808080', backgroundColor: 'white' }}
+                                        onClick={() => locationStarScore(idx)}
+                                    />
+                                ))}
                             </label>
+
+                            {/* Value */}
                             <label className="value">Value: 
-                                {ARRAY.map((el, idx) => (
-                                    <FaStar key={idx} size="20" style={{ color: 'white', backgroundColor: 'transparent' }} />
-                                    )                                
-                                )}
+                                {ARRAY4.map((el, idx) => (
+                                    <FaStar
+                                        className="star"
+                                        key={idx}
+                                        size="20"
+                                        style={{ fill: idx < value ? '#f6e825' : '#808080', backgroundColor: 'white' }}
+                                        onClick={() => valueStarScore(idx)}
+                                    />
+                                ))}
                             </label>
+
                         </div>
                         <div className="review-submit-container">
 

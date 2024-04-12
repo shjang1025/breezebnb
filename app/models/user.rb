@@ -36,6 +36,11 @@ class User < ApplicationRecord
         class_name: :Reservation,
         foreign_key: :reserved_person_id,
         dependent: :destroy
+        
+    has_many :reviews,
+        class_name: :Review,
+        foreign_key: :reviewer_id,
+        dependent: :destroy
     
     def self.find_by_credential(email, password) 
         @user = User.find_by(email: email)
