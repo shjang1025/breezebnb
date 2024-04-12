@@ -9,6 +9,5 @@
         json.communication review.communication
         json.location review.location
         json.value review.value
-
     end
 end

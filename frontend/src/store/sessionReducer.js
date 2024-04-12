@@ -44,8 +44,6 @@ export const loginUser = sessionInfo => dispatch => (
             sessionStorage.setItem('currentUser', JSON.stringify(data.user))
             dispatch(createSession(data.user))
         })
-        // .catch(err => console.error(err))
-
 )
 
 export const logoutUser = () => dispatch => (

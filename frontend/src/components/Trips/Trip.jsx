@@ -48,7 +48,8 @@ const Trip = props => {
                             .filter(room => currentUser.roomId.includes(room.id))
     const currentReviews = Object.values(reviews).filter(review => Array.isArray(currentUser.reviewId) && currentUser.reviewId.includes(review.id));
     
-    console.log("Current hosting",currentHostings)
+    console.log("whole reviews", reviews)
+    console.log("Current reviews",currentReviews)
     
     const [editModal, setEditModal] = useState(false)
     const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
@@ -281,6 +282,10 @@ const Trip = props => {
                         <div className="hostings-info-inner-container">
                             {currentHostings.length > 0 ? 
                                 currentHostings.map(hosting => {
+                                    // const room = Object.values(rooms).find(room => room.id === hosting.roomId);
+                                    // if (!room) {
+                                    //     return (<p key={hosting.id}>Loading..</p>)
+                                    // }
                                     return (
                                         <div className="yes-hostings-container" key={hosting.id}>
                                             <div className="button-container" >
@@ -349,7 +354,7 @@ const Trip = props => {
                                         <div className="button-container" >
                                                 <button className="review-edit-button" onClick={() => handleReviewOpenClick(review.id)}>Edit</button>
                                                 <button className="review-delete-button" onClick={() => dispatch(destroyReview(review.id))}>Delete</button>
-                                            </div>
+                                        </div>
                                         <div className="yes-reviews-inner">
                                             <div className="review-title-container">
                                                 <div className="review-title">

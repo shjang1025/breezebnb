@@ -34,7 +34,8 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,
         setCleanliness(count);
     }
     const accuracyStarScore = clickedIndex => {
-        const count = clickedIndex + 1; 
+        const count = clickedIndex + 1;
+        setAccuracy(count);
     }
     const communicationStarScore = clickedIndex => {
         const count = clickedIndex + 1;

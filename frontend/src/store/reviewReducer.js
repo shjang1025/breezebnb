@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux"
 import { postReview, editReview, deleteReview } from "../utils/reviewUtils"
 
 //CONSTANT
@@ -16,7 +15,7 @@ export const receiveReviews = reviews => ({
     reviews
 })
 export const removeReview = reviewId => ({
-    type: RECEIVE_REVIEW, 
+    type: REMOVE_REVIEW, 
     reviewId
 })
 
@@ -41,7 +40,7 @@ export const fetchReviews = () => dispatch => {
             if (res.ok) {
                 return res.json()
             } else {
-                throw res
+                throw new Error(`Failed to fetch reviews: ${res.statusText}`);
             }
         })
         .then(data => dispatch(receiveReviews(data)))

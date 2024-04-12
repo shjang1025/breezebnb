@@ -29,8 +29,12 @@ const Navbar = () => {
         dispatch(fetchReviews())
     }, [dispatch]);
 
+
     //find currentUser
     const currentUser = useSelector(selectCurrentUser);
+    useEffect(() => {
+
+    }, [currentUser])
     const userId = currentUser ? currentUser.id : "";
     const [view, setView] = useState(false);
     const [modalState, setModalState] = useState(null)

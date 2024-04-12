@@ -72,7 +72,8 @@
 }
 
 .booking-info-left,
-.yes-hostings-inner {
+.yes-hostings-inner,
+.yes-reviews-inner{
     flex: 1;
     margin-right: 20px;
 }
@@ -180,6 +181,8 @@
     color: white;
     font-size: 15px;
 }
+.reviews-index-container .review-edit-button, 
+.reviews-index-container .review-delete-button,
 .booking-container .edit-button,
 .booking-container .delete-button,
 .yes-hostings-container .edit-button, 
@@ -208,12 +211,13 @@
     display: flex;
     flex-direction: row;
 }
-.yes-hostings-inner {
+.yes-hostings-inner{
     display: flex;
     flex-direction: column;
 }
 
-.hosting-title-below {
+.hosting-title-below,
+.review-title-below {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -262,19 +266,6 @@
     box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
 }
 
-.yes-reviews-inner {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-
-}
-.review-photo {
-    flex: 1;
-}
-.yes-reviews {
-    font-size: 20px;
-    font-weight: bold;
-}
 
 .review-description span:first-child p{
     font-size: 18px;
@@ -290,4 +281,32 @@
     font-size: 20px;
     font-weight: bold;
     
+}
+.review-title-below {
+    display: flex;
+    flex-direction: row;
+}
+.reviews-index-title {
+    padding-bottom: 10px;
+}
+.review-index-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.review-index-container  .button-container {
+    padding-top: 50px;    
+}
+.yes-reviews-inner {
+    display: flex;
+    flex-direction: column;
+}
+.review-title-container {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+.reviews-index-container .button-container {
+    padding-top: 60px;
+    padding-left: 25px;
 }
