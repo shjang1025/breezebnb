@@ -6,11 +6,11 @@ import { Link, useNavigate } from "react-router-dom"
 
 
 const BnbMain = props => {
-    const [selectedRoom, setSelectedRoom] = useState(null)
-    const navigate = useNavigate();
+    // const [selectedRoom, setSelectedRoom] = useState(null)
+    // const navigate = useNavigate();
     const[rooms, setRooms] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
-    const roomsPerPage = 15;
+    const roomsPerPage = 10;
     // const roomsPerLine = 5;
     
 

@@ -22,17 +22,26 @@ ActiveRecord::Base.connection.reset_pk_sequence!('reservations')
 
 
 User.destroy_all
-user1 = User.create!(username: "aaaa", email: 'aaaa@test.com', password: "password", gender: "Female")
-user2 = User.create!(username: "bbbb", email: 'bbbb@test.com', password: "password", gender: "Female")
-user3 = User.create!(username: "cccc", email: 'cccc@test.com', password: "password", gender: "Male")
-user4 = User.create!(username: "dddd", email: 'dddd@test.com', password: "password", gender: "Male")
-user5 = User.create!(username: "eeee", email: 'eeee@test.com', password: "password", gender: "Female")
-user6 = User.create!(username: "ffff", email: 'ffff@test.com', password: "password", gender: "Male")
-user7 = User.create!(username: "gggg", email: 'gggg@test.com', password: "password", gender: "Female")
-user8 = User.create!(username: "hhhh", email: 'hhhh@test.com', password: "password", gender: "Male")
-user9 = User.create!(username: "iiii", email: 'iiii@test.com', password: "password", gender: "Female")
-user10 = User.create!(username: "jjjj", email: 'jjjj@test.com', password: "password", gender: "Male")
-user11 = User.create!(username: "kkkk", email: 'kkkk@test.com', password: "password", gender: "Male")
+user1 = User.create!(username: "Maria", email: 'aaaa@test.com', password: "password", gender: "Female")
+user2 = User.create!(username: "Angela", email: 'bbbb@test.com', password: "password", gender: "Female")
+user3 = User.create!(username: "Jonathan", email: 'cccc@test.com', password: "password", gender: "Male")
+user4 = User.create!(username: "Suzy", email: 'dddd@test.com', password: "password", gender: "Male")
+user5 = User.create!(username: "Hailey", email: 'eeee@test.com', password: "password", gender: "Female")
+user6 = User.create!(username: "Jake", email: 'ffff@test.com', password: "password", gender: "Male")
+user7 = User.create!(username: "Eva", email: 'gggg@test.com', password: "password", gender: "Female")
+user8 = User.create!(username: "Joseph", email: 'hhhh@test.com', password: "password", gender: "Male")
+user9 = User.create!(username: "Jennie", email: 'iiii@test.com', password: "password", gender: "Female")
+user10 = User.create!(username: "David", email: 'jjjj@test.com', password: "password", gender: "Male")
+user11 = User.create!(username: "Peter", email: 'kkkk@test.com', password: "password", gender: "Male")
+user12 = User.create!(username: "Mike", email: 'tttt@test.com', password: "password", gender: "Male")
+user13 = User.create!(username: "Celine", email: 'llll@test.com', password: "password", gender: "Female")
+user14 = User.create!(username: "Jay", email: 'mmmm@test.com', password: "password", gender: "Male")
+user15 = User.create!(username: "Grace", email: 'nnnn@test.com', password: "password", gender: "Female")
+user16 = User.create!(username: "Erin", email: 'oooo@test.com', password: "password", gender: "Female")
+user17 = User.create!(username: "Chris", email: 'pppp@test.com', password: "password", gender: "Male")
+user18 = User.create!(username: "Sarah", email: 'qqqq@test.com', password: "password", gender: "Female")
+user19 = User.create!(username: "Jin", email: 'rrrr@test.com', password: "password", gender: "Female")
+user20 = User.create!(username: "Jacob", email: 'ssss@test.com', password: "password", gender: "Male")
 
 Room.destroy_all
 room1 = Room.create!(title: "Massive Downtown Seattle Condo",
@@ -113,6 +122,41 @@ file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/np2.jpg")
 room8.photo.attach(io: file, filename: 'np2.jpg')
     
 
+room9 = Room.create!(title: "East Sister Rock Island - Your Own Private island",
+    description: "Welcome to our Sun-Kissed Haven on 9 Acres! Enjoy breathtaking mountain views from the hot tub or while roasting marshmallows by the fire pit. Pick fresh fruit from our apple, cherry, grape, and blackberry trees. This luxury Cabin boasts a game room with pool, poker, darts and a music room. Work remotely with Starlink High-Speed internet. Take a short walk to the river or nature center. Explore Olympic National Forest and Hurricane Ridge hiking trails. Perfect for a private and peaceful getaway!",
+    price: 1988, address: 'Williamson Rd', city: 'Sequim', state: 'WA', country: 'USA', category: 'beach_front',
+    capacity: 8, beds: 4, rooms: 3, baths: 2, parking: true,
+    washer: true, dryer: true, heater: true, ac: true, tv: true, wifi: true,
+    kitchen: true, microwave: true, fireplace: true, pets: false, host_id: 10)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/island.jpg")
+room9.photo.attach(io: file, filename: 'island.jpg')
+
+room10 = Room.create!(title: "Villa de Lago The Lake House Max Nite occupancy 8",
+    description: "VIlladeLago, The Lake House, is located in a secluded enclave in historic Cave Rock Nevada. Nestled in pines that sweep down through the riparian shrubbery from the home to the property’s private pier and buoy. Whether by day or night the lighted staircase will carry you to the magic of the bouldered shoreline where you can spend your time relaxing to the sound of the waves and Tahoe’s ever-changing panorama or take a dip from off the pier and swim in waters as clear and brilliant as our skies.",
+    price: 1500, address: '1321 Hwy 50', city: 'Glenbrook', state: 'NV', country: 'USA', category: 'beach_front',
+    capacity: 8, beds:4 , rooms: 4, baths: 3, parking: true,
+    washer: true, dryer: true, heater: true, ac: false, tv: true, wifi: true,
+    kitchen: true, microwave: false, fireplace: true, pets: false, host_id: 13)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/good.jpg")
+room10.photo.attach(io: file, filename: 'good.jpg')
+
+room11 = Room.create!(title: "Spacious Family Cabin at Cedar Mountain w/HOT TUB",
+    description: "Welcome to the ultimate family-friendly wilderness escape! This gorgeous, unique A-frame cabin with soaring ceilings and ample rooms inside sits on the edge of Pike National Forest with ATV trails and over a million acres of exploration literally out the back gate. Located a mere 8-minutes from downtown Divide, this lovingly remodeled 5 bedroom, 3 bath home is the ideal destination and base-camp cabin for families and anyone needing a peaceful retreat in the Colorado mountains.",
+    price: 407, address: '835 Lerida St', city: 'St. Louis', state: 'MO', country: 'USA', category: 'skiing',
+    capacity: 14, beds:8 , rooms: 5, baths: 3, parking: true,
+    washer: false, dryer: true, heater: true, ac: false, tv: true, wifi: true,
+    kitchen: true, microwave: false, fireplace: true, pets: false, host_id: 11)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/winter.jpg")
+room11.photo.attach(io: file, filename: 'winter.jpg')
+
+room12 = Room.create!(title: "Starlight Tent Near Petrified Forest",
+    description: "This is a rare chance to sleep in a comfortable tent in the middle of wide open space and to feel the essence of the surrounding desert. It's like you are stepping back in time: there are even old abandoned Pony Express buildings from the 1800's nearby that you can walk to.",
+    price: 64, address: '7707 Sandhill Rd', city: 'Holbrook', state: 'AZ', country: 'USA', category: 'beach_front',
+    capacity: 2, beds:1 , rooms: 1, baths: 1, parking: false,
+    washer: false, dryer: false, heater: true, ac: true, tv: true, wifi: true,
+    kitchen: false, microwave: false, fireplace: false, pets: false, host_id: 17)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/camping.jpg")
+room12.photo.attach(io: file, filename: 'camping.jpg')
 
 Reservation.destroy_all
 reservation1 = Reservation.create!(
@@ -139,4 +183,9 @@ reservation4 = Reservation.create!(
     num_guests: 3,
     reserved_person_id: user6.id,
     reserved_room_id: room7.id)
-    
+reservation5 = Reservation.create!(
+    checkin: "2024-02-14", 
+    checkout: "2024-02-16",
+    num_guests: 3,
+    reserved_person_id: user8.id,
+    reserved_room_id: room4.id)
