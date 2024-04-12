@@ -14,6 +14,7 @@
     
 
 # end
+require 'open-uri'
 require 'faker'
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
 ActiveRecord::Base.connection.reset_pk_sequence!('rooms')
