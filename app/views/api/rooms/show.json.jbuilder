@@ -26,7 +26,7 @@ if @room.reservations.present?
     } 
 end
 if @room.reviews.present?
-    json.review_id room.reviews.map{ |review| 
+    json.review_id @room.reviews.map{ |review| 
         json.review_id review.id
     } 
 end

@@ -240,11 +240,11 @@ Review.destroy_all
         Review.create!(
             title: Faker::Lorem.words(number: 3).join(" "),
             description: long_review_sentences.sample,
-            cleanliness: Faker::Number.between(from: 1, to: 5),
-            communication: Faker::Number.between(from: 1, to: 5),
-            accuracy: Faker::Number.between(from: 1, to: 5),
-            location: Faker::Number.between(from: 1, to: 5),
-            value: Faker::Number.between(from: 1, to: 5),
+            cleanliness: Faker::Number.between(from: 3, to: 5),
+            communication: Faker::Number.between(from: 3, to: 5),
+            accuracy: Faker::Number.between(from: 3, to: 5),
+            location: Faker::Number.between(from: 3, to: 5),
+            value: Faker::Number.between(from: 3, to: 5),
             reviewer_id: Faker::Number.between(from: 1, to: 20),
             review_room_id: Faker::Number.between(from: 1, to: 8)
         )
