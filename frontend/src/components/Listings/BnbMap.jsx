@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import './BnbMap.css'
+import.meta.env.REACT_APP_GOOGLE_MAP_API_KEY
 
 const BnbMap = ({latitude, longitude, currentRoom}) => {
     const mapRef = useRef(null);

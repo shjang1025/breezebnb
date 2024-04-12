@@ -15,7 +15,8 @@ import { useSelector } from "react-redux"
 import BnbMap from "./BnbMap"
 import { selectCurrentRoom } from "../../store/roomReducer"
 import { FaStar } from "react-icons/fa";
-
+import { fetchRoom } from "../../store/roomReducer"
+import.meta.env.REACT_APP_GOOGLE_MAP_API_KEY
 
 const ListingsShow = () => {
     const currentUser = useSelector(selectCurrentUser);
@@ -31,9 +32,10 @@ const ListingsShow = () => {
     const [numGuests, setNumGuests] = useState(null);
     const [viewDropdown, setViewDropdown] = useState(false);
     const [latLng, setLatLng] = useState(null);
+    const [rByRoom, setRByRoom] = useState(null); 
 
     useEffect(() => {
-        fetchRoomData(room_id)
+        fetchRoom(room_id)
     }, [room_id])
 
     const fetchLatLng = async (compactAddress) => {
@@ -229,6 +231,16 @@ const ListingsShow = () => {
         }
         return false;
     }
+    
+
+    useEffect(() => {
+        if (reviews) {
+            const calculatedReviews = calculateOverallRatingsForRooms(reviews);
+            setRByRoom(calculatedReviews);
+        }
+    }, [reviews]);
+
+
     return(
         <>
             <Navbar/>
@@ -470,13 +482,16 @@ const ListingsShow = () => {
                     <div className="reviews-container">
                         
                         <div className="reviews-inner-container">
-                            {hasRoomIdAsKey(reviewsByRoom) ? 
+                        {!reviewsByRoom ? (
+                            <div>Loading...</div>
+                        ):(
+                            hasRoomIdAsKey(reviewsByRoom) ? (
                                 <div className="review-result">
                                     <span>
                                         <p>There is no review</p>
                                     </span>
-                                </div>   
-                            :
+                                </div>
+                            ):(
                                 <>
                                     <div className="review-result-container">
                                         <div className="review-result">
@@ -545,7 +560,10 @@ const ListingsShow = () => {
                                         Review Details
                                     </div> */}
                                 </>
-                            }
+                                )
+                            
+                        )}
+                            
                             
 
                         </div>
