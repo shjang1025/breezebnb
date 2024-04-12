@@ -141,7 +141,8 @@
 
 }
 .no-reservation-container,
-.no-hostings{
+.no-hostings,
+.no-reviews{
     display: flex;
     flex-direction: row;
 }
@@ -231,7 +232,7 @@
 .location span:first-child p {
     padding-bottom: 20px;
 }
-.no-hostings {
+.no-hostings, .no-reviews {
     display: flex;
     flex-direction: row;
 }
@@ -282,4 +283,11 @@
 }
 .review-description span p{
     padding-bottom: 10px;
+}
+.no-current-reservation, 
+.no-review-content {
+    flex: 1;
+    font-size: 20px;
+    font-weight: bold;
+    
 }

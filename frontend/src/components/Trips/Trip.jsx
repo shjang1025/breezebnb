@@ -13,6 +13,7 @@ import { destroyRoom, selectCurrentRoom } from "../../store/roomReducer";
 import { Link } from "react-router-dom";
 import ReviewModal from "./ReviewModal";
 import { FaStar } from "react-icons/fa";
+import { destroyReview } from "../../store/reviewReducer";
 
 const Trip = props => {
     
@@ -53,10 +54,10 @@ const Trip = props => {
     const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
     const [reviewModal, setReviewModal] =useState(false)
 
-    useEffect(() => {console.log("Cuurent Reviews ", currentReviews)},[currentReviews])
+
     useEffect(() => {
 
-    }, [user_id, reservations])
+    }, [user_id, reservations,reviews])
     useEffect(() => {
         console.log("Room Data change")
     }, [rooms])
@@ -208,6 +209,9 @@ const Trip = props => {
                         {pastReservations.length > 0 ? 
                             pastReservations.map(reservation => {
                                 const room = Object.values(rooms).find(room => room.id === reservation.roomId);
+                                if (!room) {
+                                    return (<p key={reservation.id}>Loading..</p>)
+                                }                                
                                 return (
                                     <div className="booking-container" key={reservation.id}>
                                         <div className="button-container" >
@@ -318,7 +322,7 @@ const Trip = props => {
                             })
                             : 
                                 <div className="no-hostings"> 
-                                        <div className="current-reservation">
+                                        <div className="no-current-reservation">
                                             <p>You have no Hostings</p>
                                         </div>
                                         <div className="no-hosting-photo">
@@ -340,7 +344,12 @@ const Trip = props => {
                                         return (<p key={review.id}>Loading..</p>)
                                     }
                                    return(
+                                    
                                     <div className="reviews-index-container" key={review.id}>
+                                        <div className="button-container" >
+                                                <button className="review-edit-button" onClick={() => handleReviewOpenClick(review.id)}>Edit</button>
+                                                <button className="review-delete-button" onClick={() => dispatch(destroyReview(review.id))}>Delete</button>
+                                            </div>
                                         <div className="yes-reviews-inner">
                                             <div className="review-title-container">
                                                 <div className="review-title">
