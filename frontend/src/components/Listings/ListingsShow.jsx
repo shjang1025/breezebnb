@@ -13,7 +13,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { selectCurrentUser } from "../../store/sessionReducer"
 import { useSelector } from "react-redux"
 import BnbMap from "./BnbMap"
-import { google_api_key } from "../../API_Key/api_key";
 import { selectCurrentRoom } from "../../store/roomReducer"
 import { FaStar } from "react-icons/fa";
 
@@ -39,10 +38,10 @@ const ListingsShow = () => {
 
     const fetchLatLng = async (compactAddress) => {
         try {
-            const ak = google_api_key;
+            // const ak = google_api_key;
             const fullAddress = encodeURIComponent(compactAddress)
             
-            const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=${ak}`)
+            const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=REACT_APP_GOOGLE_MAP_API_KEY`)
 
             if (!res.ok) {
                 throw res
@@ -542,6 +541,9 @@ const ListingsShow = () => {
                                             </span>   
                                         </div>
                                     </div>
+                                    {/* <div>
+                                        Review Details
+                                    </div> */}
                                 </>
                             }
                             

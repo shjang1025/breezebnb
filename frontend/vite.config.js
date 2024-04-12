@@ -18,6 +18,7 @@ export default defineConfig({
       
   }, 
   build: {
-    outDir: '../public' //output to be in the rails public folder
+    outDir: '../public',
+    emptyOutDir: true
   }
 })
