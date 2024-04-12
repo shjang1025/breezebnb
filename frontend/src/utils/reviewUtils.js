@@ -1,21 +1,21 @@
 import { csrfFetch } from "./csrfUtils"
 
 export const postReview = reviewData => (
-    csrfFetch('/api/reservations', {
+    csrfFetch('/api/reviews', {
         method: 'POST',
         body: JSON.stringify(reviewData)
     })
 )
 
 export const editReview = reviewData => (
-    csrfFetch( `/api/reservations/${reviewData.id}`, {
+    csrfFetch( `/api/reviews/${reviewData.id}`, {
         method: 'PATCH',
         body: JSON.stringify(reviewData)
     })
 )
 
 export const deleteReview = (reviewId) => (
-    csrfFetch(`/api/reservations/${reviewId}`, {
+    csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE'
     })
 )

@@ -13,7 +13,18 @@ class Api::ReviewsController < ApplicationController
     def create
         @review = Review.new(review_params)
         room = Room.find_by(id: params[:review][:review_room_id])
+        if room 
+            @review.room = room
+            # @review.reserver = reserver 
+            if @review.save
+                render :show
+            else 
+                render json: @review.errors.full_messages, status: 422
+            end
+        else
 
+            render json: {error: "Room not found" }, status: 404
+        end
     end
 
     def destroy
@@ -35,8 +46,7 @@ class Api::ReviewsController < ApplicationController
 
     private
     def review_params
-        params.require(:review).permit(:title, :description, :cleanliness, :accuracy, :location, :value
-                                        , :reviewer_id, :review_room_id)
+        params.require(:review).permit(:title, :description, :cleanliness, :communication,:accuracy, :location, :value, :reviewer_id, :review_room_id)
     end
 
     def find_review

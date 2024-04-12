@@ -95,13 +95,12 @@ export const selectReview = (reviewId => state => state.reviews[reviewId] ? stat
 const reviewReducer = (state={}, action) => {
     const newState = {...state}
     switch(action.type) {
-        case RECEIVE_RESERVATION:
+        case RECEIVE_REVIEW:
             newState[action.review.id] = action.review
             return newState
-        case RECEIVE_RESERVATIONS:
-            // return action.reservations
+        case RECEIVE_REVIEWS:
             return action.reviews
-        case REMOVE_RESERVATION:
+        case REMOVE_REVIEW:
             delete newState[action.reviewId]
             return newState
         default:

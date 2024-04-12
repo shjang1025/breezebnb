@@ -7,22 +7,20 @@ import { selectCurrentUser } from "../../store/sessionReducer";
 import { createReview, selectReview, selectReviewsArray } from "../../store/reviewReducer";
 import { FaStar } from "react-icons/fa";
 
-const ReviewModal = ({reviewId, setReviewModal, initialReviewData,roomId }) => {
+const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,roomId }) => {
     const dispatch = useDispatch()
 
     const [viewDropdown, setViewDropdown] = useState(false);
     const reservations = useSelector(state => state.reservations)
     const reviews = useSelector(state => state.reviews)
+
     const rooms = useSelector(state => state.rooms)
     const currentUser = useSelector(selectCurrentUser);
+    
     const users = useSelector(state => state.users)
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const ARRAY = [0,1,2,3,4]
-    const ARRAY1 = [0,1,2,3,4]
-    const ARRAY2 = [0,1,2,3,4]
-    const ARRAY3 = [0,1,2,3,4]
-    const ARRAY4 = [0,1,2,3,4]
 
     const [cleanliness, setCleanliness] = useState(0)
     const [accuracy, setAccuracy] = useState(0)
@@ -30,25 +28,7 @@ const ReviewModal = ({reviewId, setReviewModal, initialReviewData,roomId }) => {
     const [location, setLocation] = useState(0)
     const [value, setValue] = useState(0)
     
-    //index가 클릭한 인덱스 
 
-    // const cleanlinessStarScore = clickedIndex => {
-    //     let star = []
-    //     for(let i = 1; i <= 5; i++) {
-    //         if(i <= cleanliness ) {
-    //             star.push(true)
-    //         } else {
-    //             star.push(false)
-    //         }
-    //     }
-    //     // let star = [...cleanliness];
-    //     for(let i = 0; i < 5; i++) {
-    //         star[i] = i <= clickedIndex ? true: false
-    //     }
-    //     const count = star.filter(x => x === true).length
-        
-    //     setCleanliness(count)
-    // }
     const cleanlinessStarScore = clickedIndex => {
         const count = clickedIndex + 1; // 클릭된 별점의 개수는 클릭된 인덱스 + 1입니다.
         setCleanliness(count);
@@ -80,11 +60,12 @@ const ReviewModal = ({reviewId, setReviewModal, initialReviewData,roomId }) => {
     //
     const reviewsArr = users[currentUser.id].reviewId
 
-    const findRoom =(reviewId) => {
-
-        for(let i = 0; i < reviewsArr.length; i++) {
-            if(reviewsArr[i] === reviewId) {
-                return (reviews[reservationId].roomId)
+    const findRoom =(reservationId) => {
+        // console.log(reservationsArr)
+        // console.log(viewDropdown)
+        for(let i = 0; i < reservationsArr.length; i++) {
+            if(reservationsArr[i] === reservationId) {
+                return (reservations[reservationId].roomId)
             }
         }
         return null;
@@ -108,16 +89,18 @@ const ReviewModal = ({reviewId, setReviewModal, initialReviewData,roomId }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const reviewData = {
-            id: reviewId,
-            title: title,
-            description: description,
-            cleanliness: cleanliness,
-            accuracy: accuracy,
-            communication: communication,
-            location: location,
-            value: value,
-            reviewer_id: currentUser.id, 
-            review_room_id: rooms[findRoom(reviewId)].id
+            
+                id: reviewId,
+                title: title,
+                description: description,
+                cleanliness: cleanliness,
+                accuracy: accuracy,
+                communication: communication,
+                location: location,
+                value: value,
+                reviewer_id: currentUser.id, 
+                review_room_id: rooms[findRoom(reservationId)].id
+            
         }
         dispatch(createReview(reviewData));
         setReviewModal(false)
@@ -167,7 +150,7 @@ const ReviewModal = ({reviewId, setReviewModal, initialReviewData,roomId }) => {
                             </label>
                             {/* Accuracy */}
                             <label className="accuracy">Accuracy: 
-                                {ARRAY1.map((el, idx) => (
+                                {ARRAY.map((el, idx) => (
                                     <FaStar
                                         className="star"
                                         key={idx}
@@ -180,7 +163,7 @@ const ReviewModal = ({reviewId, setReviewModal, initialReviewData,roomId }) => {
 
                             {/* Communication */}
                             <label className="communication">Communication: 
-                                {ARRAY2.map((el, idx) => (
+                                {ARRAY.map((el, idx) => (
                                     <FaStar
                                         className="star"
                                         key={idx}
@@ -193,7 +176,7 @@ const ReviewModal = ({reviewId, setReviewModal, initialReviewData,roomId }) => {
 
                             {/* Location */}
                             <label className="review-location">Location: 
-                                {ARRAY3.map((el, idx) => (
+                                {ARRAY.map((el, idx) => (
                                     <FaStar
                                         className="star"
                                         key={idx}
@@ -206,7 +189,7 @@ const ReviewModal = ({reviewId, setReviewModal, initialReviewData,roomId }) => {
 
                             {/* Value */}
                             <label className="value">Value: 
-                                {ARRAY4.map((el, idx) => (
+                                {ARRAY.map((el, idx) => (
                                     <FaStar
                                         className="star"
                                         key={idx}
