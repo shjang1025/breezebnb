@@ -215,7 +215,7 @@ const ListingsShow = () => {
                                             {selectedRoom.beds} beds · {selectedRoom.baths} baths</p>
                                    </div>
                                    <div className="host-profile">
-                                        <h2>profile pic here</h2>
+                                        {/* <h2>profile pic here</h2> */}
                                    </div>
                                 </div>
                                 <div className="details-left-amenities">
@@ -246,7 +246,7 @@ const ListingsShow = () => {
                                     <p id="description">{selectedRoom.description}</p>
                                 </div>
 
-                                <div className="where-you-sleep-container">
+                                {/* <div className="where-you-sleep-container">
                                     <div className="where-you-sleep">
                                         <span>
                                             <p>Where you sleep</p>
@@ -283,8 +283,9 @@ const ListingsShow = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
 
+                            
                             </div>
                             <div className="details-right">
                                 <div className="reservation-outer-container">

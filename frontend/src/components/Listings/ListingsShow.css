@@ -109,7 +109,7 @@
 .host-profile {
     flex: 1;
     margin-right: 0;
-    background-color: #49b293;
+    /* background-color: #49b293; */
 }
 
 .details-left-amenities {
@@ -141,12 +141,11 @@
 
 }
 .details-left-description {
-    margin-top: 10px;
-    margin-bottom: 10px;
     text-align: start;
-    padding-top: 50px;
+    padding-top: 40px;
     padding-bottom: 50px;
 }
+
 .listings-show-container #description {    
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     font-weight: normal;
