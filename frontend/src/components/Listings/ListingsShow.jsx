@@ -17,7 +17,6 @@ import { selectCurrentRoom } from "../../store/roomReducer"
 import { FaStar } from "react-icons/fa";
 import { fetchRoom } from "../../store/roomReducer"
 import.meta.env.REACT_APP_GOOGLE_MAP_API_KEY
-
 const ListingsShow = () => {
     const currentUser = useSelector(selectCurrentUser);
     const isLoggedin = !!currentUser;
@@ -36,7 +35,7 @@ const ListingsShow = () => {
     const [rByRoom, setRByRoom] = useState(null); 
 
     useEffect(() => {
-        fetchRoom(room_id)
+        fetchRoomData(room_id)
     }, [room_id])
 
     const fetchLatLng = async (compactAddress) => {
@@ -66,7 +65,7 @@ const ListingsShow = () => {
             setSelectedRoom(currentRoom);
             fetchLatLng(fullAddress(currentRoom));
         } else {
-            return null
+            setSelectedRoom(null)
         }
     }, [currentRoom]);
 
@@ -238,8 +237,7 @@ const ListingsShow = () => {
 
     useEffect(() => {
         if (reviews) {
-            const calculatedReviews = calculateOverallRatingsForRooms(reviews);
-            setRByRoom(calculatedReviews);
+            calculateOverallRatingsForRooms(reviews)
         }
     }, [reviews]);
 

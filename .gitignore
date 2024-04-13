@@ -40,3 +40,4 @@ API_Key
 
 #index.html
 .env
+.api_key.js
