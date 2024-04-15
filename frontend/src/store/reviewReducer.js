@@ -34,18 +34,21 @@ export const fetchReview = (reviewId) => dispatch => {
         .catch(err => console.error(err))
 }
 
-export const fetchReviews = () => dispatch => {
-    fetch(`/api/reviews`)
-        .then(res => {
-            if (res.ok) {
-                return res.json()
-            } else {
-                throw new Error(`Failed to fetch reviews: ${res.statusText}`);
-            }
-        })
-        .then(data => dispatch(receiveReviews(data)))
-        .catch(err => console.error(err))
+export const fetchReviews = () => async dispatch => {
+    try {
+        const res = await fetch('/api/reviews')
+        if(res.ok) {
+            const data = await res.json()
+            dispatch(receiveReviews(data))
+
+        } else {
+            throw new Error (`Failed to fetch revies: ${res.statusText}`)
+        }
+    } catch(err) {
+        console.error(err)
+    }
 }
+
 export const createReview = reviewData => async dispatch => {
     try {
         const res = await postReview(reviewData)

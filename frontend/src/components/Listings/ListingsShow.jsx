@@ -114,9 +114,18 @@ const ListingsShow = () => {
             return 150
         }
     }
-    const fullAddress = ({address, city, state, country}) => {
-        return `${address}, ${city}, ${state}, ${country}`
+    // const fullAddress = ({address, city, state, country}) => {
+    //     return `${address}, ${city}, ${state}, ${country}`
+    // }
+    const fullAddress = (room) => {
+        if (!room) {
+            return "Address information not available";
+        }
+    
+        const { address, city, state, country } = room;
+        return `${address}, ${city}, ${state}, ${country}`;
     }
+    
     const handleReserveClick = () => {
         const reservationData = {
             reservation:{
@@ -180,32 +189,39 @@ const ListingsShow = () => {
         }
         return true
     }
-    const reviews = useSelector(state => state.reviews)
+    // const reviews = useSelector(state => state.reviews)
+    const reviews = useSelector(state => state.reviews);
+    if (!reviews) return null;
+
+    console.log("REVIEWS : ",reviews)
+
     function calculateOverallRatingsForRooms(reviews) {
         const overallRatingsByRoom = {};
         
         // Group reviews by room
-        for (const key in reviews) {
-            const review = reviews[key];
-            const roomId = review.reviewRoomId;
-            
-            if (!overallRatingsByRoom[roomId]) {
-                overallRatingsByRoom[roomId] = {
-                cleanliness: 0,
-                accuracy: 0,
-                location: 0,
-                value: 0,
-                communication: 0,
-                numReviews: 0
-                };
+        if(reviews) {
+            for (const key in reviews) {
+                const review = reviews[key];
+                const roomId = review.reviewRoomId;
+                
+                if (!overallRatingsByRoom[roomId]) {
+                    overallRatingsByRoom[roomId] = {
+                    cleanliness: 0,
+                    accuracy: 0,
+                    location: 0,
+                    value: 0,
+                    communication: 0,
+                    numReviews: 0
+                    };
+                }
+              
+                overallRatingsByRoom[roomId].cleanliness += review.cleanliness;
+                overallRatingsByRoom[roomId].accuracy += review.accuracy;
+                overallRatingsByRoom[roomId].location += review.location;
+                overallRatingsByRoom[roomId].value += review.value;
+                overallRatingsByRoom[roomId].communication += review.communication;
+                overallRatingsByRoom[roomId].numReviews++;
             }
-          
-            overallRatingsByRoom[roomId].cleanliness += review.cleanliness;
-            overallRatingsByRoom[roomId].accuracy += review.accuracy;
-            overallRatingsByRoom[roomId].location += review.location;
-            overallRatingsByRoom[roomId].value += review.value;
-            overallRatingsByRoom[roomId].communication += review.communication;
-            overallRatingsByRoom[roomId].numReviews++;
         }
         
         // Calculate average ratings for each room
@@ -218,12 +234,20 @@ const ListingsShow = () => {
             ratings.location = parseFloat((ratings.location / numReviews).toFixed(1));
             ratings.value = parseFloat((ratings.value / numReviews).toFixed(1));
             ratings.communication = parseFloat((ratings.communication / numReviews).toFixed(1));
-            ratings.overallRating = parseFloat(((ratings.cleanliness + ratings.accuracy + ratings.location + ratings.value + ratings.communication) / 5).toFixed(1));
+            // ratings.overallRating = parseFloat(((ratings.cleanliness + ratings.accuracy + ratings.location + ratings.value + ratings.communication) / 5).toFixed(1));
+            if (numReviews > 0) {
+                ratings.overallRating = parseFloat(((ratings.cleanliness + ratings.accuracy + ratings.location + ratings.value + ratings.communication) / 5).toFixed(1));
+            } else {
+                // If there are no reviews for this room, set overallRating to 0 or another appropriate value
+                ratings.overallRating = 0;
+            }
         }
         
         return overallRatingsByRoom;
       }
-    const reviewsByRoom = calculateOverallRatingsForRooms(reviews)
+    // const reviewsByRoom = calculateOverallRatingsForRooms(reviews)
+    const reviewsByRoom = calculateOverallRatingsForRooms(reviews);
+
     // console.log(reviewsByRoom)
     function hasRoomIdAsKey(reviewsByRoom) {
         for (const roomId in reviewsByRoom) {
@@ -494,69 +518,80 @@ const ListingsShow = () => {
                                 </div>
                             ):(
                                 <>
-                                    <div className="review-result-container">
-                                        <div className="review-result">
-                                            <p><FaStar size="35" style={{fill: "#f6e825", backgroundColor: "white"}}/></p> 
-                                            <p>{reviewsByRoom[room_id].overallRating} · {reviewsByRoom[room_id].numReviews} Reviews</p>
+                                {reviewsByRoom[room_id] ? (  
+                                    <>
+                                        <div className="review-result-container">
+                                            <div className="review-result">
+                                                <p><FaStar size="35" style={{fill: "#f6e825", backgroundColor: "white"}}/></p> 
+                                                <p>
+                                                    {reviewsByRoom[room_id].overallRating ? reviewsByRoom[room_id].overallRating : 0} · 
+                                                    {reviewsByRoom[room_id].numReviews} Reviews
+                                                </p>                                       
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="review-details-container">
-                                        <div className="review-details-cleanliness">
-                                            <span>
-                                                Cleanliness
-                                            </span>
-                                            <span>
-                                                {reviewsByRoom[room_id].cleanliness}
-                                            </span>
-                                            <span>
-                                                <FontAwesomeIcon icon={faSprayCan} size="xl"/>
-                                            </span> 
+                                        <div className="review-details-container">
+                                            <div className="review-details-cleanliness">
+                                                <span>
+                                                    Cleanliness
+                                                </span>
+                                                <span>
+                                                    {reviewsByRoom[room_id].cleanliness}
+                                                </span>
+                                                <span>
+                                                    <FontAwesomeIcon icon={faSprayCan} size="xl"/>
+                                                </span> 
+                                            </div>
+                                            <div className="review-details-accuracy">
+                                                <span>
+                                                    Accuracy
+                                                </span>
+                                                <span>
+                                                    {reviewsByRoom[room_id].accuracy}
+                                                </span>
+                                                <span>
+                                                    <FontAwesomeIcon icon={faCircleCheck} size="xl"/>
+                                                </span>     
+                                            </div>
+                                            <div className="review-details-communication">
+                                                <span>
+                                                    Communication
+                                                </span>
+                                                <span>
+                                                    {reviewsByRoom[room_id].communication}
+                                                </span>
+                                                <span>
+                                                    <FontAwesomeIcon icon={faComments} size="xl"/>
+                                                </span>     
+                                            </div>
+                                            <div className="review-details-location">
+                                                <span>
+                                                    Location
+                                                </span>
+                                                <span>
+                                                    {reviewsByRoom[room_id].location}
+                                                </span>
+                                                <span>
+                                                    <FontAwesomeIcon icon={faMap} size="xl"/>
+                                                </span>     
+                                            </div>
+                                            <div className="review-details-value">
+                                                <span>
+                                                    Value
+                                                </span>
+                                                <span>
+                                                    {reviewsByRoom[room_id].value}
+                                                </span> 
+                                                <span>
+                                                    <FontAwesomeIcon icon={faTag} size="xl"/>
+                                                </span>   
+                                            </div>
                                         </div>
-                                        <div className="review-details-accuracy">
-                                            <span>
-                                                Accuracy
-                                            </span>
-                                            <span>
-                                                {reviewsByRoom[room_id].accuracy}
-                                            </span>
-                                            <span>
-                                                <FontAwesomeIcon icon={faCircleCheck} size="xl"/>
-                                            </span>     
-                                        </div>
-                                        <div className="review-details-communication">
-                                            <span>
-                                                Communication
-                                            </span>
-                                            <span>
-                                                {reviewsByRoom[room_id].communication}
-                                            </span>
-                                            <span>
-                                                <FontAwesomeIcon icon={faComments} size="xl"/>
-                                            </span>     
-                                        </div>
-                                        <div className="review-details-location">
-                                            <span>
-                                                Location
-                                            </span>
-                                            <span>
-                                                {reviewsByRoom[room_id].location}
-                                            </span>
-                                            <span>
-                                                <FontAwesomeIcon icon={faMap} size="xl"/>
-                                            </span>     
-                                        </div>
-                                        <div className="review-details-value">
-                                            <span>
-                                                Value
-                                            </span>
-                                            <span>
-                                                {reviewsByRoom[room_id].value}
-                                            </span> 
-                                            <span>
-                                                <FontAwesomeIcon icon={faTag} size="xl"/>
-                                            </span>   
-                                        </div>
-                                    </div>
+                                    </>
+                                ) : (
+                                    <p>No reviews available for this room</p>
+                                )}
+
+                                    
                                     {/* <div>
                                         Review Details
                                     </div> */}
