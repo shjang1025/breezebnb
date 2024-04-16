@@ -46,7 +46,7 @@ export const loginUser = sessionInfo => dispatch => (
         })
 )
 
-export const logoutUser = () => dispatch => (
+export const logoutUser = () =>  dispatch => (
     deleteSession()
         .then(res => {
             if (res.ok) {
@@ -58,6 +58,7 @@ export const logoutUser = () => dispatch => (
         })
         // .catch(err => console.error(err))
 )
+
 //SELECTORS
 export const selectCurrentUser = state => state.session
 

@@ -2,13 +2,13 @@ import { useDispatch, useSelector } from "react-redux"
 import {logoutUser, selectCurrentUser } from "../store/sessionReducer"
 import { useEffect, useState } from "react";
 import './Navbar.css';
-import {Link} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faBars, faCircleUser} from "@fortawesome/free-solid-svg-icons"
 import {faLinkedin, faGithub} from "@fortawesome/free-brands-svg-icons"
 import SessionModal from "./Modal/SessionModal";
 import BottomSearchBar from "./SearchBar/BottomSearchBar"
-import TopSearchBar from "./SearchBar/TopSearchBar";
+// import TopSearchBar from "./SearchBar/TopSearchBar";
 import BreezebnbModal from './Modal/BreezebnbModal'
 import { fetchRooms } from "../store/roomReducer";
 import { fetchUsers } from "../store/userReducer";
@@ -17,7 +17,7 @@ import { fetchReviews } from "../store/reviewReducer";
 
 
 const Navbar = () => {
-
+    const location = useLocation()
     const dispatch = useDispatch();
     const rooms = useSelector(state => state.rooms);
     const users = useSelector(state => state.users);
@@ -32,9 +32,6 @@ const Navbar = () => {
 
     //find currentUser
     const currentUser = useSelector(selectCurrentUser);
-    useEffect(() => {
-
-    }, [currentUser])
     const userId = currentUser ? currentUser.id : "";
     const [view, setView] = useState(false);
     const [modalState, setModalState] = useState(null)
@@ -58,7 +55,9 @@ const Navbar = () => {
     };
     useEffect(() => {
     },[currentUser])
+    useEffect(() => {
 
+    }, [location.path] )
     const dropDown = () => {
         if(!currentUser) {
             return(
@@ -149,7 +148,7 @@ const Navbar = () => {
                             <li><Link to={'/'}>BreezeBnB</Link></li>
                         </div>
                         <div className="navbar-explore">
-                            <TopSearchBar searchModal={searchModal} handleSearchClick={handleSearchClick}/>
+                            {/* <TopSearchBar searchModal={searchModal} handleSearchClick={handleSearchClick}/> */}
                         </div>
                         <div className="navbar-menu">
                             <div className="room-hosting-links">

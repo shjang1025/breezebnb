@@ -14,11 +14,11 @@
 
 .breezebnb-modal-content {
     position: absolute;
-    left: 50%;
+    left: 48%;
     top: 40%;
     /* width: 30%; */
     width: 480px;
-    height: 20%;
+    height: 30%;
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 10px;

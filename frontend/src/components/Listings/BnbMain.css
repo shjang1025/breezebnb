@@ -19,17 +19,35 @@
     /* border: 1px solid green; */
     display: grid;
     grid-auto-rows: minmax(min-content, max-content);
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
-
+.category-search-bar {
+    margin-top: 0px;
+    padding: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 90px;
+    z-index: 2;
+    background-color: white;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    border-bottom: 1px solid;
+    border-bottom-color: #d3d3d3;
+}
 .listing-item {
     width: 90%;
     height: 100%;
     margin-left: 25px;
     margin-bottom: 0;
     justify-content: center;
-    /* border: 1px solid #ff0000;  */
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -37,7 +55,6 @@
     cursor: pointer;
 }
 .image-content {
-    /* border: 1px solid rgb(0, 255, 55); */
     width: 100%;
     height: 100%;
     border-radius: 6%;
@@ -45,7 +62,6 @@
 }
 
 .location-info {
-    /* border: 1px solid blue; */
     width: 100%;
     height: 100%;
     box-sizing: border-box;

@@ -2,20 +2,20 @@
 .trip-outer-container {
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     padding: 5px;
-    margin-left: 160px;
-    margin-right: 160px;
-    /* border: 1px solid black; */
+    padding-left: 100px;
+    padding-right: 100px;
     display: flex;
-    /* justify-content: center; */
     flex-direction: column;
     position: absolute;
-    left: 0;
+    /* left: 0; */
     top: 175px;
     height: 100%;
+    min-width: 1200px;
+
 }
 .trip-inner-container {
     box-sizing: border-box;
-    min-width: 1440px;
+    min-width: 1200px;
 
 }
 .trip-header-title {
@@ -30,23 +30,24 @@
 
 .trip-history {
     padding-bottom: 20px;
-    border-radius: 25px;
+    border-radius: 50px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
 }
 .hostings-info-container {
     padding-bottom: 20px;
-    border-radius: 25px;
+    /* border-radius: 25px; */
     margin-top: 20px;
-    margin-bottom: 20px;
-    box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
+    margin-bottom: 50px;
+    /* box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5); */
 
 }
 .booking-info {
     margin-top: 20px;
     padding-bottom: 20px;
-    border-radius: 25px;
+    margin-bottom: 50px;
+    border-radius: 50px;
     box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
 }
 
@@ -210,6 +211,10 @@
 .yes-hostings-container {
     display: flex;
     flex-direction: row;
+    margin-bottom: 50px;
+    box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
+    border-radius: 50px;
+
 }
 .yes-hostings-inner{
     display: flex;
@@ -229,6 +234,13 @@
     display: flex;
     flex-direction: column;
 }
+.other-info span {
+    text-align: start;
+    padding-left: 30px;
+}
+/* .other-info span {
+    padding-right: 60px;
+} */
 .location span:first-child {
     font-weight: bold;
     font-style: italic;
@@ -254,23 +266,30 @@
 
 .reviews-info-container {
     padding-bottom: 20px;
-    border-radius: 25px;
     margin-top: 20px;
     margin-bottom: 20px;
-    box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
 
 }
 .reviews-index-container {
     display: flex;
     flex-direction: row;
     box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
+    margin-bottom: 40px;
+    border-radius: 50px;
 }
-
+.review-description {
+    padding: 30px;
+}
 
 .review-description span:first-child p{
     font-size: 18px;
     font-weight: bold;
     padding-bottom: 10px;
+    text-align: start;
+
+}
+.review-description span:nth-child(2) p{
+    text-align: start;
 }
 .review-description span p{
     padding-bottom: 10px;
@@ -284,7 +303,7 @@
 }
 .review-title-below {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 .reviews-index-title {
     padding-bottom: 10px;
