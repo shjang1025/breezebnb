@@ -29,7 +29,7 @@ const BottomSearchBar = ({searchModal}) => {
                                 <input type="text" placeholder="             Add guests"/>
                                 <span><i className="lni lni-search-alt"></i></span>
                             </div>
-                            <div class="search-button">
+                            <div className="search-button">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" 
                                     style={{
                                         display: 'block',

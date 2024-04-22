@@ -89,6 +89,7 @@ const ListingsShow = () => {
             console.error('Error fetching user data:', error);
         }
     }
+
     useEffect(() => {
         
     }, [fetchRoomData, fetchUserData])
@@ -114,9 +115,6 @@ const ListingsShow = () => {
             return 150
         }
     }
-    // const fullAddress = ({address, city, state, country}) => {
-    //     return `${address}, ${city}, ${state}, ${country}`
-    // }
     const fullAddress = (room) => {
         if (!room) {
             return "Address information not available";
@@ -189,7 +187,6 @@ const ListingsShow = () => {
         }
         return true
     }
-    // const reviews = useSelector(state => state.reviews)
     const reviews = useSelector(state => state.reviews);
     if (!reviews) return null;
 
@@ -197,8 +194,6 @@ const ListingsShow = () => {
 
     function calculateOverallRatingsForRooms(reviews) {
         const overallRatingsByRoom = {};
-        
-        // Group reviews by room
         if(reviews) {
             for (const key in reviews) {
                 const review = reviews[key];
@@ -234,21 +229,17 @@ const ListingsShow = () => {
             ratings.location = parseFloat((ratings.location / numReviews).toFixed(1));
             ratings.value = parseFloat((ratings.value / numReviews).toFixed(1));
             ratings.communication = parseFloat((ratings.communication / numReviews).toFixed(1));
-            // ratings.overallRating = parseFloat(((ratings.cleanliness + ratings.accuracy + ratings.location + ratings.value + ratings.communication) / 5).toFixed(1));
             if (numReviews > 0) {
                 ratings.overallRating = parseFloat(((ratings.cleanliness + ratings.accuracy + ratings.location + ratings.value + ratings.communication) / 5).toFixed(1));
             } else {
-                // If there are no reviews for this room, set overallRating to 0 or another appropriate value
                 ratings.overallRating = 0;
             }
         }
         
         return overallRatingsByRoom;
       }
-    // const reviewsByRoom = calculateOverallRatingsForRooms(reviews)
     const reviewsByRoom = calculateOverallRatingsForRooms(reviews);
 
-    // console.log(reviewsByRoom)
     function hasRoomIdAsKey(reviewsByRoom) {
         for (const roomId in reviewsByRoom) {
           if (reviewsByRoom.hasOwnProperty(roomId) && roomId === reviewsByRoom[roomId].room_id) {
@@ -299,14 +290,12 @@ const ListingsShow = () => {
                                             {selectedRoom.beds} beds · {selectedRoom.baths} baths</p>
                                    </div>
                                    <div className="host-profile">
-                                        {/* <h2>profile pic here</h2> */}
                                    </div>
                                 </div>
                                 <div className="details-left-amenities">
                                     <h2>What this place offers</h2>
                                     <ul>
                                         {Object.entries(selectedRoom.amenities).map(([amenity, value], idx) => (
-                                            // Only render the <li> if the value is true
                                             value &&
                                             <li key={idx} className="amenity-item">
                                             {amenity === 'parking' && value && <FontAwesomeIcon icon={faSquareParking} size="xl" className="amenity-icon"/>}
@@ -329,47 +318,6 @@ const ListingsShow = () => {
                                 <div className="details-left-description">
                                     <p id="description">{selectedRoom.description}</p>
                                 </div>
-
-                                {/* <div className="where-you-sleep-container">
-                                    <div className="where-you-sleep">
-                                        <span>
-                                            <p>Where you sleep</p>
-                                        </span>
-                                        <div className="sleep-buttons-container">
-                                            <span>1 / 3</span>
-                                            <div className="sleep-button" >
-                                                <FontAwesomeIcon icon={faChevronLeft} className="arrow-icon" aria-label="Previous"/>
-                                            </div>
-                                            <div className="sleep-button" >
-                                                <FontAwesomeIcon icon={faChevronRight} className="arrow-icon" aria-label="Next"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="sleep-photo-carousel-container">
-                                        <div className="sleep-photo-carousel">
-                                            <div className="carousel-photo">
-                                                1
-                                            </div>
-                                            <div className="carousel-photo">
-                                                2
-                                            </div>
-                                            <div className="carousel-photo">
-                                                3
-                                            </div>
-                                            <div className="carousel-photo">
-                                                4
-                                            </div>
-                                            <div className="carousel-photo">
-                                                5
-                                            </div>
-                                            <div className="carousel-photo">
-                                                6
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> */}
-
-                            
                             </div>
                             <div className="details-right">
                                 <div className="reservation-outer-container">
@@ -495,10 +443,7 @@ const ListingsShow = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>
@@ -590,17 +535,12 @@ const ListingsShow = () => {
                                 ) : (
                                     <p>No reviews available for this room</p>
                                 )}
-
-                                    
                                     {/* <div>
                                         Review Details
                                     </div> */}
                                 </>
                                 )
-                            
                         )}
-                            
-                            
 
                         </div>
 
@@ -625,9 +565,7 @@ const ListingsShow = () => {
 
                 ) : (
                     <p>Loading...</p>
-                )}
-                
-               
+            )}   
         </>
     )
 }

@@ -14,6 +14,7 @@ import { fetchRooms } from "../store/roomReducer";
 import { fetchUsers } from "../store/userReducer";
 import { fetchReservations } from "../store/reservationReducer";
 import { fetchReviews } from "../store/reviewReducer";
+import { postSession } from "../utils/sessionApiUtils";
 
 
 const Navbar = () => {
@@ -53,11 +54,16 @@ const Navbar = () => {
             setShowSigninModal(true);
         }
     };
+    const demoInfo = {
+        email: "bbbb@test.com",
+        password: "password"
+    }
     useEffect(() => {
     },[currentUser])
     useEffect(() => {
 
     }, [location.path] )
+
     const dropDown = () => {
         if(!currentUser) {
             return(
@@ -69,6 +75,9 @@ const Navbar = () => {
                         <div className="divider"></div>
                         <div>
                             <li id="signup" onClick={() => setModalState('signup')}>Signup</li>
+                        </div>
+                        <div>
+                            <li id="demo-login" onClick={() => dispatch(loginUser(demoInfo))}>Demo Login</li>
                         </div>
                         <div className="divider"></div>
 

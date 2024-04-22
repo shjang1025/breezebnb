@@ -80,8 +80,8 @@ h1 {
 .hosting-form input::placeholder,
 .hosting-form textarea::placeholder,
 .hosting-form select::placeholder {
-    color: #999; /* Placeholder text color */
-    font-style: italic; /* Placeholder text style */
+    color: #999; 
+    font-style: italic; 
     padding-left: 10px;
 }
 .hosting-form textarea::placeholder {

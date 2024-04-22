@@ -23,7 +23,6 @@ const EditModal = ({reservationId, setEditModal}) => {
     const currentUser = useSelector(selectCurrentUser);
     const users = useSelector(state => state.users)
     const [numGuests, setNumGuests] = useState(null);
-    const [errors, setErrors] = useState('')
     const [checkInDate, setCheckInDate] = useState(null);
     const [checkOutDate, setCheckOutDate] = useState(null);
     const reservationsArr = users[currentUser.id].reservationId //[1,5]
