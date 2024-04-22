@@ -2,24 +2,22 @@ import { useParams } from "react-router"
 import Navbar from "../Navbar"
 import "./ListingsShow.css"
 import { useState, useEffect } from "react"
-import {faSquareParking, faTv, faIgloo, faTemperatureArrowUp,faSprayCan,
-    faShirt, faSocks, faWifi, faSink, faFireBurner,faFire,faDog, faAngleDown, faCircleCheck, faKey,
-    faComments,faMap,faTag} from "@fortawesome/free-solid-svg-icons"
+import {faSquareParking, faTv, faIgloo, faTemperatureArrowUp,
+    faShirt, faSocks, faWifi, faSink, faFireBurner,faFire,faDog, faAngleDown} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { differenceInDays } from "date-fns"; 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { selectCurrentUser } from "../../store/sessionReducer"
 import { useSelector } from "react-redux"
 import BnbMap from "./BnbMap"
 import { selectCurrentRoom } from "../../store/roomReducer"
 import { FaStar } from "react-icons/fa";
 import { fetchRoom } from "../../store/roomReducer"
 import.meta.env.REACT_APP_GOOGLE_MAP_API_KEY
+import Review from "./Review"
+import ReservationDate from "./ReservationDate"
+
 const ListingsShow = () => {
-    const currentUser = useSelector(selectCurrentUser);
-    const isLoggedin = !!currentUser;
     const {room_id} = useParams();
     //null protection on currentRoom
     const currentRoom = useSelector(selectCurrentRoom(room_id))
@@ -40,7 +38,6 @@ const ListingsShow = () => {
 
     const fetchLatLng = async (compactAddress) => {
         try {
-            // const ak = google_api_key;
             const fullAddress = encodeURIComponent(compactAddress)
             
             const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}`)
@@ -94,77 +91,18 @@ const ListingsShow = () => {
         
     }, [fetchRoomData, fetchUserData])
 
-    const daysCalculation = () => {
-        if (checkInDate && checkOutDate) {
-          return differenceInDays(checkOutDate, checkInDate);
-        }
-        return 0; // Default to 0 if either date is not set
-    };
-    const cleaningFeeRange = () => {
-        if(selectedRoom.price <= 100) {
-            return 20
-        } else if (selectedRoom.price <= 170) {
-            return 53
-        } else if (selectedRoom.price <= 260) {
-            return 72
-        } else if (selectedRoom.price <= 400) {
-            return 100
-        } else if (selectedRoom.price <= 600) {
-            return 120
-        } else {
-            return 150
-        }
-    }
     const fullAddress = (room) => {
         if (!room) {
             return "Address information not available";
         }
-    
         const { address, city, state, country } = room;
         return `${address}, ${city}, ${state}, ${country}`;
     }
     
-    const handleReserveClick = () => {
-        const reservationData = {
-            reservation:{
-                num_guests: numGuests, 
-                checkin: checkInDate, 
-                checkout: checkOutDate, 
-                reserved_person_id: currentUser.id, 
-                reserved_room_id: room_id
-            }
-        }
-        fetch('/api/reservations', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-Token': sessionStorage.getItem('X-CSRF-Token')
-            },
-            body: JSON.stringify(reservationData)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.error) {
-                setErrors(data.error);
-            } else {
-                setErrors('')
-            }
-        })
-        .catch(error => {
-            console.error(error)
-        })
-
-        setNumGuests(null)
-        setCheckInDate(null)
-        setCheckOutDate(null)
-    }
-
     const handleArrowClick = () => {
         setViewDropdown(!viewDropdown)
     }
-    
     const guestDropdown = () => {
-
         const handleGuestDivClick = (i) => {
             setNumGuests(i)
             setViewDropdown(!viewDropdown)
@@ -183,14 +121,11 @@ const ListingsShow = () => {
             if(date >= startDate && date <= endDate) {
                 return false
             }
-
         }
         return true
     }
     const reviews = useSelector(state => state.reviews);
     if (!reviews) return null;
-
-    console.log("REVIEWS : ",reviews)
 
     function calculateOverallRatingsForRooms(reviews) {
         const overallRatingsByRoom = {};
@@ -321,229 +256,24 @@ const ListingsShow = () => {
                             </div>
                             <div className="details-right">
                                 <div className="reservation-outer-container">
-                                    <div className="reservation-container">
-                                        <div className="price-per-night">
-                                            <p><span className="bold-text">${selectedRoom.price}</span> night</p>
-                                        </div>
-                                        <button className="reservation-date-button">
-                                            <div className="left">
-                                                <div className="checkin">
-                                                    <span className="checkin-label">Check-in</span>
-                                                </div>
-                                                <div className="checkin-input">
-                                                    <DatePicker
-                                                        className="date-picker"
-                                                        selected={checkInDate}
-                                                        onChange={(date) => setCheckInDate(date)}
-                                                        selectsStart
-                                                        startDate={checkInDate}
-                                                        endDate={checkOutDate}
-                                                        filterDate={isDateAvailable}
-                                                        placeholderText="Check-in"
-                                                        minDate={new Date()} // Disable past dates
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="right">
-                                                <div className="checkout">
-                                                    <span className="checkout-label">Check-out</span>
-                                                </div>
-                                                <div className="checkout-input">
-                                                <DatePicker
-                                                    className="date-picker"
-                                                    selected={checkOutDate}
-                                                    onChange={(date) => setCheckOutDate(date)}
-                                                    selectsEnd
-                                                    startDate={checkInDate}
-                                                    endDate={checkOutDate}
-                                                    filterDate={isDateAvailable}
-                                                    placeholderText="Check-out"
-                                                    minDate={checkInDate || new Date()} // Disable past dates and dates before check-in
-                                                />
-                                                </div>
-                                            </div>
-                                        </button>
-                                        <div className="guest-dropdown">
-                                            <div className="guest-dropdown-upper" onClick={handleArrowClick}>
-                                                <label className="guest-picker"> 
-                                                    <div className="guest-text">Guests</div>
-                                                    <div className="guest-select">
-                                                        <span>{numGuests} guests</span>
-                                                    </div>
-                                                </label>
-                                                <div className="guest-dropdown-arrow" >
-                                                    <FontAwesomeIcon icon={faAngleDown} />
-                                                </div>
-                                            </div>
-                                            {viewDropdown && (
-                                                <div className="guest-dropdown-content">
-                                                    {guestDropdown()}
-                                                </div>
-                                            )}
-                                        </div>
-
-    
-                                    </div>
+                                    <ReservationDate DatePicker={DatePicker} selectedRoom={selectedRoom} 
+                                        guestDropdown={guestDropdown} setCheckInDate={setCheckInDate} checkInDate={checkInDate} 
+                                        checkOutDate={checkOutDate} setCheckOutDate={setCheckOutDate} isDateAvailable={isDateAvailable}
+                                        handleArrowClick={handleArrowClick} numGuests={numGuests} viewDropdown={viewDropdown}/>
                                     {errors && 
                                         <div className="date-error-message">
                                             <p>* {errors}</p>
                                         </div>
                                     }
-
-                                    <div className="reservation-button-container">
-                                            <div className="button-container" 
-                                                onClick={handleReserveClick}>
-                                                <button disabled={!isLoggedin}>
-                                                    {currentUser === null ? 'Need to Login':'Reserve'}
-                                                </button>
-                                            </div>
-                                            <div>
-                                                You won't be charged yet
-                                            </div>
-                                    </div>
-                                    <div className="reservation-fee-calculation">
-                                        <div className="reservation-fee-upper-container">
-                                            <div className="reservation-fee-left">
-                                                <span className="reservation-text">
-                                                    ${selectedRoom.price} x {daysCalculation()} nights
-                                                </span>
-                                                <span className="reservation-text">
-                                                    Cleaning fee
-                                                </span>
-                                                <span className="service-fee-text">
-                                                    Breezebnb Service fee
-                                                </span>
-                                                
-                                            </div>
-                                            <div className="reservation-fee-right">
-                                                <span className="reservation-text">
-                                                    ${selectedRoom.price * daysCalculation()}
-                                                </span>
-                                                <span className="reservation-text">
-                                                    ${cleaningFeeRange()}
-                                                </span>
-                                                <span className="reservation-text">
-                                                    ${30}
-                                                </span>
-                                                
-                                            </div>
-                                        </div>
-                                        <div className="divider"></div>
-                                        <div className="reservation-fee-below-cotainer">
-                                            <div className="total">
-                                                <div className="total-left">
-                                                    <span className="reservation-text">
-                                                        Total before Taxes
-                                                    </span>
-                                                </div>
-                                                <div className="total-right">
-                                                    <span className="reservation-text">
-                                                        ${daysCalculation() * selectedRoom.price + cleaningFeeRange() + 30}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                     <div className="reviews-container">
-                        
                         <div className="reviews-inner-container">
-                        {!reviewsByRoom ? (
-                            <div>Loading...</div>
-                        ):(
-                            hasRoomIdAsKey(reviewsByRoom) ? (
-                                <div className="review-result">
-                                    <span>
-                                        <p>There is no review</p>
-                                    </span>
-                                </div>
-                            ):(
-                                <>
-                                {reviewsByRoom[room_id] ? (  
-                                    <>
-                                        <div className="review-result-container">
-                                            <div className="review-result">
-                                                <p><FaStar size="35" style={{fill: "#f6e825", backgroundColor: "white"}}/></p> 
-                                                <p>
-                                                    {reviewsByRoom[room_id].overallRating ? reviewsByRoom[room_id].overallRating : 0} · 
-                                                    {reviewsByRoom[room_id].numReviews} Reviews
-                                                </p>                                       
-                                            </div>
-                                        </div>
-                                        <div className="review-details-container">
-                                            <div className="review-details-cleanliness">
-                                                <span>
-                                                    Cleanliness
-                                                </span>
-                                                <span>
-                                                    {reviewsByRoom[room_id].cleanliness}
-                                                </span>
-                                                <span>
-                                                    <FontAwesomeIcon icon={faSprayCan} size="xl"/>
-                                                </span> 
-                                            </div>
-                                            <div className="review-details-accuracy">
-                                                <span>
-                                                    Accuracy
-                                                </span>
-                                                <span>
-                                                    {reviewsByRoom[room_id].accuracy}
-                                                </span>
-                                                <span>
-                                                    <FontAwesomeIcon icon={faCircleCheck} size="xl"/>
-                                                </span>     
-                                            </div>
-                                            <div className="review-details-communication">
-                                                <span>
-                                                    Communication
-                                                </span>
-                                                <span>
-                                                    {reviewsByRoom[room_id].communication}
-                                                </span>
-                                                <span>
-                                                    <FontAwesomeIcon icon={faComments} size="xl"/>
-                                                </span>     
-                                            </div>
-                                            <div className="review-details-location">
-                                                <span>
-                                                    Location
-                                                </span>
-                                                <span>
-                                                    {reviewsByRoom[room_id].location}
-                                                </span>
-                                                <span>
-                                                    <FontAwesomeIcon icon={faMap} size="xl"/>
-                                                </span>     
-                                            </div>
-                                            <div className="review-details-value">
-                                                <span>
-                                                    Value
-                                                </span>
-                                                <span>
-                                                    {reviewsByRoom[room_id].value}
-                                                </span> 
-                                                <span>
-                                                    <FontAwesomeIcon icon={faTag} size="xl"/>
-                                                </span>   
-                                            </div>
-                                        </div>
-                                    </>
-                                ) : (
-                                    <p>No reviews available for this room</p>
-                                )}
-                                    {/* <div>
-                                        Review Details
-                                    </div> */}
-                                </>
-                                )
-                        )}
-
+                            <Review reviewsByRoom={reviewsByRoom} hasRoomIdAsKey={hasRoomIdAsKey} room_id={room_id} FaStar={FaStar}/>
                         </div>
-
                     </div>
                     <div className="map-container">
                         <div className="map-title">
@@ -552,8 +282,6 @@ const ListingsShow = () => {
                             </span>
                             <span>
                                 <p>{fullAddress(currentRoom)}</p>
-                                
-                                
                             </span>
                         </div>
                         <div className="map-inner-content">

@@ -3,7 +3,6 @@
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     margin-top: 0px;
     padding: 0px;
-    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -16,7 +15,6 @@
     width: 100%;
     height: 100%;
     padding: 30px;
-    /* border: 1px solid green; */
     display: grid;
     grid-auto-rows: minmax(min-content, max-content);
     grid-template-columns: repeat(4, 1fr);
@@ -76,7 +74,6 @@
     border-radius: 6%;
 }
 .title-info {
-    /* border: 1px solid brown; */
     width: 100%;
     height: 100%;
     text-align: start;
@@ -86,7 +83,6 @@
 
 }
 .price-info {
-    /* border: 1px solid pink; */
     width: 100%;
     height: 100%;
     text-align: start;
@@ -107,4 +103,16 @@
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.category-all, 
+.category-omg, 
+.category-beach-front,
+.category-amazing-views,
+.category-lake-front,
+.category-amazing-pools,
+.category-national-park,
+.category-camping,
+.category-design,
+.category-skiing {
+    cursor: pointer;
 }
