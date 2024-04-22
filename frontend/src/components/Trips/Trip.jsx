@@ -115,6 +115,14 @@ const Trip = () => {
         setReservationId(reservationId)
 
     }
+    if (!currentUser || !currentUser.id) {
+        // Handle the case where currentUser or currentUser.id is not available
+        return (
+            <div>
+                Loading...
+            </div>
+        );
+    }
     return(
         <>
             <Navbar/>
