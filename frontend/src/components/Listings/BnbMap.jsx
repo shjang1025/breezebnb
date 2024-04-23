@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import './BnbMap.css'
-const apiUrl = import.meta.env.REACT_APP_GOOGLE_MAP_API_KEY
+const apiKey = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY
 
 const BnbMap = ({latitude, longitude, currentRoom}) => {
     const mapRef = useRef(null);
@@ -14,7 +14,7 @@ const BnbMap = ({latitude, longitude, currentRoom}) => {
         origin: new window.google.maps.Point(0, 0), // Set the origin point of your marker icon
         anchor: new window.google.maps.Point(0,0) 
     };
-
+    
     const initMap = useCallback(() => {
         if(!window.google) {
             console.error('Google Maps API not loaded')
@@ -78,7 +78,16 @@ const BnbMap = ({latitude, longitude, currentRoom}) => {
     useEffect(() => {
     initMap();
     }, [initMap]);
+    const checkMapLoaded = () => {
+        if (window.google) {
+            loadMap();
+        } else {
+            setTimeout(checkMapLoaded, 100); // Check again in 100ms
+        }
+    };
 
+    checkMapLoaded();
+    
     return (
     <div
         className="map"
@@ -86,6 +95,8 @@ const BnbMap = ({latitude, longitude, currentRoom}) => {
         ref={mapRef}
     ></div>
     );
+    
+
 }
 
 export default BnbMap;

@@ -76,61 +76,61 @@ const BnbMain = props => {
             <Navbar/>
             <div className="category-search-bar">
                 <div className="category-all" onClick={() => handleCategoryClick('all')}>
-                    <img class="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
+                    <img className="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
                     atm_d2_2ec48i atm_fg_1h6ojuz atm_k4_1d1puqj atm_uc_15ib22x atm_ui_idpfg4__1rrf6b5 dir dir-ltr" 
                     src="https://a0.muscache.com/pictures/9a2ca4df-ee90-4063-b15d-0de7e4ce210a.jpg" alt="" width="24" height="24"/>
                     <div>All</div>
                 </div>
                 <div className="category-omg" onClick={() => handleCategoryClick('omg')}>
-                    <img class="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
+                    <img className="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
                     atm_d2_2ec48i atm_fg_1h6ojuz atm_k4_1d1puqj atm_uc_15ib22x atm_ui_idpfg4__1rrf6b5 dir dir-ltr" 
                     src="https://a0.muscache.com/pictures/c5a4f6fc-c92c-4ae8-87dd-57f1ff1b89a6.jpg" alt="" width="24" height="24"/>
                     <div>omg</div>
                 </div>
                 <div className="category-beach-front" onClick={() => handleCategoryClick('beach_front')}>
-                    <img class="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
+                    <img className="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
                     atm_d2_2ec48i atm_fg_1h6ojuz atm_k4_1d1puqj atm_uc_15ib22x atm_ui_idpfg4__1rrf6b5 dir dir-ltr" 
                     src="https://a0.muscache.com/pictures/bcd1adc0-5cee-4d7a-85ec-f6730b0f8d0c.jpg" alt="" width="24" height="24"/>
                     <div>beach-front</div>
                 </div>
                 <div className="category-amazing-views" onClick={() => handleCategoryClick('amazing_views')}>
-                    <img class="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
+                    <img className="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
                     atm_d2_2ec48i atm_fg_1h6ojuz atm_k4_1d1puqj atm_uc_15ib22x atm_ui_idpfg4__1rrf6b5 dir dir-ltr" 
                     src="https://a0.muscache.com/pictures/3b1eb541-46d9-4bef-abc4-c37d77e3c21b.jpg" alt="" width="24" height="24"/>
                     <div>amazing-views</div>
                 </div>
                 <div className="category-lake-front" onClick={() => handleCategoryClick('lake_front')}>
-                    <img class="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
+                    <img className="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
                     atm_d2_2ec48i atm_fg_1h6ojuz atm_k4_1d1puqj atm_uc_15ib22x atm_ui_idpfg4__1rrf6b5 dir dir-ltr" 
                     src="https://a0.muscache.com/pictures/677a041d-7264-4c45-bb72-52bff21eb6e8.jpg" alt="" width="24" height="24"/>
                     <div>lake-front</div>
                 </div>
                 <div className="category-amazing-pools" onClick={() => handleCategoryClick('amazing_pools')}>
-                    <img class="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
+                    <img className="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
                     atm_d2_2ec48i atm_fg_1h6ojuz atm_k4_1d1puqj atm_uc_15ib22x atm_ui_idpfg4__1rrf6b5 dir dir-ltr" 
                     src="https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg" alt="" width="24" height="24"/>
                     <div>amazing-pools</div>
                 </div>
                     <div className="category-national-park" onClick={() => handleCategoryClick('national_park')}>
-                    <img class="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
+                    <img className="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
                     atm_d2_2ec48i atm_fg_1h6ojuz atm_k4_1d1puqj atm_uc_15ib22x atm_ui_idpfg4__1rrf6b5 dir dir-ltr" 
                     src="https://a0.muscache.com/pictures/c0a24c04-ce1f-490c-833f-987613930eca.jpg" alt="" width="24" height="24"/>
                     <div>national-park</div>
                 </div>  
                 <div className="category-camping" onClick={() => handleCategoryClick('camping')}>
-                    <img class="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
+                    <img className="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
                     atm_d2_2ec48i atm_fg_1h6ojuz atm_k4_1d1puqj atm_uc_15ib22x atm_ui_idpfg4__1rrf6b5 dir dir-ltr" 
                     src="https://a0.muscache.com/pictures/ca25c7f3-0d1f-432b-9efa-b9f5dc6d8770.jpg" alt="" width="24" height="24"/>
                     <div>camping</div>
                 </div>
                 <div className="category-design" onClick={() => handleCategoryClick('design')}>
-                    <img class="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
+                    <img className="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
                     atm_d2_2ec48i atm_fg_1h6ojuz atm_k4_1d1puqj atm_uc_15ib22x atm_ui_idpfg4__1rrf6b5 dir dir-ltr" 
                     src="https://a0.muscache.com/pictures/50861fca-582c-4bcc-89d3-857fb7ca6528.jpg" alt="" width="24" height="24"/>
                     <div>design</div>
                 </div>
                 <div className="category-skiing" onClick={() => handleCategoryClick('skiing')}>
-                    <img class="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
+                    <img className="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 
                     atm_d2_2ec48i atm_fg_1h6ojuz atm_k4_1d1puqj atm_uc_15ib22x atm_ui_idpfg4__1rrf6b5 dir dir-ltr" 
                     src="https://a0.muscache.com/pictures/c8bba3ed-34c0-464a-8e6e-27574d20e4d2.jpg" alt="" width="24" height="24"/>
                     <div>skiing</div>

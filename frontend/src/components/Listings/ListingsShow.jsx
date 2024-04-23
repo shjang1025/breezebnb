@@ -13,7 +13,7 @@ import BnbMap from "./BnbMap"
 import { selectCurrentRoom } from "../../store/roomReducer"
 import { FaStar } from "react-icons/fa";
 import { fetchRoom } from "../../store/roomReducer"
-import.meta.env.REACT_APP_GOOGLE_MAP_API_KEY
+import.meta.env.VITE_APP_GOOGLE_MAP_API_KEY
 import Review from "./Review"
 import ReservationDate from "./ReservationDate"
 
@@ -40,7 +40,7 @@ const ListingsShow = () => {
         try {
             const fullAddress = encodeURIComponent(compactAddress)
             
-            const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}`)
+            const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=${process.env.VITE_APP_GOOGLE_MAP_API_KEY}`)
 
             if (!res.ok) {
                 throw res

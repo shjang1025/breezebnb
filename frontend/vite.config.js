@@ -23,7 +23,7 @@ export default defineConfig({
     html: {
       inject: {
         injectData: {
-          REACT_APP_GOOGLE_MAP_API_KEY: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
+          VITE_APP_GOOGLE_MAP_API_KEY: process.env.VITE_APP_GOOGLE_MAP_API_KEY,
         }
       }
     }
