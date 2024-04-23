@@ -13,7 +13,7 @@ import BnbMap from "./BnbMap"
 import { selectCurrentRoom } from "../../store/roomReducer"
 import { FaStar } from "react-icons/fa";
 import { fetchRoom } from "../../store/roomReducer"
-import.meta.env.VITE_APP_GOOGLE_MAP_API_KEY
+import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY
 import Review from "./Review"
 import ReservationDate from "./ReservationDate"
 
@@ -30,7 +30,6 @@ const ListingsShow = () => {
     const [numGuests, setNumGuests] = useState(null);
     const [viewDropdown, setViewDropdown] = useState(false);
     const [latLng, setLatLng] = useState(null);
-    const [rByRoom, setRByRoom] = useState(null); 
 
     useEffect(() => {
         fetchRoomData(room_id)
@@ -39,9 +38,9 @@ const ListingsShow = () => {
     const fetchLatLng = async (compactAddress) => {
         try {
             const fullAddress = encodeURIComponent(compactAddress)
+            console.log(import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY)
+            const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=${import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY}`)
             
-            const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=${process.env.VITE_APP_GOOGLE_MAP_API_KEY}`)
-
             if (!res.ok) {
                 throw res
             }

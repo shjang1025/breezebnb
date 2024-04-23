@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import './BnbMap.css'
-const apiKey = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY
+import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY
 
 const BnbMap = ({latitude, longitude, currentRoom}) => {
     const mapRef = useRef(null);
@@ -78,15 +78,6 @@ const BnbMap = ({latitude, longitude, currentRoom}) => {
     useEffect(() => {
     initMap();
     }, [initMap]);
-    const checkMapLoaded = () => {
-        if (window.google) {
-            loadMap();
-        } else {
-            setTimeout(checkMapLoaded, 100); // Check again in 100ms
-        }
-    };
-
-    checkMapLoaded();
     
     return (
     <div
