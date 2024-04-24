@@ -38,7 +38,6 @@
 #Ignore api_key
 API_Key
 
-/public/index.html
 .env
 .env.development
 .api_key.js
