@@ -36,7 +36,6 @@ const ListingsShow = () => {
     const fetchLatLng = async (compactAddress) => {
         try {
             const fullAddress = encodeURIComponent(compactAddress)
-            console.log(import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY)
             const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=${import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY}`)
             
             if (!res.ok) {
