@@ -10,10 +10,13 @@
   </head>
   <body>
     <div id="root"></div>
-    <script 
-      src="https://maps.googleapis.com/maps/api/js?key=%VITE_APP_GOOGLE_MAPS_API_KEY%&callback-initMap"
-    async >
-
+    <script>
+      const googleMapsApiKey = process.env.VITE_APP_GOOGLE_MAPS_API_KEY;
+      const scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&callback=initMap`;
+      const scriptElement = document.createElement('script');
+      scriptElement.src = scriptUrl;
+      scriptElement.async = true;
+      document.head.appendChild(scriptElement);
     </script>
   </body>
 </html>
