@@ -18,10 +18,8 @@ const Trip = () => {
     
     const dispatch = useDispatch();
     const currentUser = useSelector(selectCurrentUser)
-    // console.log("Current User is ", currentUser.id)
     const {user_id} = useParams();
     useEffect(() => {
-        console.log('Current User is', currentUser?.id);
     }, [currentUser]);
     const reservations = useSelector(state => state.reservations)
     const rooms = useSelector(state => state.rooms)

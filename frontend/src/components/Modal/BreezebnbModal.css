@@ -22,7 +22,7 @@
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 10px;
-    border-radius: 30px;
+    border-radius: 50px;
     position: absolute;
     border: 1px solid #333;
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
@@ -44,10 +44,10 @@
     width: 280px;
     margin: 20px;
     padding: 8px;
-    background-color: #E3185F;
+    background-color: #FF385C;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
 }
