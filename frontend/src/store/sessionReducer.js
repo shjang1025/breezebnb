@@ -56,7 +56,6 @@ export const logoutUser = () =>  dispatch => (
                 throw res;
             }
         })
-        // .catch(err => console.error(err))
 )
 
 //SELECTORS
@@ -68,9 +67,9 @@ const sessionReducer = (state=initialState, action) => {
     const newState = {...state}
     switch(action.type) {
         case CREATE_SESSION:
-            // return action.sessionInfo
-            newState[action.sessionInfo.id] = action.sessionInfo
-            return newState;
+            return action.sessionInfo
+            // newState[action.sessionInfo.id] = action.sessionInfo
+            // return newState;
         case DESTROY_SESSION:
             return null;
         default:

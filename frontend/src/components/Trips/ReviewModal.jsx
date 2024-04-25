@@ -9,19 +9,13 @@ import { FaStar } from "react-icons/fa";
 
 const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,roomId }) => {
     const dispatch = useDispatch()
-
-    const [viewDropdown, setViewDropdown] = useState(false);
     const reservations = useSelector(state => state.reservations)
-    const reviews = useSelector(state => state.reviews)
-
     const rooms = useSelector(state => state.rooms)
     const currentUser = useSelector(selectCurrentUser);
-    
     const users = useSelector(state => state.users)
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const ARRAY = [0,1,2,3,4]
-
     const [cleanliness, setCleanliness] = useState(0)
     const [accuracy, setAccuracy] = useState(0)
     const [communication, setCommunication] = useState(0)
@@ -95,13 +89,13 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,
             
         }
         dispatch(createReview(reviewData));
-        setReviewModal(false)
+        setReviewModal(null)
     }
 
     
 
     return(
-        <div className="edit-modal-background" onClick={() => setReviewModal(false)}>
+        <div className="edit-modal-background" onClick={() => setReviewModal(null)}>
             <div className="edit-modal-content" onClick={e => e.stopPropagation()}>
                 <div className="review-form-subject">Make a Review</div>
                 <div className="review-inner-container">
@@ -129,19 +123,23 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,
                         </label>
                         <div className="star-section">
                             {/* Cleanliness */}
-                            <label className="cleanliness">Cleanliness: 
-                            {ARRAY.map((el, idx) => (
-                                <FaStar
-                                    className="star"
-                                    key={idx}
-                                    size="20"
-                                    style={{ fill: idx < cleanliness ? '#f6e825' : '#808080', backgroundColor: 'white' }}
-                                    onClick={() => cleanlinessStarScore(idx)}
-                                />
-                            ))}
+                            <label className="cleanliness">Cleanliness:
+                            <span>
+                                {ARRAY.map((el, idx) => (
+                                    <FaStar
+                                        className="star"
+                                        key={idx}
+                                        size="20"
+                                        style={{ fill: idx < cleanliness ? '#f6e825' : '#808080', backgroundColor: 'white' }}
+                                        onClick={() => cleanlinessStarScore(idx)}
+                                    />
+                                ))}
+
+                            </span>
                             </label>
                             {/* Accuracy */}
                             <label className="accuracy">Accuracy: 
+                            <span>
                                 {ARRAY.map((el, idx) => (
                                     <FaStar
                                         className="star"
@@ -151,10 +149,12 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,
                                         onClick={() => accuracyStarScore(idx)}
                                     />
                                 ))}
+                            </span>
                             </label>
 
                             {/* Communication */}
                             <label className="communication">Communication: 
+                            <span>
                                 {ARRAY.map((el, idx) => (
                                     <FaStar
                                         className="star"
@@ -164,10 +164,12 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,
                                         onClick={() => communicationStarScore(idx)}
                                     />
                                 ))}
+                            </span>
                             </label>
 
                             {/* Location */}
                             <label className="review-location">Location: 
+                            <span>
                                 {ARRAY.map((el, idx) => (
                                     <FaStar
                                         className="star"
@@ -177,10 +179,12 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,
                                         onClick={() => locationStarScore(idx)}
                                     />
                                 ))}
+                            </span>
                             </label>
 
                             {/* Value */}
-                            <label className="value">Value: 
+                            <label className="value">Value:
+                            <span>
                                 {ARRAY.map((el, idx) => (
                                     <FaStar
                                         className="star"
@@ -190,6 +194,7 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,
                                         onClick={() => valueStarScore(idx)}
                                     />
                                 ))}
+                            </span>
                             </label>
 
                         </div>

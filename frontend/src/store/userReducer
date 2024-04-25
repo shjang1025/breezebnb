@@ -30,6 +30,18 @@ export const fetchUsers = () => dispatch => {
         .then(data => dispatch(receiveUsers(data)))
         .catch((err) => console.error(err))
 }
+export const fetchUser = userId => dispatch => {
+    fetch(`/api/users/${userId}`)
+        .then(res => {
+            if(res.ok) {
+                return res.json()
+            } else {
+                throw res
+            }
+        })
+        .then(data => dispatch(receiveUser(data)))
+        .catch((err) => console.error(err))
+}
 
 const userReducer = (state ={}, action) => {
     const newState = {...state}

@@ -228,7 +228,7 @@ const ListingsShow = () => {
                                         {Object.entries(selectedRoom.amenities).map(([amenity, value], idx) => (
                                             value &&
                                             <li key={idx} className="amenity-item">
-                                            {amenity === 'parking' && value && <FontAwesomeIcon icon={faSquareParking} size="xl" className="amenity-icon"/>}
+                                            {amenity === 'parking' && value && <FontAwesomeIcon icon={faSquareParking} size="2xl" className="amenity-icon"/>}
                                             {amenity === 'washer' && value && <FontAwesomeIcon icon={faShirt} size="xl" className="amenity-icon"/>}
                                             {amenity === 'dryer' && value && <FontAwesomeIcon icon={faSocks} size="xl" className="amenity-icon"/>}
                                             {amenity === 'tv' && value && <FontAwesomeIcon icon={faTv} size="xl" className="amenity-icon"/>}

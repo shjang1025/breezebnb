@@ -4,7 +4,7 @@
     background-color: rgba(255, 255, 255, 0.5);
     padding: 20px;
     position: absolute;
-    top: 0px;
+    top: 0;
     left: 0px;
     z-index: 10;
     display: flex;
@@ -16,13 +16,12 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    /* width: 30%; */
     width: 600px;
-    height: 60%;
+    height: 75%;
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 10px;
-    border-radius: 30px;
+    border-radius: 50px;
     position: absolute;
     border: 1px solid #333;
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
@@ -48,11 +47,19 @@
     width: 100%;
     justify-content: center;
     padding-bottom: 5px;
+    font-weight: bold;
 }
 .review-title,
 .review-description{
     padding-top: 10px;
     padding-bottom: 5px;
+}
+.review-title-input::placeholder,
+.review-description::placeholder{
+    font-style: italic;
+}
+.review-description textarea {
+    border-radius: 20px;
 }
 .star-section {
     display: flex;
@@ -67,10 +74,15 @@
 .value {
     padding-top: 15px;
     font-size: 15px;
+    font-weight: bold;
+}
+.star-section span {
+    padding-left: 10px;
 }
 .review-submit-container {
     display: flex;
     justify-content: center;
+    padding-top: 20px;
 }
 .review-submit {
     width: 100%;
@@ -79,7 +91,7 @@
     width: 70%;
     margin: 8px;
     padding: 10px;
-    background-color: #E3185F;
+    background-color: #FF385C;
     color: white;
     border: none;
     border-radius: 50px;

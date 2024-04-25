@@ -1,7 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCircleCheck, faSprayCan,faComments,faMap,faTag} from "@fortawesome/free-solid-svg-icons"
+import { useSelector } from "react-redux";
+import { selectReviewByRoom } from "../../store/reviewReducer";
 const Review = ({reviewsByRoom, hasRoomIdAsKey, room_id, FaStar}) => {
-
+    const reviewByRoom = useSelector(selectReviewByRoom(room_id))
+    console.log(room_id)
+    console.log(reviewByRoom)
     return(
         <div>
             {!reviewsByRoom ? (
@@ -87,9 +91,9 @@ const Review = ({reviewsByRoom, hasRoomIdAsKey, room_id, FaStar}) => {
                     ) : (
                         <p>No reviews available for this room</p>
                     )}
-                        {/* <div>
-                            Review Details
-                        </div> */}
+                    <div className="details-container">
+                        Review Details
+                    </div>
                     </>
                     )
             )}

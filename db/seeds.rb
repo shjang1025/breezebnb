@@ -159,6 +159,8 @@ room12 = Room.create!(title: "Starlight Tent Near Petrified Forest",
     kitchen: false, microwave: false, fireplace: false, pets: false, host_id: 17)
 file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/camping.jpg")
 room12.photo.attach(io: file, filename: 'camping.jpg')
+
+
 rooms << room1
 rooms << room2
 rooms << room3
@@ -234,12 +236,35 @@ long_review_sentences = [
 "Every aspect of the room, from the decor to the furnishings, was carefully thought out and beautifully executed.",
 "I would highly recommend this room to anyone looking for a luxurious and unforgettable stay."
 ]
+
+reviewTitles = [
+  "Amazing stay, highly recommended!",
+  "Perfect location, excellent service.",
+  "Cozy atmosphere, friendly staff.",
+  "Great experience, would visit again.",
+  "Lovely accommodations, felt like home.",
+  "Fantastic stay, exceeded expectations.",
+  "Wonderful amenities, top-notch service.",
+  "Incredible views, unforgettable memories.",
+  "Comfortable rooms, superb hospitality.",
+  "Exceptional service, delightful experience.",
+  "Charming property, tranquil ambiance.",
+  "Excellent value, convenient location.",
+  "Relaxing getaway, attentive staff.",
+  "Spotless cleanliness, modern facilities.",
+  "Beautiful decor, welcoming atmosphere.",
+  "Friendly hosts, impeccable service.",
+  "Peaceful retreat, stunning surroundings.",
+  "Quaint charm, memorable stay.",
+  "Refreshing stay, exceeded expectations.",
+  "Enchanting experience, would return."
+];
 Review.destroy_all
 
 (0..11).each do |idx|
     7.times do 
         Review.create!(
-            title: Faker::Lorem.words(number: 3).join(" "),
+            title: reviewTitles.sample,
             description: long_review_sentences.sample,
             cleanliness: Faker::Number.between(from: 3, to: 5),
             communication: Faker::Number.between(from: 3, to: 5),

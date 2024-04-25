@@ -2,14 +2,14 @@ import Navbar from "../Navbar";
 import './Trip.css'
 import bnbphoto from '../../assets/trip.png'
 import { selectCurrentUser } from "../../store/sessionReducer"
-import { useSelector } from "react-redux"
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux"
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import EditModal from "./EditModal"
 import ReviewModal from "./ReviewModal";
 import { FaStar } from "react-icons/fa";
 import { destroyReview } from "../../store/reviewReducer";
+import { selectReviewsByUserId } from "../../store/reviewReducer";
 import Reservation from "./Reservation";
 import PastReservation from './PastReservation'
 import CurrentHosting from "./CurrentHosting";
@@ -17,8 +17,12 @@ import CurrentHosting from "./CurrentHosting";
 const Trip = () => {
     
     const dispatch = useDispatch();
-    const currentUser = useSelector(selectCurrentUser);
-    const user_id = currentUser.id
+    const currentUser = useSelector(selectCurrentUser)
+    // console.log("Current User is ", currentUser.id)
+    const {user_id} = useParams();
+    useEffect(() => {
+        console.log('Current User is', currentUser?.id);
+    }, [currentUser]);
     const reservations = useSelector(state => state.reservations)
     const rooms = useSelector(state => state.rooms)
     const currentDate = new Date();
@@ -46,11 +50,9 @@ const Trip = () => {
                             .filter(room => currentUser?.roomId?.includes(room.id))
     const currentReviews = Object.values(reviews).filter(review => Array.isArray(currentUser.reviewId) && currentUser.reviewId.includes(review.id));
     
-
-    
     const [editModal, setEditModal] = useState(false)
     const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
-    const [reviewModal, setReviewModal] =useState(false)
+    const [reviewModal, setReviewModal] = useState(null)
 
 
     useEffect(() => {
@@ -107,7 +109,7 @@ const Trip = () => {
         }
     }
     const handleReviewOpenClick = (reservationId) => {
-        setReviewModal(!reviewModal)
+        setReviewModal('edit-review')
         setReservationId(reservationId)
     }
     const handleEditOpenClick = (reservationId) => {
@@ -135,7 +137,8 @@ const Trip = () => {
                         </div>
                         <div className="booking-info">
                             <div className="booking-title">Your Current Reservations</div>
-                             <Reservation currentReservations={currentReservations} bnbphoto={bnbphoto}handleEditOpenClick={handleEditOpenClick}/>
+                             <Reservation currentReservations={currentReservations} 
+                             bnbphoto={bnbphoto}handleEditOpenClick={handleEditOpenClick} currentDate={currentDate} rooms={rooms}/>
                         </div>
                     </div>
                     <div className="trip-history">

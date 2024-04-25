@@ -92,6 +92,12 @@ export const destroyReview = reviewId => dispatch => {
 //SELECTOR
 export const selectReviewsArray = state => Object.values(state.reviews)
 export const selectReview = (reviewId => state => state.reviews[reviewId] ? state.reviews[reviewId] : null )
+export const selectReviewByRoom = (roomId => state =>  {
+    return Object.values(state.reviews).filter(review => review.reviewRoomId === roomId)
+})
+export const selectReviewsByUserId = (userId) => (state) => {
+    return Object.values(state.reviews).filter(review => review.reviewerId === userId);
+  };
 //REDUCER
 
 const reviewReducer = (state={}, action) => {

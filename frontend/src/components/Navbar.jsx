@@ -8,20 +8,15 @@ import {faBars, faCircleUser} from "@fortawesome/free-solid-svg-icons"
 import {faLinkedin, faGithub} from "@fortawesome/free-brands-svg-icons"
 import SessionModal from "./Modal/SessionModal";
 import BottomSearchBar from "./SearchBar/BottomSearchBar"
-// import TopSearchBar from "./SearchBar/TopSearchBar";
 import BreezebnbModal from './Modal/BreezebnbModal'
 import { fetchRooms } from "../store/roomReducer";
 import { fetchUsers } from "../store/userReducer";
 import { fetchReservations } from "../store/reservationReducer";
 import { fetchReviews } from "../store/reviewReducer";
-import { postSession } from "../utils/sessionApiUtils";
-
 
 const Navbar = () => {
     const location = useLocation()
     const dispatch = useDispatch();
-    const rooms = useSelector(state => state.rooms);
-    const users = useSelector(state => state.users);
 
     useEffect(() => {
         dispatch(fetchRooms());
@@ -37,13 +32,17 @@ const Navbar = () => {
     const [view, setView] = useState(false);
     const [modalState, setModalState] = useState(null)
     const [searchModal, setSearchModal] = useState(false)
-    // const [loggedIn, setLoggedIn] = useState(false)
+    const [loggedIn, setLoggedIn] = useState(false)
     const[showSigninModal, setShowSigninModal] = useState(false)
-
+    useEffect(() => {
+    
+    },[currentUser])
     const handleLogout = () => {
-        dispatch(logoutUser());
-        setView(false);
-        window.location.href = '/';
+        dispatch(logoutUser())
+            .then(() => {
+                window.location.href = '/';
+                setView(false)
+            })
     }
     const handleSearchClick = () => {
         setSearchModal(!searchModal);
@@ -58,11 +57,6 @@ const Navbar = () => {
         email: "bbbb@test.com",
         password: "password"
     }
-    useEffect(() => {
-    },[currentUser])
-    useEffect(() => {
-
-    }, [location.path] )
 
     const dropDown = () => {
         if(!currentUser) {

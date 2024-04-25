@@ -130,6 +130,9 @@
     flex-direction: column;
     text-align: center;
 }
+.review-photo {
+    display: flex;
+}
 .review-photo img,
 .bnb-photo img,
 .hosting-photo img,
@@ -138,9 +141,9 @@
     flex:1;
     max-width: 400px;
     height: auto;
-    border-radius: 25px;
-    padding-right: 10px;
-
+    overflow: hidden;
+    border-radius: 50px;
+    
 }
 .no-reservation-container,
 .no-hostings,
@@ -238,9 +241,10 @@
     text-align: start;
     padding-left: 30px;
 }
-/* .other-info span {
-    padding-right: 60px;
-} */
+.other-info span:last-child {
+    margin-bottom: 20px;
+}
+
 .location span:first-child {
     font-weight: bold;
     font-style: italic;

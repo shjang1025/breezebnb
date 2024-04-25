@@ -16,10 +16,10 @@
 .modal-content {
   position: absolute;
   left: 50%;
-  top: 40%;
+  top: 50%;
   /* width: 30%; */
   width: 480px;
-  height: 60%;
+  height: 70%;
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 10px;
@@ -104,10 +104,11 @@ optgroup {
     width: 280px;
     margin: 20px;
     padding: 8px;
-    background-color: #E3185F;
+    margin-top: 80px;
+    background-color: #FF385C;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
 }
