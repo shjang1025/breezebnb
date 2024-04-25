@@ -160,6 +160,66 @@ room12 = Room.create!(title: "Starlight Tent Near Petrified Forest",
 file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/camping.jpg")
 room12.photo.attach(io: file, filename: 'camping.jpg')
 
+room13 = Room.create!(title: "The Kellogg Doolittle House",
+    description: "This is the famous Kellogg Doolittle estate in Joshua Tree California. It is one of the most exclusive homes in the world, and available for the first time as an Airbnb Luxe exclusive.
+
+    Created over 25 meticulous years, Kellogg Doolittle in Joshua Tree National Park is a marvel of the organic architecture movement. A residence that is so “one-of-a-kind,” nearly every element, inside and out, is handcrafted by architect Ken Kellogg and Master Craftsman John Vugrin. The masterpiece of organic architecture sits along the breathtaking landscape of Joshua Tree National Park, the location that lent itself as the ambitious vision and inspiration behind the design. ",
+    price: 6500, address: '62147 Desert Air Rd', city: 'Joshua Tree', state: 'CA', country: 'USA', category: 'national_park',
+    capacity: 6, beds:3 , rooms: 3, baths: 3, parking: true,
+    washer: true, dryer: true, heater: true, ac: true, tv: true, wifi: true,
+    kitchen: true, microwave: true, fireplace: true, pets: true, host_id: 17)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/joshua.jpg")
+room13.photo.attach(io: file, filename: 'joshua.jpg')
+
+room14 = Room.create!(title: "East Side Beehive",
+    description: "Clean, Zen modern backyard cottage, easy access to SXSW, convention center, great dining, and public transportation. Gorgeous, peaceful space, close to the action but perfect for rest and recharging. Easy access to SXSW, ACL, F1 and all festivals",
+    price: 200, address: 'Cedar Ave & E 18th St', city: 'Austing', state: 'TX', country: 'USA', category: 'omg',
+    capacity: 2, beds:1 , rooms: 1, baths: 1, parking: true,
+    washer: false, dryer: false, heater: true, ac: true, tv: true, wifi: true,
+    kitchen: false, microwave: false, fireplace: false, pets: false, host_id: 15)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/beehive.jpg")
+room14.photo.attach(io: file, filename: 'beehive.jpg')
+
+room15 = Room.create!(title: "Architectural X House",
+    description: "Architectural Design House. Custom built modern house with incredible design details. Three stories with roof deck. Near Sunset bl, Bel Air, Beverly Hills, & UCLA.",
+    price: 550, address: '1215 Beverly Estate Terrace', city: 'Beverly Hills', state: 'CA', country: 'USA', category: 'omg',
+    capacity: 4, beds:2 , rooms: 2, baths: 2, parking: false,
+    washer: true, dryer: true, heater: true, ac: true, tv: true, wifi: true,
+    kitchen: true, microwave: true, fireplace: false, pets: false, host_id: 18)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/cali.jpg")
+room15.photo.attach(io: file, filename: 'cali.jpg')
+
+room16 = Room.create!(title: "NEW!Private pool+hot tub-Seculsion up in the hills",
+    description: "*NEW * Escape to The Aerie, your ultimate family getaway nestled in the hills above Lake Chelan. This stunning home offers a perfect blend of luxury, tranquility, & adventure, making it the ideal destination for your next vacation.
+
+    The home offers a peaceful retreat away from the hustle & bustle of downtown Chelan and is a scenic 30-minute drive away. Spend several days here away from it all, then plan for a day in town wine tasting, trying out some great restaurants, boating, hiking, etc.",
+    price: 509, address: '1370 Cottontail Ln', city: 'Chelan', state: 'WA', country: 'USA', category: 'amazing_pools',
+    capacity: 10, beds:8 , rooms: 4, baths: 3, parking: true,
+    washer: true, dryer: true, heater: true, ac: true, tv: true, wifi: true,
+    kitchen: true, microwave: true, fireplace: true, pets: true, host_id: 19)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/pool.jpg")
+room16.photo.attach(io: file, filename: 'pool.jpg')
+
+room17 = Room.create!(title: "The Stunning Classic Lake View Estate",
+    description: "This is a rare chance to sleep in a comfortable tent in the middle of wide open space and to feel the essence of the surrounding desert. It's like you are stepping back in time: there are even old abandoned Pony Express buildings from the 1800's nearby that you can walk to.",
+    price: 2004, address: 'W Highland Dr & 4th Ave W', city: 'Seattle', state: 'WA', country: 'USA', category: 'amazing_pools',
+    capacity: 12, beds:5 , rooms: 5, baths: 6, parking: true,
+    washer: true, dryer: true, heater: true, ac: true, tv: true, wifi: true,
+    kitchen: true, microwave: true, fireplace: false, pets: false, host_id: 20)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/pools.jpg")
+room17.photo.attach(io: file, filename: 'pools.jpg')
+
+room18 = Room.create!(title: "Stunning California Coast Airstream (New Listing)",
+    description: "One of a kind Airstream overlooking a stunning beach, Pacific Ocean and California Coastline, perched high on a cliff to create an unforgettable magical experience of a lifetime.
+
+    If you can’t find availability for the date you are interested, check out our second newer unit here
+    https://www.airbnb.com/h/luxurycaliforniacoastairstream",
+    price: 369, address: "225-201 Martin's Beach Rd", city: 'Half Moon Bay', state: 'WA', country: 'USA', category: 'camping',
+    capacity: 4, beds:2 , rooms: 1, baths: 1, parking: false,
+    washer: false, dryer: false, heater: true, ac: true, tv: true, wifi: true,
+    kitchen: false, microwave: true, fireplace: false, pets: false, host_id: 2)
+file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/campings.jpg")
+room18.photo.attach(io: file, filename: 'campings.jpg')
 
 rooms << room1
 rooms << room2
@@ -173,6 +233,12 @@ rooms << room9
 rooms << room10
 rooms << room11
 rooms << room12
+rooms << room13
+rooms << room14
+rooms << room15
+rooms << room16
+rooms << room17
+rooms << room18
 
 Reservation.destroy_all
 reservation1 = Reservation.create!(

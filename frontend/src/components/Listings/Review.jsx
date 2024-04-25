@@ -89,11 +89,10 @@ const Review = ({reviewsByRoom, hasRoomIdAsKey, room_id, FaStar}) => {
                             </div>
                         </>
                     ) : (
-                        <p>No reviews available for this room</p>
+                        <div className="no-review-title">
+                            <p>No reviews available for this room 😭</p>
+                        </div>
                     )}
-                    <div className="details-container">
-                        Review Details
-                    </div>
                     </>
                     )
             )}

@@ -472,3 +472,9 @@
 .review-details-value span {
     padding-left: 25px;
 }
+.no-review-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    font-weight: 500;
+}
