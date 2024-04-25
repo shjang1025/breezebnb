@@ -96,7 +96,7 @@ export const destroyRoom = roomId => dispatch => {
 
 export const selectCurrentRoom = roomId => state => state.rooms[roomId] ? state.rooms[roomId] : null;
 // REDUCER
-
+// const initialState = JSON.parse(sessionStorage.getItem('API-Key')) || null;
 const roomReducer = (state={}, action) => {
     const newState = {...state}
     switch(action.type) {

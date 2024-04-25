@@ -12,12 +12,12 @@ import { useSelector } from "react-redux"
 import BnbMap from "./BnbMap"
 import { selectCurrentRoom } from "../../store/roomReducer"
 import { FaStar } from "react-icons/fa";
-import { fetchRoom } from "../../store/roomReducer"
 import Review from "./Review"
 import ReservationDate from "./ReservationDate"
+
 const ListingsShow = () => {
     const {room_id} = useParams();
-    //null protection on currentRoom
+    const apiKey = sessionStorage.getItem('API-Key')
     const currentRoom = useSelector(selectCurrentRoom(room_id))
     const reservations = useSelector(state => state.reservations);
     const [errors, setErrors] = useState('')
@@ -35,7 +35,7 @@ const ListingsShow = () => {
     const fetchLatLng = async (compactAddress) => {
         try {
             const fullAddress = encodeURIComponent(compactAddress)
-            const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=${import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY}`)
+            const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=${sessionStorage.getItem('API-Key')}`)
             
             if (!res.ok) {
                 throw res
@@ -282,7 +282,7 @@ const ListingsShow = () => {
                         <div className="map-inner-content">
                         
                         </div>
-                        {latLng && <BnbMap latitude={latLng.lat} longitude={latLng.lng} currentRoom={currentRoom}/>}
+                        {latLng && <BnbMap latitude={latLng.lat} longitude={latLng.lng} currentRoom={currentRoom} apiKey={apiKey}/>}
                     </div>
                 </div>
 

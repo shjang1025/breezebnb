@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
     include ActionController::RequestForgeryProtection
     protect_from_forgery with: :exception
     
-    before_action :snake_case_params, :attach_authenticity_token
+    before_action :snake_case_params, :attach_authenticity_token, :attach_google_api_key
 
     def current_user 
         @current_user ||= User.find_by(session_token: session[:session_token])
@@ -43,5 +43,9 @@ class ApplicationController < ActionController::API
     #every single time server gets the request, and it creates the response, MUST include CSRF Token
     def attach_authenticity_token
         headers['X-CSRF-Token'] = form_authenticity_token
+    end
+
+    def attach_google_api_key
+        headers['API-Key'] = ENV['GOOGLE_API_KEY']
     end
 end
