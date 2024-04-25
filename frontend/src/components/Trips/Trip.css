@@ -25,14 +25,15 @@
     text-align: start;
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     max-width: 100%;
+    margin-bottom: 20px;
 }
 
 
 .trip-history {
-    padding-bottom: 20px;
     border-radius: 50px;
     margin-top: 20px;
     margin-bottom: 50px;
+    padding: 20px;
     box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
 }
 .hostings-info-container {
@@ -46,7 +47,8 @@
 .booking-info {
     margin-top: 20px;
     padding-bottom: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+    padding: 20px;
     border-radius: 50px;
     box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
 }
@@ -133,6 +135,7 @@
 .review-photo {
     display: flex;
 }
+
 .review-photo img,
 .bnb-photo img,
 .hosting-photo img,
@@ -142,8 +145,7 @@
     max-width: 400px;
     height: auto;
     overflow: hidden;
-    border-radius: 50px;
-    
+    border-radius: 50px;    
 }
 .no-reservation-container,
 .no-hostings,
@@ -159,10 +161,13 @@
     flex-direction: column;
     text-align: center;
     padding: 20px;
+    height: auto;
+    object-fit: fill;
 }
 
 .no-reservation p {
-    font-size: 18px;
+    font-size: 15px;
+    font-weight: bold;
 }
 .button-container {
     display: flex;

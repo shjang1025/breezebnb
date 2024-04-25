@@ -1,6 +1,6 @@
 import Navbar from "../Navbar";
 import './Trip.css'
-import bnbphoto from '../../assets/trip.png'
+import bnbphoto from '../../assets/trip-big.png'
 import { selectCurrentUser } from "../../store/sessionReducer"
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react";
@@ -135,14 +135,14 @@ const Trip = () => {
                         <div className="trip-header-title">
                             <p>Trips</p>
                         </div>
+                        <div className="booking-title">Your Current Reservations</div>
                         <div className="booking-info">
-                            <div className="booking-title">Your Current Reservations</div>
                              <Reservation currentReservations={currentReservations} 
                              bnbphoto={bnbphoto}handleEditOpenClick={handleEditOpenClick} currentDate={currentDate} rooms={rooms}/>
                         </div>
                     </div>
+                    <div className="booking-history">Your Booking History</div>
                     <div className="trip-history">
-                        <div className="booking-history">Your Booking History</div>
                         <PastReservation pastReservations={pastReservations} bnbphoto={bnbphoto} handleReviewOpenClick={handleReviewOpenClick}/>
                     </div>
 
