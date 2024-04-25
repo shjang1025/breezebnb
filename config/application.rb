@@ -1,4 +1,3 @@
-require 'dotenv/rails-now'
 require_relative "boot"
 
 require "rails"
