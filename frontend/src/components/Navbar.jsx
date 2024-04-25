@@ -53,8 +53,12 @@ const Navbar = () => {
             setShowSigninModal(true);
         }
     };
-    const demoInfo = {
+    const demoInfo1 = {
         email: "bbbb@test.com",
+        password: "password"
+    }
+    const demoInfo2 = {
+        email: "pppp@test.com",
         password: "password"
     }
 
@@ -70,8 +74,12 @@ const Navbar = () => {
                         <div>
                             <li id="signup" onClick={() => setModalState('signup')}>Signup</li>
                         </div>
+                        <div className="divider"></div>
                         <div>
-                            <li id="demo-login" onClick={() => dispatch(loginUser(demoInfo))}>Demo Login</li>
+                            <li id="demo-login" onClick={() => dispatch(loginUser(demoInfo1))}>Demo Login 1</li>
+                        </div>
+                        <div>
+                            <li id="demo-login" onClick={() => dispatch(loginUser(demoInfo2))}>Demo Login 2</li>
                         </div>
                         <div className="divider"></div>
 

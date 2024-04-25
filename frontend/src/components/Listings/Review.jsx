@@ -21,6 +21,7 @@ const Review = ({reviewsByRoom, hasRoomIdAsKey, room_id, FaStar}) => {
                     <>
                     {reviewsByRoom[room_id] ? (  
                         <>
+                        <div className="yes-review-container">
                             <div className="review-result-container">
                                 <div className="review-result">
                                     <p><FaStar size="35" style={{fill: "#f6e825", backgroundColor: "white"}}/></p> 
@@ -87,6 +88,7 @@ const Review = ({reviewsByRoom, hasRoomIdAsKey, room_id, FaStar}) => {
                                     </span>   
                                 </div>
                             </div>
+                        </div>
                         </>
                     ) : (
                         <div className="no-review-title">
