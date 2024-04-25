@@ -327,7 +327,7 @@ reviewTitles = [
 ];
 Review.destroy_all
 
-(0..11).each do |idx|
+(0..18).each do |idx|
     7.times do 
         Review.create!(
             title: reviewTitles.sample,
