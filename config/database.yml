@@ -79,7 +79,4 @@ test:
 #
 production:
   <<: *default
-  database: breezebnb_production
-  username: breezebnb
-  password: <%= ENV["BREEZEBNB_DATABASE_PASSWORD"] %>
   url: <%= ENV["DATABASE_URL"] %>
