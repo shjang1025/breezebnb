@@ -141,7 +141,7 @@ const Trip = () => {
                     </div>
                     <div className="booking-history">Your Booking History</div>
                     <div className="trip-history">
-                        <PastReservation pastReservations={pastReservations} bnbphoto={bnbphoto} handleReviewOpenClick={handleReviewOpenClick}/>
+                        <PastReservation pastReservations={pastReservations} bnbphoto={bnbphoto} handleReviewOpenClick={handleReviewOpenClick} rooms={rooms} currentDate={currentDate}/>
                     </div>
 
                     <div className="hostings-info-container">

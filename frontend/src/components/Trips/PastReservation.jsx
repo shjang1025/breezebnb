@@ -1,6 +1,6 @@
 import './Trip.css'
 
-const pastReservations = ({pastReservations, bnbphoto, handleReviewOpenClick}) => {
+const pastReservations = ({pastReservations, bnbphoto, handleReviewOpenClick, rooms, currentDate}) => {
     return(
         <div>
     {pastReservations.length > 0 ? 
