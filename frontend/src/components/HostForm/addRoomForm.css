@@ -199,3 +199,19 @@ h1 {
     cursor: pointer;
     font-size: 16px;
 }
+.title-errors, 
+.description-errors, 
+.rooms-errors,
+.address-errors,
+.baths-errors,
+.bed-errors,
+.category-errors,
+.city-errors,
+.country-errors,
+.price-errors,
+.state-errors{
+    color: red;
+    font-style: italic;
+    font-size: 15px;
+    margin-top: 5px
+}

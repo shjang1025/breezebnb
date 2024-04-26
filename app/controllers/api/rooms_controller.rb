@@ -12,11 +12,11 @@ class Api::RoomsController < ApplicationController
     def create 
         @room = Room.new(rooms_params)
         @room.host_id = @current_user.id; 
-        if @room.save!
+        if @room.save
             render json: @room
             # render :show
         else
-            render json: @room.errors.full_messages, status: 422
+            render json: {errors: @room.errors}, status: 422
         end
     end
 

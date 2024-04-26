@@ -34,7 +34,7 @@ class Room < ApplicationRecord
     CATEGORIES = ['omg', 'beach_front', 'amazing_views', 'lake_front', 'amazing_pools', 'national_park','camping', 'design', 'skiing']
 
     validates :category, inclusion: {in: CATEGORIES}
-    validates :description, :address,:city, :state, :country, :category, presence: true
+    validates :title, :description, :address,:city, :state, :country, :category, presence: true
     validates :price, numericality: {greater_than: 0}
     validates :baths, :beds, :rooms, :capacity, 
                 numericality: {only_integer: true, greater_than: 0}

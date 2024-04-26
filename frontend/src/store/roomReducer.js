@@ -55,7 +55,7 @@ export const fetchRoom = roomId => async dispatch => {
     }
 }
 
-export const createRoom = roomData => dispatch => {
+export const createRoom = roomData => dispatch => (
     postRoom(roomData)
         .then(res => {
             if(res.ok) {
@@ -65,8 +65,7 @@ export const createRoom = roomData => dispatch => {
             }
         })
         .then(data => dispatch(receiveRoom(data)))
-        .catch(err => console.error(err))
-}
+)
 
 export const updateRoom = (roomData, roomID) =>  dispatch => {
     editRoom(roomData, roomID)
@@ -78,7 +77,7 @@ export const updateRoom = (roomData, roomID) =>  dispatch => {
             }
         })
         .then(data => dispatch(receiveRoom(data)))
-        .catch(err => console.error(err))
+        // .catch(err => console.error(err))
 }
 
 export const destroyRoom = roomId => dispatch => {

@@ -66,7 +66,6 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
     }, [cleanliness, accuracy, communication, location, value])
     useEffect(() => {
         if (initialReviewData) {
-            // console.log("ID is",initialReviewData.id);
             setTitle(initialReviewData.title || '');
             setDescription(initialReviewData.description || '');
             setCleanliness(initialReviewData.cleanliness || 0);
@@ -76,10 +75,8 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
             setValue(initialReviewData.value || 0);
         }
     }, [initialReviewData]);
-    console.log(reviewId)
     const roomId = useSelector(selectRoomByReview(reviewId))
     useEffect(() => {
-        console.log(">>>>>>",roomId)
     }, [roomId])
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -97,7 +94,6 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
                 review_room_id: roomId
             
         }
-        console.log("REVIEWDATA",reviewData)
         if(reviewModal === 'edit-review') {
             dispatch(updateReview(reviewId, reviewData))
         } else {

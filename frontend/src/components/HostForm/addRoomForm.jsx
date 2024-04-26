@@ -36,13 +36,14 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
     const [fireplace, setFireplace] = useState(initialHostData ? initialHostData.amenities.fireplace : false)
     const [pets, setPets] = useState(initialHostData ? initialHostData.amenities.pets : false)
     const [photo, setPhoto] = useState(initialHostData ? initialHostData.photo : null)
-
+    const [errors, setErrors] = useState({})
     const [checked, setChecked] = useState(false)
     const dispatch = useDispatch();
     
+    // console.log("ERROR?" , errors.address[0])
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        //the easiest way to handle file inputs is to use FormData Object
         const data = new FormData();
 
         const roomObject = {
@@ -84,12 +85,22 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
         if(photo) {
             data.append('room[photo]',photo)
         }
-        
+    
         if(mode === 'edit') {
             data.append(`room[id]`, roomId)
         }
         if(mode === 'create') {
-            dispatch(createRoom(data));
+            dispatch(createRoom(data))
+                .then(() => {
+                    console.log("PAss the dispatch")
+                    setErrors({});
+                })
+                .catch(async res =>{
+                    let data = await res.json();
+                    console.log(data)
+                    setErrors(data.errors);
+                });
+
         } else if (mode === 'edit' && initialHostData) {
             dispatch(updateRoom(data, roomId))
         }
@@ -118,8 +129,11 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
         setCategory('');
         setChecked(false);
 
-        window.location.href = `/users/${currentUser.id}`;
+        if (!errors) {
+            window.location.href = `/users/${currentUser.id}`;
+        }    
     }
+
 
     const handleCheckboxChange = (e) => {
         const {name, checked} = e.target
@@ -190,7 +204,7 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
 
                 </div>
                 <form className="hosting-form" onSubmit={handleSubmit}>
-                    <label>Title
+                    <label>Title {errors.title ? <div className='title-errors'>* {errors.title[0]}</div> : ""}
                         <div>
                             <input 
                                 className="title-input" 
@@ -200,7 +214,7 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
                                 placeholder="Title" />
                         </div>
                     </label>
-                    <label>Description
+                    <label>Description {errors.description ? <div className='description-errors'>* {errors.description[0]}</div> : ""}
                         <div>
                             <textarea 
                                 className="description-input" 
@@ -210,16 +224,19 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
                                 placeholder="Description"  />
                         </div>
                     </label>
-                    <label>Location
+                    <label>Location 
                         <div>
+                            {errors.address ? <div className='address-errors'>* {errors.address[0]}</div> : ""}
                             <input 
                                 className="address-input" 
                                 type="text" 
                                 value={address}
                                 onChange={e => setAddress(e.target.value)}
                                 placeholder="Address Line (ex) 1234 Cherry St. " />
+                                
                         </div>
                         <div>
+                            {errors.city ? <div className='city-errors'>* {errors.city[0]}</div> : ""}
                             <input 
                                 className="city-input" 
                                 type="text" 
@@ -228,6 +245,7 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
                                 placeholder="City" />
                         </div>
                         <div>
+                            {errors.state ? <div className='state-errors'>* {errors.state[0]}</div> : ""}
                             <input 
                                 className="state-input" 
                                 type="text" 
@@ -236,15 +254,16 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
                                 placeholder="State" />
                         </div>
                         <div>
+                            {errors.country ? <div className='country-errors'>* {errors.country[0]}</div> : ""}
                             <input 
                                 className="country-input" 
                                 type="text" 
                                 value={country}
                                 onChange={e => setCountry(e.target.value)}
                                 placeholder="Country" />
-                        </div>
+                        </div> 
                     </label>
-                    <label>Price per Night
+                    <label>Price per Night {errors.price ? <div className='price-errors'>* {errors.price[0]}</div> : ""}
                         <div>
                             <input 
                                 className="price-input" 
@@ -257,7 +276,7 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
                         </div>
                     </label>
 
-                    <label>Which of these best describes your place?
+                    <label>Which of these best describes your place? {errors.category ? <div className='category-errors'>* {errors.category[1]}</div> : ""}
                         <div>
                             <select
                                 className="category"
@@ -273,7 +292,7 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
                         </div>
                     </label>
 
-                    <label>What is the max number of people?
+                    <label>What is the max number of people? 
                         <div>
                             <input 
                                 className="capacity-input" 
@@ -285,19 +304,19 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
                                 placeholder="Capacity"  />
                         </div>
                     </label>
-                    <label id="num-beds"> How many bedrooms/beds/bathrooms ?</label>
+                    <label id="num-beds"> How many bedrooms/beds/bathrooms ?</label> 
                     <div className="bed-container">
-                        <label >Rooms: 
+                        <label >Rooms: {errors.rooms ? <div className='rooms-errors'>* {errors.rooms[0]}</div> : ""}
                             <span>
                                 <input type="number" min="0" value={rooms} onChange={e => setRooms(e.target.value)}/>
                             </span>
                         </label>
-                        <label >Beds: 
+                        <label >Beds: {errors.beds ? <div className='beds-errors'>* {errors.beds[0]}</div> : ""}
                             <span>
                                 <input type="number" min="0" value={beds} onChange={e => setBeds(e.target.value)}/>
                             </span>
                         </label>
-                        <label >Bathrooms: 
+                        <label >Bathrooms: {errors.baths ? <div className='baths-errors'>* {errors.baths[0]}</div> : ""}
                             <span>
                                 <input type="number" min="0" value={baths} onChange={e => setBaths(e.target.value)}/>
                             </span>
