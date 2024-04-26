@@ -260,16 +260,16 @@ reservation3 = Reservation.create!(
     reserved_person_id: user5.id,
     reserved_room_id: room5.id)
 reservation4 = Reservation.create!(
-    checkin: "2024-04-22", 
-    checkout: "2024-04-29",
+    checkin: "2025-10-22", 
+    checkout: "2025-10-29",
     num_guests: 3,
-    reserved_person_id: user6.id,
+    reserved_person_id: user5.id,
     reserved_room_id: room7.id)
 reservation5 = Reservation.create!(
     checkin: "2024-02-14", 
     checkout: "2024-02-16",
     num_guests: 3,
-    reserved_person_id: user8.id,
+    reserved_person_id: user5.id,
     reserved_room_id: room4.id)
 reservation6 = Reservation.create!(
     checkin: "2023-01-14", 
@@ -281,13 +281,13 @@ reservation7 = Reservation.create!(
     checkin: "2024-10-25", 
     checkout: "2024-10-27",
     num_guests: 3,
-    reserved_person_id: user18.id,
+    reserved_person_id: user2.id,
     reserved_room_id: room3.id)
 reservation8 = Reservation.create!(
     checkin: "2024-09-20", 
     checkout: "2024-09-23",
     num_guests: 3,
-    reserved_person_id: user17.id,
+    reserved_person_id: user2.id,
     reserved_room_id: room6.id)
 
 long_review_sentences = [
@@ -338,7 +338,7 @@ Review.destroy_all
             location: Faker::Number.between(from: 3, to: 5),
             value: Faker::Number.between(from: 3, to: 5),
             reviewer_id: Faker::Number.between(from: 1, to: 20),
-            review_room_id: Faker::Number.between(from: 1, to: 8)
+            review_room_id: Faker::Number.between(from: 1, to: 18)
         )
     end
 end
