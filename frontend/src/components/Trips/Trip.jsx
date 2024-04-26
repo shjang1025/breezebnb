@@ -165,7 +165,7 @@ const Trip = () => {
                                     
                                     <div className="reviews-index-container" key={review.id}>
                                         <div className="button-container" >
-                                                <button className="review-edit-button" onClick={() => handleReviewOpenClick(review.id)}>Edit</button>
+                                                {/* <button className="review-edit-button" onClick={() => handleReviewOpenClick(review.id)}>Edit</button> */}
                                                 <button className="review-delete-button" onClick={() => dispatch(destroyReview(review.id))}>Delete</button>
                                         </div>
                                         <div className="yes-reviews-inner">

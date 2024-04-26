@@ -1,16 +1,13 @@
 import { destroyRoom, selectCurrentRoom } from "../../store/roomReducer";
 import { Link } from "react-router-dom";
 import './Trip.css'
-
+import { useDispatch } from "react-redux";
 const CurrentHosting = ({currentHostings, bnbphoto}) => {
+    const dispatch = useDispatch();
     return(
         <div>
     {currentHostings.length > 0 ? 
         currentHostings.map(hosting => {
-            // const room = Object.values(rooms).find(room => room.id === hosting.roomId);
-            // if (!room) {
-            //     return (<p key={hosting.id}>Loading..</p>)
-            // }
             return (
                 <div className="yes-hostings-container" key={hosting.id}>
                     <div className="button-container" >

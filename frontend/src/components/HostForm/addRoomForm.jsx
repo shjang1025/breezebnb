@@ -93,10 +93,10 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
         } else if (mode === 'edit' && initialHostData) {
             dispatch(updateRoom(data, roomId))
         }
+        setParking(false)
         setTv(false);
         setAC(false);
         setHeater(false)
-        // setParking(false);
         setWasher(false);
         setDryer(false);
         setWifi(false);
@@ -115,11 +115,10 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
         setCapacity('');
         setTitle('');
         setDescription('');
-        // setPhoto(null);
         setCategory('');
         setChecked(false);
 
-        
+        window.location.href = `/users/${currentUser.id}`;
     }
 
     const handleCheckboxChange = (e) => {
