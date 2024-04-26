@@ -205,7 +205,7 @@ room17 = Room.create!(title: "The Stunning Classic Lake View Estate",
     price: 2004, address: 'W Highland Dr & 4th Ave W', city: 'Seattle', state: 'WA', country: 'USA', category: 'amazing_pools',
     capacity: 12, beds:5 , rooms: 5, baths: 6, parking: true,
     washer: true, dryer: true, heater: true, ac: true, tv: true, wifi: true,
-    kitchen: true, microwave: true, fireplace: false, pets: false, host_id: 20)
+    kitchen: true, microwave: true, fireplace: false, pets: false, host_id: 2)
 file = URI.open("https://breeze-bnb-seeds.s3.us-west-1.amazonaws.com/pools.jpg")
 room17.photo.attach(io: file, filename: 'pools.jpg')
 
