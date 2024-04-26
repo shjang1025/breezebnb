@@ -107,8 +107,8 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
     }
 
     return(
-        <div className="edit-modal-background" onClick={() => setReviewModal(null)}>
-            <div className="edit-modal-content" onClick={e => e.stopPropagation()}>
+        <div className="review-edit-modal-background" onClick={() => setReviewModal(null)}>
+            <div className="review-edit-modal-content" onClick={e => e.stopPropagation()}>
                 <div className="modal-content-top">
                     <button onClick={e => setReviewModal(null)}>
                         <span>

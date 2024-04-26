@@ -1,8 +1,9 @@
 import './Trip.css'
 import { destroyReservation } from "../../store/reservationReducer";
 import { useSelector } from 'react-redux';
-
+import { useDispatch } from 'react-redux';
 const Reservation = ({currentReservations, bnbphoto, handleEditOpenClick, rooms, currentDate}) => {
+    const dispatch = useDispatch()
     return(
         <div>
             {currentReservations.length > 0 ? 
