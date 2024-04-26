@@ -51,13 +51,11 @@ const Trip = () => {
     const [reviewId, setReviewId] = useState(null)
     const [reviewModal, setReviewModal] = useState(null)
     useEffect(() => {
-        console.log(reviewModal)
     }, [reviewModal])
     const currentHostings = Object.values(rooms)
                             .filter(room => currentUser?.roomId?.includes(room.id))
     const currentReviews = Object.values(reviews).filter(review => Array.isArray(currentUser.reviewId) && currentUser.reviewId.includes(review.id));
     const currentReviewData = currentReviews.filter(ele => ele.id === reviewId)[0]
-    console.log(currentReviewData)
     
     useEffect(() => {
 
@@ -117,7 +115,6 @@ const Trip = () => {
         setReviewId(reviewId)
     }
     const handleReviewEditClick = (reviewId, reservationId) => {
-        console.log("Clicked. ReviewId:", reviewId, "ReservationId:", reservationId);
 
         setReviewModal('edit-review')
         setReviewId(reviewId)

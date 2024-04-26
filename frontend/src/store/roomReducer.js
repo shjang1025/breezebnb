@@ -97,7 +97,6 @@ export const selectRoomByReview = reviewId => state => {
     const review = state.reviews[reviewId];
     if (review) {
         const roomId = review.reviewRoomId;
-        console.log("ROOM ID", roomId)
         return state.rooms[roomId] ? state.rooms[roomId].id : null;
     }
     return null;
