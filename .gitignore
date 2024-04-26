@@ -41,3 +41,4 @@ API_Key
 .env
 .env.development
 .api_key.js
+!/public
