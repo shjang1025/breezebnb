@@ -251,7 +251,7 @@ reservation2 = Reservation.create!(
     checkin: "2024-03-25", 
     checkout: "2024-03-28",
     num_guests: 7,
-    reserved_person_id: user3.id,
+    reserved_person_id: user2.id,
     reserved_room_id: room2.id)
 reservation3 = Reservation.create!(
     checkin: "2024-05-03", 
