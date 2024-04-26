@@ -3,11 +3,10 @@ import {faAngleDown} from "@fortawesome/free-solid-svg-icons"
 import { differenceInDays } from "date-fns"; 
 import { useSelector } from "react-redux"
 import { selectCurrentUser } from "../../store/sessionReducer"
-
 const ReservationDate = ({DatePicker, selectedRoom, guestDropdown, 
                         setCheckInDate, setCheckOutDate, checkInDate, 
                         checkOutDate, isDateAvailable,
-                        handleArrowClick, numGuests, viewDropdown}) => {
+                        handleArrowClick, numGuests, viewDropdown, room_id, setNumGuests,errors, setErrors}) => {
     
     const currentUser = useSelector(selectCurrentUser);
     const isLoggedin = !!currentUser;

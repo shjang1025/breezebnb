@@ -254,7 +254,8 @@ const ListingsShow = () => {
                                     <ReservationDate DatePicker={DatePicker} selectedRoom={selectedRoom} 
                                         guestDropdown={guestDropdown} setCheckInDate={setCheckInDate} checkInDate={checkInDate} 
                                         checkOutDate={checkOutDate} setCheckOutDate={setCheckOutDate} isDateAvailable={isDateAvailable}
-                                        handleArrowClick={handleArrowClick} numGuests={numGuests} viewDropdown={viewDropdown}/>
+                                        handleArrowClick={handleArrowClick} numGuests={numGuests} viewDropdown={viewDropdown} room_id={room_id}
+                                        setNumGuests={setNumGuests} errors={errors} setErrors={setErrors}/>
                                     {errors && 
                                         <div className="date-error-message">
                                             <p>* {errors}</p>
