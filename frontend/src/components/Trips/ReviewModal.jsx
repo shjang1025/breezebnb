@@ -7,7 +7,7 @@ import { selectCurrentUser } from "../../store/sessionReducer";
 import { createReview, selectReview, selectReviewsArray } from "../../store/reviewReducer";
 import { FaStar } from "react-icons/fa";
 
-const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,roomId }) => {
+const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData}) => {
     const dispatch = useDispatch()
     const reservations = useSelector(state => state.reservations)
     const rooms = useSelector(state => state.rooms)
@@ -48,10 +48,7 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,
 
     //user's reservations arr
     const reservationsArr = users[currentUser.id].reservationId //[1,5]
-    
-    //the review with specific reviewId
-    const currentReview = useSelector(selectReview)
-    //
+
     const reviewsArr = users[currentUser.id].reviewId
 
     const findRoom =(reservationId) => {
@@ -70,7 +67,18 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,
     useEffect(() => {
 
     }, [cleanliness, accuracy, communication, location, value])
-    
+    useEffect(() => {
+        if (initialReviewData) {
+            console.log(initialReviewData.description);
+            setTitle(initialReviewData.title || '');
+            setDescription(initialReviewData.description || '');
+            setCleanliness(initialReviewData.cleanliness || 0);
+            setAccuracy(initialReviewData.accuracy || 0);
+            setCommunication(initialReviewData.communication || 0);
+            setLocation(initialReviewData.location || 0);
+            setValue(initialReviewData.value || 0);
+        }
+    }, [initialReviewData]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -116,6 +124,7 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData,
                                 <textarea rows="10" cols="50"
                                     className="review-description"
                                     type="textarea"
+                                    value={description}
                                     onChange={e => setDescription(e.target.value)}
                                     placeholder="Description"
                                 />

@@ -44,15 +44,18 @@ const Trip = () => {
     });
 
     
-    const currentHostings = Object.values(rooms)
-                            .filter(room => currentUser?.roomId?.includes(room.id))
-    const currentReviews = Object.values(reviews).filter(review => Array.isArray(currentUser.reviewId) && currentUser.reviewId.includes(review.id));
     
     const [editModal, setEditModal] = useState(false)
     const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
+    const [reviewId, setReviewId] = useState(null)
     const [reviewModal, setReviewModal] = useState(null)
-
-
+    
+    const currentHostings = Object.values(rooms)
+                            .filter(room => currentUser?.roomId?.includes(room.id))
+    const currentReviews = Object.values(reviews).filter(review => Array.isArray(currentUser.reviewId) && currentUser.reviewId.includes(review.id));
+    const currentReviewData = currentReviews.filter(ele => ele.id === reviewId)[0]
+    console.log(currentReviewData)
+    
     useEffect(() => {
 
     }, [user_id, reservations,reviews])
@@ -106,9 +109,9 @@ const Trip = () => {
             )
         }
     }
-    const handleReviewOpenClick = (reservationId) => {
+    const handleReviewOpenClick = (reviewId) => {
         setReviewModal('edit-review')
-        setReservationId(reservationId)
+        setReviewId(reviewId)
     }
     const handleEditOpenClick = (reservationId) => {
         setEditModal(!editModal)
@@ -165,7 +168,7 @@ const Trip = () => {
                                     
                                     <div className="reviews-index-container" key={review.id}>
                                         <div className="button-container" >
-                                                {/* <button className="review-edit-button" onClick={() => handleReviewOpenClick(review.id)}>Edit</button> */}
+                                                <button className="review-edit-button" onClick={() => handleReviewOpenClick(review.id)}>Edit</button>
                                                 <button className="review-delete-button" onClick={() => dispatch(destroyReview(review.id))}>Delete</button>
                                         </div>
                                         <div className="yes-reviews-inner">
@@ -226,7 +229,7 @@ const Trip = () => {
 
             <EditModal reservationId={reservationId} setEditModal={setEditModal}/>}
             {reviewModal &&
-                <ReviewModal reservationId={reservationId} setReviewModal={setReviewModal}/>
+                <ReviewModal reservationId={reservationId} setReviewModal={setReviewModal} initialReviewData={currentReviewData}/>
             }
         </>
     )
