@@ -7,8 +7,8 @@ export const postReview = reviewData => (
     })
 )
 
-export const editReview = reviewData => (
-    csrfFetch( `/api/reviews/${reviewData.id}`, {
+export const editReview = (reviewId, reviewData) => (
+    csrfFetch( `/api/reviews/${reviewId}`, {
         method: 'PATCH',
         body: JSON.stringify(reviewData)
     })

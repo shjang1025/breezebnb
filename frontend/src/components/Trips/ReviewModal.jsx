@@ -4,10 +4,10 @@ import './ReviewModal.css';
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/sessionReducer";
-import { createReview, selectReview, selectReviewsArray } from "../../store/reviewReducer";
+import { createReview, selectReview, selectReviewsArray, updateReview } from "../../store/reviewReducer";
 import { FaStar } from "react-icons/fa";
-
-const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData}) => {
+import { selectRoomByReview } from "../../store/roomReducer";
+const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData, reviewModal}) => {
     const dispatch = useDispatch()
     const reservations = useSelector(state => state.reservations)
     const rooms = useSelector(state => state.rooms)
@@ -21,7 +21,6 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData}
     const [communication, setCommunication] = useState(0)
     const [location, setLocation] = useState(0)
     const [value, setValue] = useState(0)
-    
 
     const cleanlinessStarScore = clickedIndex => {
         const count = clickedIndex + 1; 
@@ -47,10 +46,9 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData}
     }
 
     //user's reservations arr
-    const reservationsArr = users[currentUser.id].reservationId //[1,5]
-
+    const reservationsArr = users[currentUser.id].reservationId 
     const reviewsArr = users[currentUser.id].reviewId
-
+    
     const findRoom =(reservationId) => {
         for(let i = 0; i < reservationsArr.length; i++) {
             if(reservationsArr[i] === reservationId) {
@@ -59,7 +57,6 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData}
         }
         return null;
     }
-
     useEffect(() => {
     },[reviewId])
     useEffect(()=> {
@@ -69,7 +66,7 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData}
     }, [cleanliness, accuracy, communication, location, value])
     useEffect(() => {
         if (initialReviewData) {
-            console.log(initialReviewData.description);
+            // console.log("ID is",initialReviewData.id);
             setTitle(initialReviewData.title || '');
             setDescription(initialReviewData.description || '');
             setCleanliness(initialReviewData.cleanliness || 0);
@@ -79,7 +76,11 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData}
             setValue(initialReviewData.value || 0);
         }
     }, [initialReviewData]);
-
+    console.log(reviewId)
+    const roomId = useSelector(selectRoomByReview(reviewId))
+    useEffect(() => {
+        console.log(">>>>>>",roomId)
+    }, [roomId])
     const handleSubmit = (e) => {
         e.preventDefault();
         const reviewData = {
@@ -93,14 +94,17 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData}
                 location: location,
                 value: value,
                 reviewer_id: currentUser.id, 
-                review_room_id: rooms[findRoom(reservationId)].id
+                review_room_id: roomId
             
         }
-        dispatch(createReview(reviewData));
+        console.log("REVIEWDATA",reviewData)
+        if(reviewModal === 'edit-review') {
+            dispatch(updateReview(reviewId, reviewData))
+        } else {
+            dispatch(createReview(reviewData));
+        }
         setReviewModal(null)
     }
-
-    
 
     return(
         <div className="edit-modal-background" onClick={() => setReviewModal(null)}>
@@ -209,7 +213,7 @@ const ReviewModal = ({reservationId,reviewId, setReviewModal, initialReviewData}
                         </div>
                         <div className="review-submit-container">
 
-                            <button className="review-submit" type="submit">Submit</button>
+                            <button className="review-submit" type="submit">{reviewModal === 'edit-review' ? 'Update' : 'Submit'}</button>
                         </div>
                     </form>
                 </div>

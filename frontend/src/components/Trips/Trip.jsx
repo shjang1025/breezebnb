@@ -8,6 +8,7 @@ import { useParams } from "react-router";
 import EditModal from "./EditModal"
 import ReviewModal from "./ReviewModal";
 import { FaStar } from "react-icons/fa";
+import { destroyReservation } from "../../store/reservationReducer";
 import { destroyReview } from "../../store/reviewReducer";
 import { selectReviewsByUserId } from "../../store/reviewReducer";
 import Reservation from "./Reservation";
@@ -44,12 +45,14 @@ const Trip = () => {
     });
 
     
-    
+
     const [editModal, setEditModal] = useState(false)
     const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
     const [reviewId, setReviewId] = useState(null)
     const [reviewModal, setReviewModal] = useState(null)
-    
+    useEffect(() => {
+        console.log(reviewModal)
+    }, [reviewModal])
     const currentHostings = Object.values(rooms)
                             .filter(room => currentUser?.roomId?.includes(room.id))
     const currentReviews = Object.values(reviews).filter(review => Array.isArray(currentUser.reviewId) && currentUser.reviewId.includes(review.id));
@@ -110,13 +113,19 @@ const Trip = () => {
         }
     }
     const handleReviewOpenClick = (reviewId) => {
+        setReviewModal('make-review')
+        setReviewId(reviewId)
+    }
+    const handleReviewEditClick = (reviewId, reservationId) => {
+        console.log("Clicked. ReviewId:", reviewId, "ReservationId:", reservationId);
+
         setReviewModal('edit-review')
         setReviewId(reviewId)
+        setReservationId(reservationId) // Set reservationId here
     }
     const handleEditOpenClick = (reservationId) => {
         setEditModal(!editModal)
         setReservationId(reservationId)
-
     }
     if (!currentUser || !currentUser.id) {
         // Handle the case where currentUser or currentUser.id is not available
@@ -168,8 +177,8 @@ const Trip = () => {
                                     
                                     <div className="reviews-index-container" key={review.id}>
                                         <div className="button-container" >
-                                                <button className="review-edit-button" onClick={() => handleReviewOpenClick(review.id)}>Edit</button>
-                                                <button className="review-delete-button" onClick={() => dispatch(destroyReview(review.id))}>Delete</button>
+                                                <button className="review-edit-button" onClick={() => handleReviewEditClick(review.id)}>Edit</button>
+                                                <button className="review-delete-button" onClick={() => dispatch(destroyReview(review.id, reservationId))}>Delete</button>
                                         </div>
                                         <div className="yes-reviews-inner">
                                             <div className="review-title-container">
@@ -221,15 +230,10 @@ const Trip = () => {
                     </div>
                 </div>
             </div>
-            
-            
-            
-            
             {editModal && 
-
-            <EditModal reservationId={reservationId} setEditModal={setEditModal}/>}
+                <EditModal reservationId={reservationId} setEditModal={setEditModal}/>}
             {reviewModal &&
-                <ReviewModal reservationId={reservationId} setReviewModal={setReviewModal} initialReviewData={currentReviewData}/>
+                <ReviewModal reviewId={reviewId} reservationId={reservationId} setReviewModal={setReviewModal} initialReviewData={currentReviewData} reviewModal={reviewModal}/>
             }
         </>
     )

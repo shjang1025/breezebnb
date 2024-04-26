@@ -93,7 +93,15 @@ export const destroyRoom = roomId => dispatch => {
         .catch(err => console.error(err))
 }
 //SELECTOR
-
+export const selectRoomByReview = reviewId => state => {
+    const review = state.reviews[reviewId];
+    if (review) {
+        const roomId = review.reviewRoomId;
+        console.log("ROOM ID", roomId)
+        return state.rooms[roomId] ? state.rooms[roomId].id : null;
+    }
+    return null;
+};
 export const selectCurrentRoom = roomId => state => state.rooms[roomId] ? state.rooms[roomId] : null;
 // REDUCER
 // const initialState = JSON.parse(sessionStorage.getItem('API-Key')) || null;

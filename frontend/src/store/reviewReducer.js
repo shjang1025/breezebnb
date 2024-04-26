@@ -63,9 +63,9 @@ export const createReview = reviewData => async dispatch => {
         console.error(error)
     }
 }
-export const updateReview = reviewData => async dispatch => {
+export const updateReview = (reviewId, reviewData) => async dispatch => {
     try {
-        const res = await editReview(reviewData)
+        const res = await editReview(reviewId, reviewData)
         if (res.ok) {
             const data = await res.json()
             dispatch(receiveReview(data))
@@ -75,6 +75,7 @@ export const updateReview = reviewData => async dispatch => {
 
     } catch(error) {
         console.error(error)
+        
     }
 }
 export const destroyReview = reviewId => dispatch => {
@@ -90,6 +91,7 @@ export const destroyReview = reviewId => dispatch => {
 }
 
 //SELECTOR
+// export const selectCurrentReview = reviewId => state => state.reviews[reviewId] ? state.reviews[reviewId] : null;
 export const selectReviewsArray = state => Object.values(state.reviews)
 export const selectReview = (reviewId => state => state.reviews[reviewId] ? state.reviews[reviewId] : null )
 export const selectReviewByRoom = (roomId => state =>  {
@@ -97,7 +99,7 @@ export const selectReviewByRoom = (roomId => state =>  {
 })
 export const selectReviewsByUserId = (userId) => (state) => {
     return Object.values(state.reviews).filter(review => review.reviewerId === userId);
-  };
+};
 //REDUCER
 
 const reviewReducer = (state={}, action) => {
