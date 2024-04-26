@@ -109,6 +109,25 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
     return(
         <div className="edit-modal-background" onClick={() => setReviewModal(null)}>
             <div className="edit-modal-content" onClick={e => e.stopPropagation()}>
+                <div className="modal-content-top">
+                    <button onClick={e => setReviewModal(null)}>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" 
+                                role="presentation" focusable="false" 
+                                style={{
+                                    display: 'block',
+                                    fill: 'none',
+                                    height: '16px',
+                                    width: '16px',
+                                    stroke: 'currentcolor',
+                                    strokeWidth: '3',
+                                    overflow: 'visible'
+                                }}>
+                                <path d="m6 6 20 20M26 6 6 26"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
                 <div className="review-form-subject">Make a Review</div>
                 <div className="review-inner-container">
                     <form className="review-form-inner-container" onSubmit={handleSubmit}>
