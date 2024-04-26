@@ -13,13 +13,27 @@
     align-items: center;
   }
 
-.modal-content {
+.login-modal-content {
   position: absolute;
   left: 50%;
   top: 50%;
-  /* width: 30%; */
   width: 480px;
-  height: 70%;
+  height: 65%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 10px;
+  border-radius: 30px;
+  position: absolute;
+  border: 1px solid #333;
+  font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+  font-weight: bold;
+}
+.signup-modal-content{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 480px;
+  height: 85%;
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 10px;
@@ -100,7 +114,8 @@ optgroup {
   font-size: 16px;
 }
 
-.modal-content-login button {
+.modal-content-login button,
+.decide-session button {
     width: 280px;
     margin: 20px;
     padding: 8px;
@@ -112,7 +127,8 @@ optgroup {
     font-size: 16px;
 }
 
-.modal-content-login button:hover {
+.modal-content-login button:hover,
+.decide-session button:hover {
     background-color: rgb(251, 129, 133);
 }
 
@@ -123,4 +139,18 @@ optgroup {
   color: red;
   font-weight:normal;
   font-style: italic;
+}
+.login-divider {
+  border-bottom: 1px solid;
+  border-bottom-color: #d3d3d3;
+  margin-left: 60px;  
+  margin-right: 60px; 
+  margin-bottom: 10px;
+}
+
+.ask-user {
+  margin-bottom: 10px;
+}
+.decide-session {
+  
 }

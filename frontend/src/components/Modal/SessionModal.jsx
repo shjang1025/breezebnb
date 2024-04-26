@@ -35,6 +35,13 @@ const SessionModal = ({modalState, setModalState}) => {
             });
         }
     };
+    const handleDecideClick = () => {
+        if(modalState === 'signup') {
+            setModalState('login')
+        } else {
+            setModalState('signup')
+        }
+    }
     const loginInput = () => {
         return(
             <>
@@ -104,7 +111,7 @@ const SessionModal = ({modalState, setModalState}) => {
     }
     return(
         <div className="modal-background" onClick={() => setModalState(null)}>
-            <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <div className={`${modalState}-modal-content`} onClick={e => e.stopPropagation()}>
                 <div className="modal-content-top">
                     <button onClick={e => setModalState(null)}>
                         <span>
@@ -145,6 +152,15 @@ const SessionModal = ({modalState, setModalState}) => {
                             {modalState === 'signup' ? signupInput() : loginInput()}
                             <button type="submit">{modalState === 'signup' ? 'Sign Up' : 'Log in'}</button>
                         </form>
+                    </div>
+                    <div className="login-divider"></div>
+                    <div>
+                        <div className="ask-user">
+                            {modalState === 'signup' ? 'Already Existing User?' : 'New User?' }
+                        </div>
+                        <div className="decide-session">
+                            <button type="button" onClick={handleDecideClick}>{modalState === 'signup' ? 'Log in' : 'Sign Up'}</button>
+                        </div>
                     </div>
                 </div>
             </div>

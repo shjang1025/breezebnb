@@ -214,7 +214,8 @@ table {
 }
 .divider {
     border-bottom: 1px solid;
-    border-bottom-color: #d3d3d3;}
+    border-bottom-color: #d3d3d3;
+}
 
 .dropdown li {
     margin: 10px;
@@ -225,6 +226,10 @@ table {
 }
 .github-icon, .linkedin-icon {
     padding-right: 15px;
+}
+.github-icon:hover, 
+.linkedin-icon:hover{
+    color: #ff385d6e;
 }
 .navbar-logo li,
 .menu-dropdown *,

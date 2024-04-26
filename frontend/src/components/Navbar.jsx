@@ -81,23 +81,6 @@ const Navbar = () => {
                         <div>
                             <li id="demo-login" onClick={() => dispatch(loginUser(demoInfo2))}>Demo Login 2</li>
                         </div>
-                        <div className="divider"></div>
-
-                        <div className="github">
-                            <a href="https://github.com/shjang1025/breezebnb">
-                                <li>
-                                    <FontAwesomeIcon icon={faGithub} size="xl" className="github-icon"/> Github
-                                </li>
-                            </a>
-                        </div>
-                        <div className="linkedin">
-                            <a href="https://www.linkedin.com/in/sohyun-jang-469918115/">
-                                <li>
-                                    <FontAwesomeIcon icon={faLinkedin} size="xl" className="linkedin-icon"/> Linkedin
-                                </li>
-                            </a>
-                        </div>
-                        
                     </ul>
                 </div>
             )
@@ -113,22 +96,6 @@ const Navbar = () => {
                         <div className="divider"></div>
                         <div>
                             <li id="logout" onClick={handleLogout}>Logout</li>
-                        </div>
-                        <div className="divider"></div>
-
-                        <div className="github">
-                            <a href="https://github.com/shjang1025/breezebnb">
-                                <li>
-                                    <FontAwesomeIcon icon={faGithub} size="xl" className="github-icon"/> Github
-                                </li>
-                            </a>
-                        </div>
-                        <div className="linkedin">
-                            <a href="https://www.linkedin.com/in/sohyun-jang-469918115/">
-                                <li>
-                                    <FontAwesomeIcon icon={faLinkedin} size="xl" className="linkedin-icon"/> Linkedin
-                                </li>
-                            </a>
                         </div>
                     </ul>
                 </div>
@@ -158,6 +125,7 @@ const Navbar = () => {
                             </li>
                             <li><Link to={'/'}>BreezeBnB</Link></li>
                         </div>
+                        
                         <div className="navbar-explore">
                             {/* <TopSearchBar searchModal={searchModal} handleSearchClick={handleSearchClick}/> */}
                         </div>
@@ -168,6 +136,20 @@ const Navbar = () => {
                                 ) : (
                                     <p onClick={handleBreezebnbClick}>Breezebnb your home</p>
                                 )}
+                            </div>
+                            <div className="github">
+                                <a href="https://github.com/shjang1025/breezebnb">
+                                    <li>
+                                        <FontAwesomeIcon icon={faGithub} size="xl" className="github-icon"/>
+                                    </li>
+                                </a>
+                            </div>
+                            <div className="linkedin">
+                                <a href="https://www.linkedin.com/in/sohyun-jang-469918115/">
+                                    <li>
+                                        <FontAwesomeIcon icon={faLinkedin} size="xl" className="linkedin-icon"/>
+                                    </li>
+                                </a>
                             </div>
                             <button className='session-links' onClick={() => setView(!view)}>
                                 <div className="menu-bars">
