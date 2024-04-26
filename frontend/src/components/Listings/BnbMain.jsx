@@ -74,6 +74,7 @@ const BnbMain = props => {
     return(
         <>
             <Navbar/>
+            <div className="divider"></div>
             <div className="category-search-bar">
                 <div className="category-all" onClick={() => handleCategoryClick('all')}>
                     <img className="i181yxiv atm_j3_1osqo2v atm_vy_1o8jidz atm_e2_1wugsn5 

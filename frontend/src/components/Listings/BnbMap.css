@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    padding-right: 20px;
 }
 .content-other-info-outer {
     display: flex;
@@ -19,8 +20,11 @@
 }
 .content-title {
     font-weight: bold;
-    font-size: 25px;
-    padding-bottom: 10px;
+    padding-bottom: 40px;
+}
+.content-title p {
+    text-align: start;
+    font-size: 18px;
 }
 .content-img-info {
     padding: 0;
