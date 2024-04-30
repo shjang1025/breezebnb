@@ -19,10 +19,12 @@ const ListingsShow = () => {
     const {room_id} = useParams();
     const apiKey = sessionStorage.getItem('API-Key')
     const currentRoom = useSelector(selectCurrentRoom(room_id))
+    const users = useSelector(state => state.users)
+    const username = currentRoom ? users[currentRoom.ownerId]?.username : null;
     const reservations = useSelector(state => state.reservations);
     const [dateErrors, setDateErrors] = useState('')
     const [selectedRoom, setSelectedRoom] = useState(null);
-    const [username, setUsername] = useState(null);
+    // const [username, setUsername] = useState(null);
     const [checkInDate, setCheckInDate] = useState(null);
     const [checkOutDate, setCheckOutDate] = useState(null);
     const [numGuests, setNumGuests] = useState(null);

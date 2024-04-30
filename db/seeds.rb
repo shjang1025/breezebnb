@@ -350,3 +350,25 @@ users_with_reviews.each do |user|
     )
   end
 end
+
+(0..18).each do |idx|
+    7.times do 
+        reviewer_id = Faker::Number.between(from: 1, to: 20)
+        # Check if the reviewer_id is not equal to 2 or 17
+        while reviewer_id == 2 || reviewer_id == 17
+            reviewer_id = Faker::Number.between(from: 1, to: 20)
+        end
+
+        Review.create!(
+            title: reviewTitles.sample,
+            description: long_review_sentences.sample,
+            cleanliness: Faker::Number.between(from: 3, to: 5),
+            communication: Faker::Number.between(from: 3, to: 5),
+            accuracy: Faker::Number.between(from: 3, to: 5),
+            location: Faker::Number.between(from: 3, to: 5),
+            value: Faker::Number.between(from: 3, to: 5),
+            reviewer_id: reviewer_id,
+            review_room_id: Faker::Number.between(from: 1, to: 18)
+        )
+    end
+end
