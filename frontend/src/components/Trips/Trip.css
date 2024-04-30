@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 175px;
+    top: 139px;
     height: 100%;
     min-width: 1200px;
 
@@ -25,6 +25,7 @@
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     max-width: 100%;
     margin-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 
@@ -85,9 +86,12 @@
     font-size: 20px;
     padding-bottom: 70px;
     padding-top: 30px;
+    
 
 }
-.current-reservation-title > p {
+.current-reservation-title > p ,
+.yes-hostings,
+.yes-reviews{
     color: #626060;
 }
 .current-reservation-max {

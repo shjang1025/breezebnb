@@ -80,7 +80,7 @@ const ReservationDate = ({DatePicker, selectedRoom, guestDropdown,
                 }
             })
             .catch(error => {
-                setErrors({ date: 'Check in/out date cannot be blank', numGuests: 'Num guests cannot be blank'});
+                setErrors({ date: 'Check in/out date cannot be blank', numGuests: 'Guests cannot be blank'});
             });
         }
 
