@@ -3,19 +3,25 @@ import {faAngleDown} from "@fortawesome/free-solid-svg-icons"
 import { differenceInDays } from "date-fns"; 
 import { useSelector } from "react-redux"
 import { selectCurrentUser } from "../../store/sessionReducer"
+import SessionModal from "../Modal/SessionModal";
+import { useEffect, useState } from "react";
+// import './ListingsShow.css'
+import '../Navbar.css'
+
 const ReservationDate = ({DatePicker, selectedRoom, guestDropdown, 
                         setCheckInDate, setCheckOutDate, checkInDate, 
                         checkOutDate, isDateAvailable,
-                        handleArrowClick, numGuests, viewDropdown, room_id, setNumGuests,errors, setErrors}) => {
+                        handleArrowClick, numGuests, viewDropdown, room_id, setNumGuests,dateErrors, setDateErrors}) => {
     
     const currentUser = useSelector(selectCurrentUser);
     const isLoggedin = !!currentUser;
-
+    const [loginModalState, setLoginModalState] = useState(null)
+    const [errors, setErrors] = useState({})
     const daysCalculation = () => {
         if (checkInDate && checkOutDate) {
             return differenceInDays(checkOutDate, checkInDate);
         }
-        return 0; // Default to 0 if either date is not set
+        return 0;
     };
 
     const cleaningFeeRange = () => {
@@ -33,41 +39,66 @@ const ReservationDate = ({DatePicker, selectedRoom, guestDropdown,
             return 150
         }
     }
+    useEffect(() => {
+        console.log('errors', errors)
+
+    }, [errors])
     const handleReserveClick = () => {
-        const reservationData = {
-            reservation:{
-                num_guests: numGuests, 
-                checkin: checkInDate, 
-                checkout: checkOutDate, 
-                reserved_person_id: currentUser.id, 
-                reserved_room_id: room_id
+        if(currentUser === null) {
+            setLoginModalState('login')
+            
+        }else {
+            const reservationData = {
+                reservation:{
+                    num_guests: numGuests, 
+                    checkin: checkInDate, 
+                    checkout: checkOutDate, 
+                    reserved_person_id: currentUser.id, 
+                    reserved_room_id: room_id
+                }
             }
+            fetch('/api/reservations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': sessionStorage.getItem('X-CSRF-Token')
+                },
+                body: JSON.stringify(reservationData)
+            })
+            .then((res) => {
+                if(!res.ok) {
+                    throw res
+                }
+                setErrors({})
+                return res.json
+            })
+            .then(data => {
+                if(data.errors) {
+                    setErrors(data.errors)
+                } else {
+                    console.log("Reservation successful")
+                }
+            })
+            .catch(error => {
+                setErrors({ date: 'Check in/out date cannot be blank', numGuests: 'Num guests cannot be blank'});
+            });
         }
-        fetch('/api/reservations', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-Token': sessionStorage.getItem('X-CSRF-Token')
-            },
-            body: JSON.stringify(reservationData)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.error) {
-                setErrors(data.error);
-            } else {
-                setErrors('')
-            }
-        })
-        .catch(error => {
-            console.error(error)
-        })
 
         setNumGuests(null)
         setCheckInDate(null)
         setCheckOutDate(null)
+        // setModalState(null)
     }
     return(
+        <>
+        {loginModalState && (
+            <div className="modal-overlay">
+                <div className="modal">
+                    <SessionModal modalState={loginModalState} setModalState={setLoginModalState}/>
+                </div>
+            </div>
+        )}
+
         <div className="reservation-container">
             <div className="price-per-night">
                 <p><span className="bold-text">${selectedRoom.price}</span> night</p>
@@ -110,6 +141,7 @@ const ReservationDate = ({DatePicker, selectedRoom, guestDropdown,
                     </div>
                 </div>
             </button>
+            {errors.date && <div className="error">* {errors.date}</div>}
             <div className="guest-dropdown">
                 <div className="guest-dropdown-upper" onClick={handleArrowClick}>
                     <label className="guest-picker"> 
@@ -128,10 +160,12 @@ const ReservationDate = ({DatePicker, selectedRoom, guestDropdown,
                     </div>
                 )}
             </div>
+            {errors.numGuests && <div className="error">* {errors.numGuests}</div>}
+
             <div className="reservation-button-container">
-                    <div className="button-container" 
+                    <div className={currentUser === null ? "need-to-login-button-container" :"reserve-button-container" }
                         onClick={handleReserveClick}>
-                        <button disabled={!isLoggedin}>
+                        <button>
                             {currentUser === null ? 'Need to Login':'Reserve'}
                         </button>
                     </div>
@@ -185,6 +219,8 @@ const ReservationDate = ({DatePicker, selectedRoom, guestDropdown,
 
 
         </div>
+
+        </>
 
     )
 }

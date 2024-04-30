@@ -242,3 +242,15 @@
   z-index: 2;
   border-radius: 20px;
 }
+.guest-dropdown-content {
+    position: absolute;
+    top: 18%;
+    width: 60%;
+    border-bottom: 1px solid;
+    border-bottom-color: #d3d3d3;
+    text-align: start;
+    box-shadow: 1px 1px 1px 1px rgba(146, 146, 146, 0.3);
+    background-color: white;
+    z-index: 2;
+    border-radius: 20px;
+}

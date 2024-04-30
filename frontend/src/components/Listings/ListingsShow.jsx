@@ -20,7 +20,7 @@ const ListingsShow = () => {
     const apiKey = sessionStorage.getItem('API-Key')
     const currentRoom = useSelector(selectCurrentRoom(room_id))
     const reservations = useSelector(state => state.reservations);
-    const [errors, setErrors] = useState('')
+    const [dateErrors, setDateErrors] = useState('')
     const [selectedRoom, setSelectedRoom] = useState(null);
     const [username, setUsername] = useState(null);
     const [checkInDate, setCheckInDate] = useState(null);
@@ -249,10 +249,10 @@ const ListingsShow = () => {
                                         guestDropdown={guestDropdown} setCheckInDate={setCheckInDate} checkInDate={checkInDate} 
                                         checkOutDate={checkOutDate} setCheckOutDate={setCheckOutDate} isDateAvailable={isDateAvailable}
                                         handleArrowClick={handleArrowClick} numGuests={numGuests} viewDropdown={viewDropdown} room_id={room_id}
-                                        setNumGuests={setNumGuests} errors={errors} setErrors={setErrors}/>
-                                    {errors && 
+                                        setNumGuests={setNumGuests} dateErrors={dateErrors} setDateErrors={setDateErrors}/>
+                                    {dateErrors && 
                                         <div className="date-error-message">
-                                            <p>* {errors}</p>
+                                            <p>* {dateErrors}</p>
                                         </div>
                                     }
                                 </div>

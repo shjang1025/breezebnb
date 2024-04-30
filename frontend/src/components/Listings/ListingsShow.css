@@ -297,16 +297,17 @@
     padding: 10px;
     text-align: start;
 }
-.reservation-button-container {
+.reservation-button-container,
+.need-to-login-button-container {
     padding: 8px;
 }
-.button-container button{
-    padding-bottom: 8px;
+.reserve-button-container button,
+.need-to-login-button-container button{
     width: 280px;
     width: 100%;
     margin: 8px;
     padding: 10px;
-    background-color: #E3185F;
+    background-color: #FF385C;
     color: white;
     border: none;
     border-radius: 50px;
@@ -470,4 +471,10 @@
     margin-bottom: 30px;
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     font-weight: 500;
+}
+.error {
+    color: red;
+    font-style: italic;
+    font-size: 11px;
+    margin-top: 5px
 }
