@@ -323,7 +323,6 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
                         </label>
                     </div>
 
-                    {/* boolean type lists */}
                     <div className="yn-container">
                         <label>Please choose the provided facilities</label>
                         <label className="yn">

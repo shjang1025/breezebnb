@@ -165,7 +165,6 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
                             </div>
                         </label>
                         <div className="star-section">
-                            {/* Cleanliness */}
                             <label className="cleanliness">Cleanliness:
                             <span>
                                 {ARRAY.map((el, idx) => (
@@ -180,7 +179,6 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
 
                             </span>
                             </label>
-                            {/* Accuracy */}
                             <label className="accuracy">Accuracy: 
                             <span>
                                 {ARRAY.map((el, idx) => (
@@ -195,7 +193,6 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
                             </span>
                             </label>
 
-                            {/* Communication */}
                             <label className="communication">Communication: 
                             <span>
                                 {ARRAY.map((el, idx) => (
@@ -210,7 +207,6 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
                             </span>
                             </label>
 
-                            {/* Location */}
                             <label className="review-location">Location: 
                             <span>
                                 {ARRAY.map((el, idx) => (
@@ -225,7 +221,6 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
                             </span>
                             </label>
 
-                            {/* Value */}
                             <label className="value">Value:
                             <span>
                                 {ARRAY.map((el, idx) => (

@@ -20,7 +20,6 @@ time, mark, audio, video {
     text-decoration: none;
     color: black;
 }
-/* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
@@ -94,7 +93,6 @@ table {
     margin: 0;
     margin-top: 0px;
     padding: 0 50px;
-    /* padding-bottom: 15px; */
     width: 100vw;
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     border-bottom: 1px solid;
@@ -110,7 +108,6 @@ table {
     width: 100vw;
     margin-left: 50px;
     position: sticky;
-    /* background-color: blue; */
 }
 .navbar {
     padding: 10px 0;
@@ -141,13 +138,11 @@ table {
 
 }
 .navbar-explore {
-    /* flex-grow: 1; */
     flex-shrink: 2;
 }
 .navbar-logo {
     display: flex;
     align-items: center;
-    /* color: rgba(255,90,96);	 */
     color: #FF385C;
     font-weight: bold;
     font-size: 20px;
@@ -155,13 +150,11 @@ table {
 }
 .navbar-logo li:first-child {
     padding: 0;
-    /* margin: 0; */
     margin-right: 5px;
 }
 
 .navbar-logo li a {
     text-decoration: none;
-    /* color: rgba(255,90,96); */
     color: #FF385C;
 
 }
@@ -180,11 +173,9 @@ table {
 
 
 .navbar-explore li{
-    /* margin: 8px; */
     display: flex;
     flex-direction: row;
     font-size: 20px;
-
 }
 
 .navbar-menu li {

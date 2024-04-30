@@ -297,9 +297,6 @@
     padding: 10px;
     text-align: start;
 }
-/* .react-datepicker__input-container input{
-    text-align: start;
-} */
 .reservation-button-container {
     padding: 8px;
 }
@@ -377,7 +374,6 @@
     padding-top: 10px
 }
 .num-guest{
-    /* background-color: #8360A6; */
     width: 100%;
     border-bottom: 1px solid;
     border-bottom-color: #d3d3d3;
@@ -419,9 +415,6 @@
 .map-title span {
     padding-bottom: 13px;
 }
-
-/* Review Styling */
-
 .reviews-inner-container {
     display: flex;
     flex-direction: column;

@@ -28,15 +28,12 @@
   }
   .edit-form-subject {
     margin-top: 15%;
-    /* background-color: rgb(208, 255, 113); */
     padding: 10px;
     font-size: 25px;
     font-weight: bold;
 }
 .edit-form-inner-container {
-    /* background-color: beige; */
     padding-top: 30px;
-    /* margin-top: 20%; */
     padding-bottom: 30px;
 }
 .edit-reservation-date-button,
@@ -100,7 +97,6 @@
 
 .edit-reservation-button-container {
   padding: 8px;
-  /* background-color: #ffb4b4; */
 }
 .edit-button-container button{
   padding-bottom: 8px;
@@ -119,7 +115,6 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   border-bottom-color: rgb(176, 176, 176);
-  /* background-color: orange; */
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -138,7 +133,6 @@
 }
 .edit-reservation-fee-calculation {
   padding: 8px;
-  /* background-color: #49b293; */
   display: flex;
   flex-direction: column;
   font-weight: 400;
@@ -148,13 +142,11 @@
   flex: 1;
   text-align: start;
   flex-direction: column;
-  /* background-color:aliceblue; */
 }
 .edit-reservation-fee-right {
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* background-color: beige; */
   text-align: end;
 
 }
@@ -192,7 +184,6 @@
   padding-top: 10px
 }
 .edit-num-guest{
-  /* background-color: #8360A6; */
   width: 100%;
   border-bottom: 1px solid;
   border-bottom-color: #d3d3d3;
@@ -201,7 +192,6 @@
   box-shadow: 1px 1px 1px 1px rgba(146, 146, 146, 0.3);
   background-color: white;
   z-index: 2;
-  /* border-radius: 10px; */
 }
 .edit-num-guest:first-child {
   border-top-left-radius: 10px;

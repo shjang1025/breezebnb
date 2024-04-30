@@ -7,7 +7,6 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    /* left: 0; */
     top: 175px;
     height: 100%;
     min-width: 1200px;
@@ -38,11 +37,8 @@
 }
 .hostings-info-container {
     padding-bottom: 20px;
-    /* border-radius: 25px; */
     margin-top: 20px;
     margin-bottom: 50px;
-    /* box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5); */
-
 }
 .booking-info {
     margin-top: 20px;
@@ -59,7 +55,6 @@
     margin-bottom: 40px;
     box-shadow: 4px 4px 4px 4px rgba(208, 206, 206, 0.5);
     border-radius: 50px;
-    /* padding: 20px; */
     justify-content: space-between;
 
 }

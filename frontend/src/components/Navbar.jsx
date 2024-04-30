@@ -127,7 +127,6 @@ const Navbar = () => {
                         </div>
                         
                         <div className="navbar-explore">
-                            {/* <TopSearchBar searchModal={searchModal} handleSearchClick={handleSearchClick}/> */}
                         </div>
                         <div className="navbar-menu">
                             <div className="room-hosting-links">
