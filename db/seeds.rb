@@ -245,7 +245,7 @@ reservation1 = Reservation.create!(
     checkin: "2024-04-11", 
     checkout: "2024-04-13",
     num_guests: 4,
-    reserved_person_id: user1.id,
+    reserved_person_id: user5.id,
     reserved_room_id: room4.id)
 reservation2 = Reservation.create!(
     checkin: "2024-03-25", 
@@ -270,12 +270,12 @@ reservation5 = Reservation.create!(
     checkout: "2024-02-16",
     num_guests: 3,
     reserved_person_id: user5.id,
-    reserved_room_id: room4.id)
+    reserved_room_id: room17.id)
 reservation6 = Reservation.create!(
     checkin: "2023-01-14", 
     checkout: "2023-01-20",
     num_guests: 3,
-    reserved_person_id: user12.id,
+    reserved_person_id: user2.id,
     reserved_room_id: room1.id)
 reservation7 = Reservation.create!(
     checkin: "2024-10-25", 
@@ -327,18 +327,26 @@ reviewTitles = [
 ];
 Review.destroy_all
 
-(0..18).each do |idx|
-    7.times do 
-        Review.create!(
-            title: reviewTitles.sample,
-            description: long_review_sentences.sample,
-            cleanliness: Faker::Number.between(from: 3, to: 5),
-            communication: Faker::Number.between(from: 3, to: 5),
-            accuracy: Faker::Number.between(from: 3, to: 5),
-            location: Faker::Number.between(from: 3, to: 5),
-            value: Faker::Number.between(from: 3, to: 5),
-            reviewer_id: Faker::Number.between(from: 1, to: 20),
-            review_room_id: Faker::Number.between(from: 1, to: 18)
-        )
-    end
+users_with_reviews = [user2, user5]
+
+users_with_reviews.each do |user|
+  if user == user2
+    rooms_for_user = [room1, room2]
+  elsif user == user5
+    rooms_for_user = [room4, room17]
+  end
+
+  rooms_for_user.each do |room|
+    Review.create!(
+      title: reviewTitles.sample,
+      description: long_review_sentences.sample,
+      cleanliness: Faker::Number.between(from: 3, to: 5),
+      communication: Faker::Number.between(from: 3, to: 5),
+      accuracy: Faker::Number.between(from: 3, to: 5),
+      location: Faker::Number.between(from: 3, to: 5),
+      value: Faker::Number.between(from: 3, to: 5),
+      reviewer_id: user.id,
+      review_room_id: room.id
+    )
+  end
 end
