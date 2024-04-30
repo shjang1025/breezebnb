@@ -32,7 +32,6 @@ const Navbar = () => {
     const [view, setView] = useState(false);
     const [modalState, setModalState] = useState(null)
     const [searchModal, setSearchModal] = useState(false)
-    const [loggedIn, setLoggedIn] = useState(false)
     const[showSigninModal, setShowSigninModal] = useState(false)
     useEffect(() => {
     
