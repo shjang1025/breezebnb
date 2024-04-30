@@ -245,7 +245,7 @@ reservation1 = Reservation.create!(
     checkin: "2024-04-11", 
     checkout: "2024-04-13",
     num_guests: 4,
-    reserved_person_id: user5.id,
+    reserved_person_id: user17.id,
     reserved_room_id: room4.id)
 reservation2 = Reservation.create!(
     checkin: "2024-03-25", 
@@ -257,19 +257,19 @@ reservation3 = Reservation.create!(
     checkin: "2024-05-03", 
     checkout: "2024-05-05",
     num_guests: 11,
-    reserved_person_id: user5.id,
+    reserved_person_id: user17.id,
     reserved_room_id: room5.id)
 reservation4 = Reservation.create!(
     checkin: "2025-10-22", 
     checkout: "2025-10-29",
     num_guests: 3,
-    reserved_person_id: user5.id,
+    reserved_person_id: user17.id,
     reserved_room_id: room7.id)
 reservation5 = Reservation.create!(
     checkin: "2024-02-14", 
     checkout: "2024-02-16",
     num_guests: 3,
-    reserved_person_id: user5.id,
+    reserved_person_id: user17.id,
     reserved_room_id: room17.id)
 reservation6 = Reservation.create!(
     checkin: "2023-01-14", 
@@ -327,12 +327,12 @@ reviewTitles = [
 ];
 Review.destroy_all
 
-users_with_reviews = [user2, user5]
+users_with_reviews = [user2, user17]
 
 users_with_reviews.each do |user|
   if user == user2
     rooms_for_user = [room1, room2]
-  elsif user == user5
+  elsif user == user17
     rooms_for_user = [room4, room17]
   end
 
