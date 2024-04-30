@@ -236,4 +236,12 @@ table {
 .navbar-logo a {
     cursor: pointer;
 }
-
+.github, .linkedin, .session-links {
+    cursor: pointer;
+}
+.dropdown {
+    cursor: pointer;
+}
+#demo-login, #demo-login2 {
+    cursor: pointer;
+}

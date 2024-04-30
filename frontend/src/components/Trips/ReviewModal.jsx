@@ -101,7 +101,22 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
         }
         setReviewModal(null)
     }
+    useEffect(() => {
+        const updateModalPosition = () => {
+          const modal = document.querySelector('.review-edit-modal-background');
+          if (modal) {
+            const topOffset = window.innerHeight / 2 - modal.offsetHeight / 2;
+            modal.style.top = `${topOffset}px`;
+          }
+        };
+        window.addEventListener('scroll', updateModalPosition);
+        updateModalPosition();
 
+        return () => {
+          window.removeEventListener('scroll', updateModalPosition);
+        };
+      }, [reviewModal]);
+    
     return(
         <div className="review-edit-modal-background" onClick={() => setReviewModal(null)}>
             <div className="review-edit-modal-content" onClick={e => e.stopPropagation()}>

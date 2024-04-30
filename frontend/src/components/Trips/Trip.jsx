@@ -9,8 +9,8 @@ import EditModal from "./EditModal"
 import ReviewModal from "./ReviewModal";
 import { FaStar } from "react-icons/fa";
 import { destroyReservation } from "../../store/reservationReducer";
-import { destroyReview } from "../../store/reviewReducer";
 import { selectReviewsByUserId } from "../../store/reviewReducer";
+import { destroyReview } from "../../store/reviewReducer";
 import Reservation from "./Reservation";
 import PastReservation from './PastReservation'
 import CurrentHosting from "./CurrentHosting";
@@ -20,12 +20,24 @@ const Trip = () => {
     const dispatch = useDispatch();
     const currentUser = useSelector(selectCurrentUser)
     const {user_id} = useParams();
+    const [editModal, setEditModal] = useState(false)
+    const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
+    const [reviewId, setReviewId] = useState(null)
+    const [reviewModal, setReviewModal] = useState(null)
+    const [currentReservation, setCurrentReservation] = useState('view-currnet-reservation')
+    const [bookingHistory, setBookingHistory] = useState(null)
+    const [hosting, setHosting] = useState(null)
+    const [review, setReview] = useState(null)
+
+
     useEffect(() => {
     }, [currentUser]);
+
     const reservations = useSelector(state => state.reservations)
     const rooms = useSelector(state => state.rooms)
     const currentDate = new Date();
     const reviews = useSelector(state => state.reviews)
+
     const currentReservations = Object.values(reservations).filter(
                                 reservation => {
                                     const checkinDate = new Date(reservation.checkin);
@@ -46,10 +58,7 @@ const Trip = () => {
 
     
 
-    const [editModal, setEditModal] = useState(false)
-    const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
-    const [reviewId, setReviewId] = useState(null)
-    const [reviewModal, setReviewModal] = useState(null)
+
     useEffect(() => {
     }, [reviewModal])
     const currentHostings = Object.values(rooms)
@@ -124,6 +133,31 @@ const Trip = () => {
         setEditModal(!editModal)
         setReservationId(reservationId)
     }
+
+    const handleCurrentReservationClick = () => {
+        setCurrentReservation('view-currnet-reservation')
+        setBookingHistory(null)
+        setHosting(null)
+        setReview(null)
+    }
+    const handleBookingClick = () => {
+        setBookingHistory('view-booking-history')
+        setCurrentReservation(null)
+        setHosting(null)
+        setReview(null)
+    }
+    const handleHostingClick = () => {
+        setHosting('view-hosting')
+        setCurrentReservation(null)
+        setBookingHistory(null)
+        setReview(null)
+    }
+    const handleReviewClick = () => {
+        setReview('view-review')
+        setHosting(null)
+        setCurrentReservation(null)
+        setBookingHistory(null)
+    }
     if (!currentUser || !currentUser.id) {
         // Handle the case where currentUser or currentUser.id is not available
         return (
@@ -142,87 +176,73 @@ const Trip = () => {
                         <div className="trip-header-title">
                             <p>Trips</p>
                         </div>
-                        <div className="booking-title">Your Current Reservations</div>
-                        <div className="booking-info">
-                             <Reservation currentReservations={currentReservations} 
-                             bnbphoto={bnbphoto}handleEditOpenClick={handleEditOpenClick} currentDate={currentDate} rooms={rooms}/>
+                        <div className="select-trip">
+                            <div className="booking-title" style={currentReservation ? { backgroundColor: '#FF385C', borderRadius: '50px', color: 'white' } : {}} onClick={handleCurrentReservationClick}>Current Reservations</div>
+                            <div className="booking-history" style={bookingHistory ? { backgroundColor: '#FF385C', borderRadius: '50px', color: 'white' } : {}} onClick={handleBookingClick}>Booking History</div>
+                            <div className="hostings-history" style={hosting ? { backgroundColor: '#FF385C', borderRadius: '50px', color: 'white' } : {}} onClick={handleHostingClick}>Hostings</div>
+                            <div className="reviews-index-title" style={review ? { backgroundColor: '#FF385C', borderRadius: '50px', color: 'white' } : {}} onClick={handleReviewClick}>Reviews</div>
                         </div>
-                    </div>
-                    <div className="booking-history">Your Booking History</div>
-                    <div className="trip-history">
-                        <PastReservation pastReservations={pastReservations} bnbphoto={bnbphoto} handleReviewOpenClick={handleReviewOpenClick} rooms={rooms} currentDate={currentDate}/>
-                    </div>
 
-                    <div className="hostings-info-container">
-                        <div className="hostings-history">Your Hostings</div>
+                        <div className="current-reservation-info-inner-container">
+                            {currentReservation && <Reservation currentReservations={currentReservations} 
+                            bnbphoto={bnbphoto}handleEditOpenClick={handleEditOpenClick} currentDate={currentDate} rooms={rooms}/>}
+                        </div>
+                        <div className="booking-history-info-inner-container">
+                            {bookingHistory && <PastReservation pastReservations={pastReservations} bnbphoto={bnbphoto} handleReviewOpenClick={handleReviewOpenClick} rooms={rooms} currentDate={currentDate}/>}
+                        </div>
                         <div className="hostings-info-inner-container">
-                            <CurrentHosting currentHostings={currentHostings} bnbphoto={bnbphoto}/>
+                            {hosting && <CurrentHosting currentHostings={currentHostings} bnbphoto={bnbphoto}/>}
                         </div>
-                    </div>
-                    <div className="reviews-info-container">
 
-                        <div className="reviews-index-title">Your Reviews</div>
                         <div className="reviews-info-inner-container">
-                            
-                            {currentReviews.length > 0 ?
-                                currentReviews.map(review => {
-                                    const room = Object.values(rooms).find(room => room.id === review.reviewRoomId);
-                                    if (!room) {
-                                        return (<p key={review.id}>Loading..</p>)
-                                    }
-                                   return(
-                                    
-                                    <div className="reviews-index-container" key={review.id}>
-                                        <div className="button-container" >
-                                                <button className="review-edit-button" onClick={() => handleReviewEditClick(review.id)}>Edit</button>
-                                                <button className="review-delete-button" onClick={() => dispatch(destroyReview(review.id, reservationId))}>Delete</button>
-                                        </div>
-                                        <div className="yes-reviews-inner">
-                                            <div className="review-title-container">
-                                                <div className="review-title">
-                                                    <div className="yes-reviews">
-                                                        {review.title}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="review-title-below">
-                                                <div className="review-description">
-                                                    <span>
-                                                        <p>Description: </p>
-                                                    </span>
-                                                    <span>
-                                                        <p>
-                                                            {review.description}
-                                                        </p>
-                                                    </span>
-                                                </div>
-                                                <div className="other-info">
-                                                    <span>Cleanliness: {starNumber(review.cleanliness)}</span>
-                                                    <span>Accuracy: {starNumber(review.accuracy)}</span>
-                                                    <span>Communication: {starNumber(review.communication)}</span>
-                                                    <span>Location: {starNumber(review.location)}</span>
-                                                    <span>Value: {starNumber(review.value)}</span>
-                                                    
-                                                </div>
+                        {review && currentReviews.length > 0 && currentReviews.map(review => {
+                            const room = Object.values(rooms).find(room => room.id === review.reviewRoomId);
+                            if (!room) {
+                                return <p key={review.id}>Loading..</p>;
+                            }
+                            return (
+                                <div className="reviews-index-container" key={review.id}>
+                                    <div className="button-container">
+                                        <button className="review-edit-button" onClick={() => handleReviewEditClick(review.id)}>Edit</button>
+                                        <button className="review-delete-button" onClick={() => dispatch(destroyReview(review.id, reservationId))}>Delete</button>
+                                    </div>
+                                    <div className="yes-reviews-inner">
+                                        <div className="review-title-container">
+                                            <div className="review-title">
+                                                <div className="yes-reviews">{review.title}</div>
                                             </div>
                                         </div>
-                                        <div className="review-photo">
-                                            <img src={room.photoUrl} id="review-photo" />
+                                        <div className="review-title-below">
+                                            <div className="review-description">
+                                                <span><p>Description: </p></span>
+                                                <span><p>{review.description}</p></span>
+                                            </div>
+                                            <div className="other-info">
+                                                <span>Cleanliness: {starNumber(review.cleanliness)}</span>
+                                                <span>Accuracy: {starNumber(review.accuracy)}</span>
+                                                <span>Communication: {starNumber(review.communication)}</span>
+                                                <span>Location: {starNumber(review.location)}</span>
+                                                <span>Value: {starNumber(review.value)}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                   )
-                                })
-                            :
-                                <div className="no-reviews">
-                                    <div className="no-review-content">
-                                        <p>You have no reviews</p>
-                                    </div>
-                                    <div className="no-hosting-photo">
-                                        <img src={bnbphoto} id="bnb-photo" alt="Trip" />
+                                    <div className="review-photo">
+                                        <img src={room.photoUrl} id="review-photo" alt="Room" />
                                     </div>
                                 </div>
+                            );
+                        })}
 
-                            }
+                        {review && currentReviews.length === 0 && 
+                            <div className="no-reviews">
+                                <div className="no-review-content">
+                                    <p>You have no reviews</p>
+                                </div>
+                                <div className="no-hosting-photo">
+                                    <img src={bnbphoto} id="bnb-photo" alt="Trip" />
+                                </div>
+                            </div>
+                        }
                         </div>
                     </div>
                 </div>
