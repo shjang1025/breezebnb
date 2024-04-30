@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/sessionReducer";
 
 
-const EditModal = ({reservationId, setEditModal}) => {
+const EditModal = ({reservationId, setEditModal, initialData}) => {
     
     const dispatch = useDispatch()
 
@@ -22,10 +22,11 @@ const EditModal = ({reservationId, setEditModal}) => {
     const rooms = useSelector(state => state.rooms)
     const currentUser = useSelector(selectCurrentUser);
     const users = useSelector(state => state.users)
-    const [numGuests, setNumGuests] = useState(null);
-    const [checkInDate, setCheckInDate] = useState(null);
-    const [checkOutDate, setCheckOutDate] = useState(null);
-    const reservationsArr = users[currentUser.id].reservationId //[1,5]
+    const [numGuests, setNumGuests] = useState(initialData ? initialData.numGuests : null);
+    const [checkInDate, setCheckInDate] = useState(initialData ? initialData.checkin : null);
+    const [checkOutDate, setCheckOutDate] = useState(initialData ? initialData.checkout : null);
+    
+    const reservationsArr = users[currentUser.id].reservationId
     const findRoom =(reservationId) => {
 
         for(let i = 0; i < reservationsArr.length; i++) {
@@ -54,7 +55,7 @@ const EditModal = ({reservationId, setEditModal}) => {
         for(let i = 1; i <= rooms[findRoom(reservationId)].capacity; i++) {
             guests.push(<div key={i} className="num-guest" onClick={() => handleGuestDivClick(i)}>{i}</div>)
         }
-        return guests;
+        return guests
     }
 
     const isDateAvailable = date => {
@@ -118,7 +119,7 @@ const EditModal = ({reservationId, setEditModal}) => {
                                 </div>
                                 <div className="edit-checkin-input">
                                     <DatePicker
-                                        className="edit-date-picker"
+                                        className="edit-date-picker-checkin"
                                         selected={checkInDate}
                                         onChange={(date) => setCheckInDate(date)}
                                         selectsStart
@@ -167,12 +168,6 @@ const EditModal = ({reservationId, setEditModal}) => {
                                 </div>
                             )}
                         </div>
-                        {/* {errors && 
-                            <div className="date-error-message">
-                                <p>* {errors}</p>
-                            </div>
-                        } */}
-
                         <div className="edit-reservation-button-container">
                                 <div className="edit-button-container">
                                     <button onClick={handleEditClick}>

@@ -48,7 +48,7 @@
   .modal-content-top {
     display: flex;
     padding: 8px;
-    justify-content: flex-end; /* Align the button to the right */
+    justify-content: flex-end; 
   }
   .modal-content-top button {
     cursor: pointer;
@@ -66,8 +66,8 @@
   
   .modal-content-center {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
+    flex-direction: column; 
+    align-items: center; 
   }
   
   .modal-content-title {
@@ -80,7 +80,6 @@
 .modal-signup {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
   align-items: center;
 }

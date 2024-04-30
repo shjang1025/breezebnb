@@ -91,7 +91,8 @@ export const destroyReservation = reservationId => dispatch => {
 }
 
 //SELECTOR
-// export const selectCurrentReservation = useSelector(reservationId => state => state[reservationId] ? state[reservationId] : null)
+export const selectCurrentReservation = (reservationId) => (state) =>
+  state.reservations[reservationId] ? state.reservations[reservationId] : null;
 
 //REDUCER
 const reservationReducer = (state={}, action) => {

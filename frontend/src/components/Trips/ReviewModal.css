@@ -15,8 +15,8 @@
   .review-edit-modal-content {
     position: relative; 
     width: 600px;
-    max-height: 80%; 
-    overflow-y: auto; 
+    max-height: 83%; 
+    /* overflow-y: auto;  */
     background-color: white;
     padding: 10px;
     border-radius: 50px;

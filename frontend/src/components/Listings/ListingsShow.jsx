@@ -203,12 +203,6 @@ const ListingsShow = () => {
                         <div className="representing-photo">
                             <img className="listing-show-photo" src={selectedRoom.photoUrl}/>
                         </div>
-                        {/* <div className="listing-photo-grid">
-                            <div className="grid-photo 1"></div>
-                            <div className="grid-photo 2"></div>
-                            <div className="grid-photo 3"></div>
-                            <div className="grid-photo 4"></div>
-                        </div> */}
                     </div>
                     <div className="details-wrapper">
                         <div className="details-main">

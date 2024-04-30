@@ -8,7 +8,8 @@ import { useParams } from "react-router";
 import EditModal from "./EditModal"
 import ReviewModal from "./ReviewModal";
 import { FaStar } from "react-icons/fa";
-import { destroyReservation } from "../../store/reservationReducer";
+import { fetchReservation } from "../../store/reservationReducer";
+import { destroyReservation, selectCurrentReservation } from "../../store/reservationReducer";
 import { selectReviewsByUserId } from "../../store/reviewReducer";
 import { destroyReview } from "../../store/reviewReducer";
 import Reservation from "./Reservation";
@@ -24,7 +25,8 @@ const Trip = () => {
     const [reservationId, setReservationId] = useState(null); // State to hold reservationId for EditReservationForm
     const [reviewId, setReviewId] = useState(null)
     const [reviewModal, setReviewModal] = useState(null)
-    const [currentReservation, setCurrentReservation] = useState('view-currnet-reservation')
+    const currentReservation = useSelector(selectCurrentReservation(reservationId));
+    const [viewCurrentReservation, setViewCurrentReservation] = useState('view-currnet-reservation')
     const [bookingHistory, setBookingHistory] = useState(null)
     const [hosting, setHosting] = useState(null)
     const [review, setReview] = useState(null)
@@ -46,7 +48,7 @@ const Trip = () => {
                                         reservation.reserverId === currentUser.id &&
                                         (checkinDate > currentDate && checkoutDate > currentDate))
     });
-    
+    console.log(currentReservations)
     const pastReservations = Object.values(reservations).filter(
                             reservation => {
                                 const checkinDate = new Date(reservation.checkin);
@@ -68,11 +70,7 @@ const Trip = () => {
     
     useEffect(() => {
 
-    }, [user_id, reservations,reviews])
-    
-    useEffect(() => {
-    }, [rooms])
-
+    }, [user_id])
     
     useEffect(() => {
     },[reservationId])
@@ -124,38 +122,40 @@ const Trip = () => {
         setReviewId(reviewId)
     }
     const handleReviewEditClick = (reviewId, reservationId) => {
-
         setReviewModal('edit-review')
         setReviewId(reviewId)
-        setReservationId(reservationId) // Set reservationId here
+        setReservationId(reservationId)
     }
     const handleEditOpenClick = (reservationId) => {
         setEditModal(!editModal)
         setReservationId(reservationId)
+        console.log("You click the reservation ", reservationId)
+        dispatch(fetchReservation(reservationId))
+        console.log("Reservation is ", currentReservation)
     }
 
     const handleCurrentReservationClick = () => {
-        setCurrentReservation('view-currnet-reservation')
+        setViewCurrentReservation('view-currnet-reservation')
         setBookingHistory(null)
         setHosting(null)
         setReview(null)
     }
     const handleBookingClick = () => {
         setBookingHistory('view-booking-history')
-        setCurrentReservation(null)
+        setViewCurrentReservation(null)
         setHosting(null)
         setReview(null)
     }
     const handleHostingClick = () => {
         setHosting('view-hosting')
-        setCurrentReservation(null)
+        setViewCurrentReservation(null)
         setBookingHistory(null)
         setReview(null)
     }
     const handleReviewClick = () => {
         setReview('view-review')
         setHosting(null)
-        setCurrentReservation(null)
+        setViewCurrentReservation(null)
         setBookingHistory(null)
     }
     if (!currentUser || !currentUser.id) {
@@ -177,14 +177,14 @@ const Trip = () => {
                             <p>Trips</p>
                         </div>
                         <div className="select-trip">
-                            <div className="booking-title" style={currentReservation ? { backgroundColor: '#FF385C', borderRadius: '50px', color: 'white' } : {}} onClick={handleCurrentReservationClick}>Current Reservations</div>
+                            <div className="booking-title" style={viewCurrentReservation ? { backgroundColor: '#FF385C', borderRadius: '50px', color: 'white' } : {}} onClick={handleCurrentReservationClick}>Current Reservations</div>
                             <div className="booking-history" style={bookingHistory ? { backgroundColor: '#FF385C', borderRadius: '50px', color: 'white' } : {}} onClick={handleBookingClick}>Booking History</div>
                             <div className="hostings-history" style={hosting ? { backgroundColor: '#FF385C', borderRadius: '50px', color: 'white' } : {}} onClick={handleHostingClick}>Hostings</div>
                             <div className="reviews-index-title" style={review ? { backgroundColor: '#FF385C', borderRadius: '50px', color: 'white' } : {}} onClick={handleReviewClick}>Reviews</div>
                         </div>
 
                         <div className="current-reservation-info-inner-container">
-                            {currentReservation && <Reservation currentReservations={currentReservations} 
+                            {viewCurrentReservation && <Reservation currentReservations={currentReservations} 
                             bnbphoto={bnbphoto}handleEditOpenClick={handleEditOpenClick} currentDate={currentDate} rooms={rooms}/>}
                         </div>
                         <div className="booking-history-info-inner-container">
@@ -248,7 +248,7 @@ const Trip = () => {
                 </div>
             </div>
             {editModal && 
-                <EditModal reservationId={reservationId} setEditModal={setEditModal}/>}
+                <EditModal reservationId={reservationId} setEditModal={setEditModal} initialData={currentReservation}/>}
             {reviewModal &&
                 <ReviewModal reviewId={reviewId} reservationId={reservationId} setReviewModal={setReviewModal} initialReviewData={currentReviewData} reviewModal={reviewModal}/>
             }

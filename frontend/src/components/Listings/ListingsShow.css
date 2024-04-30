@@ -381,7 +381,7 @@
     padding: 15px;
     box-shadow: 1px 1px 1px 1px rgba(146, 146, 146, 0.3);
     background-color: white;
-    z-index: 2;
+    z-index: 12;
 }
 .num-guest:first-child {
     border-top-left-radius: 10px;

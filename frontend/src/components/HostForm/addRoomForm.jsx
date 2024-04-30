@@ -40,8 +40,6 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
     const [checked, setChecked] = useState(false)
     const dispatch = useDispatch();
     
-    // console.log("ERROR?" , errors.address[0])
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = new FormData();
