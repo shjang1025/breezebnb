@@ -90,12 +90,10 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
         if(mode === 'create') {
             dispatch(createRoom(data))
                 .then(() => {
-                    console.log("PAss the dispatch")
                     setErrors({});
                 })
                 .catch(async res =>{
                     let data = await res.json();
-                    console.log(data)
                     setErrors(data.errors);
                 });
 

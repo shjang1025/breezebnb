@@ -28,10 +28,10 @@ class Api::ReservationsController < ApplicationController
             if @reservation.overlap.exists?
                 render json: {error: 'Room is already booked for the requested dates'}, status: 422
         
-            elsif @reservation.save!
+            elsif @reservation.save
                 render :show
             else 
-                render json: {errors: room.errors}, status: 422
+                render json: {errors: @reservation.errors}, status: 422
             end
         else
 

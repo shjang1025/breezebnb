@@ -48,7 +48,6 @@ const Trip = () => {
                                         reservation.reserverId === currentUser.id &&
                                         (checkinDate > currentDate && checkoutDate > currentDate))
     });
-    console.log(currentReservations)
     const pastReservations = Object.values(reservations).filter(
                             reservation => {
                                 const checkinDate = new Date(reservation.checkin);
@@ -129,9 +128,7 @@ const Trip = () => {
     const handleEditOpenClick = (reservationId) => {
         setEditModal(!editModal)
         setReservationId(reservationId)
-        console.log("You click the reservation ", reservationId)
         dispatch(fetchReservation(reservationId))
-        console.log("Reservation is ", currentReservation)
     }
 
     const handleCurrentReservationClick = () => {

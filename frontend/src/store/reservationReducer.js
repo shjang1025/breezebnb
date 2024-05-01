@@ -49,21 +49,28 @@ export const fetchReservation = reservationId => dispatch => {
         .then(data => dispatch(receiveReservation(data)))
         .catch(err => console.error(err))
 }
-export const createReservation = reservationData => async dispatch => {
-    try {
-        const res = await postReservation(reservationData)
-        if (res.ok) {
-            const data = await res.json()
+export const createReservation = reservationData => dispatch => (
+    postReservation(reservationData)
+        .then(res => {
+            if (res.ok) {
+                return res.json()
+            } else {
+                throw res
+            }
+        })
+        .then(data => dispatch(receiveReservation(data)))
+    // try {
+    //     const res = await postReservation(reservationData)
+    //     if (res.ok) {
+    //         const data = await res.json()
 
-            dispatch(receiveReservation(data))
-        } else {
-            throw res;
-        }
+    //         dispatch(receiveReservation(data))
+    //     } else {
+    //         throw res;
+    //     }
 
-    } catch(error) {
-        console.error(error)
-    }
-}
+    // }
+)
 export const updateReservation = reservationData => dispatch => {
     editReservation(reservationData)
         .then(res => {

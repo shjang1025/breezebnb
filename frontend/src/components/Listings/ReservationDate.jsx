@@ -1,18 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faAngleDown} from "@fortawesome/free-solid-svg-icons"
 import { differenceInDays } from "date-fns"; 
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { selectCurrentUser } from "../../store/sessionReducer"
 import SessionModal from "../Modal/SessionModal";
 import { useEffect, useState } from "react";
 // import './ListingsShow.css'
 import '../Navbar.css'
+import { createReservation } from "../../store/reservationReducer";
 
 const ReservationDate = ({DatePicker, selectedRoom, guestDropdown, 
                         setCheckInDate, setCheckOutDate, checkInDate, 
                         checkOutDate, isDateAvailable,
                         handleArrowClick, numGuests, viewDropdown, room_id, setNumGuests,dateErrors, setDateErrors}) => {
-    
+    const dispatch = useDispatch()
     const currentUser = useSelector(selectCurrentUser);
     const isLoggedin = !!currentUser;
     const [loginModalState, setLoginModalState] = useState(null)
@@ -43,6 +44,7 @@ const ReservationDate = ({DatePicker, selectedRoom, guestDropdown,
         console.log('errors', errors)
 
     }, [errors])
+    
     const handleReserveClick = () => {
         if(currentUser === null) {
             setLoginModalState('login')
@@ -57,31 +59,14 @@ const ReservationDate = ({DatePicker, selectedRoom, guestDropdown,
                     reserved_room_id: room_id
                 }
             }
-            fetch('/api/reservations', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-Token': sessionStorage.getItem('X-CSRF-Token')
-                },
-                body: JSON.stringify(reservationData)
-            })
-            .then((res) => {
-                if(!res.ok) {
-                    throw res
-                }
-                setErrors({})
-                return res.json
-            })
-            .then(data => {
-                if(data.errors) {
+            dispatch(createReservation(reservationData))
+                .then(() => {
+                    setErrors({})
+                })
+                .catch(async res => {
+                    let data = await res.json();
                     setErrors(data.errors)
-                } else {
-                    console.log("Reservation successful")
-                }
-            })
-            .catch(error => {
-                setErrors({ date: 'Check in/out date cannot be blank', numGuests: 'Guests cannot be blank'});
-            });
+                })
         }
 
         setNumGuests(null)
@@ -141,7 +126,10 @@ const ReservationDate = ({DatePicker, selectedRoom, guestDropdown,
                     </div>
                 </div>
             </button>
-            {errors.date && <div className="error">* {errors.date}</div>}
+            <div className="date-errors" style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
+                {errors.checkin && <div className="error">* Check-in date {errors.checkin[0]}</div>}
+                {errors.checkout && <div className="error">* Check-out date {errors.checkout[0]}</div>}
+            </div>
             <div className="guest-dropdown">
                 <div className="guest-dropdown-upper" onClick={handleArrowClick}>
                     <label className="guest-picker"> 
@@ -160,7 +148,7 @@ const ReservationDate = ({DatePicker, selectedRoom, guestDropdown,
                     </div>
                 )}
             </div>
-            {errors.numGuests && <div className="error">* {errors.numGuests}</div>}
+            {errors.num_guests && <div className="error">* Number of guest {errors.num_guests[1]}</div>}
 
             <div className="reservation-button-container">
                     <div className={currentUser === null ? "need-to-login-button-container" :"reserve-button-container" }
