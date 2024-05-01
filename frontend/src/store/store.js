@@ -16,7 +16,7 @@ export const rootReducer = combineReducers({
 })
 
 const configureStore=(initialState = {}) => (
-    createStore(rootReducer, initialState, applyMiddleware(thunk))
+    createStore(rootReducer, initialState, applyMiddleware(thunk ))
 )
 
 export default configureStore
