@@ -35,20 +35,51 @@
 - Offer error messages, helping users understand why the error occurred and how to resolve it
 - Provide clear, descriptive error messages during login and sign up process
 
-<img width="741" alt="Screenshot 2024-04-25 at 11 18 54 PM" src="https://github.com/shjang1025/breezebnb/assets/26673070/01abf2c8-7321-4b91-908a-63c21271edb6">
-<img width="741" alt="Screenshot 2024-04-25 at 11 19 08 PM" src="https://github.com/shjang1025/breezebnb/assets/26673070/5e2124d3-2a6d-41a0-bb14-18f86f9512ac">
-<img width="741" alt="Screenshot 2024-04-25 at 11 19 29 PM" src="https://github.com/shjang1025/breezebnb/assets/26673070/842f5f6f-b964-4724-a6e8-0cbeb0caa8ac">
+<div style="display: flex;">
+  <img width="300" style="padding-right:10px" alt="Screenshot 2024-04-30 at 8 36 49 PM" src="https://github.com/shjang1025/breezebnb/assets/26673070/6a9f0056-8e3b-461b-ac5d-4ee3ac718c03">
+  <img width="300" style="padding-right:10px" alt="Screenshot 2024-04-30 at 8 36 56 PM" src="https://github.com/shjang1025/breezebnb/assets/26673070/48f23091-4086-49cc-8cd2-3a662a4eec2d">
+  <img width="300" style="padding-right:10px" alt="Screenshot 2024-04-30 at 8 36 42 PM" src="https://github.com/shjang1025/breezebnb/assets/26673070/de12f5a4-bfa9-4287-96f4-175931ce8367">
+</div>
 
 ### Seamless Reservation Experience
 - Ensure a seamless reservation process by logging in to access booking functionality. 
 - Receive instant notifications and alternative options if your desired date is already reserved, ensuring a smooth booking process.
 
-<img width="440" alt="Screenshot 2024-04-25 at 10 34 31 PM" src="https://github.com/shjang1025/breezebnb/assets/26673070/ff3ba06b-b904-4d19-807c-cea5e04c2ade">
-<img width="440" alt="Screenshot 2024-04-25 at 10 35 06 PM" src="https://github.com/shjang1025/breezebnb/assets/26673070/cf9a221a-f5c2-472c-8570-38e60938caf9">
+```ruby
+def overlap
+        Reservation.where('reserved_room_id = ? AND ((checkin < ? AND checkout > ?) 
+                          OR (checkin < ? AND checkout > ?) OR (checkin >= ? AND checkout <= ?))',
+                      reserved_room_id, checkout, checkout, checkin, checkin, checkin, checkout)
+  end
+```
+```ruby
+def create 
+        @reservation = Reservation.new(reservation_params)
+        room = Room.find_by(id: params[:reservation][:reserved_room_id])
 
----
+        if room 
+            @reservation.room = room
+            if @reservation.overlap.exists?
+                render json: {error: 'Room is already booked for the requested dates'}, status: 422
+        
+            elsif @reservation.save
+                render :show
+            else 
+                render json: {errors: @reservation.errors}, status: 422
 
-![reservation-already-booked](https://github.com/shjang1025/breezebnb/assets/26673070/4fd29bab-30aa-4053-b8f0-70d3b3c596d4)
+            end
+        else
+
+            render json: {error: "Room not found" }, status: 404
+        end
+    end
+
+```
+<div style="display: flex;">
+    <img width="390" alt="Screenshot 2024-04-30 at 8 22 16 PM" src="https://github.com/shjang1025/breezebnb/assets/26673070/b038cf7a-f91b-4d45-9d95-296450e308ba">
+    <img width="390" alt="Screenshot 2024-04-30 at 8 22 02 PM" src="https://github.com/shjang1025/breezebnb/assets/26673070/8ef93317-c976-41d0-a2b6-bcf5841d3eff">
+    <img width="390" alt="vid" src="https://github.com/shjang1025/breezebnb/assets/26673070/63bb4d5b-a2e3-4c5c-b917-3d3fe81c133b">
+</div>
 
 ---
 
@@ -84,4 +115,4 @@
 - ![postgresql](https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 
 **Cloud**
-  - ![aws](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
+- <img src="https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white" alt="React Badge"/>
