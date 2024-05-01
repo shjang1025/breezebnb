@@ -185,7 +185,7 @@ const Trip = () => {
                             bnbphoto={bnbphoto}handleEditOpenClick={handleEditOpenClick} currentDate={currentDate} rooms={rooms}/>}
                         </div>
                         <div className="booking-history-info-inner-container">
-                            {bookingHistory && <PastReservation pastReservations={pastReservations} bnbphoto={bnbphoto} handleReviewOpenClick={handleReviewOpenClick} rooms={rooms} currentDate={currentDate}/>}
+                            {bookingHistory && <PastReservation currentUser={currentUser} pastReservations={pastReservations} bnbphoto={bnbphoto} handleReviewOpenClick={handleReviewOpenClick} rooms={rooms} currentDate={currentDate}/>}
                         </div>
                         <div className="hostings-info-inner-container">
                             {hosting && <CurrentHosting currentHostings={currentHostings} bnbphoto={bnbphoto}/>}

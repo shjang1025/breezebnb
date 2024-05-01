@@ -1,6 +1,10 @@
+import { useSelector } from 'react-redux';
+import { createSelector } from 'reselect'
 import './Trip.css'
 
-const pastReservations = ({pastReservations, bnbphoto, handleReviewOpenClick, rooms, currentDate}) => {
+const pastReservations = ({pastReservations, bnbphoto, handleReviewOpenClick, rooms, currentDate, currentUser}) => {
+    const reviews = useSelector(state => state.reviews)
+
     return(
         <div>
     {pastReservations.length > 0 ? 
@@ -12,7 +16,19 @@ const pastReservations = ({pastReservations, bnbphoto, handleReviewOpenClick, ro
             return (
                 <div className="booking-container" key={reservation.id}>
                     <div className="button-container" >
-                        <button className="review-button" onClick={() => handleReviewOpenClick(reservation.id)}>Make a Review</button>
+                        <button className={`review-button ${Object.values(reviews).find((review) => 
+                                    review.reviewerId === currentUser.id && room.id === review.reviewRoomId
+                                ) ? "reviewed" : ""}`} onClick={() => handleReviewOpenClick(reservation.id)}
+                                
+                                disabled={Object.values(reviews).some((review) => 
+                                    review.reviewerId === currentUser.id && room.id === review.reviewRoomId
+                                )}
+                        >
+                        {Object.values(reviews).find((review) => 
+                            review.reviewerId === currentUser.id && room.id === review.reviewRoomId
+                        ) ? "You already made a review" : "Make a Review"}
+                        
+                        </button>
                     </div>
                     <div className="booking-info-left">
                         <div className="current-reservation">
