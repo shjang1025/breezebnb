@@ -32,6 +32,7 @@ class Api::ReservationsController < ApplicationController
                 render :show
             else 
                 render json: {errors: @reservation.errors}, status: 422
+
             end
         else
 

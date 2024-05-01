@@ -59,17 +59,6 @@ export const createReservation = reservationData => dispatch => (
             }
         })
         .then(data => dispatch(receiveReservation(data)))
-    // try {
-    //     const res = await postReservation(reservationData)
-    //     if (res.ok) {
-    //         const data = await res.json()
-
-    //         dispatch(receiveReservation(data))
-    //     } else {
-    //         throw res;
-    //     }
-
-    // }
 )
 export const updateReservation = reservationData => dispatch => {
     editReservation(reservationData)

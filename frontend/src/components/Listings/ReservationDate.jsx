@@ -12,8 +12,9 @@ import { createReservation } from "../../store/reservationReducer";
 const ReservationDate = ({DatePicker, selectedRoom, guestDropdown, 
                         setCheckInDate, setCheckOutDate, checkInDate, 
                         checkOutDate, isDateAvailable,
-                        handleArrowClick, numGuests, viewDropdown, room_id, setNumGuests,dateErrors, setDateErrors}) => {
+                        handleArrowClick, numGuests, viewDropdown, room_id, setNumGuests}) => {
     const dispatch = useDispatch()
+    const [dateErrors, setDateErrors] = useState('')
     const currentUser = useSelector(selectCurrentUser);
     const isLoggedin = !!currentUser;
     const [loginModalState, setLoginModalState] = useState(null)
@@ -24,7 +25,10 @@ const ReservationDate = ({DatePicker, selectedRoom, guestDropdown,
         }
         return 0;
     };
-
+    useEffect(()=> {
+        console.log("DATE ERROR", dateErrors)
+        console.log("errrors", errors)
+    },[dateErrors, errors])
     const cleaningFeeRange = () => {
         if(selectedRoom.price <= 100) {
             return 20
@@ -57,11 +61,37 @@ const ReservationDate = ({DatePicker, selectedRoom, guestDropdown,
             dispatch(createReservation(reservationData))
                 .then(() => {
                     setErrors({})
+                    setDateErrors('')
                 })
                 .catch(async res => {
                     let data = await res.json();
-                    setErrors(data.errors)
+                    if(!data.error && data.errors) {
+                        setErrors(data.errors)
+                        setDateErrors('')
+                    } else if(data.error && !data.errors) {
+                        setErrors({})
+                        setDateErrors(data.error)
+                    }
                 })
+            // fetch('/api/reservations', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         'X-CSRF-Token': sessionStorage.getItem('X-CSRF-Token')
+            //     },
+            //     body: JSON.stringify(reservationData)
+            // })
+            // .then(res => res.json())
+            // .then(data => {
+            //     if(data.error) {
+            //         setDateErrors(data.error);
+            //     } else {
+            //         setDateErrors('')
+            //     }
+            // })
+            // .catch(error => {
+            //     console.error(error)
+            // })
         }
 
         setNumGuests(null)
@@ -200,7 +230,11 @@ const ReservationDate = ({DatePicker, selectedRoom, guestDropdown,
                 </div>
             </div>
 
-
+            {dateErrors && 
+                <div className="date-error-message">
+                    <p>* {dateErrors}</p>
+                </div>
+            }
         </div>
 
         </>

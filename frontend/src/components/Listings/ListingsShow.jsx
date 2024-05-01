@@ -22,7 +22,6 @@ const ListingsShow = () => {
     const users = useSelector(state => state.users)
     const username = currentRoom ? users[currentRoom.ownerId]?.username : null;
     const reservations = useSelector(state => state.reservations);
-    const [dateErrors, setDateErrors] = useState('')
     const [selectedRoom, setSelectedRoom] = useState(null);
     // const [username, setUsername] = useState(null);
     const [checkInDate, setCheckInDate] = useState(null);
@@ -251,12 +250,12 @@ const ListingsShow = () => {
                                         guestDropdown={guestDropdown} setCheckInDate={setCheckInDate} checkInDate={checkInDate} 
                                         checkOutDate={checkOutDate} setCheckOutDate={setCheckOutDate} isDateAvailable={isDateAvailable}
                                         handleArrowClick={handleArrowClick} numGuests={numGuests} viewDropdown={viewDropdown} room_id={room_id}
-                                        setNumGuests={setNumGuests} dateErrors={dateErrors} setDateErrors={setDateErrors}/>
-                                    {dateErrors && 
+                                        setNumGuests={setNumGuests}/>
+                                    {/* {dateErrors && 
                                         <div className="date-error-message">
                                             <p>* {dateErrors}</p>
                                         </div>
-                                    }
+                                    } */}
                                 </div>
                             </div>
                         </div>
