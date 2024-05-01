@@ -12,22 +12,20 @@ class Api::SessionsController < ApplicationController
             render 'api/users/show'
         else 
             render json: {errors: ['Invalid credentials']}, status: 422
-            # render json: {errors: @user.errors}, status: 422
         end
     end
 
     def show
         @user = current_user
-        if @user #if somebody logged in
-            # render :show <- it wouldn't work. views/api/sessions/show
+        if @user 
             render 'api/users/show'
         else
-            render json: {user: nil} #we don't have a current user right now
+            render json: {user: nil} 
         end
     end
 
     def destroy 
         logout
-        head :no_content #good idea for deletingw
+        head :no_content 
     end
 end

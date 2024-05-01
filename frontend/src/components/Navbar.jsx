@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import {logoutUser, selectCurrentUser } from "../store/sessionReducer"
+import {fetchSession, logoutUser, selectCurrentUser } from "../store/sessionReducer"
 import { useEffect, useState } from "react";
 import './Navbar.css';
 import {Link, useLocation} from 'react-router-dom'
@@ -23,25 +23,33 @@ const Navbar = () => {
         dispatch(fetchUsers());
         dispatch(fetchReservations())
         dispatch(fetchReviews())
+        dispatch(fetchSession())
+
     }, [dispatch]);
 
 
     //find currentUser
     const currentUser = useSelector(selectCurrentUser);
     const userId = currentUser ? currentUser.id : "";
+    
+    const [cu, setCu] = useState(currentUser)
     const [view, setView] = useState(false);
     const [modalState, setModalState] = useState(null)
     const [searchModal, setSearchModal] = useState(false)
     const[showSigninModal, setShowSigninModal] = useState(false)
+
     useEffect(() => {
-    
-    },[currentUser])
+        setCu(currentUser)
+    },[currentUser,cu])
+
     const handleLogout = () => {
         dispatch(logoutUser())
             .then(() => {
                 window.location.href = '/';
                 setView(false)
+                setCu(null)
             })
+
     }
     const handleSearchClick = () => {
         setSearchModal(!searchModal);
@@ -52,6 +60,7 @@ const Navbar = () => {
             setShowSigninModal(true);
         }
     };
+
     const demoInfo1 = {
         email: "bbbb@test.com",
         password: "password"
