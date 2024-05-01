@@ -190,7 +190,7 @@ h1 {
     width: 100%;
     margin: 20px;
     padding: 20px;
-    background-color: #E3185F;
+    background-color: #FF385C;
     color: white;
     border: none;
     border-radius: 50px;
@@ -202,7 +202,7 @@ h1 {
 .rooms-errors,
 .address-errors,
 .baths-errors,
-.bed-errors,
+.beds-errors,
 .category-errors,
 .city-errors,
 .country-errors,

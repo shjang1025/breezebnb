@@ -23,14 +23,9 @@ class Reservation < ApplicationRecord
     validates :checkout, comparison: { greater_than: :checkin }
     validates :num_guests, presence: true, numericality: {greater_than_or_equal_to: 1}
     
-    # validate :checkin_uniqueness
-    # validate :checkout_uniqueness
-    # validate checkin_before_checkout
-
-    # validates :num_guests, presence: true, numericality: {greater_than_or_equal_to: 1}
-
     def overlap
-        Reservation.where('reserved_room_id = ? AND ((checkin < ? AND checkout > ?) OR (checkin < ? AND checkout > ?) OR (checkin >= ? AND checkout <= ?))',
+        Reservation.where('reserved_room_id = ? AND ((checkin < ? AND checkout > ?) 
+                            OR (checkin < ? AND checkout > ?) OR (checkin >= ? AND checkout <= ?))',
                         reserved_room_id, checkout, checkout, checkin, checkin, checkin, checkout)
     end
   

@@ -55,12 +55,6 @@ class Api::ReservationsController < ApplicationController
     def destroy
         @reservation.destroy
         head :no_content
-        # if (@current_user.id === @reservation.reserved_person_id) 
-        #     @reservation.destroy
-        #     head :no_content
-        # else
-        #     render json: {error: 'You are not authorized to delete this reservation'}, status: :unauthorized
-        # end
     end
 
     private 
