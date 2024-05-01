@@ -40,11 +40,6 @@ const ReservationDate = ({DatePicker, selectedRoom, guestDropdown,
             return 150
         }
     }
-    useEffect(() => {
-        console.log('errors', errors)
-
-    }, [errors])
-    
     const handleReserveClick = () => {
         if(currentUser === null) {
             setLoginModalState('login')
