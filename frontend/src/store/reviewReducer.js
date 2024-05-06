@@ -69,6 +69,7 @@ export const updateReview = (reviewId, reviewData) => async dispatch => {
         if (res.ok) {
             const data = await res.json()
             dispatch(receiveReview(data))
+            dispatch(fetchReviews()); //for instant update
         } else {
             throw res;
         }

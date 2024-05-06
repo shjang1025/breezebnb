@@ -18,7 +18,7 @@ const pastReservations = ({pastReservations, bnbphoto, handleReviewOpenClick, ro
                     <div className="button-container" >
                         <button className={`review-button ${Object.values(reviews).find((review) => 
                                     review.reviewerId === currentUser.id && room.id === review.reviewRoomId
-                                ) ? "reviewed" : ""}`} onClick={() => handleReviewOpenClick(reservation.id)}
+                                ) ? "reviewed" : ""}`} onClick={() => handleReviewOpenClick(room.id)}
                                 
                                 disabled={Object.values(reviews).some((review) => 
                                     review.reviewerId === currentUser.id && room.id === review.reviewRoomId

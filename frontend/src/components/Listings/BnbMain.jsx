@@ -3,7 +3,7 @@ import './BnbMain.css'
 import { useEffect } from "react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-
+import noPhoto from "../../assets/no-image.png"
 const BnbMain = props => {
     const [selectedRoom, setSelectedRoom] = useState(null)
     const[rooms, setRooms] = useState([])
@@ -143,9 +143,13 @@ const BnbMain = props => {
                         
                             <div className="listing-item" key={idx}>
                                 <div className="image-content">
-                                    {room.photoUrl && (
+                                    {room.photoUrl ? (
                                         <Link key={idx} to={{ pathname: `/listings/${room.id}`, state: { room: room } }}>
                                             <img className="room-photo" src={room.photoUrl} onClick={() => handlePhotoClick(room)}></img>
+                                        </Link>
+                                    ) : (
+                                        <Link key={idx} to={{ pathname: `/listings/${room.id}`, state: { room: room } }}>
+                                            <img className="room-photo" src={noPhoto} onClick={() => handlePhotoClick(room)}></img>
                                         </Link>
                                     )}
                                 </div>

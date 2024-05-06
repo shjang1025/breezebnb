@@ -10,11 +10,12 @@ import ReviewModal from "./ReviewModal";
 import { FaStar } from "react-icons/fa";
 import { fetchReservation } from "../../store/reservationReducer";
 import { destroyReservation, selectCurrentReservation } from "../../store/reservationReducer";
-import { selectReviewsByUserId } from "../../store/reviewReducer";
+import { fetchReviews, selectReviewsByUserId } from "../../store/reviewReducer";
 import { destroyReview } from "../../store/reviewReducer";
 import Reservation from "./Reservation";
 import PastReservation from './PastReservation'
 import CurrentHosting from "./CurrentHosting";
+import { fetchRooms } from "../../store/roomReducer";
 
 const Trip = () => {
     
@@ -30,16 +31,18 @@ const Trip = () => {
     const [bookingHistory, setBookingHistory] = useState(null)
     const [hosting, setHosting] = useState(null)
     const [review, setReview] = useState(null)
+    const [selectedRoom, setSelectedRoom] = useState(null)
 
 
-    useEffect(() => {
-    }, [currentUser]);
+  
 
     const reservations = useSelector(state => state.reservations)
     const rooms = useSelector(state => state.rooms)
     const currentDate = new Date();
     const reviews = useSelector(state => state.reviews)
+    useEffect(() => {
 
+    }, [currentUser, reviews]);
     const currentReservations = Object.values(reservations).filter(
                                 reservation => {
                                     const checkinDate = new Date(reservation.checkin);
@@ -60,16 +63,14 @@ const Trip = () => {
     
 
 
-    useEffect(() => {
-    }, [reviewModal])
     const currentHostings = Object.values(rooms)
                             .filter(room => currentUser?.roomId?.includes(room.id))
     const currentReviews = Object.values(reviews).filter(review => Array.isArray(currentUser.reviewId) && currentUser.reviewId.includes(review.id));
     const currentReviewData = currentReviews.filter(ele => ele.id === reviewId)[0]
     
     useEffect(() => {
-
-    }, [user_id])
+        dispatch(fetchRooms)
+    }, [user_id, currentReviews])
     
     useEffect(() => {
     },[reservationId])
@@ -116,14 +117,18 @@ const Trip = () => {
             )
         }
     }
-    const handleReviewOpenClick = (reviewId) => {
+    const handleReviewOpenClick = (roomId) => {
         setReviewModal('make-review')
-        setReviewId(reviewId)
+        console.log(roomId)
+        // setReviewId(reviewId)
+        setSelectedRoom(roomId)
     }
-    const handleReviewEditClick = (reviewId, reservationId) => {
+    const handleReviewEditClick = ( roomId, reviewId, reservationId) => {
         setReviewModal('edit-review')
         setReviewId(reviewId)
         setReservationId(reservationId)
+        setSelectedRoom(roomId)
+
     }
     const handleEditOpenClick = (reservationId) => {
         setEditModal(!editModal)
@@ -200,7 +205,7 @@ const Trip = () => {
                             return (
                                 <div className="reviews-index-container" key={review.id}>
                                     <div className="button-container">
-                                        <button className="review-edit-button" onClick={() => handleReviewEditClick(review.id)}>Edit</button>
+                                        <button className="review-edit-button" onClick={() => handleReviewEditClick(room.id, review.id, reservationId)}>Edit</button>
                                         <button className="review-delete-button" onClick={() => dispatch(destroyReview(review.id, reservationId))}>Delete</button>
                                     </div>
                                     <div className="yes-reviews-inner">
@@ -247,7 +252,7 @@ const Trip = () => {
             {editModal && 
                 <EditModal reservationId={reservationId} setEditModal={setEditModal} initialData={currentReservation}/>}
             {reviewModal &&
-                <ReviewModal reviewId={reviewId} reservationId={reservationId} setReviewModal={setReviewModal} initialReviewData={currentReviewData} reviewModal={reviewModal}/>
+                <ReviewModal selectedRoom={selectedRoom} reviewId={reviewId} reservationId={reservationId} setReviewModal={setReviewModal} initialReviewData={currentReviewData} reviewModal={reviewModal}/>
             }
         </>
     )

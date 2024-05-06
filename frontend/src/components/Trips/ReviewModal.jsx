@@ -4,10 +4,10 @@ import './ReviewModal.css';
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/sessionReducer";
-import { createReview, selectReview, selectReviewsArray, updateReview } from "../../store/reviewReducer";
+import { createReview, fetchReviews, selectReview, selectReviewsArray, updateReview } from "../../store/reviewReducer";
 import { FaStar } from "react-icons/fa";
 import { selectRoomByReview } from "../../store/roomReducer";
-const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData, reviewModal}) => {
+const ReviewModal = ({reservationId, selectedRoom,reviewId, setReviewModal, initialReviewData, reviewModal}) => {
     const dispatch = useDispatch()
     const reservations = useSelector(state => state.reservations)
     const rooms = useSelector(state => state.rooms)
@@ -45,7 +45,7 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
         setValue(count);
     }
 
-    //user's reservations arr
+    // user's reservations arr
     const reservationsArr = users[currentUser.id].reservationId 
     const reviewsArr = users[currentUser.id].reviewId
     
@@ -60,6 +60,7 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
     useEffect(() => {
     },[reviewId])
     useEffect(()=> {
+        dispatch(fetchReviews)
     },[dispatch])
     useEffect(() => {
 
@@ -77,7 +78,8 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
     }, [initialReviewData]);
     const roomId = useSelector(selectRoomByReview(reviewId))
     useEffect(() => {
-    }, [roomId])
+        console.log("room id?",selectedRoom)
+    }, [selectedRoom, ])
     const handleSubmit = (e) => {
         e.preventDefault();
         const reviewData = {
@@ -91,7 +93,7 @@ const ReviewModal = ({reservationId, reviewId, setReviewModal, initialReviewData
                 location: location,
                 value: value,
                 reviewer_id: currentUser.id, 
-                review_room_id: roomId
+                review_room_id: selectedRoom
             
         }
         if(reviewModal === 'edit-review') {

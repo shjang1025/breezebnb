@@ -15,13 +15,12 @@ class Api::ReviewsController < ApplicationController
         if room 
             @review.room = room
             # @review.reserver = reserver 
-            if @review.save
+            if @review.save!
                 render :show
             else 
                 render json: @review.errors.full_messages, status: 422
             end
         else
-
             render json: {error: "Room not found" }, status: 404
         end
     end
@@ -37,7 +36,8 @@ class Api::ReviewsController < ApplicationController
 
     def update
         if @review.update(review_params) 
-            render :show
+            # render :show
+            render json: @review
         else 
             render json: @review.errors.full_messages, status: 422
         end

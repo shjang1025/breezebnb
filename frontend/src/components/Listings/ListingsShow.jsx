@@ -14,6 +14,7 @@ import { selectCurrentRoom } from "../../store/roomReducer"
 import { FaStar } from "react-icons/fa";
 import Review from "./Review"
 import ReservationDate from "./ReservationDate"
+import noPhoto from "../../assets/no-image.png"
 
 const ListingsShow = () => {
     const {room_id} = useParams();
@@ -202,7 +203,13 @@ const ListingsShow = () => {
 
                     <div className="listing-photo-container">
                         <div className="representing-photo">
-                            <img className="listing-show-photo" src={selectedRoom.photoUrl}/>
+                            {selectedRoom.photoUrl ? (
+                                <img className="listing-show-photo" src={selectedRoom.photoUrl}/>
+
+                            ): (
+                                <img className="listing-show-photo" src={noPhoto}/>
+
+                            )}
                         </div>
                     </div>
                     <div className="details-wrapper">

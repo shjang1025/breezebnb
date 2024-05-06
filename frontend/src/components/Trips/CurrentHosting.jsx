@@ -2,6 +2,7 @@ import { destroyRoom, selectCurrentRoom } from "../../store/roomReducer";
 import { Link } from "react-router-dom";
 import './Trip.css'
 import { useDispatch } from "react-redux";
+import noPhoto from "../../assets/no-image.png"
 const CurrentHosting = ({currentHostings, bnbphoto}) => {
     const dispatch = useDispatch();
     return(
@@ -42,7 +43,11 @@ const CurrentHosting = ({currentHostings, bnbphoto}) => {
                         </div>
                     </div>
                     <div className="hosting-photo">
-                        <img src={hosting.photoUrl} id="hosting-photo" />
+                        {hosting.photoUrl ? (
+                            <img src={hosting.photoUrl} id="hosting-photo" />
+                        ): (
+                            <img src={noPhoto} id="hosting-photo" />
+                        )}
                     </div>
                 </div>
             )
