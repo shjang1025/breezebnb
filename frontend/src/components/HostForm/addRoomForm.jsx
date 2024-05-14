@@ -18,12 +18,12 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
     const [city, setCity] = useState(initialHostData ? initialHostData.city : '')
     const [state, setState] = useState(initialHostData ? initialHostData.state : '')
     const [country, setCountry] = useState(initialHostData ? initialHostData.country : '')
-    const [price, setPrice] = useState(initialHostData ? initialHostData.price : 0)
+    const [price, setPrice] = useState(initialHostData ? initialHostData.price : null)
     const [category, setCategory] = useState(initialHostData ? initialHostData.category : '')
-    const [capacity, setCapacity] = useState(initialHostData ? initialHostData.capacity : 1)
-    const [beds, setBeds] = useState(initialHostData ? initialHostData.beds : 0)
-    const [rooms, setRooms] = useState(initialHostData ? initialHostData.rooms : 0)
-    const [baths, setBaths] = useState(initialHostData ? initialHostData.baths : 0)
+    const [capacity, setCapacity] = useState(initialHostData ? initialHostData.capacity : null)
+    const [beds, setBeds] = useState(initialHostData ? initialHostData.beds : null)
+    const [rooms, setRooms] = useState(initialHostData ? initialHostData.rooms : null)
+    const [baths, setBaths] = useState(initialHostData ? initialHostData.baths : null)
     const [parking, setParking] = useState(initialHostData ? initialHostData.amenities.parking : false)
     const [washer, setWasher] = useState(initialHostData ? initialHostData.amenities.washer : false)
     const [dryer, setDryer] = useState(initialHostData ? initialHostData.amenities.dryer : false)
@@ -40,6 +40,7 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
     const [checked, setChecked] = useState(false)
     const dispatch = useDispatch();
     
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = new FormData();
@@ -125,11 +126,10 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
         setCategory('');
         setChecked(false);
 
-        if (errors.length !== 0) {
+        if (Object.keys(errors).length !== 0) {
             window.location.href = `/users/${currentUser.id}`;
         }    
     }
-
 
     const handleCheckboxChange = (e) => {
         const {name, checked} = e.target
@@ -174,7 +174,6 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
         setChecked(checked)
     }
     const handleFile = (e) => {
-        //extract file from event
         const file = e.currentTarget.files[0]
         setPhoto(file);
     }
@@ -182,7 +181,7 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
 
 
     useEffect(() => {
-    }, [mode, initialHostData,ac])
+    }, [mode, initialHostData])
 
     return(
         <>
@@ -259,7 +258,7 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
                                 placeholder="Country" />
                         </div> 
                     </label>
-                    <label>Price per Night {errors.price ? <div className='price-errors'>* {errors.price[0]}</div> : ""}
+                    <label>Price per Night {errors.price ? <div className='price-errors'>* Price can't be blank</div> : ""}
                         <div>
                             <input 
                                 className="price-input" 
