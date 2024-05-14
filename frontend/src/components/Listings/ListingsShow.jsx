@@ -3,7 +3,7 @@ import Navbar from "../Navbar"
 import "./ListingsShow.css"
 import { useState, useEffect } from "react"
 import {faSquareParking, faTv, faIgloo, faTemperatureArrowUp,
-    faShirt, faSocks, faWifi, faSink, faFireBurner,faFire,faDog, faAngleDown} from "@fortawesome/free-solid-svg-icons"
+    faShirt, faSocks, faWifi, faSink, faFireBurner,faFire,faDog} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import DatePicker from "react-datepicker";

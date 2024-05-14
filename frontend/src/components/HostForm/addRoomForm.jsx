@@ -125,7 +125,7 @@ const AddRoomForm = ({mode, initialHostData, roomId}) => {
         setCategory('');
         setChecked(false);
 
-        if (!errors) {
+        if (errors.length !== 0) {
             window.location.href = `/users/${currentUser.id}`;
         }    
     }
