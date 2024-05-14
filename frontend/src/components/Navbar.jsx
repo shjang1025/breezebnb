@@ -139,9 +139,9 @@ const Navbar = () => {
                         <div className="navbar-menu">
                             <div className="room-hosting-links">
                                 {currentUser ? (
-                                    <Link to={'/host'}>Breezebnb your home</Link>
+                                    <Link to={'/host'} className="breezebnb-link">Breezebnb your home</Link>
                                 ) : (
-                                    <p onClick={handleBreezebnbClick}>Breezebnb your home</p>
+                                    <p className="breezebnb-link" onClick={handleBreezebnbClick}>Breezebnb your home</p>
                                 )}
                             </div>
                             <div className="github">

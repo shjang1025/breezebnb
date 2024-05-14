@@ -214,9 +214,10 @@ table {
 .github-icon, .linkedin-icon {
     padding-right: 15px;
 }
+.breezebnb-link:hover,
 .github-icon:hover, 
 .linkedin-icon:hover{
-    color: #ff385d6e;
+    color: #ff385d;
 }
 .navbar-logo li,
 .menu-dropdown *,
