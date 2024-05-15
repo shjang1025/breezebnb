@@ -4,7 +4,7 @@
 
 # Welcome to Breezebnb
 
-[Breezebnb](https://breezebnb-oxhj.onrender.com) is a accommodation booking website inspired by Airbnb!
+[Breezebnb](https://breezebnb-5de83b36aa0c.herokuapp.com/) is a accommodation booking website inspired by Airbnb!
 
 ---
  
