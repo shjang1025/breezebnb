@@ -28,7 +28,7 @@
 - Easily discover rooms by category with intuitive category icons
 - Streamline your search process and find accommodations tailored to your preferences effortlessly
 
-![category-search](https://github.com/shjang1025/breezebnb/assets/26673070/ebd7296d-20ab-4f4a-b53e-70b98c3becc4)
+![category-search](https://github.com/shjang1025/breezebnb/assets/26673070/41fc4e27-64fe-40ce-bacc-24f71f1a3f9d)
 
 ### User-Friendly Guidance
 
